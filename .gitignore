@@ -2,6 +2,7 @@
 
 # dependencies
 /bc-react/node_modules
+/bc-express/node_modules
 
 # testing
 /coverage
