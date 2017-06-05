@@ -7,6 +7,15 @@ class UserStore extends EventEmitter{
     this.user = null
     this.message = ""
   }
+
+  getUser(){
+    return this.user
+  }
+
+  updateUser(attributes){
+    this.user = attributes
+  }
+
   handleActions(action){
     switch(action.type){
       case("SIGNUP"):{
