@@ -4,6 +4,7 @@
 //if yes then update the location in our database from yelp
 //if else create a new location
 // import place from './models/place.js'
+var Place = require('./models').Place
 
 const RapidAPI = require('rapidapi-connect');
 const rapid = new RapidAPI("default-application_5931dd81e4b0eaefb644d037", "a8ccee1a-27f1-496e-a16b-176dbfbeba8f");
@@ -30,9 +31,12 @@ rapid.call('YelpAPI', 'getBusinesses', {
     for(var i=0;i<payload.businesses.length;i++){
       vals.push(payload.businesses[i]);
         }
-    var newObj = {}
+        // console.log(vals);
+
+
     var data = []
     for(var i=0;i<vals.length;i++){
+      var newObj = new Place()
       newObj.name = vals[i].name,
       newObj.image_url = vals[i].image_url,
       newObj.review_count = vals[i].review_count,
@@ -44,10 +48,11 @@ rapid.call('YelpAPI', 'getBusinesses', {
       newObj.zip_code = vals[i].zip_code,
       newObj.state = vals[i].state,
       newObj.display_phone = vals[i].display_phone
-      data.push(newObj)
-    }console.log(data);
+      newObj.save() //promsie
+      //data.push(newObj)
+    }
+    console.log(data);
 
 }).on('error', (payload)=>{
 	 /*YOUR CODE GOES HERE*/
-   console.log(payload + 'error');
 });
