@@ -2,23 +2,38 @@ import React, { Component } from 'react';
 import './App.css';
 import UserSignUp from './components/UserSignUp';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+
+import {updatePlaces} from './actions'
+import PlaceIndex from './components/PlaceIndex'
+import placeStore from './stores/PlaceStore'
+
+
 // import userStore from './stores/UserStore';
 // import { addUser } from './actions';
 
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    updatePlaces()
+    this.state = {}
+}
   render() {
     return (
-      <div className="container App">
-        <Router>
-        <div>
+      <Router>
+        <div className="container App">
           <div>
-            <Link to='/signup'>Sign Up</Link>
+            <div>
+              <Link to='/'>Home</Link>
+              <Link to='/signup'>Sign Up</Link>
+            </div>
+            <div>
+              <Route exact path='/' component={PlaceIndex} />
+              <Route exact path='/signup' component={UserSignUp}></Route>
+            </div>
           </div>
-            <Route exact path='/signup' component={UserSignUp}></Route>
         </div>
-        </Router>
-      </div>
+      </Router>
     );
   }
 }
