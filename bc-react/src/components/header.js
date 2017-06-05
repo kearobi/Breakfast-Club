@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import logo from './logo.svg';
-import './App.css';
-import Img from 'react-image'
+import '../App.css';
 
 
 class Header extends Component {
@@ -38,11 +35,8 @@ class Header extends Component {
             <br></br>
           <img src='../Images/logOut.png' />
         </div>
-        <span class="border">
-          <span class="border-bottom">
+
             <h2>Breakfast Club</h2>
-          </span>
-        </span>
       </div>
 
 

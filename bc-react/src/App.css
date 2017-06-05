@@ -1,5 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+@import url('https://fonts.googleapis.com/css?family=Abel');
+
 .Header {
   text-align: center;
+}
+/*CSS for admin_view component*/
+#search_bar_wrapper {
+  margin: auto;
+  display: block;
+  font-family: 'Abel';
+  font-size: 20px;
+  border-color: dimgray;
+  text-align: center;
+}
+#admin_button_wrapper {
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+#add_button_wrapper {
+  display: inline;
+}
+.admin_button {
+  background-color: #eeeeee;
+  border-color: dimgray;
+  border-width: thin;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Abel';
+  font-size: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-right: 3px;
+}
+.add_button {
+  background-color: #eeeeee;
+  border-color: dimgray;
+  border-width: thin;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Abel';
+  font-size: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: 3px;
+}
+.admin_button:hover {
+  background-color: #def9a3;
 }
 
 h2 {
@@ -7,19 +54,42 @@ h2 {
   font-size: 100px;
   color: fuchsia;
   margin-top: -9px;
-  text-decoration: none;
-  border-bottom: 10px solid black;
-
+  font-weight: bold;
   }
 
+h3 {
+  font-family: 'Dancing Script';
+  text-align: center;
+  font-size: 52px;
+  font-style: italic;
+  font-weight: bold;
+  margin-top: -13px;
+}
+/*End CSS for admin_view component*/
 
-/*.Header-logo {
-  animation: Header-logo-spin infinite 20s linear;
-  height: 80px;
-}*/
+/*CSS for user_table component*/
+table, th, td {
+  border: 1px solid black;
+  background-color: #eeeeee;
+  border-color: #c1c1c1;
+  border-width: thin;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Abel';
+  font-size: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+table.center {
+  margin-left:auto;
+  margin-right:auto;
+  border-collapse: collapse;
+}
+/*End CSS for user_table component*/
 
 .Header-header {
-  background-color: #c122bc;
+  background-color: rgb(255,146,255);
   max-height: 1000px;
   max-width: 150px;
   min-height: 1000px;
@@ -27,16 +97,17 @@ h2 {
   padding: 40px;
   color: white;
   margin-bottom: -1000px;
-
 }
-
-
 
 .Header-intro {
   font-size: large;
 }
 
-@keyframes Header-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+#edit {
+  width: 20px;
+  margin-right: 3px;
+}
+
+#delete {
+  width: 25px;
 }
