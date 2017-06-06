@@ -1,5 +1,6 @@
 import userStore from './stores/UserStore'
 import Dispatcher from './Dispatcher'
+import placeStore from './stores/PlaceStore'
 
 export function loginUser(attributes){
   const params = {
@@ -45,4 +46,24 @@ export function addUser(attributes){
   }).catch(function(error){
     userStore.updateMessage("There was an error: " + error)
   })
+}
+
+export function updatePlaces(){
+  // make the api calls to get the list of cats
+  const params = {
+    method: 'GET',
+  }
+  fetch("http://localhost:4000/places", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        Dispatcher.dispatch({
+          type: 'UPDATE_PLACES',
+          places: body.places
+        })
+      })
+    }
+  }).catch(function(error){
+    //TODO handle errors
+  })
+  // update the store with a dispatch
 }
