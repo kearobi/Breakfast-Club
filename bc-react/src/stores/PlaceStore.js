@@ -53,19 +53,16 @@ class PlaceStore extends EventEmitter{
     this.emit('change')
   }
 
-  // handleActions(action){
-  //   switch(action.type){
-  //     case("CREATE_CAT"):{
-  //       this.updateNewCat(action.cat)
-  //       break
-  //     }
-  //     case("UPDATE_CATS"):{
-  //       this.updateCats(action.cats)
-  //       break
-  //     }
-  //     default:{}
-  //   }
-  // }
+  handleActions(action){
+    switch(action.type){
+      case("UPDATE_PLACES"):{
+        this.updatePlaces(action.places)
+        break
+      }
+      default:{}
+    }
+  }
+
 }
 
 const store = new PlaceStore()
