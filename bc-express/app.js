@@ -18,14 +18,14 @@ app.get('/', function (request, response) {
   response.json({message: 'API Example App'})
 });
 
-app.get('/places', function(request, response){
+app.get('/place', function(request, response){
   rapid.call().then(function(places){
     response.status(200)
     response.json({status: 'success', places: places})
   })
 })
 
-app.post('/places', function(request, response){
+app.post('/place', function(request, response){
   let placeParams = request.body.place
   Place.create(placeParams).then(function(place){
     response.status(200)
