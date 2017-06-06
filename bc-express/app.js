@@ -3,7 +3,7 @@ var bodyParser = require('body-parser')
 var app = express();
 var cors = require('cors')
 var Place = require('./models').Place
-var payload = require('./api').payload
+// var payload = require('./api').payload
 var User = require('./models').Users
 
 const corsOptions = {
@@ -18,14 +18,14 @@ app.get('/', function (request, response) {
   response.json({message: 'API Example App'})
 });
 
-app.get('/place', function(request, response){
-  rapid.call().then(function(places){
+app.get('/places', function(request, response){
+  Place.findAll().then(function(places){
     response.status(200)
     response.json({status: 'success', places: places})
   })
 })
 
-app.post('/place', function(request, response){
+app.post('/places', function(request, response){
   let placeParams = request.body.place
   Place.create(placeParams).then(function(place){
     response.status(200)

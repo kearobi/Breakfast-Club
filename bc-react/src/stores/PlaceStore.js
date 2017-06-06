@@ -16,7 +16,7 @@ class PlaceStore extends EventEmitter{
         image_url: 'https://s3-media4.fl.yelpcdn.com/bphoto/bi2QeQyCdUmC42BKDisGJw/o.jpg',
         categories: 'American (Traditional)',
         review_count: 1536,
-        price: '$$',
+        price: '$$'
       },
       {
         name: 'Breakfast World',
@@ -28,9 +28,9 @@ class PlaceStore extends EventEmitter{
         image_url: 'https://s3-media4.fl.yelpcdn.com/bphoto/bi2QeQyCdUmC42BKDisGJw/o.jpg',
         categories: 'American (Traditional)',
         review_count: 15236,
-        price: '$$$',
+        price: '$$$'
       }
-    ]
+    ],
     this.newPlace = {}
   }
 
@@ -65,10 +65,10 @@ class PlaceStore extends EventEmitter{
 
 }
 
-const store = new PlaceStore()
-// Dispatcher.register(store.handleActions.bind(store))
-window.store = store
-export default store
+const pstore = new PlaceStore()
+Dispatcher.register(pstore.handleActions.bind(pstore))
+window.pstore = pstore
+export default pstore
 
 // {
 //   "businesses": [

@@ -1,44 +1,57 @@
 import React, { Component } from 'react';
+import '../style/Places.css';
 
 class PlaceListing extends Component {
   render(){
     return(
-      <div className="col-xs-3">
-        <ul>
-          <li>
-            <img src={this.props.place.image_url} width="200px"></img>
-          </li>
-          <li>
-            {this.props.place.name}
-          </li>
-          <li>
-            {this.props.place.categories}
-          </li>
-          <li>
-            {this.props.place.rating}
-          </li>
-          <li>
-            {this.props.place.review_count}
-          </li>
-          <li>
-            {this.props.place.price}
-          </li>
-          <li>
-            {this.props.place.street}
-          </li>
-          <li>
-            {this.props.place.city}
-          </li>
-          <li>
-            {this.props.place.state}
-          </li>
-          <li>
-            {this.props.place.zip}
-          </li>
-          <li>
-            {this.props.place.phone}
-          </li>
-        </ul>
+      <div className="outside">
+
+        <div className="list col-xs-3">
+          <ul>
+
+            <li className="image">
+              <img src={this.props.place.image_url} ></img>
+            </li>
+
+            <br></br>
+
+            <li className="fields">
+              WHERE: {this.props.place.name}
+            </li>
+
+            <li className="fields">
+              WHAT KIND: {this.props.place.categories}
+            </li>
+
+            <li className="fields">
+              HOW GOOD: {this.props.place.yelp_rating}
+            </li>
+
+            <li className="fields">
+              REVIEWED: {this.props.place.review_count}
+            </li>
+
+            <li className="fields">
+              HOW MUCH MOOLAH: {this.props.place.price}
+            </li>
+
+            <li className="fields">
+              ADDRESS: {this.props.place.address_street}
+            </li>
+
+            <li className="fields">
+              {this.props.place.address_city} ,
+              {this.props.place.address_state} ,
+              {this.props.place.address_zip}
+            </li>
+
+            <li className="fields">
+              TELE: {this.props.place.phone}
+            </li>
+            <hr></hr>
+          </ul>
+        </div>
+
       </div>
     )
   }

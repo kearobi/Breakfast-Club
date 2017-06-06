@@ -10,15 +10,15 @@ class PlaceIndex extends Component {
     }
   }
 
-  // updatePlaces(){
-  //   this.setState({
-  //     Places: PlaceStore.getPlaces()
-  //   })
-  // }
+  updatePlaces(){
+    this.setState({
+      places: PlaceStore.getPlaces()
+    })
+  }
 
-  // componentWillMount(){
-  //   PlaceStore.on('change', this.updatePlaces.bind(this))
-  // }
+  componentWillMount(){
+    PlaceStore.on('change', this.updatePlaces.bind(this))
+  }
 
   renderPlaces(){
     let placeRender = []

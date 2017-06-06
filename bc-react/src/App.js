@@ -28,7 +28,7 @@ class App extends Component {
             <div>
               <Route exact path='/' component={SplashPage}/>
               <Route path='/signup' component={UserSignUp} />
-              <Route exact path='/place' component={PlaceIndex} />
+              <Route path='/places' component={PlaceIndex} />
               <Route path='/login' component={UserLogin} />
               <Route path='/admin' component={AdminPage} />
             </div>

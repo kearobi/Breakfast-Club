@@ -30,9 +30,8 @@ export function updatePlaces(){
   // make the api calls to get the list of cats
   const params = {
     method: 'GET',
-    headers: {'Content-Type': 'application/json'}
   }
-  fetch("http://localhost:4000/place", params).then(function(response){
+  fetch("http://localhost:4000/places", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         Dispatcher.dispatch({
