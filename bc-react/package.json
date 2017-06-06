@@ -8,7 +8,8 @@
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-image": "^1.0.1",
-    "react-router-dom": "^4.1.1"
+    "react-router-dom": "^4.1.1",
+    "react-scripts": "^1.0.7"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"

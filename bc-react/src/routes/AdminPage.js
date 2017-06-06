@@ -1,12 +1,12 @@
 import React from 'react';
-import SearchBar from './search_bar';
-import Header from './header';
-import UserListing from './user_listing';
+import SearchBar from '../components/search_bar';
+import Header from '../components/header';
+import UserListing from '../components/user_listing';
 
 //const api
 //only the most parent component should be responsible for fetching data
 
-const AdminView = function(){
+const AdminPage = function(){
   return(
     <div id="admin_container">
       <Header />
@@ -29,4 +29,4 @@ const AdminView = function(){
     );
   }
 
-export default AdminView;
+export default AdminPage;

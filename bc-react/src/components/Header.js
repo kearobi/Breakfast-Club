@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../style/app.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import logo from './logo.svg';
 import Img from 'react-image'
 
 class Header extends Component {

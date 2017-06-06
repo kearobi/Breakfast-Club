@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import Header from '../components/Header';
+import Header from '../components/header';
 
 class SplashPage extends Component {
   render(){
@@ -9,13 +9,17 @@ class SplashPage extends Component {
         <Header />
         <div className="container">
           <div className="row">
-            <div className="col-sm-4">
-            </div>
-            <div className="col-sm-4">
-              <Link to="/signup"><h3>Sign Up</h3></Link><br/>
-              <Link to="/login"><h3>Login</h3></Link>
-            </div>
-            <div className="col-sm-4">
+            <div className="col-md-12 FontAmatic">
+              <Link
+                className="FontAmatic"
+                to="/login">
+                Log In
+              </Link>
+              <Link
+                className="FontAmatic"
+                to="/signup">
+                Sign Up
+              </Link>
             </div>
           </div>
         </div>

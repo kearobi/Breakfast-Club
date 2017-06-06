@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
-import Header from './header';
+import Header from '../components/header';
 
 class UserSignUp extends Component {
   constructor(props){
@@ -64,7 +64,7 @@ render(){
           <div className='formGroup'>
           <input
             placeholder='email address'
-            type='text'
+            type='email'
             name='email'
             id='email'
             value={this.state.user.email}
@@ -105,9 +105,13 @@ render(){
             <input type='submit' value='Let Me In!!'></input>
           </div>
         </form>
-        <div class="back-button">
+        <div className="center">
           <Link to="/">
-            <input type='button' value='Take Me Back!!'></input>
+            <input
+              className="BackButton"
+              type='button'
+              value='Take Me Back!!'>
+            </input>
           </Link>
         </div>
       </div>
