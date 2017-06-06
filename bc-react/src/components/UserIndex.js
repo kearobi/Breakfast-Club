@@ -48,10 +48,11 @@ class UserIndex extends Component {
   renderUsers(){
     let userRender = []
     for(var i=0; i<this.state.users.length; i++){
-      let userKey = `${user}i`
-      userRender.push(
+      let userKey = `user${i}`
+      userRender.push(<tr>
         <UserListing key={userKey}
         user={this.state.users[i]}></UserListing>
+      </tr>
       )
     }
     //when it's done it just sends out whatever the array is
@@ -60,9 +61,9 @@ class UserIndex extends Component {
   //renderUsers gets called here
     render(){
       return(
-        <div>
-          {this.renderCats()}
-        </div>
+        <tr>
+          {this.renderUsers()}
+        </tr>
       );
     }
 }
