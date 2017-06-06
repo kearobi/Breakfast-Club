@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../style/app.css';
+import '../style/App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Img from 'react-image'
 

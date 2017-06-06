@@ -5,7 +5,7 @@ import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
-import './style/app.css';
+import './style/App.css';
 
 //only the most parent component should be responsible for fetching data, aka here
 

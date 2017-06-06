@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
-import EditIcon from './icons';
+import EditIcon from './Icons';
 
 class UserListing extends Component {
   render(){
