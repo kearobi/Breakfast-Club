@@ -6,7 +6,7 @@ class SplashPage extends Component {
   render(){
     return (
       <div>
-        <Header />
+        
         <div className="container">
           <div className="row">
             <div className="col-md-12 FontAmatic">

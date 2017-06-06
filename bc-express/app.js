@@ -2,18 +2,59 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var app = express();
 var cors = require('cors')
+var Place = require('./models').Place
+// var payload = require('./api').payload
 var User = require('./models').Users
 
 const corsOptions = {
   origin: 'http://localhost:3000'
 }
+
 app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.json())
 
+const authorization = function(request, response, next){
+  const token = request.query.authToken || request.body.authToken
+  if(token){
+    User.findOne({
+      where: {authToken: token}
+    }).then((user)=>{
+      if(user){
+        request.currentUser = user
+        next()
+      }else{
+        response.status(401)
+        response.json({message:'Authorization Token Invalid'})
+      }
+    })
+  }else{
+    response.status(401)
+    response.json({message: 'Authorization Token Required'})
+  }
+}
+
 app.get('/', function (request, response) {
   response.json({message: 'API Example App'})
 });
+
+app.get('/places', function(request, response){
+  Place.findAll().then(function(places){
+    response.status(200)
+    response.json({status: 'success', places: places})
+  })
+})
+
+app.post('/places', function(request, response){
+  let placeParams = request.body.place
+  Place.create(placeParams).then(function(place){
+    response.status(200)
+    response.json({status: 'success', place: place})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
 
 app.post('/signup', function(request, response){
   console.log(request.body)
@@ -24,6 +65,24 @@ app.post('/signup', function(request, response){
   }).catch(function(error){
     response.status(400)
     response.json({status: 'error', error: error})
+  })
+})
+
+
+app.post('/login', function(request, response){
+  User.findOne({
+    where:{email: request.body.email}
+  }).then(function(user){
+    if(user && user.verifyPassword(request.body.password)){
+      response.status(200)
+      response.json({
+        message: 'Success!',
+        user: user
+      })
+    }else{
+      response.status(400)
+      response.json({message: 'Invalid Credentials'})
+    }
   })
 })
 
