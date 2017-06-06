@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import Header from '../components/Header';
+import Header from '../components/header';
 import {loginUser} from '../actions';
 
 class UserLogin extends Component {
@@ -36,8 +36,8 @@ render(){
           <div className="row">
             <div className="col-sm-4">
             </div>
-            <div className="col-sm-4">
-              <h3>Login</h3>
+            <div className="col-sm-4 FontAmatic">
+              Log In
             </div>
             <div className="col-sm-4">
             </div>
@@ -48,13 +48,30 @@ render(){
             <div className="col-sm-6">
               <form className='form' onSubmit={this.handleSubmit.bind(this)}>
                 <div className='formGroup'>
-                <input type='text' name='email' id='email' value={this.state.user.email} onChange={this.handleChange.bind(this)}></input>
+                  <input
+                    placeholder='email address'
+                    type='email'
+                    name='email'
+                    id='email'
+                    value={this.state.user.email}
+                    onChange={this.handleChange.bind(this)}>
+                  </input>
                 </div>
                 <div className='formGroup'>
-                <input type='text' name='password' id='password' value={this.state.user.password} onChange={this.handleChange.bind(this)}></input>
+                  <input
+                    placeholder='password'
+                    type='password'
+                    name='password'
+                    id='password'
+                    value={this.state.user.password}
+                    onChange={this.handleChange.bind(this)}>
+                  </input>
                 </div>
                 <div className='formGroup'>
-                  <input type='submit' value='Let Me In!!' className='btn btn-primary'></input>
+                  <input
+                    type='submit'
+                    value='Let Me In!!'>
+                  </input>
                 </div>
               </form>
             </div>
@@ -64,8 +81,14 @@ render(){
           <div className="row">
             <div className="col-sm-4">
             </div>
-            <div className="col-sm-4">
-              <Link to="/">Take Me Back!!</Link>
+            <div className="col-sm-4 center">
+              <Link to="/">
+                <button
+                  className="BackButton"
+                  type="button">
+                  Take Me Back!!
+                </button>
+              </Link>
             </div>
             <div className="col-sm-4">
             </div>
