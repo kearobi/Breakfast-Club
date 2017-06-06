@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 var app = express();
 var cors = require('cors')
 var User = require('./models').Users
+var Message = require('./models').Message
 
 const corsOptions = {
   origin: 'http://localhost:3000'
@@ -34,6 +35,28 @@ const authorization = function(request, response, next){
 app.get('/', function (request, response) {
   response.json({message: 'API Example App'})
 });
+
+app.get('/messages', function (request, response) {
+  Message.findAll().then(function(messages){
+    response.status(200)
+    response.json({message: "success", messages: messages});
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
+
+app.post('/add-message', function(request, response){
+  console.log("in add message", request.body)
+  let params = request.body
+  Message.create(params).then(function(message){
+    response.status(200)
+    response.json({status: 'success', message: message});
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
 
 app.post('/signup', function(request, response){
   console.log(request.body)
