@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import Header from './components/Header'
+import Home from './routes/Home';
+import UserLogin from './routes/UserLogin';
+import SplashPage from './routes/SplashPage';
+import AdminPage from './routes/AdminPage';
 import './style/App.css';
 import UserSignUp from './routes/UserSignUp';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import Calendar from './routes/Home'
 // import userStore from './stores/UserStore';
 // import { addUser } from './actions';
 
@@ -15,13 +18,14 @@ class App extends Component {
         <Router>
           <div>
             <Header />
-          <div>
-            <Calendar />
-          <div>
-            <Link to='/signup'>Sign Up</Link>
-          </div>
-            <Route exact path='/signup' component={UserSignUp}></Route>
-          </div>
+            <div>
+              <Link to='/signup'>Sign Up</Link>
+            </div>
+            <Route exact path='/' component={SplashPage}/>
+            <Route path='/signup' component={UserSignUp} />
+            <Route path='/login' component={UserLogin} />
+            <Route path='/admin' component={AdminPage} />
+            <Route path='/home' component={Home} />
           </div>
         </Router>
       </div>
