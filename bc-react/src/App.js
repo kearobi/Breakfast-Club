@@ -3,6 +3,7 @@ import Header from './components/Header'
 import './style/App.css';
 import UserSignUp from './routes/UserSignUp';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import Calendar from './routes/Home'
 // import userStore from './stores/UserStore';
 // import { addUser } from './actions';
 
@@ -15,6 +16,7 @@ class App extends Component {
           <div>
             <Header />
           <div>
+            <Calendar />
           <div>
             <Link to='/signup'>Sign Up</Link>
           </div>
