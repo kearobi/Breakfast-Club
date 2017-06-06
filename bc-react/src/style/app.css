@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+@import url('https://fonts.googleapis.com/css?family=Abel');
+@import url('./admin_page.css');
+@import url('./header.css');
+@import url('./search_bar.css');
+@import url('./user_listing.css');
+@import url('./icons.css');
+@import url('./sign_up_page.css');
+
+.FontAmatic {
+  font-family: 'Amatic SC';
+  font-size: 40px;
+  text-align: center;
+  color: black;
+  margin-top: 30px;
+}
+
+.center{
+  text-align: center;
+}
+
+.BackButton {
+  color: black;
+  font-family: 'Abel';
+  text-align: center;
+  font-size: 19px;
+}
+
+/* this code center-aligns the placeholder text in our forms for multiple browser/verisons */
+::-webkit-input-placeholder {text-align: center;}
+:-moz-placeholder {/* older Firefox*/text-align: center;}
+::-moz-placeholder { /* Firefox 19+ */ text-align: center;}
+:-ms-input-placeholder {text-align: center;}
