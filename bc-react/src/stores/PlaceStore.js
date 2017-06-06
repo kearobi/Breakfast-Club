@@ -4,7 +4,8 @@ import Dispatcher from '../Dispatcher'
 class PlaceStore extends EventEmitter{
   constructor(){
     super()
-    this.places = [
+    this.places =
+    [
       {
         name: 'Breakfast Republic',
         street: '2730 University Ave',

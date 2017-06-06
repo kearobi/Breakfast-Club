@@ -25,6 +25,16 @@ app.get('/places', function(request, response){
   })
 })
 
+app.post('/places', function(request, response){
+  let placeParams = request.body.place
+  Place.create(placeParams).then(function(place){
+    response.status(200)
+    response.json({status: 'success', place: place})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
 
 
 app.listen(4000, function () {

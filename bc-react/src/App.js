@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 import {updatePlaces} from './actions'
 import PlaceIndex from './components/PlaceIndex'
-import placeStore from './stores/PlaceStore'
+// import placeStore from './stores/PlaceStore'
 
 
 // import userStore from './stores/UserStore';
@@ -24,11 +24,11 @@ class App extends Component {
         <div className="container App">
           <div>
             <div>
-              <Link to='/'>Home</Link>
               <Link to='/signup'>Sign Up</Link>
+              <Link to='/place'>place</Link>
             </div>
             <div>
-              <Route exact path='/' component={PlaceIndex} />
+              <Route exact path='/place' component={PlaceIndex} />
               <Route exact path='/signup' component={UserSignUp}></Route>
             </div>
           </div>

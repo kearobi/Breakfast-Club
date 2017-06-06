@@ -36,18 +36,19 @@ rapid.call('YelpAPI', 'getBusinesses', {
 
     var data = []
     for(var i=0;i<vals.length;i++){
-      var newObj = new Place()
+      var newObj = Place.build()
       newObj.name = vals[i].name,
       newObj.image_url = vals[i].image_url,
       newObj.review_count = vals[i].review_count,
       newObj.title = vals[i].title,
-      newObj.rating = vals[i].rating,
+      newObj.yelp_rating = vals[i].rating,
       newObj.price = vals[i].price,
-      newObj.address1 = vals[i].address1,
-      newObj.city = vals[i].city,
-      newObj.zip_code = vals[i].zip_code,
-      newObj.state = vals[i].state,
-      newObj.display_phone = vals[i].display_phone
+      newObj.address_street = vals[i].location.address1,
+      newObj.address_city = vals[i].location.city,
+      newObj.address_zip = vals[i].location.zip_code,
+      newObj.address_state = vals[i].location.state,
+      newObj.phone = vals[i].display_phone,
+      newObj.categories = vals[i].categories[0].title,
       newObj.save() //promsie
       //data.push(newObj)
     }

@@ -23,6 +23,7 @@ export function addUser(attributes){
     userStore.updateMessage("There was an error: " + error)
   })
 }
+
 export function updatePlaces(){
   // make the api calls to get the list of cats
   const params = {
