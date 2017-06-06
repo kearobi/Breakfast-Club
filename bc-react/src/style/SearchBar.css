@@ -1,0 +1,7 @@
+#search_bar_wrapper {
+  font-family: 'Abel';
+  font-size: 20px;
+  border-color: dimgray;
+  text-align: center;
+  display: inline-block;
+}
