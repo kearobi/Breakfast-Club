@@ -5,6 +5,7 @@ var cors = require('cors')
 var Place = require('./models').Place
 // var payload = require('./api').payload
 var User = require('./models').Users
+var Message = require('./models').Message
 
 const corsOptions = {
   origin: 'http://localhost:3000'
@@ -38,6 +39,29 @@ app.get('/', function (request, response) {
   response.json({message: 'API Example App'})
 });
 
+app.get('/messages', function (request, response) {
+  Message.findAll().then(function(messages){
+    response.status(200)
+    response.json({message: "success", messages: messages});
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
+
+app.post('/add-message', function(request, response){
+  console.log("in add message", request.body)
+  let params = request.body
+  Message.create(params).then(function(message){
+    response.status(200)
+    response.json({status: 'success', message: message});
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
+
+    
 app.get('/places', function(request, response){
   Place.findAll().then(function(places){
     response.status(200)

@@ -42,7 +42,14 @@ class UserLogin extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    loginUser(this.state.user)
+    if (this.state.user.email == "" || this.state.user.password == ""){
+      this.setState({
+        message: "Email and password required"
+      })
+    }
+    else {
+      loginUser(this.state.user)
+    }
   }
 
 render(){
@@ -106,7 +113,7 @@ render(){
                   Take Me Back!!
                 </button>
               </Link>
-              <div class="alert alert-warning"><strong>{this.state.message}</strong></div>
+              <div className="alert alert-warning"><strong>{this.state.message}</strong></div>
             </div>
             <div className="col-sm-4">
             </div>

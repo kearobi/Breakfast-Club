@@ -1,5 +1,7 @@
+import Dispatcher from './Dispatcher';
+import userStore from './stores/UserStore';
+import MessageStore from './stores/MessageStore';
 import userStore from './stores/UserStore'
-import Dispatcher from './Dispatcher'
 import placeStore from './stores/PlaceStore'
 
 export function loginUser(attributes){
@@ -48,6 +50,27 @@ export function addUser(attributes){
   })
 }
 
+export function addMessage(attributes){
+  const params = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(attributes)
+  }
+  fetch("http://localhost:4000/add-message", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        // send the message to the store
+        Dispatcher.dispatch({
+          type: 'ADD-MESSAGE',
+          message: body.message
+        })
+      })
+    }
+  }).catch(function(error){
+    userStore.updateMessage("There was an error: " + error)
+  })
+}
+
 export function updatePlaces(){
   // make the api calls to get the list of cats
   const params = {
@@ -63,7 +86,31 @@ export function updatePlaces(){
       })
     }
   }).catch(function(error){
-    //TODO handle errors
   })
-  // update the store with a dispatch
 }
+
+export function fetchMessages(){
+  let success;
+  const params = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+      }
+  fetch('http://localhost:4000/messages', params)
+    .then((response)=>{
+      success = response.ok
+      return response.json()
+    })
+    .then((body)=>{
+      if (success){
+        console.log("success!", body)
+        let messages = body.messages
+        Dispatcher.dispatch({
+          type: "FETCH-MESSAGES",
+          messages: messages
+        })
+      }
+      else {
+        console.log("failure!", body)
+      }
+    })
+  }
