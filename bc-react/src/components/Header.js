@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import SideBar from './SideBar'
+import Img from 'react-image'
 import '../style/App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 // import Img from 'react-image'
+
 
 class Header extends Component {
   render() {
@@ -9,39 +12,19 @@ class Header extends Component {
     return (
       <div className="Header">
         <div className="Header-header">
-          <img src='../Images/man-user.png' />
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-          <img src='../Images/calendar.png' />
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-          <img src='../Images/logOut2.png' />
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <img src='../Images/profile.png' />
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-          <img src='../Images/calendar2.png' />
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-          <img src='../Images/logOut.png' />
+        <SideBar />
         </div>
-        <span className="border">
-          <span className="border-bottom">
+        <span class="border">
+          <span class="border-bottom">
             <h2>Breakfast Club</h2>
           </span>
         </span>
       </div>
+
+
+
+
+
     );
   }
 }

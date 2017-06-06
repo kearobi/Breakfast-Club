@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import Header from './components/Header'
 import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
@@ -9,6 +9,9 @@ import {updatePlaces} from './actions'
 import PlaceIndex from './components/PlaceIndex'
 // import placeStore from './stores/PlaceStore'
 import './style/App.css';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+// import userStore from './stores/UserStore';
+// import { addUser } from './actions';
 
 
 // import userStore from './stores/UserStore';
@@ -26,17 +29,21 @@ class App extends Component {
     return (
       <div className='wrapper'>
         <Router>
+          <div>
+            <Header />
             <div>
-              <Route exact path='/' component={SplashPage}/>
-              <Route path='/signup' component={UserSignUp} />
-              <Route path='/places' component={PlaceIndex} />
-              <Route path='/login' component={UserLogin} />
-              <Route path='/admin' component={AdminPage} />
-              <Route path='/home' component={Home} />
+              <Link to='/signup'>Sign Up</Link>
             </div>
+            <Route exact path='/' component={SplashPage}/>
+            <Route path='/signup' component={UserSignUp} />
+            <Route path='/login' component={UserLogin} />
+            <Route path='/places' component={PlaceIndex} />
+            <Route path='/admin' component={AdminPage} />
+            <Route path='/home' component={Home} />
+          </div>
         </Router>
       </div>
-    )
+    );
   }
 }
 
