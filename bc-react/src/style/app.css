@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script');
 @import url('https://fonts.googleapis.com/css?family=Abel');
-@import url('./admin_page.css');
 @import url('./messageboard.css');
-@import url('./header.css');
-@import url('./search_bar.css');
-@import url('./user_listing.css');
-@import url('./icons.css');
-@import url('./sign_up_page.css');
+@import url('./AdminPage.css');
+@import url('./Header.css');
+@import url('./SearchBar.css');
+@import url('./UserListing.css');
+@import url('./Icons.css');
+@import url('./SignUpPage.css');
 
 .FontAmatic {
   font-family: 'Amatic SC';

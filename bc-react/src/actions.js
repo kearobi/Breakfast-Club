@@ -1,6 +1,8 @@
 import Dispatcher from './Dispatcher';
 import userStore from './stores/UserStore';
 import MessageStore from './stores/MessageStore';
+import userStore from './stores/UserStore'
+import placeStore from './stores/PlaceStore'
 
 export function loginUser(attributes){
   const params = {
@@ -69,6 +71,24 @@ export function addMessage(attributes){
   })
 }
 
+export function updatePlaces(){
+  // make the api calls to get the list of cats
+  const params = {
+    method: 'GET',
+  }
+  fetch("http://localhost:4000/places", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        Dispatcher.dispatch({
+          type: 'UPDATE_PLACES',
+          places: body.places
+        })
+      })
+    }
+  }).catch(function(error){
+  })
+}
+
 export function fetchMessages(){
   let success;
   const params = {
@@ -93,4 +113,4 @@ export function fetchMessages(){
         console.log("failure!", body)
       }
     })
-}
+  }
