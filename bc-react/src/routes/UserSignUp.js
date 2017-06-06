@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
-import Header from '../components/header';
+import Header from '../components/Header';
 
 class UserSignUp extends Component {
   constructor(props){

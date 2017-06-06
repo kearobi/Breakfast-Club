@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchBar from '../components/search_bar';
-import Header from '../components/header';
-import UserListing from '../components/user_listing';
+import SearchBar from '../components/SearchBar';
+import Header from '../components/Header';
+import UserListing from '../components/UserListing';
 
 //const api
 //only the most parent component should be responsible for fetching data
