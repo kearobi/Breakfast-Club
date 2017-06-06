@@ -18,6 +18,11 @@ export function loginUser(attributes){
         console.log("login failed");
       })
     }
+    else {
+      Dispatcher.dispatch({
+        type:'LOGIN-FAIL'
+      })
+    }
   })
 }
 

@@ -11,16 +11,24 @@ class UserLogin extends Component {
       user: {
         email: "",
         password: ""
-      }
+      },
+      message: ''
     }
   }
 
   componentWillMount(){
-    UserStore.on('loggedIn', this.redirectToHome.bind(this))
+    UserStore.on('login-success', this.redirectToHome.bind(this));
+    UserStore.on('login-fail', this.loginFailed.bind(this));
   }
 
   redirectToHome(){
     this.props.history.push("/Home");
+  }
+
+  loginFailed(){
+    this.setState({
+      message: 'Login failed, credentials invalid'
+    })
   }
 
   handleChange(e){
@@ -98,6 +106,7 @@ render(){
                   Take Me Back!!
                 </button>
               </Link>
+              <div class="alert alert-warning"><strong>{this.state.message}</strong></div>
             </div>
             <div className="col-sm-4">
             </div>

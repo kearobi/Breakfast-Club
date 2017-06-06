@@ -27,7 +27,11 @@ class UserStore extends EventEmitter{
       case("LOGIN"):{
         this.updateUser(action.user)
         this.message = "User Logged In"
-        this.emit('loggedIn')
+        this.emit('login-success')
+        break
+      }
+      case("LOGIN-FAIL"):{
+        this.emit('login-fail')
         break
       }
       default:{}
