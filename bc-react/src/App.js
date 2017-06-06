@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
+import {updatePlaces} from './actions'
+import PlaceIndex from './components/PlaceIndex'
+// import placeStore from './stores/PlaceStore'
 import './style/App.css';
+
+
+// import userStore from './stores/UserStore';
+// import { addUser } from './actions';
 
 //only the most parent component should be responsible for fetching data, aka here
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    updatePlaces()
+    this.state = {}
+}
   render() {
     return (
       <div className='wrapper'>
@@ -17,6 +29,7 @@ class App extends Component {
             <div>
               <Route exact path='/' component={SplashPage}/>
               <Route path='/signup' component={UserSignUp} />
+              <Route path='/places' component={PlaceIndex} />
               <Route path='/login' component={UserLogin} />
               <Route path='/admin' component={AdminPage} />
               <Route path='/home' component={Home} />

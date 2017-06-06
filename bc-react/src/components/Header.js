@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../style/App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import Img from 'react-image'
+// import Img from 'react-image'
 
 class Header extends Component {
   render() {
