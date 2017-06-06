@@ -1,6 +1,8 @@
 import userStore from './stores/UserStore'
 import Dispatcher from './Dispatcher'
 
+export function loginUser(info){
+}
 
 export function addUser(attributes){
   const params = {

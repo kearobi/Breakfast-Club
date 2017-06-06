@@ -33,7 +33,7 @@ class UserSignUp extends Component {
   }
 
 render(){
-  return(
+  return (
     <div>
       <Header />
         <div id="sign_up">
