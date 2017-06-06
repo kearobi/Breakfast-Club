@@ -32,7 +32,7 @@ class UserSignUp extends Component {
   }
 
 render(){
-  return(
+  return (
     <div>
         <div className="App-header">
           <h2>Sign Up</h2>

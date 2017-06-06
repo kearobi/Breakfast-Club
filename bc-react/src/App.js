@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import UserSignUp from './routes/UserSignUp';
+import UserLogin from './routes/UserLogin';
+import SplashPage from './routes/SplashPage';
 import Header from './Header'
 import './App.css';
-import UserSignUp from './components/UserSignUp';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-// import userStore from './stores/UserStore';
-// import { addUser } from './actions';
-
 
 class App extends Component {
   render() {
@@ -18,7 +17,9 @@ class App extends Component {
               <div>
                 <Link to='/signup'>Sign Up</Link>
               </div>
-              <Route exact path='/signup' component={UserSignUp}></Route>
+          <Route exact path='/' component={SplashPage} />
+          <Route path='/signup' component={UserSignUp} />
+          <Route path='/login' component={UserLogin} />
             </div>
           </div>
         </Router>
