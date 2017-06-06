@@ -7,19 +7,16 @@ h2 {
   font-size: 100px;
   color: fuchsia;
   margin-top: -9px;
-  text-decoration: none;
-  border-bottom: 10px solid black;
-
+  font-weight: bold;
   }
-
 
 /*.Header-logo {
   animation: Header-logo-spin infinite 20s linear;
   height: 80px;
 }*/
 
-/*.Header-header {
-  background-color: #c122bc;
+.Header-header {
+  background-color: rgb(255,146,255);
   max-height: 1000px;
   max-width: 150px;
   min-height: 1000px;
@@ -27,10 +24,7 @@ h2 {
   padding: 40px;
   color: white;
   margin-bottom: -1000px;
-
 }*/
-
-
 
 .Header-intro {
   font-size: large;

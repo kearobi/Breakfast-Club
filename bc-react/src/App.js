@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import UserSignUp from './routes/UserSignUp';
 import UserLogin from './routes/UserLogin';
 import SplashPage from './routes/SplashPage';
+import AdminView from './components/admin_view';
 import Header from './Header'
 import './App.css';
+
+//only the most parent component should be responsible for fetching data, aka here
 
 class App extends Component {
   render() {
@@ -17,9 +20,11 @@ class App extends Component {
               <div>
                 <Link to='/signup'>Sign Up</Link>
               </div>
-          <Route exact path='/' component={SplashPage} />
-          <Route path='/signup' component={UserSignUp} />
-          <Route path='/login' component={UserLogin} />
+              <Route exact path='/' component={SplashPage} />
+              <Route path='/signup' component={UserSignUp} />
+              <Route path='/login' component={UserLogin} />
+              <Route exact path='/admin' component={AdminView}></Route>
+
             </div>
           </div>
         </Router>
