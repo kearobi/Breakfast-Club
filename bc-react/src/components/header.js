@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import '../App.css';
-
+import '../style/app.css';
 
 class Header extends Component {
   render() {
-
     return (
       <div className="Header">
         <div className="Header-header">
@@ -38,14 +36,8 @@ class Header extends Component {
 
             <h2>Breakfast Club</h2>
       </div>
-
-
-
-
-
     );
   }
 }
 
-
-export default Header
+export default Header;

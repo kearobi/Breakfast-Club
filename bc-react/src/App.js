@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
+import './style/app.css';
 import UserSignUp from './components/UserSignUp';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import AdminView from './components/admin_view';
 // import userStore from './stores/UserStore';
 // import { addUser } from './actions';
+
+//only the most parent component should be responsible for fetching data, aka here
+
 
 class App extends Component {
   render() {

@@ -1,0 +1,26 @@
+.Header {
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 100px;
+  color: fuchsia;
+  margin-top: -9px;
+  font-weight: bold;
+  }
+
+.Header-header {
+  background-color: rgb(255,146,255);
+  max-height: 1000px;
+  max-width: 150px;
+  min-height: 1000px;
+  min-width: 150px;
+  padding: 40px;
+  color: white;
+  margin-bottom: -1000px;
+}
+
+.Header-intro {
+  font-size: large;
+}

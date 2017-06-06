@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
+import Header from './header';
 
 class UserSignUp extends Component {
   constructor(props){
     super(props)
     this.state={
       user: {
-        firstName: "first name",
-        lastName: "last name",
-        email: "email address",
-        neighborhood: "neighborhood",
-        password: "choose a password",
-        verifyPassword: "reenter password"
+        firstName: "",
+        lastName: "",
+        email: "",
+        neighborhood: "",
+        password: "",
+        verifyPassword: ""
       }
     }
   }
@@ -34,40 +35,80 @@ class UserSignUp extends Component {
 render(){
   return(
     <div>
-        <div className="App-header">
-          <h2>Sign Up</h2>
+      <Header />
+        <div id="sign_up">
+          Sign Up
         </div>
 
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
           <div className='formGroup'>
-            <input type='text' name='firstName' id='firstName' value={this.state.user.firstName} onChange={this.handleChange.bind(this)}></input>
+            <input
+              placeholder='first name'
+              type='text'
+              name='firstName'
+              id='firstName'
+              value={this.state.user.firstName}
+              onChange={this.handleChange.bind(this)}>
+            </input>
           </div>
           <div className='formGroup'>
-          <input type='text' name='lastName' id='lastName' value={this.state.user.lastName} onChange={this.handleChange.bind(this)}></input>
+            <input
+              placeholder='last name'
+              type='text'
+              name='lastName'
+              id='lastName'
+              value={this.state.user.lastName}
+              onChange={this.handleChange.bind(this)}>
+            </input>
           </div>
-
           <div className='formGroup'>
-          <input type='text' name='email' id='email' value={this.state.user.email} onChange={this.handleChange.bind(this)}></input>
+          <input
+            placeholder='email address'
+            type='text'
+            name='email'
+            id='email'
+            value={this.state.user.email}
+            onChange={this.handleChange.bind(this)}>
+          </input>
           </div>
-
           <div className='formGroup'>
-          <input type='text' name='neighborhood' id='neighborhood' value={this.state.user.neighborhood} onChange={this.handleChange.bind(this)}></input>
+          <input
+            placeholder='neighborhood'
+            type='text'
+            name='neighborhood'
+            id='neighborhood'
+            value={this.state.user.neighborhood}
+            onChange={this.handleChange.bind(this)}>
+          </input>
           </div>
-
           <div className='formGroup'>
-          <input type='text' name='password' id='password' value={this.state.user.password} onChange={this.handleChange.bind(this)}></input>
+          <input
+            placeholder='password'
+            type='password'
+            name='password'
+            id='password'
+            value={this.state.user.password}
+            onChange={this.handleChange.bind(this)}>
+          </input>
           </div>
-
           <div className='formGroup'>
-          <input type='text' name='verifyPassword' id='verifyPassword' value={this.state.user.verifyPassword} onChange={this.handleChange.bind(this)}></input>
+          <input
+            placeholder='reenter password'
+            type='password'
+            name='verifyPassword'
+            id='verifyPassword'
+            value={this.state.user.verifyPassword}
+            onChange={this.handleChange.bind(this)}>
+          </input>
           </div>
-
           <div className='formGroup'>
-            <input type='submit' value='Let Me In!!' className='btn btn-primary'></input>
+            <input type='submit' value='Let Me In!!'></input>
           </div>
         </form>
-        <div>
-          <Link to="/">Take Me Back!!</Link>
+        <div class="back-button">
+          <Link to="/">
+            <input type='button' value='Take Me Back!!'></input>
+          </Link>
         </div>
       </div>
     );
