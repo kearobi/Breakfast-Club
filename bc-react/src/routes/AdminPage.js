@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from '../components/search_bar';
-import Header from '../components/header';
+import Header from '../components/Header';
 import UserListing from '../components/user_listing';
 
 //const api

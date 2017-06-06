@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import Header from '../components/header';
+import Header from '../components/Header';
 import {loginUser} from '../actions';
+import UserStore from '../stores/UserStore';
 
 class UserLogin extends Component {
   constructor(props){
@@ -12,6 +13,14 @@ class UserLogin extends Component {
         password: ""
       }
     }
+  }
+
+  componentWillMount(){
+    UserStore.on('loggedIn', this.redirectToHome.bind(this))
+  }
+
+  redirectToHome(){
+    this.props.history.push("/Home");
   }
 
   handleChange(e){
