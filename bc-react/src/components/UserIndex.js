@@ -55,10 +55,10 @@ class UserIndex extends Component {
       </tr>
       )
     }
-    //when it's done it just sends out whatever the array is
     return userRender
+
   }
-  //renderUsers gets called here
+
     render(){
       return(
         <tr>

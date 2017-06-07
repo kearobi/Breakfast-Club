@@ -1,8 +1,17 @@
+h2 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 100px;
+  color: fuchsia;
+  margin-top: -9px;
+  font-weight: bold;
+  text-align: center;
+  margin-left: 220px;
+}
 img {
   width: 270px;
   height: 200px;
   padding: 5px;
-  margin-bottom: -50px;
+  margin-bottom: -20px;
 }
 .image{
   text-align: center;
@@ -10,10 +19,10 @@ img {
 ul {
   list-style-type: none;
   width: 350px;
-  margin-left: 0px;
   box-shadow: 2px 2px 2px 2px;
   font-family: 'Amatic SC', cursive;
   font-size: 30px;
+  margin-left: 50px;
 }
 li {
   width: 330px;
@@ -23,14 +32,17 @@ li {
 .fields{
   text-align: left;
   border: 0.5px solid black;
-  height: 50px;
+  height: 40px;
+  letter-spacing: 2px;
 }
 .list{
   margin: 15px;
   /*background-color: red;*/
   width: 350px;
+
 }
-.row {
-    margin-right: 100px;
-    margin-left: 100px;
+.place-list{
+  color: black;
+  text-align: center;
+  margin-left: 220px;
 }
