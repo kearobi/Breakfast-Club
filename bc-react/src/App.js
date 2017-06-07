@@ -3,6 +3,7 @@ import Header from './components/Header'
 import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
+import UserProfile from './routes/UserProfile';
 // import CreateEvent from './routes/CreateEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
@@ -38,6 +39,7 @@ class App extends Component {
             <Route path='/places' component={PlaceIndex} />
             <Route path='/admin' component={AdminPage} />
             <Route path='/home' component={Home} />
+            <Route path='/profile' component={UserProfile} />
           </div>
         </Router>
       </div>

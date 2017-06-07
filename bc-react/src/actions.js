@@ -3,6 +3,10 @@ import userStore from './stores/UserStore';
 import MessageStore from './stores/MessageStore';
 import placeStore from './stores/PlaceStore'
 
+export function updateUser(){
+  // TODO
+}
+
 export function loginUser(attributes){
   const params = {
     method: "POST",
