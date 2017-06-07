@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Header from '../components/Header';
 import MessageBoard from '../components/MessageBoard';
-import UserStore from '../stores/UserStore';
+import userStore from '../stores/UserStore';
 import {fetchMessages} from '../actions';
 // import {fetchEvents} from '../actions';
 
@@ -20,7 +20,9 @@ class Home extends Component {
           <div className="row">
             <div className="col-sm-4">
             </div>
+
             <div className="col-sm-4">
+              <h1>Welcome, {//userStore.getUser().firstName}</h1>
             </div>
             <div className="col-sm-4">
               <MessageBoard />

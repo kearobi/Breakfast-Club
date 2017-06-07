@@ -12,6 +12,8 @@ import PlaceIndex from './components/PlaceIndex'
 // import placeStore from './stores/PlaceStore'
 import './style/app.css';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import userStore from './stores/UserStore';
+
 // import userStore from './stores/UserStore';
 // import { addUser } from './actions';
 
