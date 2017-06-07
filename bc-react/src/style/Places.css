@@ -18,14 +18,14 @@ img {
 }
 ul {
   list-style-type: none;
-  width: 350px;
+  width: 395px;
   box-shadow: 2px 2px 2px 2px;
   font-family: 'Amatic SC', cursive;
   font-size: 30px;
   margin-left: 50px;
 }
 li {
-  width: 330px;
+  width: 375px;
   margin-left: -30px;
   margin-top: 5px;
 }
@@ -33,16 +33,16 @@ li {
   text-align: left;
   border: 0.5px solid black;
   height: 40px;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 .list{
-  margin: 15px;
+  margin: 50px;
   /*background-color: red;*/
   width: 350px;
 
 }
 .place-list{
-  color: black;
+  color: gray;
   text-align: center;
   margin-left: 220px;
 }
