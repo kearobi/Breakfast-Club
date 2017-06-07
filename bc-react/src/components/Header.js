@@ -20,11 +20,6 @@ class Header extends Component {
           </span>
         </span>
       </div>
-
-
-
-
-
     );
   }
 }

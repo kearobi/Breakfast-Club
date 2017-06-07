@@ -1,0 +1,37 @@
+.navbar{
+  text-align: center;
+}
+.hamburger.is-open .hamb-top, .hamburger.is-open .hamb-bottom {
+    top: 50%;
+    margin-top: 0px;
+    margin-left: -50px;
+    z-index: 1;
+}
+.side-bar-image{
+  width: 150px;
+  height: 150px;
+  /*background-color: black;*/
+  margin-top: 0px;
+  margin-bottom: 70px;
+  margin-left: 10px;
+}
+.top-image{
+  margin-top: 50px;
+}
+.side-bar-text-top{
+  font-family: 'Amatic SC', cursive;
+  /*background-color: black;*/
+  font-size: 50px;
+  color: white;
+  margin-left: -10px;
+}
+.side-bar-text-bottom{
+  font-family: 'Amatic SC', cursive;
+  /*background-color: black;*/
+  font-size: 50px;
+  color: white;
+  margin-left: -10px;
+}
+.side-bar-bottom{
+  margin-bottom: 30px;
+}

@@ -31,9 +31,6 @@ class App extends Component {
         <Router>
           <div>
             <Header />
-            <div>
-              <Link to='/signup'>Sign Up</Link>
-            </div>
             <Route exact path='/' component={SplashPage}/>
             <Route path='/signup' component={UserSignUp} />
             <Route path='/login' component={UserLogin} />

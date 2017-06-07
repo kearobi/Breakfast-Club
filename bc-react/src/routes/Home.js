@@ -14,13 +14,14 @@ class Home extends Component {
   render(){
     return (
       <div>
-        <Header />
         <div className="container">
           <div className="row">
             <div className="col-sm-4">
             </div>
+
             <div className="col-sm-4">
-              <h1>Welcome, {UserStore.getUser().firstName}</h1>
+              <h1>Welcome, {UserStore.getUser()}</h1>
+              // .firstName
             </div>
             <div className="col-sm-4">
               <MessageBoard />
