@@ -35,7 +35,6 @@ class UserSignUp extends Component {
 render(){
   return (
     <div>
-      <Header />
         <div id="sign_up">
           Sign Up
         </div>

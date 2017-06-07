@@ -1,7 +1,6 @@
 import Dispatcher from './Dispatcher';
 import userStore from './stores/UserStore';
 import MessageStore from './stores/MessageStore';
-import userStore from './stores/UserStore'
 import placeStore from './stores/PlaceStore'
 
 export function loginUser(attributes){

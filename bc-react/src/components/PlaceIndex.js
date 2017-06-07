@@ -35,9 +35,7 @@ class PlaceIndex extends Component {
     return(
       <div>
           <h2>Place List</h2>
-        <div className="place-list row">
-          {this.renderPlaces()}
-        </div>
+          <h2 className="place-list">{this.renderPlaces()}</h2>
       </div>
     )
   }
