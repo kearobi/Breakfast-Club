@@ -14,8 +14,8 @@ class Header extends Component {
         <div className="Header-header">
         <SideBar />
         </div>
-        <span class="border">
-          <span class="border-bottom">
+        <span className="border">
+          <span className="border-bottom">
             <h2>Breakfast Club</h2>
           </span>
         </span>

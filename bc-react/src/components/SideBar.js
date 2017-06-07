@@ -61,7 +61,7 @@ wrapperClass(){
         <div className="overlay" style={this.overlayStyle()}></div>
         <nav className="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
           <ul className="nav sidebar-nav">
-              <a className="side-bar-text-top" href="#">Menu</a>
+              <a className="side-bar-text-top" href="/home">Home</a>
             <li>
               <a href="#" className="login"> <img className='side-bar-image profile top-image' src='../Images/user (1).png'/></a>
             </li>
