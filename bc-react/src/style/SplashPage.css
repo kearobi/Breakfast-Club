@@ -1,0 +1,23 @@
+#splash-container {
+  align-items: center;
+  position: relative;
+  width: 500px;
+  margin: auto;
+
+}
+
+.login {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.signup {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  overflow: hidden;
+  display: inline-block;
+}

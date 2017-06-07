@@ -6,20 +6,22 @@ class SplashPage extends Component {
   render(){
     return (
       <div>
-        
+
         <div className="container">
-          <div className="row">
-            <div className="col-md-12 FontAmatic">
+          <div className="row" id="splash-container">
+            <div className="col-md-12 FontAmatic login">
               <Link
-                className="FontAmatic"
+                className="FontAmatic login"
                 to="/login">
                 Log In
               </Link>
+              <div className='signup'>
               <Link
                 className="FontAmatic"
                 to="/signup">
                 Sign Up
               </Link>
+              </div>
             </div>
           </div>
         </div>

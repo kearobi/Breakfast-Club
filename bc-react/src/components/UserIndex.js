@@ -1,71 +1,44 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import UserListing from './UserListing';
+import React, { Component } from 'react';
+import UserListing from './UserListing'
+import AdminStore from '../stores/AdminStore'
 
 class UserIndex extends Component {
   constructor(props){
     super(props)
     this.state = {
-      users: [
-        // two test users
-        {
-          firstName: "Gabe",
-          lastName: "Giestas",
-          email: "brazilgabe@gmail.com",
-          neighborhood: "Mission Valley",
-          password: "confuzao",
-        },
-        {
-          firstName: "Neaton",
-          lastName: "Nobinson",
-          email: "neanobie@gmail.com",
-          neighborhood: "Nescondido",
-          password: "nellonorld",
-        }
-      ]
+      users: AdminStore.getUsers()
     }
   }
-  componentWillMount(){
-    let userIndexState = this;
-    const params = {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'}
-    }
-    fetch("http://localhost:4000/admin", params).then(function(response){
-      if(response.status === 200){
-        response.json().then(function(body){
-          userIndexState.setState({
-            users: body.users
-          })
-        })
-      }
-    }).catch(function(error){
-      userIndexState.setState({
-        message: `there was an error: ${error.message}`
-      })
+
+  updateUsers(){
+    this.setState({
+      users: AdminStore.getUsers()
     })
   }
+
+  componentWillMount(){
+    AdminStore.on('change', this.updateUsers.bind(this))
+  }
+
   renderUsers(){
     let userRender = []
     for(var i=0; i<this.state.users.length; i++){
-      let userKey = `user${i}`
-      userRender.push(<tr>
-        <UserListing key={userKey}
-        user={this.state.users[i]}></UserListing>
-      </tr>
+      let userId = "user-" + i
+      userRender.push(
+        <UserListing key={userId} user={this.state.users[i]} />
       )
     }
-    //when it's done it just sends out whatever the array is
     return userRender
   }
-  //renderUsers gets called here
-    render(){
-      return(
-        <tr>
-          {this.renderUsers()}
-        </tr>
-      );
-    }
-}
 
+  render(){
+    return(
+      <div>
+          <div className="place-list row">
+          {this.renderUsers()}
+        </div>
+      </div>
+    )
+  }
+}
 export default UserIndex;

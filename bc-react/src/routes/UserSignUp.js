@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
-import Header from '../components/Header';
 
 class UserSignUp extends Component {
   constructor(props){
@@ -35,7 +34,6 @@ class UserSignUp extends Component {
 render(){
   return (
     <div>
-      <Header />
         <div id="sign_up">
           Sign Up
         </div>
@@ -101,17 +99,20 @@ render(){
             onChange={this.handleChange.bind(this)}>
           </input>
           </div>
-          <div className='formGroup'>
-            <input type='submit' value='Let Me In!!'></input>
+          <br />
+          <div className='formGroup align-button'>
+            <input className='let-me-in' type='submit' value='Let Me In!!'></input>
           </div>
         </form>
-        <div className="center">
+        <div className='center align-button'>
           <Link to="/">
+          <div className="align-button">
             <input
-              className="BackButton"
+              className='take-me-back'
               type='button'
               value='Take Me Back!!'>
             </input>
+          </div>
           </Link>
         </div>
       </div>

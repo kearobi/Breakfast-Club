@@ -1,8 +1,8 @@
 import Dispatcher from './Dispatcher';
-import userStore from './stores/UserStore';
+import UserStore from './stores/UserStore';
 import MessageStore from './stores/MessageStore';
-import userStore from './stores/UserStore'
-import placeStore from './stores/PlaceStore'
+import PlaceStore from './stores/PlaceStore'
+import AdminStore from './stores/AdminStore';
 
 export function loginUser(attributes){
   const params = {
@@ -46,7 +46,7 @@ export function addUser(attributes){
       })
     }
   }).catch(function(error){
-    userStore.updateMessage("There was an error: " + error)
+    UserStore.updateMessage("There was an error: " + error)
   })
 }
 
@@ -67,7 +67,7 @@ export function addMessage(attributes){
       })
     }
   }).catch(function(error){
-    userStore.updateMessage("There was an error: " + error)
+    UserStore.updateMessage("There was an error: " + error)
   })
 }
 
@@ -112,5 +112,23 @@ export function fetchMessages(){
       else {
         console.log("failure!", body)
       }
+    })
+  }
+
+  export function updateUsers(){
+    // make the api calls to get the list of cats
+    const params = {
+      method: 'GET',
+    }
+    fetch("http://localhost:4000/admin", params).then(function(response){
+      if(response.status === 200){
+        response.json().then(function(body){
+          Dispatcher.dispatch({
+            type: 'UPDATE_USERS',
+            users: body.users
+          })
+        })
+      }
+    }).catch(function(error){
     })
   }
