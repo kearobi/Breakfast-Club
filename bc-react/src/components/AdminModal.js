@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
 import {addUser} from '../actions';
 
-class UserSignUp extends Component {
+class AdminModal extends Component {
   constructor(props){
     super(props)
     this.state={
@@ -31,13 +30,11 @@ class UserSignUp extends Component {
     addUser(this.state)
   }
 
-render(){
-  return (
-    <div>
-        <div id="sign_up">
-          Sign Up
-        </div>
-
+  render(){
+    return (
+    <div id='modal' class='modal'>
+      <div class="modal-content">
+        <span class="close">&times;</span>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
           <div className='formGroup'>
             <input
@@ -104,19 +101,9 @@ render(){
             <input className='let-me-in' type='submit' value='Let Me In!!'></input>
           </div>
         </form>
-        <div className='center align-button'>
-          <Link to="/">
-          <div className="align-button">
-            <input
-              className='take-me-back'
-              type='button'
-              value='Take Me Back!!'>
-            </input>
-          </div>
-          </Link>
-        </div>
       </div>
-    );
+    </div>
+    )
   }
 }
-export default UserSignUp;
+export default AdminModal;

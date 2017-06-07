@@ -32,18 +32,9 @@
   padding-left: 22px;
   padding-right: 22px;
   margin-left: 3px;
+  float: left;
 }
 
-.admin_button:hover {
-  background-color: #def9a3;
-  border-width: medium;
-}
-
-h3 {
-  font-family: 'Dancing Script';
-  text-align: center;
-  font-size: 52px;
-  font-style: italic;
-  font-weight: bold;
-  margin-top: -8px;
+table {
+  width: 749px;
 }

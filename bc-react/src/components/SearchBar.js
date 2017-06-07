@@ -1,28 +1,51 @@
 import React, { Component } from 'react';
+import UserListing from './UserListing';
 
 class SearchBar extends Component {
   constructor(props){
     super(props)
-    this.state = { term: '' }
+    this.state = { searchTerm: '' }
   }
+
+  updateSearch(event){
+    this.setState({searchTerm: event.target.value})
+  }
+
   render() {
+    let filteredUsers = this.props.users.filter(
+      (user) => {
+        return (
+          (user.firstName.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+          (user.lastName.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+          (user.email.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+          (user.neighborhood.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+        )
+      })
+
     return (
       <div>
         <input
-          size='63'
+          size='70'
           type='search'
           placeholder='Search'
-          value={this.state.term}
-          onChange={event => this.onInputChange(event.target.value)}
+          value={this.state.searchTerm}
+          onChange={this.updateSearch.bind(this)}
         />
+        <br></br><br></br>
+        <table>
+          <tbody>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email Address</th>
+              <th>Neighborhood</th>
+              <th>Password</th>
+            </tr>
+          {filteredUsers.map((user)=>{
+              return <UserListing user={user} key={user.id} />})}
+            </tbody>
+        </table>
       </div>
-    )
-  }
-
-  onInputChange(term){
-    this.setState({term});
-//check cat tinder
-  }
-}
+    )}}
 
 export default SearchBar;

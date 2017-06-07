@@ -7,13 +7,15 @@ class SplashPage extends Component {
     return (
       <div>
         <div className="container">
-          <div className="row">
-            <div className="col-md-12 FontAmatic">
+          <div className="row" id="splash-container">
+            <div className="FontAmatic login">
               <Link
                 className="FontAmatic"
                 to="/login">
                 Log In
               </Link>
+            </div>
+            <div className='FontAmatic signup'>
               <Link
                 className="FontAmatic"
                 to="/signup">
