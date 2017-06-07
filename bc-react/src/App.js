@@ -3,12 +3,13 @@ import Header from './components/Header'
 import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
+// import CreateEvent from './routes/CreateEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import {updatePlaces} from './actions'
 import PlaceIndex from './components/PlaceIndex'
 // import placeStore from './stores/PlaceStore'
-import './style/App.css';
+import './style/app.css';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 // import userStore from './stores/UserStore';
 // import { addUser } from './actions';
@@ -31,9 +32,6 @@ class App extends Component {
         <Router>
           <div>
             <Header />
-            <div>
-              <Link to='/signup'>Sign Up</Link>
-            </div>
             <Route exact path='/' component={SplashPage}/>
             <Route path='/signup' component={UserSignUp} />
             <Route path='/login' component={UserLogin} />

@@ -6,7 +6,6 @@ class SplashPage extends Component {
   render(){
     return (
       <div>
-        
         <div className="container">
           <div className="row">
             <div className="col-md-12 FontAmatic">
