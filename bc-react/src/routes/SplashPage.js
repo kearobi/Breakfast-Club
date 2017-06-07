@@ -9,19 +9,19 @@ class SplashPage extends Component {
 
         <div className="container">
           <div className="row" id="splash-container">
-            <div className="col-md-12 FontAmatic login">
+            <div className="FontAmatic login">
               <Link
-                className="FontAmatic login"
+                className="FontAmatic"
                 to="/login">
                 Log In
               </Link>
-              <div className='signup'>
+            </div>
+            <div className='FontAmatic signup'>
               <Link
                 className="FontAmatic"
                 to="/signup">
                 Sign Up
               </Link>
-              </div>
             </div>
           </div>
         </div>

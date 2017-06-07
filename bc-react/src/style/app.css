@@ -10,6 +10,8 @@
 @import url('./SplashPage.css');
 @import url('./Places.css');
 
+/*goal for centering: create one single div set the width of the elements and the margin around them to auto*/
+
 .FontAmatic {
   font-family: 'Amatic SC';
   font-size: 40px;

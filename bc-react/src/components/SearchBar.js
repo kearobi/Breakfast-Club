@@ -14,26 +14,36 @@ class SearchBar extends Component {
   render() {
     let filteredUsers = this.props.users.filter(
       (user) => {
-        return user.firstName.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1;
+        return (
+          (user.firstName.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+          (user.lastName.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+          (user.email.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+          (user.neighborhood.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+        )
       })
 
     return (
       <div>
         <input
-          size='63'
+          size='70'
           type='search'
           placeholder='Search'
           value={this.state.searchTerm}
           onChange={this.updateSearch.bind(this)}
         />
+        <br></br><br></br>
         <table>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email Address</th>
-          <th>Neighborhood</th>
-          <th>Password</th>
+          <tbody>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email Address</th>
+              <th>Neighborhood</th>
+              <th>Password</th>
+            </tr>
           {filteredUsers.map((user)=>{
-              return <tr><UserListing user={user} key={user.id} /> </tr>})}
+              return <UserListing user={user} key={user.id} />})}
+            </tbody>
         </table>
       </div>
     )}}

@@ -33,13 +33,6 @@ form {
   font-size: 40px;
 }
 
-.BackButton {
-  color: black;
-  font-family: 'Abel';
-  text-align: center;
-  font-size: 19px;
-}
-
 /* this code center-aligns the placeholder text in our forms for multiple browser/verisons */
 ::-webkit-input-placeholder {text-align: center;}
 :-moz-placeholder {/* older Firefox*/text-align: center;}

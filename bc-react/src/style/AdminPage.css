@@ -32,4 +32,9 @@
   padding-left: 22px;
   padding-right: 22px;
   margin-left: 3px;
+  float: left;
+}
+
+table {
+  width: 749px;
 }
