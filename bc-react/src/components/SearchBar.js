@@ -15,8 +15,7 @@ class SearchBar extends Component {
     let filteredUsers = this.props.users.filter(
       (user) => {
         return user.firstName.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1;
-      }
-    )
+      })
 
     return (
       <div>
@@ -27,10 +26,15 @@ class SearchBar extends Component {
           value={this.state.searchTerm}
           onChange={this.updateSearch.bind(this)}
         />
-        <ul>
+        <table>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email Address</th>
+          <th>Neighborhood</th>
+          <th>Password</th>
           {filteredUsers.map((user)=>{
-              return <UserListing user={user} key={user.id} />})}
-        </ul>
+              return <tr><UserListing user={user} key={user.id} /> </tr>})}
+        </table>
       </div>
     )}}
 

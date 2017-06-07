@@ -7,18 +7,15 @@ class UserIndex extends Component {
     super(props)
     this.state = {
       users: AdminStore.getUsers()
-    }
-  }
+    }}
 
   updateUsers(){
     this.setState({
       users: AdminStore.getUsers()
-    })
-  }
+    })}
 
   componentWillMount(){
-    AdminStore.on('change', this.updateUsers.bind(this))
-  }
+    AdminStore.on('change', this.updateUsers.bind(this))}
 
   renderUsers(){
     let userRender = []
@@ -35,7 +32,7 @@ class UserIndex extends Component {
     return(
       <div>
           <div className="place-list row">
-          {this.renderUsers()}
+            {this.renderUsers()}
         </div>
       </div>
     )

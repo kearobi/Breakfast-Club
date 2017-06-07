@@ -39,25 +39,14 @@ class AdminPage extends Component {
           <button className="admin_button" type="button">manage users</button>
           <button className="admin_button" type="button">manage events</button>
         </div>
-        <br></br>
-          <br></br><br></br><br></br>
+        <br></br><br></br><br></br><br></br>
           <h3 className='center'>User List</h3>
         <div id="search_bar_wrapper">
           {/* now SearchBar has access to users */}
           <SearchBar users={this.state.users}/>
         </div>
-          <button className="add_button" type="button">+ add</button>
           <br></br><br></br>
-          <table>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Neighborhood</th>
-              <th>Password</th>
-            </tr>
-              <UserIndex />
-          </table>
+          <UserIndex />
       </div>
       );
     }
