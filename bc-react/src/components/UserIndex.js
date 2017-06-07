@@ -31,13 +31,17 @@ class UserIndex extends Component {
       )
     }
     return userRender
+
   }
 
   render(){
     return(
-      <div>
-      </div>
-    )
+      <tr>
+        {this.renderUsers()}
+      </tr>
+    );
   }
 }
+
+
 export default UserIndex;

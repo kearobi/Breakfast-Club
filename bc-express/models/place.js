@@ -32,7 +32,10 @@ module.exports = function(sequelize, DataTypes) {
     // },
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        // Place.hasMany(models.Event, {
+        //   foreignKey: 'place_id',
+        //   as: 'events'
+        // })
       }
     }
   });
