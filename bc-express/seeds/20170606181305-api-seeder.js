@@ -4,6 +4,7 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Places', [
       {
+        id: 1,
         name: 'Breakfast Republic',
         address_street: '2730 University Ave',
         address_city: 'San Diego',
@@ -14,9 +15,12 @@ module.exports = {
         image_url: 'https://s3-media4.fl.yelpcdn.com/bphoto/bi2QeQyCdUmC42BKDisGJw/o.jpg',
         categories: 'American (Traditional)',
         review_count: 1536,
-        price: '$$'
+        price: '$$',
+        createdAt: '2017-06-02 07:52:29-07',
+        updatedAt: '2017-06-02 07:52:29-07'
       },
       {
+        id: 2,
         name: 'Bob Republic',
         address_street: '2730 University Ave',
         address_city: 'San Diego',
@@ -27,13 +31,14 @@ module.exports = {
         image_url: 'https://s3-media4.fl.yelpcdn.com/bphoto/bi2QeQyCdUmC42BKDisGJw/o.jpg',
         categories: 'Breakfast',
         review_count: 126,
-        price: '$$$'
+        price: '$$$',
+        createdAt: '2017-06-02 07:52:29-07',
+        updatedAt: '2017-06-02 07:52:29-07'
       }
     ])
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
-
       Example:
       return queryInterface.bulkInsert('Person', [{
         name: 'John Doe',
@@ -74,7 +79,6 @@ module.exports = {
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
-
       Example:
       return queryInterface.bulkDelete('Person', null, {});
     */

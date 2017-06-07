@@ -4,11 +4,13 @@ import Header from '../components/Header';
 import MessageBoard from '../components/MessageBoard';
 import userStore from '../stores/UserStore';
 import {fetchMessages} from '../actions';
+// import {fetchEvents} from '../actions';
 
 class Home extends Component {
   constructor(props){
     super(props);
     fetchMessages();
+    // fetchEvents();
   }
 
   render(){
@@ -20,7 +22,7 @@ class Home extends Component {
             </div>
 
             <div className="col-sm-4">
-              <h1>Welcome, {userStore.getUser().firstName}</h1>
+              <h1>Welcome, {//userStore.getUser().firstName}</h1>
             </div>
             <div className="col-sm-4">
               <MessageBoard />

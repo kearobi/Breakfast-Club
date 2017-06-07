@@ -55,7 +55,6 @@ class UserLogin extends Component {
 render(){
   return (
     <div>
-      <Header />
         <div className="container">
           <div className="row">
             <div className="col-sm-4">

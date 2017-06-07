@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css?family=Abel');
 @import url('./messageboard.css');
 @import url('./AdminPage.css');
-@import url('./Header.css');
+@import url('./header.css');
 @import url('./SearchBar.css');
 @import url('./UserListing.css');
-@import url('./Icons.css');
+@import url('./icons.css');
 @import url('./SignUpPage.css');
 
 .FontAmatic {

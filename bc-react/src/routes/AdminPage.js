@@ -14,7 +14,6 @@ class AdminPage extends Component {
   render(){
     return(
       <div id="admin_container">
-        <Header />
         <h3>hello there, admin</h3>
         <br></br>
         <div id="admin_button_wrapper">

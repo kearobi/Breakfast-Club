@@ -3,6 +3,10 @@ import userStore from './stores/UserStore';
 import MessageStore from './stores/MessageStore';
 import placeStore from './stores/PlaceStore'
 
+export function updateUser(){
+  // TODO
+}
+
 export function loginUser(attributes){
   const params = {
     method: "POST",
@@ -25,6 +29,10 @@ export function loginUser(attributes){
         type:'LOGIN-FAIL'
       })
     }
+  }).catch(function(){
+    Dispatcher.dispatch({
+      type:'LOGIN-FAIL'
+    })
   })
 }
 
@@ -106,6 +114,32 @@ export function fetchMessages(){
         Dispatcher.dispatch({
           type: "FETCH-MESSAGES",
           messages: messages
+        })
+      }
+      else {
+        console.log("failure!", body)
+      }
+    })
+}
+
+export function fetchEvents(){
+  let success;
+  const params = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+      }
+  fetch('http://localhost:4000/events', params)
+    .then((response)=>{
+      success = response.ok
+      return response.json()
+    })
+    .then((body)=>{
+      if (success){
+        console.log("success!", body)
+        let events = body.events
+        Dispatcher.dispatch({
+          type: "FETCH-EVENTS",
+          events: events
         })
       }
       else {
