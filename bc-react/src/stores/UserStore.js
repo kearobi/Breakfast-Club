@@ -14,6 +14,7 @@ class UserStore extends EventEmitter{
 
   updateUser(attributes){
     this.user = attributes
+    
   }
 
   handleActions(action){
@@ -38,7 +39,7 @@ class UserStore extends EventEmitter{
     }
   }
 }
-const store = new UserStore()
-Dispatcher.register(store.handleActions.bind(store))
-window.user_store = store
-export default store
+const userStore = new UserStore()
+Dispatcher.register(userStore.handleActions.bind(userStore))
+window.user_store = userStore
+export default userStore
