@@ -7,6 +7,8 @@ import AdminEvents from '../components/AdminEvents';
 import UserIndex from '../components/UserIndex';
 import SearchBar from '../components/SearchBar';
 import AdminModal from '../components/AdminModal';
+import Header from '../components/Header';
+import UserListing from '../components/user_listing';
 
 //const api
 //only the most parent component should be responsible for fetching data

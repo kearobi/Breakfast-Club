@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import Header from '../components/Header';
 import {loginUser} from '../actions';
 import userStore from '../stores/UserStore';
 

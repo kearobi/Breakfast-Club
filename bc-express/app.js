@@ -82,7 +82,7 @@ app.post('/places', function(request, response){
 
 app.post('/signup', function(request, response){
   console.log(request.body)
-  let userParams = request.body.user
+  let userParams = request.body
   User.create(userParams).then(function(user){
     response.status(200)
     response.json({status: 'success', user: user})
