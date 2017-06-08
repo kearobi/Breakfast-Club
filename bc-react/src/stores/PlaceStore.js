@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events'
-import Dispatcher from '../Dispatcher'
+import dispatcher from '../dispatcher'
 
 class PlaceStore extends EventEmitter{
   constructor(){
@@ -66,6 +66,6 @@ class PlaceStore extends EventEmitter{
 }
 
 const pstore = new PlaceStore()
-Dispatcher.register(pstore.handleActions.bind(pstore))
+dispatcher.register(pstore.handleActions.bind(pstore))
 window.pstore = pstore
 export default pstore

@@ -1,7 +1,7 @@
-import Dispatcher from './Dispatcher';
-import UserStore from './stores/UserStore';
-import MessageStore from './stores/MessageStore';
-import AdminStore from './stores/AdminStore';
+import dispatcher from './dispatcher';
+import userStore from './stores/UserStore';
+import messageStore from './stores/MessageStore';
+import adminStore from './stores/AdminStore';
 import placeStore from './stores/PlaceStore'
 
 export function updateUser(){
@@ -17,7 +17,7 @@ export function loginUser(attributes){
   fetch("http://localhost:4000/login", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
-        Dispatcher.dispatch({
+        dispatcher.dispatch({
           type:'LOGIN',
           user: body.user
         })
@@ -26,12 +26,12 @@ export function loginUser(attributes){
       })
     }
     else {
-      Dispatcher.dispatch({
+      dispatcher.dispatch({
         type:'LOGIN-FAIL'
       })
     }
   }).catch(function(){
-    Dispatcher.dispatch({
+    dispatcher.dispatch({
       type:'LOGIN-FAIL'
     })
   })
@@ -47,14 +47,14 @@ export function addUser(attributes){
     if(response.status === 200){
       response.json().then(function(body){
         // send the user to the store
-        Dispatcher.dispatch({
+        dispatcher.dispatch({
           type: 'SIGNUP',
           user: body.user
         })
       })
     }
   }).catch(function(error){
-    UserStore.updateMessage("There was an error: " + error)
+    userStore.updateMessage("There was an error: " + error)
   })
 }
 
@@ -68,14 +68,14 @@ export function addMessage(attributes){
     if(response.status === 200){
       response.json().then(function(body){
         // send the message to the store
-        Dispatcher.dispatch({
+        dispatcher.dispatch({
           type: 'ADD-MESSAGE',
           message: body.message
         })
       })
     }
   }).catch(function(error){
-    UserStore.updateMessage("There was an error: " + error)
+    userStore.updateMessage("There was an error: " + error)
   })
 }
 
@@ -87,7 +87,7 @@ export function updatePlaces(){
   fetch("http://localhost:4000/places", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
-        Dispatcher.dispatch({
+        dispatcher.dispatch({
           type: 'UPDATE_PLACES',
           places: body.places
         })
@@ -112,7 +112,7 @@ export function fetchMessages(){
       if (success){
         console.log("success!", body)
         let messages = body.messages
-        Dispatcher.dispatch({
+        dispatcher.dispatch({
           type: "FETCH-MESSAGES",
           messages: messages
         })
@@ -138,7 +138,7 @@ export function fetchEvents(){
       if (success){
         console.log("success!", body)
         let events = body.events
-        Dispatcher.dispatch({
+        dispatcher.dispatch({
           type: "FETCH-EVENTS",
           events: events
         })
@@ -159,7 +159,7 @@ export function fetchEvents(){
       if(response.status === 200){
         response.json().then(function(body){
           debugger
-          Dispatcher.dispatch({
+          dispatcher.dispatch({
             type: 'UPDATE_USERS',
             users: body.users
           })
@@ -168,7 +168,7 @@ export function fetchEvents(){
     }).catch(function(error){
     })
   }
-// 
+//
 // export function displayModal(){
 //
 // }

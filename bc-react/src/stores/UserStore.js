@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
-import Dispatcher from '../Dispatcher';
+import dispatcher from '../dispatcher';
 
 class UserStore extends EventEmitter{
   constructor(){
@@ -14,7 +14,7 @@ class UserStore extends EventEmitter{
 
   updateUser(attributes){
     this.user = attributes
-    
+
   }
 
   handleActions(action){
@@ -40,6 +40,6 @@ class UserStore extends EventEmitter{
   }
 }
 const userStore = new UserStore()
-Dispatcher.register(userStore.handleActions.bind(userStore))
+dispatcher.register(userStore.handleActions.bind(userStore))
 window.user_store = userStore
 export default userStore

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import UserListing from './UserListing'
-import AdminStore from '../stores/AdminStore'
+import adminStore from '../stores/AdminStore'
 import { updateUsers } from '../actions.js';
 
 class UserIndex extends Component {
   constructor(props){
     super(props)
     this.state = {
-      users: AdminStore.getUsers()
+      users: adminStore.getUsers()
     }
 //we're telling it to go to the db and get the users; i'm going to render for now, and once you're done, reload all the users for me. UserIndex is asking the action store to update with all the users
 //when user index shoes up, it says hey i need a fresh batch of users here
@@ -16,11 +16,11 @@ class UserIndex extends Component {
 
   handleUpdateUsers(){
     this.setState({
-      users: AdminStore.getUsers()
+      users: adminStore.getUsers()
     })}
 
   componentWillMount(){
-    AdminStore.on('change', this.handleUpdateUsers.bind(this))}
+    adminStore.on('change', this.handleUpdateUsers.bind(this))}
 
   renderUsers(){
     let userRender = []
