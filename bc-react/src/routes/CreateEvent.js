@@ -13,6 +13,21 @@ class CreateEvent extends Component {
     }
   }
 
+  handleChange(e){
+    let target = e.target
+    let event = this.state.event
+    event[target.name] = target.value
+    this.setState({
+      event: event
+    })
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+    createEvent(this.state.user)
+
+  }
+
   render(){
     return (
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
