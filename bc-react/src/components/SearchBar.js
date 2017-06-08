@@ -40,10 +40,11 @@ class SearchBar extends Component {
               <th>Email Address</th>
               <th>Neighborhood</th>
               <th>Password</th>
+              <th className="invisible">..........</th>
             </tr>
           {filteredUsers.map((user)=>{
               return <UserListing user={user} key={user.id} />})}
-            </tbody>
+          </tbody>
         </table>
       </div>
     )}}

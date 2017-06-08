@@ -9,6 +9,7 @@
 @import url('./Forms.css');
 @import url('./SplashPage.css');
 @import url('./Places.css');
+@import url('./AdminModal.css');
 
 /*goal for centering: create one single div set the width of the elements and the margin around them to auto*/
 
@@ -31,4 +32,8 @@ h3 {
   font-style: italic;
   font-weight: bold;
   margin-top: -8px;
+}
+
+.active-button {
+  background-color: #def9a3;
 }

@@ -124,7 +124,6 @@ export function fetchMessages(){
     fetch("http://localhost:4000/admin", params).then(function(response){
       if(response.status === 200){
         response.json().then(function(body){
-          debugger
           Dispatcher.dispatch({
             type: 'UPDATE_USERS',
             users: body.users
@@ -134,7 +133,7 @@ export function fetchMessages(){
     }).catch(function(error){
     })
   }
-// 
+//
 // export function displayModal(){
 //
 // }

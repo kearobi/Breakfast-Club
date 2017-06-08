@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {addUser} from '../actions';
 
-class AdminModal extends Component {
+class AdminUserModal extends Component {
   constructor(props){
     super(props)
     this.state={
@@ -95,15 +95,15 @@ class AdminModal extends Component {
             value={this.state.user.verifyPassword}
             onChange={this.handleChange.bind(this)}>
           </input>
+          <div className='formGroup align-button'>
+            <input type='submit' value='submission'></input>
+          </div>
           </div>
           <br />
-          <div className='formGroup align-button'>
-            <input className='let-me-in' type='submit' value='Let Me In!!'></input>
-          </div>
         </form>
       </div>
     </div>
     )
   }
 }
-export default AdminModal;
+export default AdminUserModal;

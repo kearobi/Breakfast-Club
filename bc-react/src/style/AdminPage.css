@@ -36,5 +36,10 @@
 }
 
 table {
-  width: 749px;
+  width: 831px;
+}
+
+#icon_td {
+    background-color: white;
+    border: none;
 }
