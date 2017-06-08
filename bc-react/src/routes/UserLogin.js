@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {loginUser} from '../actions';
-import UserStore from '../stores/UserStore';
+import userStore from '../stores/UserStore';
 
 class UserLogin extends Component {
   constructor(props){
@@ -16,8 +16,8 @@ class UserLogin extends Component {
   }
 
   componentWillMount(){
-    UserStore.on('login-success', this.redirectToHome.bind(this));
-    UserStore.on('login-fail', this.loginFailed.bind(this));
+    userStore.on('login-success', this.redirectToHome.bind(this));
+    userStore.on('login-fail', this.loginFailed.bind(this));
   }
 
   redirectToHome(){

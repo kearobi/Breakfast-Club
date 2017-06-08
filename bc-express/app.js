@@ -1,10 +1,10 @@
 var express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 var app = express();
 var cors = require('cors')
 var Place = require('./models').Place
 // var payload = require('./api').payload
-var User = require('./models').Users
+var User = require('./models').User
 var Message = require('./models').Message
 
 const corsOptions = {

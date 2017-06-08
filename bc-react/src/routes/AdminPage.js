@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import UserIndex from '../components/UserIndex';
 import SearchBar from '../components/SearchBar';
-import AdminStore from '../stores/AdminStore';
+import adminStore from '../stores/AdminStore';
 import AdminModal from '../components/AdminModal';
 //const api
 //only the most parent component should be responsible for fetching data
@@ -12,17 +12,17 @@ class AdminPage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      users: AdminStore.getUsers()
+      users: adminStore.getUsers()
     }
   }
   updateUsers(){
     this.setState({
-      users: AdminStore.getUsers()
+      users: adminStore.getUsers()
     })
   }
 
   componentWillMount(){
-    AdminStore.on('change', this.updateUsers.bind(this))
+    adminStore.on('change', this.updateUsers.bind(this))
   }
 
   showUserList(){
