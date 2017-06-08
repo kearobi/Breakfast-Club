@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AdminIcons from './AdminIcons';
+import AdminUserIcons from './AdminUserIcons';
 
 class AdminUserListing extends Component {
   render(){
@@ -10,7 +10,7 @@ class AdminUserListing extends Component {
             <td>{this.props.user.email}</td>
             <td>{this.props.user.neighborhood}</td>
             <td>{this.props.user.encryptedPassword}</td>
-            <td id="icon_td"><AdminIcons user={this.props.user}/></td>
+            <td id="icon_td"><AdminUserIcons user={this.props.user}/></td>
         </tr>
     )
   }

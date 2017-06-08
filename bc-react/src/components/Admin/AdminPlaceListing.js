@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AdminIcons from './AdminIcons';
-import AdminDeleteUser from '../AdminDeleteUser';
+// import AdminIcons from './AdminIcons';
+// import AdminDeleteUser from './AdminDeleteUser';
 
 class PlaceListing extends Component {
   render(){
@@ -12,7 +12,7 @@ class PlaceListing extends Component {
           <td>{this.props.place.price}</td>
           <td>{this.props.place.address_street}</td>
           <td>{this.props.place.phone}</td>
-          <td id="icon_td"><AdminIcons /><AdminDeleteUser /></td>
+          {/* <td id="icon_td"><AdminIcons /><AdminDeleteUser /></td> */}
       </tr>
     )
   }

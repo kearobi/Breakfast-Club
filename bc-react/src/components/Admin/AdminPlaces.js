@@ -1,27 +1,28 @@
 import React, {Component} from 'react';
-import AdminUserIndex from './AdminUserIndex';
-import AdminUserSearchBar from './Admin/AdminUserSearchBar';
-import AdminStore from '../stores/AdminStore';
-import AdminUserModal from './AdminUserModal';
+import AdminPlaceIndex from './AdminPlaceIndex';
+import AdminPlaceSearchBar from './AdminPlaceSearchBar';
+import PlaceStore from '../../stores/PlaceStore';
+import AdminPlaceModal from './AdminPlaceModal';
+// import AdminPlaceModal from '../components/AdminPlaceModal';
 //const api
 //only the most parent component should be responsible for fetching data
 
 //now in our Admin page we have users, and we want to put that into our Search Bar so it can use those props
 
-class AdminUsers extends Component {
+class AdminPlaces extends Component {
   constructor(props){
     super(props)
-    this.state = {users: AdminStore.getUsers(),
+    this.state = {places: PlaceStore.getPlaces(),
                   displayModal: false}
   }
-  updateUsers(){
+  updatePlaces(){
     this.setState({
-      users: AdminStore.getUsers() })}
+      places: PlaceStore.getPlaces() })}
 
   componentWillMount(){
-    AdminStore.on('change', this.updateUsers.bind(this)) }
+    PlaceStore.on('change', this.updatePlaces.bind(this)) }
 
-  showUserList(){
+  showPlaceList(){
     value: this.state.value }
 
   displayModal(){
@@ -29,25 +30,25 @@ class AdminUsers extends Component {
 
   modalAdmin(){
     if(this.state.displayModal === true){
-    return (<AdminUserModal />)
+    return (<AdminPlaceModal />)
     } else { return ("") }}
 
   render(){
     return(
       <div id="admin_container">
-        <h3 className='center'>Users</h3>
+        <h3 className='center'>Places</h3>
         <div id="search_bar_wrapper">
           <button className="add_button" type="button"
             onClick={this.displayModal.bind(this)}>
-            + user </button>
-          {/* now SearchBar has access to users */}
-          <AdminUserSearchBar users={this.state.users}/>
+            + place </button>
+          {/* now SearchBar has access to places */}
+          <AdminPlaceSearchBar places={this.state.places}/>
         </div>
           <br></br><br></br>
-          <AdminUserIndex />
+          <AdminPlaceIndex />
           {this.modalAdmin()}
       </div>
       );
     }
   }
-export default AdminUsers;
+export default AdminPlaces;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {addUser} from '../actions';
-import {updateUsers} from '../actions';
+import {addUser} from '../../actions';
+import {updateUsers} from '../../actions';
 class AdminUserModal extends Component {
   constructor(props){
     super(props)
@@ -28,8 +28,6 @@ class AdminUserModal extends Component {
   handleSubmit(e){
     e.preventDefault();
     addUser(this.state)
-    //how come not always immediate?
-    updateUsers(this.state)
   }
 
   render(){

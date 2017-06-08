@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {deleteUser} from '../actions.js';
-class AdminDeleteUser extends Component {
+import {deleteUser} from '../../actions.js';
+class AdminUserDelete extends Component {
 
   handleClick(){
-    let response = confirm("Wait really?")
-    debugger
-    //could also pas this.props.user, but we added id so we're only handing it the data it needs to get the job done
+    // let response = confirm("Wait really?")
+    //could also pass this.props.user, but we added id so we're only handing it the data it needs to get the job done
       deleteUser(this.props.user.id)
   }
 
@@ -19,4 +18,4 @@ class AdminDeleteUser extends Component {
     }
 }
 
-export default AdminDeleteUser;
+export default AdminUserDelete;

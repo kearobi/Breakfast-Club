@@ -35,8 +35,15 @@ class AdminStore extends EventEmitter{
       return (user.id !== id)
     })
     //emit says hey everybody that's listening, i did a thing! now we have to listen for the emit in the table full of users
-    this.emit('change')
-   debugger}
+    this.emit('change')}
+
+  editUser(id){
+    this.users = this.users.filter((user) => {
+      return (this.users)
+      })
+      //emit says hey everybody that's listening, i did a thing! now we have to listen for the emit in the table full of users
+      this.emit('change')
+     debugger}
 
   handleActions(action){
     switch(action.type){

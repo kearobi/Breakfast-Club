@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import AdminStore from '../stores/AdminStore';
 import PlaceStore from '../stores/PlaceStore';
-import AdminUsers from '../components/AdminUsers';
-import AdminPlaces from '../components/AdminPlaces';
-import AdminEvents from '../components/AdminEvents';
+import AdminUsers from '../components/Admin/AdminUsers';
+import AdminPlaces from '../components/Admin/AdminPlaces';
+import AdminEvents from '../components/Admin/AdminEvents';
 
 //const api
 //only the most parent component should be responsible for fetching data
