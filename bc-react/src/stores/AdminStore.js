@@ -4,24 +4,8 @@ import dispatcher from '../dispatcher'
 class AdminStore extends EventEmitter{
   constructor(){
     super()
-      this.users =
-        [
-          {
-            firstName: 'Nabe',
-            lastName: 'Niestas',
-            email: 'nastynabe@aol.com',
-            neighborhood: 'Nission Nills',
-            password: 'nillywilly'
-          },
-          {
-            firstName: 'Nntonio',
-            lastName: 'Nnvarro',
-            email: 'nastynav@aol.com',
-            neighborhood: 'Nrowne Noint',
-            password: 'nillywilly2'
-          }
-        ],
-    this.newUser = {}
+      this.users = []
+      this.newUser = {}
   }
 
   getUsers(){

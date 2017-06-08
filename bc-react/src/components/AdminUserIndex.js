@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import UserListing from './UserListing'
-import adminStore from '../stores/AdminStore'
+import AdminUserListing from './Admin/AdminUserListing';
+import adminStore from '../stores/AdminStore';
 import { updateUsers } from '../actions.js';
 
-class UserIndex extends Component {
+class AdminUserIndex extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -27,21 +27,19 @@ class UserIndex extends Component {
     for(var i=0; i<this.state.users.length; i++){
       let userId = "user-" + i
       userRender.push(
-        <UserListing key={userId} user={this.state.users[i]} />
+        <AdminUserListing key={userId} user={this.state.users[i]} />
       )
     }
     return userRender
-
   }
 
   render(){
     return(
-      <tr>
-        {this.renderUsers()}
-      </tr>
+      <div>
+      </div>
     );
   }
 }
 
 
-export default UserIndex;
+export default AdminUserIndex;

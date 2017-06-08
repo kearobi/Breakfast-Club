@@ -158,7 +158,6 @@ export function fetchEvents(){
     fetch("http://localhost:4000/admin", params).then(function(response){
       if(response.status === 200){
         response.json().then(function(body){
-          debugger
           dispatcher.dispatch({
             type: 'UPDATE_USERS',
             users: body.users
@@ -168,7 +167,3 @@ export function fetchEvents(){
     }).catch(function(error){
     })
   }
-//
-// export function displayModal(){
-//
-// }

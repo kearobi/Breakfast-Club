@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import AdminIcons from './AdminIcons';
 
-class UserListing extends Component {
+class AdminUserListing extends Component {
   render(){
     return(
         <tr>
@@ -9,7 +10,10 @@ class UserListing extends Component {
             <td>{this.props.user.email}</td>
             <td>{this.props.user.neighborhood}</td>
             <td>{this.props.user.encryptedPassword}</td>
+            <td id="icon_td"><AdminIcons /></td>
         </tr>
-    )}}
+    )
+  }
+}
 
-export default UserListing;
+export default AdminUserListing;

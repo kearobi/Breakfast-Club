@@ -6,3 +6,9 @@
   display: inline-block;
   width: 760px;
 }
+
+#invisible {
+  background-color: white;
+  color: white;
+  border-color: white;
+}
