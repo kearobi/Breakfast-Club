@@ -4,7 +4,7 @@ import Dispatcher from '../Dispatcher'
 class AdminStore extends EventEmitter{
   constructor(){
     super()
-      this.users = [],
+      this.users = []
       this.newUser = {}
   }
 

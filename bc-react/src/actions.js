@@ -167,7 +167,3 @@ export function fetchEvents(){
     }).catch(function(error){
     })
   }
-//
-// export function displayModal(){
-//
-// }

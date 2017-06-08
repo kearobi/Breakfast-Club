@@ -9,7 +9,6 @@ import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import {updatePlaces} from './actions'
 import PlaceIndex from './components/PlaceIndex'
-import UserIndex from './components/UserIndex'
 
 // import placeStore from './stores/PlaceStore'
 import './style/app.css';

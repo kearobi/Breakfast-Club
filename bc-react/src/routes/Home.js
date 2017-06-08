@@ -22,7 +22,7 @@ class Home extends Component {
             </div>
 
             <div className="col-sm-4">
-              <h1>Welcome, {//userStore.getUser().firstName}</h1>
+              <h1>Welcome, {userStore.getUser().firstName}</h1>
             </div>
             <div className="col-sm-4">
               <MessageBoard />

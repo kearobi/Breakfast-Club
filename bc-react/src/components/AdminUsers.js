@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import UserIndex from '../components/UserIndex';
-import SearchBar from '../components/SearchBar';
+import AdminUserIndex from './AdminUserIndex';
+import AdminUserSearchBar from './Admin/AdminUserSearchBar';
 import AdminStore from '../stores/AdminStore';
-import AdminUserModal from '../components/AdminUserModal';
+import AdminUserModal from './AdminUserModal';
 //const api
 //only the most parent component should be responsible for fetching data
 
@@ -41,10 +41,10 @@ class AdminUsers extends Component {
             onClick={this.displayModal.bind(this)}>
             + user </button>
           {/* now SearchBar has access to users */}
-          <SearchBar users={this.state.users}/>
+          <AdminUserSearchBar users={this.state.users}/>
         </div>
           <br></br><br></br>
-          <UserIndex />
+          <AdminUserIndex />
           {this.modalAdmin()}
       </div>
       );

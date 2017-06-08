@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import UserListing from './UserListing';
+import AdminUserListing from './AdminUserListing';
 
-class SearchBar extends Component {
+class AdminPlaceSearchBar extends Component {
   constructor(props){
     super(props)
     this.state = { searchTerm: '' }
@@ -43,10 +43,10 @@ class SearchBar extends Component {
               <th className="invisible">..........</th>
             </tr>
           {filteredUsers.map((user)=>{
-              return <UserListing user={user} key={user.id} />})}
+              return <AdminUserListing user={user} key={user.id} />})}
           </tbody>
         </table>
       </div>
     )}}
 
-export default SearchBar;
+export default AdminPlaceSearchBar;

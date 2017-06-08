@@ -2,14 +2,13 @@
 @import url('https://fonts.googleapis.com/css?family=Abel');
 @import url('./MessageBoard.css');
 @import url('./AdminPage.css');
-@import url('./header.css');
+@import url('./Header.css');
 @import url('./SearchBar.css');
 @import url('./UserListing.css');
 @import url('./Icons.css');
 @import url('./Forms.css');
 @import url('./SplashPage.css');
 @import url('./Places.css');
-@import url('./AdminModal.css');
 
 /*goal for centering: create one single div set the width of the elements and the margin around them to auto*/
 
