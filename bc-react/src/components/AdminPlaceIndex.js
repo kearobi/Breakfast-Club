@@ -36,7 +36,6 @@ class AdminPlaceIndex extends Component {
   render(){
     return(
       <div>
-        {this.renderPlaces()}
       </div>
     )
   }

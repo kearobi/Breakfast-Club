@@ -41,7 +41,7 @@ class AdminPlaces extends Component {
           <button className="add_button" type="button"
             onClick={this.displayModal.bind(this)}>
             + place </button>
-          {/* now SearchBar has access to users */}
+          {/* now SearchBar has access to places */}
           <AdminPlaceSearchBar places={this.state.places}/>
         </div>
           <br></br><br></br>

@@ -8,7 +8,7 @@ class AdminPlaceModal extends Component {
       place: {
         name: "",
         yelp_rating: "",
-        review_count: "",
+        categories: "",
         price: "",
         address_street: "",
         phone: ""
@@ -33,7 +33,7 @@ class AdminPlaceModal extends Component {
   render(){
     return (
     <div>
-      <div>
+      <div className='modal'>
         <span>&times;</span>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
           <div className='formGroup'>
@@ -58,11 +58,11 @@ class AdminPlaceModal extends Component {
           </div>
           <div className='formGroup'>
           <input
-            placeholder='Reviews'
+            placeholder='Category'
             type='text'
-            name='review_count'
-            id='review_count'
-            value={this.state.place.review_count}
+            name='categories'
+            id='categories'
+            value={this.state.place.categories}
             onChange={this.handleChange.bind(this)}>
           </input>
           </div>

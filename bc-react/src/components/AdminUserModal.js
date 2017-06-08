@@ -24,18 +24,18 @@ class AdminUserModal extends Component {
       user: user
     })
   }
-
+//addUser and updateUsers are asynchronous because they're in the store
   handleSubmit(e){
     e.preventDefault();
     addUser(this.state)
     //how come not always immediate?
-    updateUsers()
+    updateUsers(this.state)
   }
 
   render(){
     return (
     <div>
-      <div>
+      <div id='modal'>
         <span>&times;</span>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
           <div className='formGroup'>

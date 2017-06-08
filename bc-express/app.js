@@ -128,7 +128,20 @@ app.post('/admin', function(request, response){
   })
 })
 
-
+//delete is name of HTTP method we're using. the userParams have ID because we're only passing the ID in
+//destroy is the sequelize call
+app.delete('/admin', function(request, response){
+  let userParams = request.body.id
+  console.log(request.body.id)
+  User.destroy({where: {id: userParams}}).then(function(user){
+    response.status(200)
+    //this user:user comes from the then function
+    response.json({status: 'success', user: user})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
 
 app.listen(4000, function () {
  console.log('listening on port 4000!');

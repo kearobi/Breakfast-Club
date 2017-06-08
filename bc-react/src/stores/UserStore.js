@@ -14,7 +14,13 @@ class UserStore extends EventEmitter{
 
   updateUser(attributes){
     this.user = attributes
-    
+
+  }
+
+//work in progress!!!!
+  deleteUser(attributes){
+    this.user = attributes
+
   }
 
   handleActions(action){
@@ -33,6 +39,12 @@ class UserStore extends EventEmitter{
       }
       case("LOGIN-FAIL"):{
         this.emit('login-fail')
+        break
+      }
+      case("DELETE_USER"):{
+        this.deleteUser(action.user)
+        this.message = "User Deleted"
+        this.emit('message')
         break
       }
       default:{}

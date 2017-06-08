@@ -10,6 +10,7 @@
     "react-dom": "^15.5.4",
     "react-event-calendar": "^0.3.0",
     "react-image": "^1.0.1",
+    "react-modal": "^1.7.8",
     "react-router-dom": "^4.1.1",
     "react-scripts": "^1.0.7"
   },
