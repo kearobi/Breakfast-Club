@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
-import AdminStore from '../stores/AdminStore';
-import PlaceStore from '../stores/PlaceStore';
+import adminStore from '../stores/AdminStore';
+import placeStore from '../stores/PlaceStore';
 import AdminUsers from '../components/AdminUsers';
 import AdminPlaces from '../components/AdminPlaces';
 import AdminEvents from '../components/AdminEvents';
+import UserIndex from '../components/UserIndex';
+import SearchBar from '../components/SearchBar';
+import AdminModal from '../components/AdminModal';
 
 //const api
 //only the most parent component should be responsible for fetching data
@@ -15,7 +18,7 @@ class AdminPage extends Component {
     super(props)
     this.state = {
       places: PlaceStore.getPlaces(),
-      users: AdminStore.getUsers(),
+      users: adminStore.getUsers()
       displayUsers: false,
       displayPlaces: false,
       displayEvents: false,
@@ -25,12 +28,13 @@ class AdminPage extends Component {
     }
   }
   updateUsers(){
-    this.setState({ users: AdminStore.getUsers() })}
-  updatePlaces(){
-    this.setState({ places: PlaceStore.getPlaces() })}
+    this.setState({
+      users: adminStore.getUsers(),
+      places: placeStore.getPlaces()
+    })
 
-  ComponentWillMount(){
-    AdminStore.on('change', this.updateUsers.bind(this))
+  componentWillMount(){
+    adminStore.on('change', this.updateUsers.bind(this))
     PlaceStore.on('change', this.updatePlaces.bind(this))
     }
 
@@ -70,11 +74,6 @@ class AdminPage extends Component {
     placeAdmin(){
       if(this.state.displayPlaces === true){
         return (<AdminPlaces />)
-      }else{ return ("") }}
-    eventAdmin(){
-      if(this.state.displayEvents === true){
-        return (<AdminEvents />)
-      }else{ return ("") }}
 
   render(){
     const eventButtonColor = this.state.eventSelected ? "#def9a3" : "#eeeeee"
@@ -93,6 +92,7 @@ class AdminPage extends Component {
             onClick={this.displayPlaces.bind(this)}>
           manage places</button>
           <button
+
             className="admin_button"
             type="button"
             style={{backgroundColor: userButtonColor}}

@@ -20,9 +20,8 @@ class Home extends Component {
           <div className="row">
             <div className="col-sm-4">
             </div>
-
             <div className="col-sm-4">
-              <h1>Welcome, {userStore.getUser().firstName}</h1>
+              <h1>Welcome</h1>
             </div>
             <div className="col-sm-4">
               <MessageBoard />
