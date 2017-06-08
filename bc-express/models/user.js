@@ -3,7 +3,7 @@ var crypto = require("crypto")
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var Users = sequelize.define('Users', {
+  var User = sequelize.define('User', {
     firstName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -78,7 +78,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     classMethods: {
       associate: function(models) {
-        Users.belongsTo(models.GuestList, {
+        User.belongsTo(models.GuestList, {
           foreignKey: 'user_id'
         })
       }
@@ -91,5 +91,5 @@ module.exports = function(sequelize, DataTypes) {
 
     }
   });
-  return Users;
+  return User;
 };

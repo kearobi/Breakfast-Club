@@ -1,39 +1,33 @@
 'use strict';
-
 module.exports = {
-  up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('Bevents', {
+  up: function(queryInterface, Sequelize) {
+    return queryInterface.createTable('GuestLists', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      date: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      place_1_id: {
+      user_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Places',
+          model: 'Users',
           key: 'id',
-          as: "place_1_id"
+          as: "user_id"
         },
         allowNull: false
       },
-      place_2_id: {
+      event_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Places',
+          model: 'Bevents',
           key: 'id',
-          as: "place_2_id"
+          as: "event_id"
         },
         allowNull: false
       },
-      vote_status: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
+      vote: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -45,8 +39,7 @@ module.exports = {
       }
     });
   },
-
-  down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('Bevents');
+  down: function(queryInterface, Sequelize) {
+    return queryInterface.dropTable('GuestLists');
   }
 };

@@ -16,6 +16,9 @@ module.exports = function(sequelize, DataTypes) {
           foreignKey: 'place_2_id',
           as: 'place_2'
         })
+        Bevent.belongsTo(models.GuestList, {
+          foreignKey: 'event_id'
+        })
       }
     }
   });
