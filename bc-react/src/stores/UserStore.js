@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
-import Dispatcher from '../Dispatcher';
+import dispatcher from '../dispatcher';
 
 class UserStore extends EventEmitter{
   constructor(){
@@ -14,6 +14,7 @@ class UserStore extends EventEmitter{
 
   updateUser(attributes){
     this.user = attributes
+
   }
 
   handleActions(action){
@@ -25,11 +26,21 @@ class UserStore extends EventEmitter{
         this.emit("User Created")
         break
       }
+      case("LOGIN"):{
+        this.updateUser(action.user)
+        this.message = "User Logged In"
+        this.emit('login-success')
+        break
+      }
+      case("LOGIN-FAIL"):{
+        this.emit('login-fail')
+        break
+      }
       default:{}
     }
   }
 }
-const store = new UserStore()
-Dispatcher.register(store.handleActions.bind(store))
-window.user_store = store
-export default store
+const userStore = new UserStore()
+dispatcher.register(userStore.handleActions.bind(userStore))
+window.user_store = userStore
+export default userStore

@@ -59,7 +59,6 @@ class UserSignUp extends Component {
 render(){
   return (
     <div>
-      <Header />
         <div id="sign_up">
           Sign Up
         </div>
@@ -114,13 +113,15 @@ render(){
             />
             <input type='submit' value='Let Me In!!'></input>
         </form>
-        <div className="center">
+        <div className='center align-button'>
           <Link to="/">
+          <div className="align-button">
             <input
-              className="BackButton"
+              className='take-me-back'
               type='button'
               value='Take Me Back!!'>
             </input>
+          </div>
           </Link>
         </div>
       </div>
