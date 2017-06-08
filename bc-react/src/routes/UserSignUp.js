@@ -1,20 +1,16 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
-import Header from '../components/header';
+import SignUpInput from '../components/SignUpInput'
+import Header from '../components/Header';
+import SignUpStore from '../stores/SignUpStore'
 
 class UserSignUp extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        neighborhood: "",
-        password: "",
-        verifyPassword: ""
-      }
+      user: SignUpStore.getFields(),
+      errors: {}
     }
   }
 
@@ -27,10 +23,19 @@ class UserSignUp extends Component {
     })
   }
 
-  handleSubmit(e){
-    e.preventDefault();
-    addUser(this.state)
+  validate(){
+  SignUpStore.validate()
+  this.setState({errors: SignUpStore.getErrors()})
   }
+
+
+  handleSubmit(e){
+    console.log(this.state.user.password, this.state.user.verifyPassword)
+    e.preventDefault();
+    this.validate()
+    addUser(this.state.user)
+  }
+
 
 render(){
   return (
@@ -41,69 +46,54 @@ render(){
         </div>
 
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-          <div className='formGroup'>
-            <input
-              placeholder='first name'
-              type='text'
-              name='firstName'
-              id='firstName'
-              value={this.state.user.firstName}
-              onChange={this.handleChange.bind(this)}>
-            </input>
-          </div>
-          <div className='formGroup'>
-            <input
+              <SignUpInput
+                name='firstName'
+                type={this.state.type}
+                placeholder='first name'
+                value={this.state.user.firstName}
+                onChange={this.handleChange.bind(this)}
+                errors={this.state.errors.firstName}/>
+            <SignUpInput
               placeholder='last name'
-              type='text'
+              type={this.state.type}
               name='lastName'
-              id='lastName'
               value={this.state.user.lastName}
-              onChange={this.handleChange.bind(this)}>
-            </input>
-          </div>
-          <div className='formGroup'>
-          <input
-            placeholder='email address'
-            type='email'
-            name='email'
-            id='email'
-            value={this.state.user.email}
-            onChange={this.handleChange.bind(this)}>
-          </input>
-          </div>
-          <div className='formGroup'>
-          <input
-            placeholder='neighborhood'
-            type='text'
-            name='neighborhood'
-            id='neighborhood'
-            value={this.state.user.neighborhood}
-            onChange={this.handleChange.bind(this)}>
-          </input>
-          </div>
-          <div className='formGroup'>
-          <input
-            placeholder='password'
-            type='password'
-            name='password'
-            id='password'
-            value={this.state.user.password}
-            onChange={this.handleChange.bind(this)}>
-          </input>
-          </div>
-          <div className='formGroup'>
-          <input
-            placeholder='reenter password'
-            type='password'
-            name='verifyPassword'
-            id='verifyPassword'
-            value={this.state.user.verifyPassword}
-            onChange={this.handleChange.bind(this)}>
-          </input>
-          </div>
-          <div className='formGroup'>
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.lastName}
+            />
+            <SignUpInput
+              placeholder='email address'
+              type={this.state.type}
+              name='email'
+              value={this.state.user.email}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.email}
+            />
+            <SignUpInput
+              placeholder='neighborhood'
+              type={this.state.type}
+              name='neighborhood'
+              value={this.state.user.neighborhood}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.neighborhood}
+            />
+            <SignUpInput
+              placeholder='password'
+              type='password'
+              name='password'
+              value={this.state.user.password}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.password}
+            />
+            <SignUpInput
+              placeholder='reenter password'
+              type='password'
+              name='verifyPassword'
+              value={this.state.user.verifyPassword}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.verifyPassword}
+            />
             <input type='submit' value='Let Me In!!'></input>
-          </div>
         </form>
         <div className="center">
           <Link to="/">
