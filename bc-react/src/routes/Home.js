@@ -35,19 +35,29 @@ class Home extends Component {
         <div className="container">
           <div className="row">
 
-            <div className="col-xs-12">
-              <h1>Welcome, </h1>
+            <div className="row">
+              <div className="col-xs-3"></div>
+
+              <div className="col-xs-6">
+                <h1>Welcome, </h1>
+              </div>
+
+              <div className="col-xs-3"></div>
             </div>
 
-            <hr></hr>
+            <hr className="hr-home"></hr>
 
-            <div className="calendar-div col-xs-12">
-              <BigCalendar
-                events={this.events()}
-              />
-            </div>
-            <div className="col-xs-12">
-              <MessageBoard />
+            <div className="row">
+              <div className="col-xs-1"></div>
+
+              <div className="calendar-div col-xs-7">
+                <BigCalendar
+                  events={this.events()}
+                />
+              </div>
+              <div className="col-xs-4">
+                <MessageBoard />
+              </div>
             </div>
 
           </div>
