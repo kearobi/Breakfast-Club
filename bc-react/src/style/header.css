@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-h2 {
+h2, calendar-div, home-page {
   font-family: 'Amatic SC', cursive;
   font-size: 100px;
   color: fuchsia;

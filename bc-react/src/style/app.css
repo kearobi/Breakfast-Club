@@ -7,6 +7,9 @@
 @import url('./UserListing.css');
 @import url('./Icons.css');
 @import url('./SignUpPage.css');
+@import url('./react-big-calendar.css');
+@import url('./Home.css');
+
 
 .FontAmatic {
   font-family: 'Amatic SC';

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SideBar from './SideBar'
 import Img from 'react-image'
 import '../style/App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
@@ -12,7 +11,6 @@ class Header extends Component {
     return (
       <div className="Header">
         <div className="Header-header">
-        <SideBar />
         </div>
         <span className="border">
           <span className="border-bottom">

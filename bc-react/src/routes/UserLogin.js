@@ -22,7 +22,7 @@ class UserLogin extends Component {
   }
 
   redirectToHome(){
-    this.props.history.push("/Home");
+    this.props.history.push("/home");
   }
 
   loginFailed(){
