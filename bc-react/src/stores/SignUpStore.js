@@ -27,10 +27,11 @@ class SignUpStore {
     this.validatePresence('password')
     this.validatePassword('verifyPassword')
     this.validateEmail('email')
+
   }
 
   validatePassword(fieldName){
-    if(this.fields[fieldName] === ''){
+    if(this.fields[fieldName] !== this.fields.password){
       this.addError(fieldName, 'Please verify your password')
     }
   }

@@ -3,15 +3,33 @@ import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
 import SignUpInput from '../components/SignUpInput'
 import Header from '../components/Header';
-import SignUpStore from '../stores/SignUpStore'
+import signUpStore from '../stores/SignUpStore'
+import userStore from '../stores/UserStore'
 
 class UserSignUp extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: SignUpStore.getFields(),
-      errors: {}
+      user: signUpStore.getFields(),
+      errors: {},
+      message: ''
     }
+  }
+
+  componentWillMount(){
+    userStore.on('User Created', this.redirectToHome.bind(this))
+  userStore.on('user create fail', this.loginFailed.bind(this))
+  }
+
+  redirectToHome(){
+    console.log('test')
+    this.props.history.push("/Home");
+  }
+
+  loginFailed(){
+    this.setState({
+      message: 'Registration failed, credentials invalid'
+    })
   }
 
   handleChange(e){
@@ -24,16 +42,17 @@ class UserSignUp extends Component {
   }
 
   validate(){
-  SignUpStore.validate()
-  this.setState({errors: SignUpStore.getErrors()})
+  signUpStore.validate()
+  this.setState({errors: signUpStore.getErrors()})
   }
 
 
   handleSubmit(e){
-    console.log(this.state.user.password, this.state.user.verifyPassword)
     e.preventDefault();
     this.validate()
-    addUser(this.state.user)
+    if(Object.keys(signUpStore.getErrors()).length < 1 ){
+      addUser(this.state.user)
+    }
   }
 
 
@@ -44,7 +63,7 @@ render(){
         <div id="sign_up">
           Sign Up
         </div>
-
+        {this.state.message}
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
               <SignUpInput
                 name='firstName'

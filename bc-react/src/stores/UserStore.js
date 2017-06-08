@@ -19,9 +19,10 @@ class UserStore extends EventEmitter{
   handleActions(action){
     switch(action.type){
       case("SIGNUP"):{
+        console.log()
         this.updateUser(action.user)
         this.message = "User Created"
-        this.emit('message')
+        this.emit("User Created")
         break
       }
       default:{}
