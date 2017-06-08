@@ -7,9 +7,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        GuestList.hasOne(models.Bevent, {
-          foreignKey: 'event_id',
-          as: 'event'
+        GuestList.belongsTo(models.Bevent, {
+          foreignKey: 'event_id'
         })
         GuestList.hasMany(models.User, {
           foreignKey: 'user_id',

@@ -1,59 +1,63 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {createEvent} from '../actions';
+import {fetchEvent} from '../actions';
+import eventStore from '../stores/EventStore';
 
 class CreateEvent extends Component {
   constructor(props){
     super(props)
-    this.state={
+    this.state= {
+      id: "to",
       event: {
-        place_id: "",
-        date: ""
+        id: ''
       }
     }
   }
 
-  handleChange(e){
-    let target = e.target
-    let event = this.state.event
-    event[target.name] = target.value
+  componentWillMount(){
+    eventStore.on('event fetched', this.eventFound.bind(this));
+  }
+
+  eventFound(){
     this.setState({
-      event: event
+      event: eventStore.getCurrentEvent()
+    })
+  }
+
+  handleChange(e){
+    this.setState({
+      id: e.target.value
     })
   }
 
   handleSubmit(e){
     e.preventDefault();
-    createEvent(this.state.user)
-
+    fetchEvent(this.state)
   }
 
   render(){
     return (
-        <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-          <div className='formGroup'>
-            <input
-              type='text'
-              name='place_id'
-              value={this.state.event.place_id}
-              onChange={this.handleChange.bind(this)}>
-            </input>
-          </div>
-          <div className='formGroup'>
-            <input
-              type='datetime'
-              name='date'
-              value={this.state.event.datetime}
-              onChange={this.handleChange.bind(this)}>
-            </input>
-          </div>
-          <div className='formGroup'>
-            <input
-              type='submit'
-              value='Create Event'>
-            </input>
-          </div>
-        </form>
+        <div>
+          <form className='form' onSubmit={this.handleSubmit.bind(this)}>
+            <div className='formGroup'>
+              <input
+                type='number'
+                name='id'
+                value={this.state.id}
+                onChange={this.handleChange.bind(this)}>
+              </input>
+            </div>
+            <div className='formGroup'>
+              <input
+                type='submit'
+                value='Create Event'>
+              </input>
+            </div>
+          </form>
+          <p>Fetched Bevent</p>
+          <p>{this.state.event.id}</p>
+        </div>
       );
     }
   }
