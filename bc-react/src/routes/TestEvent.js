@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {createEvent} from '../actions';
 import {fetchEvent} from '../actions';
 import eventStore from '../stores/EventStore';
 
-class CreateEvent extends Component {
+class TestEvent extends Component {
   constructor(props){
     super(props)
     this.state= {
-      id: "to",
+      formId: '',
       event: {
         id: ''
       }
@@ -27,7 +26,7 @@ class CreateEvent extends Component {
 
   handleChange(e){
     this.setState({
-      id: e.target.value
+      formId: e.target.value
     })
   }
 
@@ -44,14 +43,14 @@ class CreateEvent extends Component {
               <input
                 type='number'
                 name='id'
-                value={this.state.id}
+                value={this.state.formId}
                 onChange={this.handleChange.bind(this)}>
               </input>
             </div>
             <div className='formGroup'>
               <input
                 type='submit'
-                value='Create Event'>
+                value='Submit'>
               </input>
             </div>
           </form>
@@ -61,4 +60,4 @@ class CreateEvent extends Component {
       );
     }
   }
-export default CreateEvent;
+export default TestEvent;

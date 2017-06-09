@@ -6,7 +6,7 @@ var Place = require('./models').Place
 var Bevent = require('./models').Bevent
 var GuestList = require('./models').GuestList
 // var payload = require('./api').payload
-var User = require('./models').Users
+var User = require('./models').User
 var Message = require('./models').Message
 
 const corsOptions = {
@@ -52,7 +52,6 @@ app.get('/messages', function (request, response) {
 })
 
 app.post('/add-message', function(request, response){
-  console.log("in add message", request.body)
   let params = request.body
   Message.create(params).then(function(message){
     response.status(200)
@@ -95,19 +94,52 @@ app.post('/signup', function(request, response){
 })
 
 app.post('/event', function(request, response){
-  console.log("resquest.body", request.body)
+  let _event;
+  let _users;
+  let _places = [];
+  let _guestLists;
   Bevent.findOne({
-    where:{id: request.body.id}
-  }).then(function(event){
-    if(event){
-      console.log("event found")
+    where:{id: request.body.formId}
+  })
+  .then(function(event){
+    _event = event;
+    return event.getGuestLists();
+  })
+  .then(function(lists){
+    _guestLists = lists;
+    listPromises = [];
+    for (var i = 0; i < lists.length; i++){
+      listPromises.push(User.findOne({
+        where:{id: lists[i].user_id}
+      }))
+    }
+    return Promise.all(listPromises);
+  })
+  .then(function(users){
+    _users = users;
+    return Place.findOne({
+      where:{id: _event.place_1_id}
+    })
+  })
+  .then (function(place){
+    _places.push(place);
+    return Place.findOne({
+      where:{id: _event.place_2_id}
+    })
+  })
+  .then(function(place){
+    _places.push(place);
+    if(_event){
       response.status(200)
       response.json({
-        event: event
+        event: _event,
+        guestLists: _guestLists,
+        places: _places,
+        users: _users
       })
     }else{
       response.status(400)
-      console.log('no event found')
+      console.log('no data found')
     }
   })
 })
