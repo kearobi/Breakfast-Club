@@ -4,14 +4,14 @@ import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
 import UserProfile from './routes/UserProfile';
-// import CreateEvent from './routes/CreateEvent';
+import CreateEvent from './routes/CreateEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import {updatePlaces} from './actions'
 import PlaceIndex from './components/PlaceIndex'
 
 // import placeStore from './stores/PlaceStore'
-import './style/app.css';
+// import './style/app.css';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import userStore from './stores/UserStore';
 
@@ -24,7 +24,7 @@ import userStore from './stores/UserStore';
 class App extends Component {
   constructor(props){
     super(props)
-    updatePlaces()
+    // updatePlaces()
     this.state = {}
 }
 
@@ -41,6 +41,7 @@ class App extends Component {
             <Route path='/admin' component={AdminPage} />
             <Route path='/home' component={Home} />
             <Route path='/profile' component={UserProfile} />
+            <Route path='/event' component={CreateEvent} />
           </div>
         </Router>
       </div>

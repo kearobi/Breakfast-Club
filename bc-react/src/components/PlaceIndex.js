@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import PlaceListing from './PlaceListing'
-import PlaceStore from '../stores/PlaceStore'
+import placeStore from '../stores/PlaceStore'
 import MessageBoard from '../components/MessageBoard';
 
 class PlaceIndex extends Component {
   constructor(props){
     super(props)
     this.state = {
-      places: PlaceStore.getPlaces()
+      places: placeStore.getPlaces()
     }
   }
 
   updatePlaces(){
     this.setState({
-      places: PlaceStore.getPlaces()
+      places: placeStore.getPlaces()
     })
   }
 
   componentWillMount(){
-    PlaceStore.on('change', this.updatePlaces.bind(this))
+    placeStore.on('change', this.updatePlaces.bind(this))
   }
 
   renderPlaces(){

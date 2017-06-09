@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events'
-import Dispatcher from '../Dispatcher'
+import dispatcher from '../dispatcher'
 
 class AdminStore extends EventEmitter{
   constructor(){
@@ -63,6 +63,6 @@ class AdminStore extends EventEmitter{
 }
 
 const astore = new AdminStore()
-Dispatcher.register(astore.handleActions.bind(astore))
+dispatcher.register(astore.handleActions.bind(astore))
 window.astore = astore
 export default astore

@@ -62,15 +62,24 @@ wrapperClass(){
         <nav className="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
           <ul className="nav sidebar-nav">
               <a className="side-bar-text-top" href="/home">Home</a>
-            <li>
-              <a href="#" className="login"> <img className='side-bar-image profile top-image' src='../Images/user (1).png'/></a>
-            </li>
-            <li>
-              <a href="#"><img className="side-bar-image" src='../Images/calendar (2).png'/></a>
-            </li>
-            <li>
-              <a href="#"><img className="side-bar-image" src='../Images/logout.png'/></a>
-            </li>
+            <div className="side-bar-image-div">
+              <li>
+                <a href="#" className="login"> <img className='wobble side-bar-image profile top-image' src='../Images/user (1).png'/></a>
+              </li>
+              <p className="image-text-1">User Info</p>
+            </div>
+            <div className="side-bar-image-div">
+              <li>
+                <a href="#"><img className="wobble side-bar-image" src='../Images/calendar (2).png'/></a>
+              </li>
+              <p className="image-text-2">Events</p>
+            </div>
+            <div className="side-bar-image-div">
+              <li>
+                <a href="#"><img className="wobble side-bar-image" src='../Images/logout.png'/></a>
+              </li>
+              <p className="image-text-3">Log Out</p>
+            </div>
             <div className="side-bar-bottom">
               <div>
                 <a className="side-bar-text-bottom" href="#">Team</a>

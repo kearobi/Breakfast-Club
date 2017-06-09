@@ -1,20 +1,35 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
+import SignUpInput from '../components/SignUpInput'
+import Header from '../components/Header';
+import signUpStore from '../stores/SignUpStore'
+import userStore from '../stores/UserStore'
 
 class UserSignUp extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        neighborhood: "",
-        password: "",
-        verifyPassword: ""
-      }
+      user: signUpStore.getFields(),
+      errors: {},
+      message: ''
     }
+  }
+
+  componentWillMount(){
+    userStore.on('User Created', this.redirectToHome.bind(this))
+  userStore.on('user create fail', this.loginFailed.bind(this))
+  }
+
+  redirectToHome(){
+    console.log('test')
+    this.props.history.push("/Home");
+  }
+
+  loginFailed(){
+    this.setState({
+      message: 'Registration failed, credentials invalid'
+    })
   }
 
   handleChange(e){
@@ -26,10 +41,20 @@ class UserSignUp extends Component {
     })
   }
 
+  validate(){
+  signUpStore.validate()
+  this.setState({errors: signUpStore.getErrors()})
+  }
+
+
   handleSubmit(e){
     e.preventDefault();
-    addUser(this.state)
+    this.validate()
+    if(Object.keys(signUpStore.getErrors()).length < 1 ){
+      addUser(this.state.user)
+    }
   }
+
 
 render(){
   return (
@@ -37,72 +62,56 @@ render(){
         <div id="sign_up">
           Sign Up
         </div>
-
+        {this.state.message}
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-          <div className='formGroup'>
-            <input
-              placeholder='first name'
-              type='text'
-              name='firstName'
-              id='firstName'
-              value={this.state.user.firstName}
-              onChange={this.handleChange.bind(this)}>
-            </input>
-          </div>
-          <div className='formGroup'>
-            <input
+              <SignUpInput
+                name='firstName'
+                type={this.state.type}
+                placeholder='first name'
+                value={this.state.user.firstName}
+                onChange={this.handleChange.bind(this)}
+                errors={this.state.errors.firstName}/>
+            <SignUpInput
               placeholder='last name'
-              type='text'
+              type={this.state.type}
               name='lastName'
-              id='lastName'
               value={this.state.user.lastName}
-              onChange={this.handleChange.bind(this)}>
-            </input>
-          </div>
-          <div className='formGroup'>
-          <input
-            placeholder='email address'
-            type='email'
-            name='email'
-            id='email'
-            value={this.state.user.email}
-            onChange={this.handleChange.bind(this)}>
-          </input>
-          </div>
-          <div className='formGroup'>
-          <input
-            placeholder='neighborhood'
-            type='text'
-            name='neighborhood'
-            id='neighborhood'
-            value={this.state.user.neighborhood}
-            onChange={this.handleChange.bind(this)}>
-          </input>
-          </div>
-          <div className='formGroup'>
-          <input
-            placeholder='password'
-            type='password'
-            name='password'
-            id='password'
-            value={this.state.user.password}
-            onChange={this.handleChange.bind(this)}>
-          </input>
-          </div>
-          <div className='formGroup'>
-          <input
-            placeholder='reenter password'
-            type='password'
-            name='verifyPassword'
-            id='verifyPassword'
-            value={this.state.user.verifyPassword}
-            onChange={this.handleChange.bind(this)}>
-          </input>
-          </div>
-          <br />
-          <div className='formGroup align-button'>
-            <input className='let-me-in' type='submit' value='Let Me In!!'></input>
-          </div>
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.lastName}
+            />
+            <SignUpInput
+              placeholder='email address'
+              type={this.state.type}
+              name='email'
+              value={this.state.user.email}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.email}
+            />
+            <SignUpInput
+              placeholder='neighborhood'
+              type={this.state.type}
+              name='neighborhood'
+              value={this.state.user.neighborhood}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.neighborhood}
+            />
+            <SignUpInput
+              placeholder='password'
+              type='password'
+              name='password'
+              value={this.state.user.password}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.password}
+            />
+            <SignUpInput
+              placeholder='reenter password'
+              type='password'
+              name='verifyPassword'
+              value={this.state.user.verifyPassword}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.verifyPassword}
+            />
+            <input type='submit' value='Let Me In!!'></input>
         </form>
         <div className='center align-button'>
           <Link to="/">

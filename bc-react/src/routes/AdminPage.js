@@ -1,9 +1,16 @@
 import React, {Component} from 'react';
-import AdminStore from '../stores/AdminStore';
-import PlaceStore from '../stores/PlaceStore';
 import AdminUsers from '../components/Admin/AdminUsers';
 import AdminPlaces from '../components/Admin/AdminPlaces';
 import AdminEvents from '../components/Admin/AdminEvents';
+
+import adminStore from '../stores/AdminStore';
+import placeStore from '../stores/PlaceStore';
+
+import UserIndex from '../components/UserIndex';
+import SearchBar from '../components/SearchBar';
+import AdminModal from '../components/AdminModal';
+import Header from '../components/Header';
+import UserListing from '../components/user_listing';
 
 //const api
 //only the most parent component should be responsible for fetching data
@@ -15,7 +22,7 @@ class AdminPage extends Component {
     super(props)
     this.state = {
       places: PlaceStore.getPlaces(),
-      users: AdminStore.getUsers(),
+      users: adminStore.getUsers()
       displayUsers: false,
       displayPlaces: false,
       displayEvents: false,
@@ -26,14 +33,15 @@ class AdminPage extends Component {
   }
   //the admin store deletes a user, it yells 'ive changed!' to everyone who's listening, and when it does that it calls updateUsers. (we told componentwillmount to issue this whenever there's a change)
   updateUsers(){
-    this.setState({ users: AdminStore.getUsers() })}
-  updatePlaces(){
-    this.setState({ places: PlaceStore.getPlaces() })}
+    this.setState({
+      users: adminStore.getUsers(),
+      places: placeStore.getPlaces()
+    })
 
   componentWillMount(){
-    AdminStore.on('change', this.updateUsers.bind(this))
-    PlaceStore.on('change', this.updatePlaces.bind(this))
-    }
+    adminStore.on('change', this.updateUsers.bind(this))
+    placeStore.on('change', this.updatePlaces.bind(this))
+  }
 
   showUserList(){ value: this.state.value }
   showPlaceList(){ value: this.state.value }
@@ -87,11 +95,6 @@ class AdminPage extends Component {
     placeAdmin(){
       if(this.state.displayPlaces === true){
         return (<AdminPlaces />)
-      }else{ return ("") }}
-    eventAdmin(){
-      if(this.state.displayEvents === true){
-        return (<AdminEvents />)
-      }else{ return ("") }}
 
   render(){
     const eventButtonColor = this.state.eventSelected ? "#def9a3" : "#eeeeee"
@@ -111,6 +114,7 @@ class AdminPage extends Component {
             onClick={this.displayPlaces.bind(this)}>
           manage places</button>
           <button
+
             className="admin_button"
             type="button"
             style={{backgroundColor: userButtonColor}}

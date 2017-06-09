@@ -32,10 +32,12 @@ module.exports = function(sequelize, DataTypes) {
     // },
     classMethods: {
       associate: function(models) {
-        // Place.hasMany(models.Event, {
-        //   foreignKey: 'place_id',
-        //   as: 'events'
-        // })
+        Place.belongsTo(models.Bevent, {
+          foreignKey: 'place_1_id'
+        })
+        Place.belongsTo(models.Bevent, {
+          foreignKey: 'place_2_id'
+        })
       }
     }
   });

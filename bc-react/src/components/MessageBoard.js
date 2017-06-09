@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MessageStore from '../stores/MessageStore';
-import UserStore from '../stores/UserStore';
+import messageStore from '../stores/MessageStore';
+import userStore from '../stores/UserStore';
 import {addMessage} from '../actions';
 
 class MessageBoard extends Component {
@@ -13,14 +13,14 @@ class MessageBoard extends Component {
   }
 
   componentWillMount(){
-    MessageStore.on('messages fetched', this.updateMessages.bind(this));
-    MessageStore.on('message added', this.updateMessages.bind(this));
+    messageStore.on('messages fetched', this.updateMessages.bind(this));
+    messageStore.on('message added', this.updateMessages.bind(this));
   }
 
   updateMessages(){
     console.log("updateMessages called")
     this.setState({
-      messages: MessageStore.getLastFiveMessages()
+      messages: messageStore.getLastFiveMessages()
     })
   }
 
@@ -35,29 +35,40 @@ class MessageBoard extends Component {
     e.preventDefault();
     addMessage({
       content: this.state.currentMessage,
-      author: UserStore.getUser().email
+      author: userStore.getUser().email
     });
   }
 
   render() {
     var mapped = this.state.messages.map(function(message, i){
+      var a = (message.createdAt)
+        let b = a.split("T")
+        let date = b[0]
+          let c = b[1].split(".")
+          let time = c[0]
       return (
         <div key={i}>
-          <p>{message.content}</p>
-          <p>{message.author}</p>
+          <p className='sender'>{message.author}</p>
+          <p className='time-stamp'>{date + " " + time}</p>
+          <p className='message-sent'>{message.content}</p>
+          <hr></hr>
         </div>
       )
     })
 
+
     return (
       <div id="messageBoard">
-        <h1>Message Board</h1>
+        <h1 className='title'>Message Board</h1>
+          <hr></hr>
         <div>
-          {mapped}
+          <div className='message-box'>
+            {mapped}
+          </div>
         </div>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
           <div className='formGroup'>
-            <input
+            <input className='col-xs-8 formGroup submit-field'
               type='text'
               name='message'
               value={this.state.currentMessage}
@@ -65,7 +76,7 @@ class MessageBoard extends Component {
             </input>
           </div>
           <div className='formGroup'>
-            <input
+            <input className="col-xs-4 btn btn-primary submit-field"
               type='submit'
               value='Send'>
             </input>
