@@ -16,6 +16,10 @@ module.exports = function(sequelize, DataTypes) {
           foreignKey: 'place_2_id',
           as: 'place_2'
         })
+        Bevent.hasMany(models.GuestList, {
+          foreignKey: 'event_id',
+          as: 'guestLists'
+        })
       }
     }
   });

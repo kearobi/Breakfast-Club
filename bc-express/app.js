@@ -3,6 +3,8 @@ var bodyParser = require('body-parser');
 var app = express();
 var cors = require('cors')
 var Place = require('./models').Place
+var Bevent = require('./models').Bevent
+var GuestList = require('./models').GuestList
 // var payload = require('./api').payload
 var User = require('./models').User
 var Message = require('./models').Message
@@ -92,6 +94,23 @@ app.post('/signup', function(request, response){
   })
 })
 
+app.post('/event', function(request, response){
+  console.log("resquest.body", request.body)
+  Bevent.findOne({
+    where:{id: request.body.id}
+  }).then(function(event){
+    if(event){
+      console.log("event found")
+      response.status(200)
+      response.json({
+        event: event
+      })
+    }else{
+      response.status(400)
+      console.log('no event found')
+    }
+  })
+})
 
 app.post('/login', function(request, response){
   User.findOne({

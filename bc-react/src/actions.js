@@ -8,6 +8,31 @@ export function updateUser(){
   // TODO
 }
 
+export function fetchEvent(attributes){
+  const params = {
+    method: "POST",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(attributes)
+  }
+  fetch("http://localhost:4000/event", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        Dispatcher.dispatch({
+          type:'GOT-EVENT',
+          event: body.event
+        })
+      }).catch(function(error){
+        console.log("fetch event failed");
+      })
+    }
+    else {
+      console.log("fail, response status not 200")
+    }
+  }).catch(function(){
+    console.log("fail, catch clause")
+  })
+}
+
 export function loginUser(attributes){
   const params = {
     method: "POST",
@@ -122,6 +147,8 @@ export function fetchMessages(){
       }
     })
 }
+
+
 
 export function fetchEvents(){
   let success;
