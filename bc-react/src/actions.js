@@ -8,6 +8,22 @@ export function updateUser(){
   // TODO
 }
 
+export function checkLoginRedir(props){
+  let currentUser = UserStore.getUser()
+
+  if(currentUser === null){
+    props.history.push("/login")
+    return false
+  }
+  return true
+}
+
+export function checkLogin(){
+  Dispatcher.dispatch({
+    type: 'CHECK_LOGIN'
+  })
+}
+
 export function fetchEvent(attributes){
   const params = {
     method: "POST",
