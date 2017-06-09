@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AdminUserListing from './Admin/AdminUserListing';
-import adminStore from '../stores/AdminStore';
-import { updateUsers } from '../actions.js';
+import AdminUserListing from './AdminUserListing';
+import adminStore from '../../stores/AdminStore';
+import { updateUsers } from '../../actions.js';
 
 class AdminUserIndex extends Component {
   constructor(props){

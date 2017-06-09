@@ -1,98 +1,98 @@
 import React, { Component } from 'react';
-// import {addPlace} from '../actions';
-
-class AdminPlaceModal extends Component {
+import {addUser} from '../../actions';
+import {updateUsers} from '../../actions';
+class AdminUserModal extends Component {
   constructor(props){
     super(props)
     this.state={
-      place: {
-        name: "",
-        yelp_rating: "",
-        review_count: "",
-        price: "",
-        address_street: "",
-        phone: ""
+      user: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        neighborhood: "",
+        password: "",
+        verifyPassword: ""
       }
     }
   }
 
   handleChange(e){
     let target = e.target
-    let place = this.state.place
-    place[target.name] = target.value
+    let user = this.state.user
+    user[target.name] = target.value
     this.setState({
-      place: place
+      user: user
     })
   }
-
+//addUser and updateUsers are asynchronous because they're in the store
   handleSubmit(e){
     e.preventDefault();
-    // addPlace(this.state)
+    addUser(this.state)
   }
 
   render(){
     return (
     <div>
-      <div>
+      <div id='modal'>
         <span>&times;</span>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
           <div className='formGroup'>
             <input
-              placeholder='Name'
+              placeholder='first name'
               type='text'
-              name='name'
-              id='name'
-              value={this.state.place.name}
+              name='firstName'
+              id='firstName'
+              value={this.state.user.firstName}
               onChange={this.handleChange.bind(this)}>
             </input>
           </div>
           <div className='formGroup'>
             <input
-              placeholder='Yelp Rating'
+              placeholder='last name'
               type='text'
-              name='yelp_rating'
-              id='yelp_rating'
-              value={this.state.place.yelp_rating}
+              name='lastName'
+              id='lastName'
+              value={this.state.user.lastName}
               onChange={this.handleChange.bind(this)}>
             </input>
           </div>
           <div className='formGroup'>
           <input
-            placeholder='Reviews'
-            type='text'
-            name='review_count'
-            id='review_count'
-            value={this.state.place.review_count}
+            placeholder='email address'
+            type='email'
+            name='email'
+            id='email'
+            value={this.state.user.email}
             onChange={this.handleChange.bind(this)}>
           </input>
           </div>
           <div className='formGroup'>
           <input
-            placeholder='Price'
+            placeholder='neighborhood'
             type='text'
-            name='price'
-            id='price'
-            value={this.state.place.price}
+            name='neighborhood'
+            id='neighborhood'
+            value={this.state.user.neighborhood}
             onChange={this.handleChange.bind(this)}>
           </input>
           </div>
           <div className='formGroup'>
           <input
-            placeholder='Street Address'
-            type='text'
-            name='address_street'
-            id='address_street'
-            value={this.state.place.address_street}
+            placeholder='password'
+            type='password'
+            name='password'
+            id='password'
+            value={this.state.user.password}
             onChange={this.handleChange.bind(this)}>
           </input>
           </div>
           <div className='formGroup'>
           <input
-            placeholder='Phone Number'
-            type='text'
-            name='phone'
-            id='phone'
-            value={this.state.place.phone}
+            placeholder='reenter password'
+            type='password'
+            name='verifyPassword'
+            id='verifyPassword'
+            value={this.state.user.verifyPassword}
             onChange={this.handleChange.bind(this)}>
           </input>
           <div className='formGroup align-button'>
@@ -106,4 +106,4 @@ class AdminPlaceModal extends Component {
     )
   }
 }
-export default AdminPlaceModal;
+export default AdminUserModal;

@@ -39,6 +39,10 @@ table {
   width: 831px;
 }
 
+#admin-place-table {
+  width: 950px;
+}
+
 #icon_td {
     background-color: white;
     border: none;

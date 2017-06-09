@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import AdminUserIndex from './AdminUserIndex';
-import AdminUserSearchBar from './Admin/AdminUserSearchBar';
-import AdminStore from '../stores/AdminStore';
+import AdminUserSearchBar from './AdminUserSearchBar';
+import AdminStore from '../../stores/AdminStore';
 import AdminUserModal from './AdminUserModal';
 //const api
 //only the most parent component should be responsible for fetching data

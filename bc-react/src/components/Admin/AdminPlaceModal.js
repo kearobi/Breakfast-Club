@@ -1,100 +1,98 @@
 import React, { Component } from 'react';
-import {addUser} from '../actions';
-import {updateUsers} from '../actions';
-class AdminUserModal extends Component {
+// import {addPlace} from '../actions';
+
+class AdminPlaceModal extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        neighborhood: "",
-        password: "",
-        verifyPassword: ""
+      place: {
+        name: "",
+        yelp_rating: "",
+        categories: "",
+        price: "",
+        address_street: "",
+        phone: ""
       }
     }
   }
 
   handleChange(e){
     let target = e.target
-    let user = this.state.user
-    user[target.name] = target.value
+    let place = this.state.place
+    place[target.name] = target.value
     this.setState({
-      user: user
+      place: place
     })
   }
 
   handleSubmit(e){
     e.preventDefault();
-    addUser(this.state)
-    //how come not always immediate?
-    updateUsers()
+    // addPlace(this.state)
   }
 
   render(){
     return (
     <div>
-      <div>
+      <div className='modal'>
         <span>&times;</span>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
           <div className='formGroup'>
             <input
-              placeholder='first name'
+              placeholder='Name'
               type='text'
-              name='firstName'
-              id='firstName'
-              value={this.state.user.firstName}
+              name='name'
+              id='name'
+              value={this.state.place.name}
               onChange={this.handleChange.bind(this)}>
             </input>
           </div>
           <div className='formGroup'>
             <input
-              placeholder='last name'
+              placeholder='Yelp Rating'
               type='text'
-              name='lastName'
-              id='lastName'
-              value={this.state.user.lastName}
+              name='yelp_rating'
+              id='yelp_rating'
+              value={this.state.place.yelp_rating}
               onChange={this.handleChange.bind(this)}>
             </input>
           </div>
           <div className='formGroup'>
           <input
-            placeholder='email address'
-            type='email'
-            name='email'
-            id='email'
-            value={this.state.user.email}
-            onChange={this.handleChange.bind(this)}>
-          </input>
-          </div>
-          <div className='formGroup'>
-          <input
-            placeholder='neighborhood'
+            placeholder='Category'
             type='text'
-            name='neighborhood'
-            id='neighborhood'
-            value={this.state.user.neighborhood}
+            name='categories'
+            id='categories'
+            value={this.state.place.categories}
             onChange={this.handleChange.bind(this)}>
           </input>
           </div>
           <div className='formGroup'>
           <input
-            placeholder='password'
-            type='password'
-            name='password'
-            id='password'
-            value={this.state.user.password}
+            placeholder='Price'
+            type='text'
+            name='price'
+            id='price'
+            value={this.state.place.price}
             onChange={this.handleChange.bind(this)}>
           </input>
           </div>
           <div className='formGroup'>
           <input
-            placeholder='reenter password'
-            type='password'
-            name='verifyPassword'
-            id='verifyPassword'
-            value={this.state.user.verifyPassword}
+            placeholder='Street Address'
+            type='text'
+            name='address_street'
+            id='address_street'
+            value={this.state.place.address_street}
+            onChange={this.handleChange.bind(this)}>
+          </input>
+          </div>
+          <div className='formGroup'>
+          <input
+            placeholder='Phone Number'
+            type='text'
+            name='phone'
+            id='phone'
+            value={this.state.place.phone}
             onChange={this.handleChange.bind(this)}>
           </input>
           <div className='formGroup align-button'>
@@ -108,4 +106,4 @@ class AdminUserModal extends Component {
     )
   }
 }
-export default AdminUserModal;
+export default AdminPlaceModal;

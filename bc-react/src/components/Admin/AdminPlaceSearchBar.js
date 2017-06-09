@@ -16,11 +16,11 @@ class AdminPlaceSearchBar extends Component {
       (place) => {
         return (
           (place.name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-          (place.rating.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-          (place.review_count.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-          (place.price.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-          (place.street.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-          (place.phone.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+          (place.yelp_rating.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+          (place.categories.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+          (place.price.indexOf(this.state.searchTerm) !== -1) ||
+          (place.address_street.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+          (place.phone.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
         )
       })
 
@@ -34,12 +34,12 @@ class AdminPlaceSearchBar extends Component {
           onChange={this.updateSearch.bind(this)}
         />
         <br></br><br></br>
-        <table>
+        <table id='admin-place-table'>
           <tbody>
             <tr>
               <th>Name</th>
               <th>Yelp Rating</th>
-              <th>Reviews</th>
+              <th>Category</th>
               <th>Price</th>
               <th>Steet Address</th>
               <th>Phone</th>

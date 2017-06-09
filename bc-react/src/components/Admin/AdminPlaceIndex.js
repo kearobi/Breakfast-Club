@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AdminPlaceListing from './PlaceListing';
-import placeStore from '../stores/PlaceStore';
-import { updatePlaces } from '../actions.js';
+import AdminPlaceListing from './AdminPlaceListing';
+import placeStore from '../../stores/PlaceStore';
+import { updatePlaces } from '../../actions.js';
 
 class AdminPlaceIndex extends Component {
   constructor(props){
@@ -36,7 +36,6 @@ class AdminPlaceIndex extends Component {
   render(){
     return(
       <div>
-        {this.renderPlaces()}
       </div>
     )
   }

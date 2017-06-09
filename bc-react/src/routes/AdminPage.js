@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import AdminUsers from '../components/Admin/AdminUsers';
+import AdminPlaces from '../components/Admin/AdminPlaces';
+import AdminEvents from '../components/Admin/AdminEvents';
+
 import adminStore from '../stores/AdminStore';
 import placeStore from '../stores/PlaceStore';
-import AdminUsers from '../components/AdminUsers';
-import AdminPlaces from '../components/AdminPlaces';
-import AdminEvents from '../components/AdminEvents';
+
 import UserIndex from '../components/UserIndex';
 import SearchBar from '../components/SearchBar';
 import AdminModal from '../components/AdminModal';
@@ -29,6 +31,7 @@ class AdminPage extends Component {
       placeSelected: false
     }
   }
+  //the admin store deletes a user, it yells 'ive changed!' to everyone who's listening, and when it does that it calls updateUsers. (we told componentwillmount to issue this whenever there's a change)
   updateUsers(){
     this.setState({
       users: adminStore.getUsers(),
@@ -37,11 +40,27 @@ class AdminPage extends Component {
 
   componentWillMount(){
     adminStore.on('change', this.updateUsers.bind(this))
-    PlaceStore.on('change', this.updatePlaces.bind(this))
-    }
+    placeStore.on('change', this.updatePlaces.bind(this))
+  }
 
   showUserList(){ value: this.state.value }
   showPlaceList(){ value: this.state.value }
+
+  hoverUsers(){
+    this.setState({placeSelected: false})
+    this.setState({eventSelected: false})
+    this.setState({userSelected: true})
+  }
+  hoverEvents(){
+    this.setState({placeSelected: false})
+    this.setState({eventSelected: true})
+    this.setState({userSelected: false})
+  }
+  hoverPlaces(){
+    this.setState({placeSelected: true})
+    this.setState({eventSelected: false})
+    this.setState({userSelected: false})
+  }
 
   displayUsers(){
     this.setState({displayUsers: true})
@@ -91,6 +110,7 @@ class AdminPage extends Component {
             className="admin_button"
             type="button"
             style={{backgroundColor: placeButtonColor}}
+            onMouseOver={this.hoverPlaces.bind(this)}
             onClick={this.displayPlaces.bind(this)}>
           manage places</button>
           <button
@@ -98,12 +118,14 @@ class AdminPage extends Component {
             className="admin_button"
             type="button"
             style={{backgroundColor: userButtonColor}}
+            onMouseOver={this.hoverUsers.bind(this)}
             onClick={this.displayUsers.bind(this)}>
           manage users</button>
           <button
             className="admin_button"
             type="button"
             style={{backgroundColor: eventButtonColor}}
+            onMouseOver={this.hoverEvents.bind(this)}
             onClick={this.displayEvents.bind(this)}>
             manage events</button>
         </div>

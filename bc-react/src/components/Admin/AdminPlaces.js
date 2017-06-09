@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import AdminPlaceIndex from './AdminPlaceIndex';
-import AdminPlaceSearchBar from './Admin/AdminPlaceSearchBar';
-import PlaceStore from '../stores/PlaceStore';
+import AdminPlaceSearchBar from './AdminPlaceSearchBar';
+import PlaceStore from '../../stores/PlaceStore';
 import AdminPlaceModal from './AdminPlaceModal';
 // import AdminPlaceModal from '../components/AdminPlaceModal';
 //const api
@@ -41,7 +41,7 @@ class AdminPlaces extends Component {
           <button className="add_button" type="button"
             onClick={this.displayModal.bind(this)}>
             + place </button>
-          {/* now SearchBar has access to users */}
+          {/* now SearchBar has access to places */}
           <AdminPlaceSearchBar places={this.state.places}/>
         </div>
           <br></br><br></br>

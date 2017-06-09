@@ -12,6 +12,7 @@
 @import url('./Forms.css');
 @import url('./SplashPage.css');
 @import url('./Places.css');
+@import url('./Modal.css');
 
 /*goal for centering: create one single div set the width of the elements and the margin around them to auto*/
 
