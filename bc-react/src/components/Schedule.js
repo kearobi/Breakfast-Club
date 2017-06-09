@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EventStore from '../stores/EventStore';
+import eventStore from '../stores/EventStore';
 import {addEvent} from '../actions';
 
 class Schedule extends Component {

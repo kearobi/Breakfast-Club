@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
-import Dispatcher from '../Dispatcher';
+import dispatcher from '../dispatcher';
 
 class MessageStore extends EventEmitter{
   constructor(){
@@ -10,8 +10,8 @@ class MessageStore extends EventEmitter{
 
   getLastFiveMessages(){
     var messageArray = [];
-    if (this.messages.length > 5){
-      for (var i = this.messages.length - 1; i > this.messages.length - 6; i--){
+    if (this.messages.length > 10){
+      for (var i = this.messages.length - 1; i > this.messages.length - 16; i--){
         messageArray.push(this.messages[i]);
       }
       return messageArray.reverse();
@@ -40,6 +40,6 @@ class MessageStore extends EventEmitter{
   }
 }
 const store = new MessageStore();
-Dispatcher.register(store.handleActions.bind(store));
+dispatcher.register(store.handleActions.bind(store));
 window.message_store = store;
 export default store;

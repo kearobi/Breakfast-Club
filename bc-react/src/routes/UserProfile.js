@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Header from '../components/Header';
 import {updateUser} from '../actions';
-import UserStore from '../stores/UserStore';
+import userStore from '../stores/UserStore';
 
 class UserProfile extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: UserStore.getUser(),
+      user: userStore.getUser(),
       editedUser: {
         firstName: '',
         lastName: '',

@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script');
 @import url('https://fonts.googleapis.com/css?family=Abel');
-@import url('./messageboard.css');
+@import url('./MessageBoard.css');
 @import url('./AdminPage.css');
-@import url('./header.css');
+@import url('./Header.css');
 @import url('./SearchBar.css');
 @import url('./UserListing.css');
-@import url('./icons.css');
+@import url('./Icons.css');
 @import url('./SignUpPage.css');
+@import url('./react-big-calendar.css');
+@import url('./Home.css');
+@import url('./Forms.css');
+@import url('./SplashPage.css');
+@import url('./Places.css');
+
+/*goal for centering: create one single div set the width of the elements and the margin around them to auto*/
 
 .FontAmatic {
   font-family: 'Amatic SC';
@@ -16,19 +23,19 @@
   margin-top: 30px;
 }
 
-.center{
+.center {
   text-align: center;
 }
 
-.BackButton {
-  color: black;
-  font-family: 'Abel';
+h3 {
+  font-family: 'Dancing Script';
   text-align: center;
-  font-size: 19px;
+  font-size: 52px;
+  font-style: italic;
+  font-weight: bold;
+  margin-top: -8px;
 }
 
-/* this code center-aligns the placeholder text in our forms for multiple browser/verisons */
-::-webkit-input-placeholder {text-align: center;}
-:-moz-placeholder {/* older Firefox*/text-align: center;}
-::-moz-placeholder { /* Firefox 19+ */ text-align: center;}
-:-ms-input-placeholder {text-align: center;}
+.active-button {
+  background-color: #def9a3;
+}

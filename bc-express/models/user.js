@@ -78,7 +78,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     classMethods: {
       associate: function(models) {
-        User.belongsTo(models.GuestList, {
+        Users.belongsTo(models.GuestList, {
           foreignKey: 'user_id'
         })
       }
