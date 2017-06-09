@@ -82,12 +82,13 @@ app.post('/places', function(request, response){
 })
 
 app.post('/signup', function(request, response){
-  console.log(request.body)
+  request.body.voted = false
   let userParams = request.body
   User.create(userParams).then(function(user){
     response.status(200)
     response.json({status: 'success', user: user})
   }).catch(function(error){
+    console.log("here", error)
     response.status(400)
     response.json({status: 'error', error: error})
   })
