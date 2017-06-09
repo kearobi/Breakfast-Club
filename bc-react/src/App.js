@@ -8,6 +8,7 @@ import UserProfile from './routes/UserProfile';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import {updatePlaces} from './actions'
+import {checkLogin} from './actions'
 import PlaceIndex from './components/PlaceIndex'
 import UserIndex from './components/UserIndex'
 
@@ -25,7 +26,8 @@ import userStore from './stores/UserStore';
 class App extends Component {
   constructor(props){
     super(props)
-    updatePlaces()
+    checkLogin()
+    // updatePlaces()
     this.state = {}
 }
 
