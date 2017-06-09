@@ -2,15 +2,8 @@ import React, {Component} from 'react';
 import AdminUsers from '../components/Admin/AdminUsers';
 import AdminPlaces from '../components/Admin/AdminPlaces';
 import AdminEvents from '../components/Admin/AdminEvents';
-
 import adminStore from '../stores/AdminStore';
 import placeStore from '../stores/PlaceStore';
-
-import UserIndex from '../components/UserIndex';
-import SearchBar from '../components/SearchBar';
-import AdminModal from '../components/AdminModal';
-import Header from '../components/Header';
-import UserListing from '../components/user_listing';
 
 //const api
 //only the most parent component should be responsible for fetching data
@@ -21,8 +14,8 @@ class AdminPage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      places: PlaceStore.getPlaces(),
-      users: adminStore.getUsers()
+      places: placeStore.getPlaces(),
+      users: adminStore.getUsers(),
       displayUsers: false,
       displayPlaces: false,
       displayEvents: false,
@@ -37,6 +30,7 @@ class AdminPage extends Component {
       users: adminStore.getUsers(),
       places: placeStore.getPlaces()
     })
+  }
 
   componentWillMount(){
     adminStore.on('change', this.updateUsers.bind(this))
@@ -95,7 +89,8 @@ class AdminPage extends Component {
     placeAdmin(){
       if(this.state.displayPlaces === true){
         return (<AdminPlaces />)
-
+      }
+    }
   render(){
     const eventButtonColor = this.state.eventSelected ? "#def9a3" : "#eeeeee"
     const userButtonColor = this.state.userSelected ? "#def9a3" : "#eeeeee"

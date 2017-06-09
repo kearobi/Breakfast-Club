@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
-import dispatcher from '../dispatcher';
+import dispatcher from '../Dispatcher';
 
 class EventStore extends EventEmitter{
   constructor(){
