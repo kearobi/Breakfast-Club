@@ -8,7 +8,7 @@ var GuestList = require('./models').GuestList
 // var payload = require('./api').payload
 var User = require('./models').User
 var Message = require('./models').Message
-
+var path = require('path')
 const PORT = process.env.PORT || 4000;
 
 const corsOptions = {
