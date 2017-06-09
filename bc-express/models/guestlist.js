@@ -10,9 +10,8 @@ module.exports = function(sequelize, DataTypes) {
         GuestList.belongsTo(models.Bevent, {
           foreignKey: 'event_id'
         })
-        GuestList.hasMany(models.User, {
-          foreignKey: 'user_id',
-          as: 'users'
+        GuestList.belongsTo(models.User, {
+          foreignKey: 'user_id'
         })
       }
     }
