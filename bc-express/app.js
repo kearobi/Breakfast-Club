@@ -93,7 +93,7 @@ app.post('/signup', function(request, response){
   })
 })
 
-app.post('/event', function(request, response){
+app.post('/test-event', function(request, response){
   let _event;
   let _users;
   let _places = [];

@@ -4,8 +4,13 @@ import Dispatcher from '../Dispatcher';
 class EventStore extends EventEmitter{
   constructor(){
     super();
+    this.testEvent = {};
     this.events = [];
     this.currentEvent = {};
+  }
+
+  getTestEvent(){
+    return this.testEvent;
   }
 
   getCurrentEvent(){
@@ -23,11 +28,9 @@ class EventStore extends EventEmitter{
         this.emit('events fetched');
         break;
       }
-      case("GOT-EVENT"):{
-        console.log("action.event", action.event)
-        this.currentEvent = action.event;
+      case("EVENT-TEST"):{
+        this.testEvent = action.data;
         this.emit('event fetched');
-
         break;
       }
       default:{}

@@ -13,16 +13,17 @@ export function fetchEvent(attributes){
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(attributes)
   }
-  fetch("http://localhost:4000/event", params).then(function(response){
+  fetch("http://localhost:4000/test-event", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
-        console.log("event received", body)
         Dispatcher.dispatch({
-          type:'GOT-EVENT',
-          event: body.event,
-          users: body.users,
-          places: body.places,
-          guestLists: body.guestLists
+          type:'EVENT-TEST',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
         })
       }).catch(function(error){
         console.log("fetch event failed");

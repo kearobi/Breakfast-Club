@@ -2,25 +2,24 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {fetchEvent} from '../actions';
 import eventStore from '../stores/EventStore';
+import EventDetail from '../components/EventDetail';
 
 class TestEvent extends Component {
   constructor(props){
     super(props)
     this.state= {
       formId: '',
-      event: {
-        id: ''
-      }
+      event: null
     }
   }
 
   componentWillMount(){
-    eventStore.on('event fetched', this.eventFound.bind(this));
+    eventStore.on('event fetched', this.displayEvent.bind(this));
   }
 
-  eventFound(){
+  displayEvent(){
     this.setState({
-      event: eventStore.getCurrentEvent()
+      event: eventStore.getTestEvent()
     })
   }
 
@@ -36,28 +35,35 @@ class TestEvent extends Component {
   }
 
   render(){
-    return (
-        <div>
-          <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-            <div className='formGroup'>
-              <input
-                type='number'
-                name='id'
-                value={this.state.formId}
-                onChange={this.handleChange.bind(this)}>
-              </input>
-            </div>
-            <div className='formGroup'>
-              <input
-                type='submit'
-                value='Submit'>
-              </input>
-            </div>
-          </form>
-          <p>Fetched Bevent</p>
-          <p>{this.state.event.id}</p>
-        </div>
-      );
+    if (this.state.event){
+      return (
+        <EventDetail data={this.state.event} />
+      )
     }
+    else {
+      return (
+          <div>
+            <form className='form' onSubmit={this.handleSubmit.bind(this)}>
+              <div className='formGroup'>
+                <p>Search by event id number</p>
+                <input
+                  type='number'
+                  name='id'
+                  value={this.state.formId}
+                  onChange={this.handleChange.bind(this)}>
+                </input>
+              </div>
+              <div className='formGroup'>
+                <input
+                  type='submit'
+                  value='Submit'>
+                </input>
+              </div>
+            </form>
+          </div>
+        );
+      }
+    }
+
   }
 export default TestEvent;
