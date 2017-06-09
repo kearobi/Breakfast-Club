@@ -1,4 +1,4 @@
-import dispatcher from './dispatcher';
+import dispatcher from './Dispatcher';
 import userStore from './stores/UserStore';
 import messageStore from './stores/MessageStore';
 import adminStore from './stores/AdminStore';
@@ -9,7 +9,7 @@ export function updateUser(){
 }
 
 export function checkLoginRedir(props){
-  let currentUser = UserStore.getUser()
+  let currentUser = userStore.getUser()
 
   if(currentUser === null){
     props.history.push("/login")
@@ -19,7 +19,7 @@ export function checkLoginRedir(props){
 }
 
 export function checkLogin(){
-  Dispatcher.dispatch({
+  dispatcher.dispatch({
     type: 'CHECK_LOGIN'
   })
 }
@@ -33,7 +33,7 @@ export function fetchEvent(attributes){
   fetch("http://localhost:4000/test-event", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
-        Dispatcher.dispatch({
+        dispatcher.dispatch({
           type:'EVENT-TEST',
           data: {
             event: body.event,
@@ -216,7 +216,6 @@ export function fetchEvents(){
     })
   }
 
-
 // this deleteUser function is a work in progress
 //attributes here is whatever we pass into delete user through the delete call. we set up the params that we're gonna send, then we do a delete call to express with those params. whatever express gives us back, we're gonna dispatch the delete user event and catch if there's any errors
   export function deleteUser(attributes){
@@ -234,7 +233,7 @@ export function fetchEvents(){
       // and update the state to equal what we get back from the server
       if(response.status === 200){
           // send the user to the store
-          Dispatcher.dispatch({
+          dispatcher.dispatch({
             type: 'DELETE_USER',
             id: attributes
 //we don't care what we get back from the server, so just attributes.
