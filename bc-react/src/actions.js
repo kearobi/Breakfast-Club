@@ -220,6 +220,6 @@ export function fetchEvents(){
           })
       }
     }).catch(function(error){
-      userStore.updateMessage("There was an error: " + error)
+      adminStore.updateMessage("There was an error: " + error)
     })
   }
