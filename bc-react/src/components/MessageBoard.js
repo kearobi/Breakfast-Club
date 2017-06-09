@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MessageStore from '../stores/MessageStore';
-import UserStore from '../stores/UserStore';
+import messageStore from '../stores/MessageStore';
+import userStore from '../stores/UserStore';
 import {addMessage} from '../actions';
 
 class MessageBoard extends Component {
@@ -13,14 +13,14 @@ class MessageBoard extends Component {
   }
 
   componentWillMount(){
-    MessageStore.on('messages fetched', this.updateMessages.bind(this));
-    MessageStore.on('message added', this.updateMessages.bind(this));
+    messageStore.on('messages fetched', this.updateMessages.bind(this));
+    messageStore.on('message added', this.updateMessages.bind(this));
   }
 
   updateMessages(){
     console.log("updateMessages called")
     this.setState({
-      messages: MessageStore.getLastFiveMessages()
+      messages: messageStore.getLastFiveMessages()
     })
   }
 
@@ -35,7 +35,7 @@ class MessageBoard extends Component {
     e.preventDefault();
     addMessage({
       content: this.state.currentMessage,
-      author: UserStore.getUser().email
+      author: userStore.getUser().email
     });
   }
 

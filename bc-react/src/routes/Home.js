@@ -15,6 +15,7 @@ class Home extends Component {
   constructor(props){
     super(props);
     fetchMessages();
+    // fetchEvents();
   }
 
   events(){
@@ -34,32 +35,28 @@ class Home extends Component {
       <div className="home-page">
         <div className="container">
           <div className="row">
+            <div className="col-xs-3"></div>
 
-            <div className="row">
-              <div className="col-xs-3"></div>
-
-              <div className="col-xs-6">
-                <h1>Welcome, </h1>
-              </div>
-
-              <div className="col-xs-3"></div>
+            <div className="col-xs-6">
+              <h1>Welcome, </h1>
             </div>
 
-            <hr className="hr-home"></hr>
+            <div className="col-xs-3"></div>
+          </div>
 
-            <div className="row">
-              <div className="col-xs-1"></div>
+          <hr className="hr-home"></hr>
 
-              <div className="calendar-div col-xs-7">
-                <BigCalendar
-                  events={this.events()}
-                />
-              </div>
-              <div className="col-xs-4">
-                <MessageBoard />
-              </div>
+          <div className="row">
+            <div className="col-xs-1"></div>
+
+            <div className="calendar-div col-xs-7">
+              <BigCalendar
+                events={this.events()}
+              />
             </div>
-
+            <div className="col-xs-4">
+              <MessageBoard />
+            </div>
           </div>
         </div>
       </div>

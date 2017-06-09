@@ -1,45 +1,116 @@
 import React, {Component} from 'react';
-import SearchBar from '../components/SearchBar';
-import Header from '../components/Header';
+import adminStore from '../stores/AdminStore';
+import placeStore from '../stores/PlaceStore';
+import AdminUsers from '../components/AdminUsers';
+import AdminPlaces from '../components/AdminPlaces';
+import AdminEvents from '../components/AdminEvents';
 import UserIndex from '../components/UserIndex';
+import SearchBar from '../components/SearchBar';
+import AdminModal from '../components/AdminModal';
+import Header from '../components/Header';
+import UserListing from '../components/user_listing';
 
 //const api
 //only the most parent component should be responsible for fetching data
 
+//now in our Admin page we have users, and we want to put that into our Search Bar so it can use those props
+
 class AdminPage extends Component {
-  showUserList(){
-    value: this.state.value ;
+  constructor(props){
+    super(props)
+    this.state = {
+      places: PlaceStore.getPlaces(),
+      users: adminStore.getUsers()
+      displayUsers: false,
+      displayPlaces: false,
+      displayEvents: false,
+      eventSelected: false,
+      userSelected: false,
+      placeSelected: false
+    }
+  }
+  updateUsers(){
+    this.setState({
+      users: adminStore.getUsers(),
+      places: placeStore.getPlaces()
+    })
+
+  componentWillMount(){
+    adminStore.on('change', this.updateUsers.bind(this))
+    PlaceStore.on('change', this.updatePlaces.bind(this))
+    }
+
+  showUserList(){ value: this.state.value }
+  showPlaceList(){ value: this.state.value }
+
+  displayUsers(){
+    this.setState({displayUsers: true})
+    this.setState({displayEvents: false})
+    this.setState({displayPlaces: false})
+    this.setState({placeSelected: false})
+    this.setState({eventSelected: false})
+    this.setState({userSelected: true})
+  }
+  displayEvents(){
+    this.setState({displayUsers: false})
+    this.setState({displayEvents: true})
+    this.setState({displayPlaces: false})
+    this.setState({placeSelected: false})
+    this.setState({eventSelected: true})
+    this.setState({userSelected: false})
+  }
+  displayPlaces(){
+    this.setState({displayUsers: false})
+    this.setState({displayEvents: false})
+    this.setState({displayPlaces: true})
+    this.setState({placeSelected: true})
+    this.setState({eventSelected: false})
+    this.setState({userSelected: false})
   }
 
+    userAdmin(){
+      if(this.state.displayUsers === true){
+        //change color to green
+        return (<AdminUsers />)
+      }else{ return ("") }}
+    placeAdmin(){
+      if(this.state.displayPlaces === true){
+        return (<AdminPlaces />)
+
   render(){
+    const eventButtonColor = this.state.eventSelected ? "#def9a3" : "#eeeeee"
+    const userButtonColor = this.state.userSelected ? "#def9a3" : "#eeeeee"
+    const placeButtonColor = this.state.placeSelected ? "#def9a3" : "#eeeeee"
+
     return(
       <div id="admin_container">
-        <Header />
         <h3>hello there, admin</h3>
         <br></br>
         <div id="admin_button_wrapper">
-          <button className="admin_button" type="button">manage places</button>
-          <button className="admin_button" type="button" onClick={this.showUserList}>manage users</button>
-          <button className="admin_button" type="button">manage events</button>
+          <button
+            className="admin_button"
+            type="button"
+            style={{backgroundColor: placeButtonColor}}
+            onClick={this.displayPlaces.bind(this)}>
+          manage places</button>
+          <button
+
+            className="admin_button"
+            type="button"
+            style={{backgroundColor: userButtonColor}}
+            onClick={this.displayUsers.bind(this)}>
+          manage users</button>
+          <button
+            className="admin_button"
+            type="button"
+            style={{backgroundColor: eventButtonColor}}
+            onClick={this.displayEvents.bind(this)}>
+            manage events</button>
         </div>
-        <br></br>
-          <br></br><br></br><br></br>
-        <div id="search_bar_wrapper">
-        <SearchBar />
-        </div>
-          <button className="add_button" type="button">+ add</button>
-          <br></br><br></br>
-          <table className="center">
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email Address</th>
-              <th>Neighborhood</th>
-              <th>Password</th>
-              <th className="table_icons"></th>
-            </tr>
-            <UserIndex />
-        </table>
+        <br></br><br></br><br></br>
+          {this.userAdmin()}
+          {this.placeAdmin()}
+          {this.eventAdmin()}
       </div>
       );
     }

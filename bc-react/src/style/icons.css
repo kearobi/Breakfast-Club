@@ -1,8 +1,14 @@
 #edit_icon {
-  width: 20px;
-  margin-right: 3px;
+  width: 30px;
+  height: 30px;
+  margin-top: -45px;
+  margin-left: -12px;
+  border-color: white;
 }
 
 #delete_icon {
-  width: 25px;
+  width: 30px;
+  height: 30px;
+  margin-top: -45px;
+  margin-left: -3px;
 }
