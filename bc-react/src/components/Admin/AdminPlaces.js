@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import AdminPlaceIndex from './AdminPlaceIndex';
+import AdminIndex from './AdminIndex';
 import AdminPlaceSearchBar from './AdminPlaceSearchBar';
-import PlaceStore from '../../stores/PlaceStore';
-import AdminPlaceModal from './AdminPlaceModal';
-// import AdminPlaceModal from '../components/AdminPlaceModal';
+import placeStore from '../../stores/PlaceStore';
+import AdminModal from './AdminModal'
+//once you make the component generic, you move the parts that are different out to the parent and pass them in as props
 //const api
 //only the most parent component should be responsible for fetching data
 
@@ -12,15 +12,15 @@ import AdminPlaceModal from './AdminPlaceModal';
 class AdminPlaces extends Component {
   constructor(props){
     super(props)
-    this.state = {places: PlaceStore.getPlaces(),
+    this.state = {places: placeStore.getPlaces(),
                   displayModal: false}
   }
   updatePlaces(){
     this.setState({
-      places: PlaceStore.getPlaces() })}
+      places: placeStore.getPlaces() })}
 
   componentWillMount(){
-    PlaceStore.on('change', this.updatePlaces.bind(this)) }
+    placeStore.on('change', this.updatePlaces.bind(this)) }
 
   showPlaceList(){
     value: this.state.value }
@@ -28,9 +28,25 @@ class AdminPlaces extends Component {
   displayModal(){
     this.setState({displayModal: true})}
 
+  placeParams(){
+    return(
+      { place: {
+          name: "",
+          yelp_rating: "",
+          categories: "",
+          price: "",
+          address_street: "",
+          phone: ""
+      }})
+  }
+
+  placeIndexParams(){
+    return({places: placeStore.getPlaces()})
+  }
+
   modalAdmin(){
     if(this.state.displayModal === true){
-    return (<AdminPlaceModal />)
+    return (<AdminModal placeForm={true} startingState={this.placeParams()}/>)
     } else { return ("") }}
 
   render(){
@@ -45,7 +61,7 @@ class AdminPlaces extends Component {
           <AdminPlaceSearchBar places={this.state.places}/>
         </div>
           <br></br><br></br>
-          <AdminPlaceIndex />
+          <AdminIndex placeIndex={true} startingState={this.placeIndexParams()}/>
           {this.modalAdmin()}
       </div>
       );

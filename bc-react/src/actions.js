@@ -216,7 +216,6 @@ export function fetchEvents(){
     })
   }
 
-// this deleteUser function is a work in progress
 //attributes here is whatever we pass into delete user through the delete call. we set up the params that we're gonna send, then we do a delete call to express with those params. whatever express gives us back, we're gonna dispatch the delete user event and catch if there's any errors
   export function deleteUser(attributes){
     // set up the headers and request

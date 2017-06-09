@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import AdminUserIndex from './AdminUserIndex';
+import AdminIndex from './AdminIndex';
 import AdminUserSearchBar from './AdminUserSearchBar';
-import AdminStore from '../../stores/AdminStore';
-import AdminUserModal from './AdminUserModal';
+import adminStore from '../../stores/AdminStore';
+import AdminModal from './AdminModal';
 //const api
 //only the most parent component should be responsible for fetching data
 
@@ -11,15 +11,15 @@ import AdminUserModal from './AdminUserModal';
 class AdminUsers extends Component {
   constructor(props){
     super(props)
-    this.state = {users: AdminStore.getUsers(),
+    this.state = {users: adminStore.getUsers(),
                   displayModal: false}
   }
   updateUsers(){
     this.setState({
-      users: AdminStore.getUsers() })}
+      users: adminStore.getUsers() })}
 
   componentWillMount(){
-    AdminStore.on('change', this.updateUsers.bind(this)) }
+    adminStore.on('change', this.updateUsers.bind(this)) }
 
   showUserList(){
     value: this.state.value }
@@ -27,9 +27,25 @@ class AdminUsers extends Component {
   displayModal(){
     this.setState({displayModal: true})}
 
+  userParams(){
+    return(
+  {  user: {
+              firstName: "",
+              lastName: "",
+              email: "",
+              neighborhood: "",
+              password: "",
+              verifyPassword: ""
+    }})
+  }
+
+  userIndexParams(){
+    return({users: adminStore.getUsers()})
+  }
+
   modalAdmin(){
     if(this.state.displayModal === true){
-    return (<AdminUserModal />)
+    return (<AdminModal userForm={true} startingState={this.userParams()} />)
     } else { return ("") }}
 
   render(){
@@ -44,7 +60,7 @@ class AdminUsers extends Component {
           <AdminUserSearchBar users={this.state.users}/>
         </div>
           <br></br><br></br>
-          <AdminUserIndex />
+          <AdminIndex placeIndex={true} startingState={this.userIndexParams()}/>
           {this.modalAdmin()}
       </div>
       );

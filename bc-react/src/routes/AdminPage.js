@@ -34,7 +34,7 @@ class AdminPage extends Component {
 
   componentWillMount(){
     adminStore.on('change', this.updateUsers.bind(this))
-    placeStore.on('change', this.updatePlaces.bind(this))
+    // placeStore.on('change', this.updatePlaces.bind(this))
   }
 
   showUserList(){ value: this.state.value }
@@ -85,12 +85,14 @@ class AdminPage extends Component {
       if(this.state.displayUsers === true){
         //change color to green
         return (<AdminUsers />)
-      }else{ return ("") }}
+      }else{ 
+        return ("") }}
+
     placeAdmin(){
       if(this.state.displayPlaces === true){
         return (<AdminPlaces />)
-      }
-    }
+      }else{ return ("") }}
+
   render(){
     const eventButtonColor = this.state.eventSelected ? "#def9a3" : "#eeeeee"
     const userButtonColor = this.state.userSelected ? "#def9a3" : "#eeeeee"
@@ -127,7 +129,7 @@ class AdminPage extends Component {
         <br></br><br></br><br></br>
           {this.userAdmin()}
           {this.placeAdmin()}
-          {this.eventAdmin()}
+          {/* {this.eventAdmin()} */}
       </div>
       );
     }

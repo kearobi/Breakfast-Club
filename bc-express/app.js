@@ -183,7 +183,6 @@ app.post('/admin', function(request, response){
 //destroy is the sequelize call
 app.delete('/admin', function(request, response){
   let userParams = request.body.id
-  console.log(request.body.id)
   User.destroy({where: {id: userParams}}).then(function(user){
     response.status(200)
     //this user:user comes from the then function

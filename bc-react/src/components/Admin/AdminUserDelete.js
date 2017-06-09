@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {deleteUser} from '../../actions.js';
+
 class AdminUserDelete extends Component {
 
   handleClick(){

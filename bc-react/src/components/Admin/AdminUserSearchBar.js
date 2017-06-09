@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AdminUserListing from './AdminUserListing';
 
-class AdminPlaceSearchBar extends Component {
+class AdminUserSearchBar extends Component {
   constructor(props){
     super(props)
     this.state = { searchTerm: '' }
@@ -11,6 +11,7 @@ class AdminPlaceSearchBar extends Component {
     this.setState({searchTerm: event.target.value})
   }
 
+//the filter is a loop that takes a function (we're just using the fat arrow syntax). The parameter(user) gets filled in with each individual item in the array. If it returns true, then that user gets put in the output set, if it returns false, it gets skipped
   render() {
     let filteredUsers = this.props.users.filter(
       (user) => {
@@ -49,4 +50,4 @@ class AdminPlaceSearchBar extends Component {
       </div>
     )}}
 
-export default AdminPlaceSearchBar;
+export default AdminUserSearchBar;
