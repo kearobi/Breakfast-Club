@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Header from '../components/Header';
 import {loginUser} from '../actions';
-import UserStore from '../stores/UserStore';
+import userStore from '../stores/UserStore';
 
 class UserLogin extends Component {
   constructor(props){
@@ -17,12 +17,12 @@ class UserLogin extends Component {
   }
 
   componentWillMount(){
-    UserStore.on('login-success', this.redirectToHome.bind(this));
-    UserStore.on('login-fail', this.loginFailed.bind(this));
+    userStore.on('login-success', this.redirectToHome.bind(this));
+    userStore.on('login-fail', this.loginFailed.bind(this));
   }
 
   redirectToHome(){
-    this.props.history.push("/Home");
+    this.props.history.push("/home");
   }
 
   loginFailed(){
@@ -54,7 +54,6 @@ class UserLogin extends Component {
 
 render(){
   return (
-    <div>
         <div className="container">
           <div className="row">
             <div className="col-sm-4">
@@ -90,11 +89,8 @@ render(){
                     onChange={this.handleChange.bind(this)}>
                   </input>
                 </div>
-                <div className='formGroup'>
-                  <input
-                    type='submit'
-                    value='Let Me In!!'>
-                  </input>
+                <div className='formGroup align-button'>
+                  <input className='let-me-in' type='submit' value='Let Me In!!'></input>
                 </div>
               </form>
             </div>
@@ -106,11 +102,13 @@ render(){
             </div>
             <div className="col-sm-4 center">
               <Link to="/">
-                <button
-                  className="BackButton"
-                  type="button">
-                  Take Me Back!!
-                </button>
+              <div className="align-button">
+                <input
+                  className='take-me-back'
+                  type='button'
+                  value='Take Me Back!!'>
+                </input>
+              </div>
               </Link>
               <div className="alert alert-warning"><strong>{this.state.message}</strong></div>
             </div>
@@ -118,7 +116,6 @@ render(){
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }

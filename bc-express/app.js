@@ -1,5 +1,5 @@
 var express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 var app = express();
 var cors = require('cors')
 var Place = require('./models').Place
@@ -83,7 +83,7 @@ app.post('/places', function(request, response){
 
 app.post('/signup', function(request, response){
   console.log(request.body)
-  let userParams = request.body.user
+  let userParams = request.body
   User.create(userParams).then(function(user){
     response.status(200)
     response.json({status: 'success', user: user})
@@ -160,6 +160,26 @@ app.post('/login', function(request, response){
     }
   })
 })
+
+app.get('/admin', function(request, response){
+  User.findAll().then(function(users){
+    response.status(200)
+    response.json({status: 'success', users: users})
+  })
+})
+
+app.post('/admin', function(request, response){
+  let userParams = request.body.user
+  User.create(userParams).then(function(user){
+    response.status(200)
+    response.json({status: 'success', user: user})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
+
+
 
 app.listen(4000, function () {
  console.log('listening on port 4000!');

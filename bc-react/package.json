@@ -4,14 +4,20 @@
   "private": true,
   "dependencies": {
     "flux": "^3.1.2",
+    "jquery": "^3.2.1",
+    "moment": "^2.18.1",
     "react": "^15.5.4",
+    "react-addons-css-transition-group": "^15.5.2",
+    "react-big-calendar": "^0.14.0",
     "react-bootstrap": "^0.31.0",
     "react-calendar-component": "^1.2.0",
     "react-dom": "^15.5.4",
     "react-event-calendar": "^0.3.0",
     "react-image": "^1.0.1",
+    "react-infinite-calendar": "^2.3.1",
     "react-router-dom": "^4.1.1",
-    "react-scripts": "^1.0.7"
+    "react-scripts": "^1.0.7",
+    "react-transition-group": "^1.1.1"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"

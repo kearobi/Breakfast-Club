@@ -1,0 +1,7 @@
+- labels, if i hover over links, what does it do?
+- do we need nav bar on splash page?
+- highlight issue on nav bar collapse button
+- registration page logs user in as new user and is redirected to home page
+- fix - user is logged out when you change pages
+- describe app on home page/splash page
+ -
