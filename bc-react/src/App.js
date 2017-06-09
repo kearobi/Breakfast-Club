@@ -10,6 +10,7 @@ import AdminPage from './routes/AdminPage';
 import {updatePlaces} from './actions'
 import {checkLogin} from './actions'
 import PlaceIndex from './components/PlaceIndex'
+import CurrentEvent from './routes/CurrentEvent'
 
 // import placeStore from './stores/PlaceStore'
 // import './style/app.css';
@@ -44,6 +45,7 @@ class App extends Component {
             <Route exact path='/home' component={Home} />
             <Route exact path='/profile' component={UserProfile} />
             <Route exact path='/test-event' component={TestEvent} />
+            <Route path='/current-event' component={CurrentEvent} />
           </div>
         </Router>
       </div>
