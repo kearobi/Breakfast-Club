@@ -14,13 +14,21 @@ export function checkLoginRedir(props){
   if(currentUser === null){
     props.history.push("/login")
     return false
+  }else{
+    return true
   }
-  return true
+
 }
 
 export function checkLogin(){
   dispatcher.dispatch({
     type: 'CHECK_LOGIN'
+  })
+}
+
+export function userLogout(){
+  dispatcher.dispatch({
+    type: "LOGOUT"
   })
 }
 

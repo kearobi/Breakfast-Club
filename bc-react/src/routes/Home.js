@@ -25,8 +25,14 @@ class Home extends Component {
 
   componentWillMount(){
     userStore.on('logged-in',this.handleLogin.bind(this))
+    userStore.on('logged-out', this.handleLogOut.bind(this))
     checkLoginRedir(this.props)
+
   }
+
+ //  componentWillUpdate(){
+ //   checkLoginRedir(this.props)
+ // }
 
   handleLogin(){
   this.setState({
@@ -34,10 +40,14 @@ class Home extends Component {
   })
 }
 
+handleLogOut(){
+this.setState({
+  user: userStore.getUser()
+})
+}
 
-  // componentWillUpdate(){
-  //   checkLoginRedir(this.props)
-  // }
+
+
 
   events(){
     return [

@@ -38,15 +38,14 @@ class App extends Component {
           <div>
             <Header />
             <Route exact path='/' component={SplashPage}/>
-            <Route path='/signup' component={UserSignUp} />
-            <Route path='/login' component={UserLogin} />
-            <Route path='/places' component={PlaceIndex} />
-            <Route path='/admin' component={AdminPage} />
-            <Route path='/home' component={Home} />
-            <Route path='/profile' component={UserProfile} />
-            <Route path='/test-event' component={TestEvent} />
+            <Route exact path='/signup' component={UserSignUp} />
+            <Route exact path='/login' component={UserLogin} />
+            <Route exact path='/places' component={PlaceIndex} />
+            <Route exact path='/admin' component={AdminPage} />
+            <Route exact path='/home' component={Home} />
+            <Route exact path='/profile' component={UserProfile} />
+            <Route exact path='/test-event' component={TestEvent} />
             <Route path='/current-event' component={CurrentEvent} />
-
           </div>
         </Router>
       </div>

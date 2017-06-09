@@ -22,7 +22,6 @@ class UserSignUp extends Component {
   }
 
   redirectToHome(){
-    console.log('test')
     this.props.history.push("/Home");
   }
 
