@@ -5,6 +5,7 @@ import MessageBoard from '../components/MessageBoard';
 import userStore from '../stores/UserStore';
 import SideBar from '../components/SideBar';
 import {fetchMessages} from '../actions';
+import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 BigCalendar.setLocalizer(
@@ -13,10 +14,29 @@ BigCalendar.setLocalizer(
 
 class Home extends Component {
   constructor(props){
-    super(props);
+  super(props)
+  this.state = {
+    user: userStore.getUser(),
+    }
     fetchMessages();
     // fetchEvents();
   }
+
+  componentWillMount(){
+    userStore.on('logged-in',this.handleLogin.bind(this))
+    checkLoginRedir(this.props)
+  }
+
+  handleLogin(){
+  this.setState({
+    user: userStore.getUser()
+  })
+}
+
+
+  // componentWillUpdate(){
+  //   checkLoginRedir(this.props)
+  // }
 
   events(){
     return [
@@ -38,9 +58,8 @@ class Home extends Component {
             <div className="col-xs-3"></div>
 
             <div className="col-xs-6">
-              <h1>Welcome, </h1>
+              <h1>Welcome, {userStore.getUser().firstName}</h1>
             </div>
-
             <div className="col-xs-3"></div>
           </div>
 

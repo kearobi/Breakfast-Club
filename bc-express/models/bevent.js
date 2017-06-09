@@ -8,13 +8,11 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Bevent.hasMany(models.Place, {
-          foreignKey: 'place_1_id',
-          as: 'place_1'
+        Bevent.belongsTo(models.Place, {
+          foreignKey: 'place_1_id'
         })
-        Bevent.hasMany(models.Place, {
-          foreignKey: 'place_2_id',
-          as: 'place_2'
+        Bevent.belongsTo(models.Place, {
+          foreignKey: 'place_2_id'
         })
         Bevent.hasMany(models.GuestList, {
           foreignKey: 'event_id',
