@@ -35,12 +35,6 @@ class UserStore extends EventEmitter{
         this.emit('login-fail')
         break
       }
-      case("DELETE_USER"):{
-        this.deleteUser(action.user)
-        this.message = "User Deleted"
-        this.emit('message')
-        break
-      }
       default:{}
     }
   }
