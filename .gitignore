@@ -22,3 +22,4 @@ yarn-debug.log*
 yarn-error.log*
 
 /bc-express/config/config.json
+node_modules

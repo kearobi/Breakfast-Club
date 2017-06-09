@@ -9,12 +9,14 @@ var GuestList = require('./models').GuestList
 var User = require('./models').User
 var Message = require('./models').Message
 
+const PORT = process.env.PORT || 4000;
+
 const corsOptions = {
   origin: 'http://localhost:3000'
 }
 
 app.use(cors())
-app.use(express.static('public'))
+app.use(express.static(path.resolve(__dirname, '../bc-react/build')));
 app.use(bodyParser.json())
 
 const authorization = function(request, response, next){
@@ -246,6 +248,11 @@ app.delete('/admin', function(request, response){
   })
 })
 
-app.listen(4000, function () {
- console.log('listening on port 4000!');
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../bc-react/build', 'index.html'));
+});
+
+
+app.listen(PORT, function () {
+ console.log(`listening on port ${PORT}!`);
 });

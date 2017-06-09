@@ -4,6 +4,14 @@ import messageStore from './stores/MessageStore';
 import adminStore from './stores/AdminStore';
 import placeStore from './stores/PlaceStore'
 
+var apiUrl
+if(process.env.NODE_ENV === 'production'){
+  apiUrl = "/"
+} else {
+  apiUrl = "http://localhost:4000/"
+}
+
+
 export function updateUser(){
   // TODO
 }
@@ -38,7 +46,7 @@ export function fetchEvent(attributes){
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(attributes)
   }
-  fetch("http://localhost:4000/test-event", params).then(function(response){
+  fetch(apiUrl + "test-event", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
@@ -68,7 +76,7 @@ export function fetchCurrentEvent(attributes){
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(attributes)
   }
-  fetch("http://localhost:4000/current-event", params).then(function(response){
+  fetch(apiUrl + "current-event", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
@@ -98,7 +106,7 @@ export function loginUser(attributes){
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(attributes)
   }
-  fetch("http://localhost:4000/login", params).then(function(response){
+  fetch(apiUrl + "login", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
@@ -127,7 +135,7 @@ export function addUser(attributes){
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(attributes)
   }
-  fetch("http://localhost:4000/signup", params).then(function(response){
+  fetch(apiUrl + "signup", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         // send the user to the store
@@ -148,7 +156,7 @@ export function addMessage(attributes){
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(attributes)
   }
-  fetch("http://localhost:4000/add-message", params).then(function(response){
+  fetch(apiUrl + "add-message", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         // send the message to the store
@@ -168,7 +176,7 @@ export function updatePlaces(){
   const params = {
     method: 'GET',
   }
-  fetch("http://localhost:4000/places", params).then(function(response){
+  fetch(apiUrl + "places", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
@@ -187,7 +195,7 @@ export function fetchMessages(){
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
       }
-  fetch('http://localhost:4000/messages', params)
+  fetch(apiUrl + 'messages', params)
     .then((response)=>{
       success = response.ok
       return response.json()
@@ -215,7 +223,7 @@ export function fetchEvents(){
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
       }
-  fetch('http://localhost:4000/events', params)
+  fetch(apiUrl + 'events', params)
     .then((response)=>{
       success = response.ok
       return response.json()
@@ -241,7 +249,7 @@ export function fetchEvents(){
       method: 'GET',
     }
 
-    fetch("http://localhost:4000/admin", params).then(function(response){
+    fetch(apiUrl + "admin", params).then(function(response){
       if(response.status === 200){
         response.json().then(function(body){
           dispatcher.dispatch({
@@ -266,7 +274,7 @@ export function fetchEvents(){
       body: JSON.stringify({id: attributes})
     }
     // send state to the backend server. it's /admin according to the API we built
-    fetch("http://localhost:4000/admin", params).then(function(response){
+    fetch(apiUrl + "admin", params).then(function(response){
       // if post is successful update the message to be successful
       // and update the state to equal what we get back from the server
       if(response.status === 200){
