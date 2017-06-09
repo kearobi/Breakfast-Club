@@ -41,6 +41,18 @@ class UserStore extends EventEmitter{
     }
   }
 
+  logout(){
+     this.user = null
+     localStorage.setItem('authToken', null);
+     localStorage.setItem('authTokenExpiration', null);
+     localStorage.setItem('firstName', "");
+     localStorage.setItem('lastName', "");
+     localStorage.setItem('email', "");
+     localStorage.setItem('neighborhood', "")
+
+     this.emit('logged-out')
+   }
+
   handleActions(action){
     switch(action.type){
       case("SIGNUP"):{
@@ -62,6 +74,10 @@ class UserStore extends EventEmitter{
       }
       case("LOGIN_FAIL"):{
         this.emit('login-fail')
+        break
+      }
+      case("LOGOUT"):{
+        this.logout()
         break
       }
       default:{}

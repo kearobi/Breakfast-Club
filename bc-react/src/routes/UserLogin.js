@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Header from '../components/Header';
-import {loginUser} from '../actions';
+import {loginUser, checkLoginRedir} from '../actions';
 import userStore from '../stores/UserStore';
 
 class UserLogin extends Component {
@@ -14,11 +14,13 @@ class UserLogin extends Component {
       },
       message: ''
     }
+    console.log(this.state)
   }
 
   componentWillMount(){
     userStore.on('login-success', this.redirectToHome.bind(this));
     userStore.on('login-fail', this.loginFailed.bind(this));
+    checkLoginRedir(this.props)
   }
 
   redirectToHome(){
@@ -42,7 +44,7 @@ class UserLogin extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    if (this.state.user.email == "" || this.state.user.password == ""){
+    if (this.state.user.email === "" || this.state.user.password === ""){
       this.setState({
         message: "Email and password required"
       })

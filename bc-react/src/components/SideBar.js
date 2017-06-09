@@ -2,6 +2,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import React, { Component } from 'react';
 import Img from 'react-image'
 import '../style/Sidebar.css';
+import {userLogout} from '../actions'
 
 class SideBar extends Component {
   constructor(props){
@@ -54,6 +55,10 @@ wrapperClass(){
 }
 //if isclosed(true) css style will be set to default isClosed ("") if isClosed(false) css style will be set to taggled ("toggled").
 
+handleLogout(){
+  userLogout()
+}
+
   render() {
 
     return (
@@ -75,8 +80,8 @@ wrapperClass(){
               <p className="image-text-2">Events</p>
             </div>
             <div className="side-bar-image-div">
-              <li>
-                <a href="#"><img className="wobble side-bar-image" src='../Images/logout.png'/></a>
+              <li onClick={this.handleLogout}>
+                <a href='/'><img className="wobble side-bar-image" src='../Images/logout.png'/></a>
               </li>
               <p className="image-text-3">Log Out</p>
             </div>
