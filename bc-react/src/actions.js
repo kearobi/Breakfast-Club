@@ -3,9 +3,33 @@ import userStore from './stores/UserStore';
 import messageStore from './stores/MessageStore';
 import adminStore from './stores/AdminStore';
 import placeStore from './stores/PlaceStore'
+import eventStore from './stores/EventStore'
 
 export function updateUser(){
   // TODO
+}
+
+export function registerVote(choice){
+  let event = eventStore.getCurrentEvent();
+  let user = userStore.getUser();
+  event.choice = choice;
+  event.user = user;
+  const params = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(event)
+  }
+  fetch("http://localhost:4000/register-vote", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'VOTE-REGISTERED'
+        })
+      })
+    }
+  }).catch(function(error){
+    userStore.updateMessage("There was an error: " + error)
+  })
 }
 
 export function checkLoginRedir(props){

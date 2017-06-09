@@ -62,6 +62,35 @@ app.post('/add-message', function(request, response){
   })
 })
 
+app.post('/register-vote', function(request, response){
+  console.log("yo", request.body)
+  let event_id = request.body.event.id;
+  let user_id = request.body.event.user.id;
+  let choice = request.body.choice
+  return GuestList.update({
+      vote: choice
+    }, {where: {
+      event_id: event_id,
+      user_id: user_id
+    }
+  })
+  .then(function(){
+    return User.update({
+        voted: true
+      }, {where: {
+        id: user_id
+      }
+    })
+  })
+  .then(function(){
+    response.status(200)
+    response.json({status: 'success'})
+  })
+  .catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
 
 app.get('/places', function(request, response){
   Place.findAll().then(function(places){
