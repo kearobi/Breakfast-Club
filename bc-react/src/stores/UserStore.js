@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
-import Dispatcher from '../Dispatcher';
+import dispatcher from '../dispatcher';
 
 class UserStore extends EventEmitter{
   constructor(){
@@ -16,7 +16,6 @@ class UserStore extends EventEmitter{
 
   updateUser(attributes){
     this.user = attributes
-
     localStorage.setItem('authToken', attributes.authToken);
     localStorage.setItem('authTokenExpiration', attributes.authTokenExpiration);
     localStorage.setItem('firstName', attributes.firstName);
@@ -45,9 +44,10 @@ class UserStore extends EventEmitter{
   handleActions(action){
     switch(action.type){
       case("SIGNUP"):{
+        console.log()
         this.updateUser(action.user)
         this.message = "User Created"
-        this.emit('message')
+        this.emit("User Created")
         break
       }
       case("LOGIN"):{
@@ -70,6 +70,6 @@ class UserStore extends EventEmitter{
 }
 
 const userStore = new UserStore()
-Dispatcher.register(userStore.handleActions.bind(userStore))
+dispatcher.register(userStore.handleActions.bind(userStore))
 window.user_store = userStore
 export default userStore

@@ -1,13 +1,22 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Bevent = sequelize.define('Bevent', {
-    date: DataTypes.DATE
+    date: DataTypes.DATE,
+    place_1_id: DataTypes.INTEGER,
+    place_2_id: DataTypes.INTEGER,
+    vote_status: DataTypes.BOOLEAN
   }, {
     classMethods: {
       associate: function(models) {
         Bevent.belongsTo(models.Place, {
-          foreignKey: 'placeId',
-          as: 'Loc'
+          foreignKey: 'place_1_id'
+        })
+        Bevent.belongsTo(models.Place, {
+          foreignKey: 'place_2_id'
+        })
+        Bevent.hasMany(models.GuestList, {
+          foreignKey: 'event_id',
+          as: 'guestLists'
         })
       }
     }

@@ -1,27 +1,11 @@
 import {EventEmitter} from 'events'
-import Dispatcher from '../Dispatcher'
+import dispatcher from '../dispatcher'
 
 class AdminStore extends EventEmitter{
   constructor(){
     super()
-      this.users =
-        [
-          {
-            firstName: 'Nabe',
-            lastName: 'Niestas',
-            email: 'nastynabe@aol.com',
-            neighborhood: 'Nission Nills',
-            password: 'nillywilly'
-          },
-          {
-            firstName: 'Nntonio',
-            lastName: 'Nnvarro',
-            email: 'nastynav@aol.com',
-            neighborhood: 'Nrowne Noint',
-            password: 'nillywilly2'
-          }
-        ],
-    this.newUser = {}
+      this.users = []
+      this.newUser = {}
   }
 
   getUsers(){
@@ -56,6 +40,6 @@ class AdminStore extends EventEmitter{
 }
 
 const astore = new AdminStore()
-Dispatcher.register(astore.handleActions.bind(astore))
+dispatcher.register(astore.handleActions.bind(astore))
 window.astore = astore
 export default astore

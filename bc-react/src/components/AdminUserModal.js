@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {addUser} from '../actions';
-
-class AdminModal extends Component {
+import {updateUsers} from '../actions';
+class AdminUserModal extends Component {
   constructor(props){
     super(props)
     this.state={
@@ -28,13 +28,15 @@ class AdminModal extends Component {
   handleSubmit(e){
     e.preventDefault();
     addUser(this.state)
+    //how come not always immediate?
+    updateUsers()
   }
 
   render(){
     return (
-    <div id='modal' class='modal'>
-      <div class="modal-content">
-        <span class="close">&times;</span>
+    <div>
+      <div>
+        <span>&times;</span>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
           <div className='formGroup'>
             <input
@@ -95,15 +97,15 @@ class AdminModal extends Component {
             value={this.state.user.verifyPassword}
             onChange={this.handleChange.bind(this)}>
           </input>
+          <div className='formGroup align-button'>
+            <input type='submit' value='submission'></input>
+          </div>
           </div>
           <br />
-          <div className='formGroup align-button'>
-            <input className='let-me-in' type='submit' value='Let Me In!!'></input>
-          </div>
         </form>
       </div>
     </div>
     )
   }
 }
-export default AdminModal;
+export default AdminUserModal;

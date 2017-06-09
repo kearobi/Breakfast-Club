@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
-import PlaceListing from './PlaceListing'
-import placeStore from '../stores/PlaceStore'
-import MessageBoard from '../components/MessageBoard';
+import AdminPlaceListing from './PlaceListing';
+import placeStore from '../stores/PlaceStore';
+import { updatePlaces } from '../actions.js';
 
-class PlaceIndex extends Component {
+class AdminPlaceIndex extends Component {
   constructor(props){
     super(props)
     this.state = {
       places: placeStore.getPlaces()
     }
+    updatePlaces()
   }
 
-  updatePlaces(){
+  handleUpdatePlaces(){
     this.setState({
       places: placeStore.getPlaces()
     })
   }
 
   componentWillMount(){
-    placeStore.on('change', this.updatePlaces.bind(this))
+    placeStore.on('change', this.handleUpdatePlaces.bind(this))
   }
 
   renderPlaces(){
@@ -26,7 +27,7 @@ class PlaceIndex extends Component {
     for(var i=0; i<this.state.places.length; i++){
       let placeId = "place-" + i
       placeRender.push(
-        <PlaceListing key={placeId} place={this.state.places[i]}></PlaceListing>
+        <AdminPlaceListing key={placeId} place={this.state.places[i]} />
       )
     }
     return placeRender
@@ -35,12 +36,9 @@ class PlaceIndex extends Component {
   render(){
     return(
       <div>
-        <div>
-            <h2>Place List</h2>
-            <h2 className="place-list">{this.renderPlaces()}</h2>
-        </div>
+        {this.renderPlaces()}
       </div>
     )
   }
 }
-export default PlaceIndex;
+export default AdminPlaceIndex;

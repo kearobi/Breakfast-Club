@@ -2,10 +2,13 @@
 @import url('https://fonts.googleapis.com/css?family=Abel');
 @import url('./messageboard.css');
 @import url('./AdminPage.css');
-@import url('./header.css');
+@import url('./Header.css');
 @import url('./SearchBar.css');
 @import url('./UserListing.css');
-@import url('./icons.css');
+@import url('./Icons.css');
+@import url('./SignUpPage.css');
+@import url('./react-big-calendar.css');
+@import url('./Home.css');
 @import url('./Forms.css');
 @import url('./SplashPage.css');
 @import url('./Places.css');
@@ -31,4 +34,8 @@ h3 {
   font-style: italic;
   font-weight: bold;
   margin-top: -8px;
+}
+
+.active-button {
+  background-color: #def9a3;
 }
