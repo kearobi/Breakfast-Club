@@ -78,8 +78,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     classMethods: {
       associate: function(models) {
-        Users.belongsTo(models.GuestList, {
-          foreignKey: 'user_id'
+        User.hasMany(models.GuestList, {
+          foreignKey: 'user_id',
+          as: 'guestLists'
+        })
+        User.hasMany(models.Message, {
+          foreignKey: 'user_id',
+          as: 'messages'
         })
       }
     },
