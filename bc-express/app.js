@@ -144,6 +144,58 @@ app.post('/test-event', function(request, response){
   })
 })
 
+app.post('/current-event', function(request, response){
+  let _event;
+  let _users;
+  let _places = [];
+  let _guestLists;
+  Bevent.findOne({
+    limit: 1,
+    order: [['date', 'DESC']]
+  })
+  .then(function(event){
+    _event = event;
+    return event.getGuestLists();
+  })
+  .then(function(lists){
+    _guestLists = lists;
+    listPromises = [];
+    for (var i = 0; i < lists.length; i++){
+      listPromises.push(User.findOne({
+        where:{id: lists[i].user_id}
+      }))
+    }
+    return Promise.all(listPromises);
+  })
+  .then(function(users){
+    _users = users;
+    return Place.findOne({
+      where:{id: _event.place_1_id}
+    })
+  })
+  .then (function(place){
+    _places.push(place);
+    return Place.findOne({
+      where:{id: _event.place_2_id}
+    })
+  })
+  .then(function(place){
+    _places.push(place);
+    if(_event){
+      response.status(200)
+      response.json({
+        event: _event,
+        guestLists: _guestLists,
+        places: _places,
+        users: _users
+      })
+    }else{
+      response.status(400)
+      console.log('no data found')
+    }
+  })
+})
+
 app.post('/login', function(request, response){
   User.findOne({
     where:{email: request.body.email}

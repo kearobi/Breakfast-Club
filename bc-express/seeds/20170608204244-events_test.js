@@ -16,7 +16,7 @@ module.exports = {
         id: 2,
         place_1_id: 3,
         place_2_id: 4,
-        date: '2017-06-02 07:52:29-07',
+        date: '2017-07-02 07:52:29-07',
         vote_status: false,
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07'
@@ -39,7 +39,7 @@ module.exports = {
         id: 2,
         place_1_id: 3,
         place_2_id: 4,
-        date: '2017-06-02 07:52:29-07',
+        date: '2017-07-02 07:52:29-07',
         vote_status: false,
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07'
