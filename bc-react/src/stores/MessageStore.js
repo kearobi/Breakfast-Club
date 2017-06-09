@@ -10,8 +10,8 @@ class MessageStore extends EventEmitter{
 
   getLastFiveMessages(){
     var messageArray = [];
-    if (this.messages.length > 5){
-      for (var i = this.messages.length - 1; i > this.messages.length - 6; i--){
+    if (this.messages.length > 10){
+      for (var i = this.messages.length - 1; i > this.messages.length - 16; i--){
         messageArray.push(this.messages[i]);
       }
       return messageArray.reverse();
