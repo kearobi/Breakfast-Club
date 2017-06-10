@@ -85,7 +85,7 @@ class AdminPage extends Component {
       if(this.state.displayUsers === true){
         //change color to green
         return (<AdminUsers />)
-      }else{ 
+      }else{
         return ("") }}
 
     placeAdmin(){

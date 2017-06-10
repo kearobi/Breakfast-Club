@@ -43,7 +43,11 @@ table {
   width: 950px;
 }
 
-#icon_td {
+.icon_td {
     background-color: white;
     border: none;
+}
+
+.clicked {
+  background-color: #def9a3;
 }

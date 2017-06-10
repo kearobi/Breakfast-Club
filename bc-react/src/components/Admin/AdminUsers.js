@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import AdminIndex from './AdminIndex';
-import AdminUserSearchBar from './AdminUserSearchBar';
+import AdminList from './AdminList';
+import SearchBar from './AdminSearchBar';
 import adminStore from '../../stores/AdminStore';
 import AdminModal from './AdminModal';
 //const api
@@ -29,17 +29,17 @@ class AdminUsers extends Component {
 
   userParams(){
     return(
-  {  user: {
-              firstName: "",
-              lastName: "",
-              email: "",
-              neighborhood: "",
-              password: "",
-              verifyPassword: ""
+      { user: {
+            firstName: "",
+            lastName: "",
+            email: "",
+            neighborhood: "",
+            password: "",
+            verifyPassword: ""
     }})
   }
 
-  userIndexParams(){
+  userListParams(){
     return({users: adminStore.getUsers()})
   }
 
@@ -57,10 +57,10 @@ class AdminUsers extends Component {
             onClick={this.displayModal.bind(this)}>
             + user </button>
           {/* now SearchBar has access to users */}
-          <AdminUserSearchBar users={this.state.users}/>
+          <SearchBar users={this.state.users} userSearchBar={true}/>
         </div>
           <br></br><br></br>
-          <AdminIndex placeIndex={true} startingState={this.userIndexParams()}/>
+          <AdminList userList={true} startingState={this.userListParams()}/>
           {this.modalAdmin()}
       </div>
       );

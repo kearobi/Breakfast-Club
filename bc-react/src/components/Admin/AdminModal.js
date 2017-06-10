@@ -29,7 +29,8 @@ class AdminModal extends Component {
   handleSubmit(e){
     e.preventDefault();
     if(this.props.userForm){
-    addUser(this.state)
+      debugger
+    addUser(this.state.user)
     }
     // else if (this.props.placeForm){
     // addPlace(this.state)}
@@ -111,7 +112,7 @@ class AdminModal extends Component {
     <div>
     <div className='formGroup'>
       <input
-        placeholder='Name'
+        placeholder='Restaurant'
         type='text'
         name='name'
         id='name'

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import AdminIndex from './AdminIndex';
-import AdminPlaceSearchBar from './AdminPlaceSearchBar';
+import AdminList from './AdminList';
+import SearchBar from './AdminSearchBar';
 import placeStore from '../../stores/PlaceStore';
 import AdminModal from './AdminModal'
 //once you make the component generic, you move the parts that are different out to the parent and pass them in as props
@@ -40,7 +40,7 @@ class AdminPlaces extends Component {
       }})
   }
 
-  placeIndexParams(){
+  placeListParams(){
     return({places: placeStore.getPlaces()})
   }
 
@@ -58,10 +58,10 @@ class AdminPlaces extends Component {
             onClick={this.displayModal.bind(this)}>
             + place </button>
           {/* now SearchBar has access to places */}
-          <AdminPlaceSearchBar places={this.state.places}/>
+          <SearchBar places={this.state.places} placeSearchBar={true}/>
         </div>
           <br></br><br></br>
-          <AdminIndex placeIndex={true} startingState={this.placeIndexParams()}/>
+          <AdminList placeList={true} startingState={this.placeListParams()}/>
           {this.modalAdmin()}
       </div>
       );
