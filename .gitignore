@@ -23,3 +23,4 @@ yarn-error.log*
 
 /bc-express/config/config.json
 node_modules
+bc-react/build/

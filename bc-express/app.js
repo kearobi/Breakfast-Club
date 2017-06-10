@@ -91,6 +91,7 @@ app.post('/signup', function(request, response){
     response.json({status: 'success', user: user})
   }).catch(function(error){
     response.status(400)
+    console.log('error: ', error)
     response.json({status: 'error', error: error})
   })
 })
