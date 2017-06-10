@@ -30,6 +30,11 @@ class AdminStore extends EventEmitter{
   //we'll handle the delete here because this is where the users are setState
 
 //we want it to be TRUE if the user.id is NOT the attributes.id. We're saying, once we've deleted the user from the db, to get it out of the store, we'll get all the ones that AREN'T this one
+
+  adminAddUser(attributes){
+    return (this.users)
+  }
+
   deleteUser(id){
     this.users = this.users.filter((user) => {
       return (user.id !== id)
@@ -54,6 +59,10 @@ class AdminStore extends EventEmitter{
       //this is linked to DELETE_USER in actions.js
       case("DELETE_USER"):{
         this.deleteUser(action.id)
+        break
+      }
+      case("ADMIN_SIGNUP"):{
+        this.addUser(action.user)
         break
       }
       default:{}

@@ -242,3 +242,24 @@ export function fetchEvents(){
       adminStore.updateMessage("There was an error: " + error)
     })
   }
+
+  export function adminAddUser(attributes){
+    const params = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(attributes)
+    }
+    fetch("http://localhost:4000/admin", params).then(function(response){
+      if(response.status === 200){
+        response.json().then(function(body){
+          // send the user to the store
+          dispatcher.dispatch({
+            type: 'ADMIN_SIGNUP',
+            user: body.user
+          })
+        })
+      }
+    }).catch(function(error){
+      adminStore.updateMessage("There was an error: " + error)
+    })
+  }
