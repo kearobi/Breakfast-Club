@@ -14,13 +14,21 @@ export function checkLoginRedir(props){
   if(currentUser === null){
     props.history.push("/login")
     return false
+  }else{
+    return true
   }
-  return true
+
 }
 
 export function checkLogin(){
   dispatcher.dispatch({
     type: 'CHECK_LOGIN'
+  })
+}
+
+export function userLogout(){
+  dispatcher.dispatch({
+    type: "LOGOUT"
   })
 }
 
@@ -44,6 +52,36 @@ export function fetchEvent(attributes){
         })
       }).catch(function(error){
         console.log("fetch event failed");
+      })
+    }
+    else {
+      console.log("fail, response status not 200")
+    }
+  }).catch(function(){
+    console.log("fail, catch clause")
+  })
+}
+
+export function fetchCurrentEvent(attributes){
+  const params = {
+    method: "POST",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(attributes)
+  }
+  fetch("http://localhost:4000/current-event", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type:'CURRENT-EVENT',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
+        })
+      }).catch(function(error){
+        console.log("fetch current event failed");
       })
     }
     else {

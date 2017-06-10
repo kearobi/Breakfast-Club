@@ -7,6 +7,7 @@ import SideBar from '../components/SideBar';
 import {fetchMessages} from '../actions';
 import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
+import {fetchCurrentEvent} from '../actions'
 import moment from 'moment';
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
@@ -19,13 +20,19 @@ class Home extends Component {
     user: userStore.getUser(),
     }
     fetchMessages();
-    // fetchEvents();
+    fetchCurrentEvent()
   }
 
   componentWillMount(){
     userStore.on('logged-in',this.handleLogin.bind(this))
+    userStore.on('logged-out', this.handleLogOut.bind(this))
     checkLoginRedir(this.props)
+
   }
+
+ //  componentWillUpdate(){
+ //   checkLoginRedir(this.props)
+ // }
 
   handleLogin(){
   this.setState({
@@ -33,10 +40,14 @@ class Home extends Component {
   })
 }
 
+handleLogOut(){
+this.setState({
+  user: userStore.getUser()
+})
+}
 
-  // componentWillUpdate(){
-  //   checkLoginRedir(this.props)
-  // }
+
+
 
   events(){
     return [
@@ -59,6 +70,7 @@ class Home extends Component {
 
             <div className="col-xs-6">
               <h1>Welcome, {userStore.getUser().firstName}</h1>
+              <Link to='current-event'>Current Event</Link>
             </div>
             <div className="col-xs-3"></div>
           </div>
