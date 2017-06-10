@@ -207,8 +207,6 @@ export function fetchMessages(){
     })
 }
 
-
-
 export function fetchEvents(){
   let success;
   const params = {
@@ -254,6 +252,23 @@ export function fetchEvents(){
     })
   }
 
+export function deletePlace(attributes){
+  const params = {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({id: attributes})
+  }
+  fetch("http://localhost:4000/admin", params).then(function(response){
+    if (response.status === 200){
+      dispatcher.dispatch({
+        type: 'DELETE_PLACE',
+        id: attributes
+      })
+    }
+  }).catch(function(error){
+    adminStore.updateMessage("There was an error: " + error)
+  })
+}
 //attributes here is whatever we pass into delete user through the delete call. we set up the params that we're gonna send, then we do a delete call to express with those params. whatever express gives us back, we're gonna dispatch the delete user event and catch if there's any errors
   export function deleteUser(attributes){
     // set up the headers and request

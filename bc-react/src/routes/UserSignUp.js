@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
 import SignUpInput from '../components/SignUpInput'
-import Header from '../components/Header';
 import signUpStore from '../stores/SignUpStore'
 import userStore from '../stores/UserStore'
 
@@ -110,19 +109,23 @@ render(){
               onChange={this.handleChange.bind(this)}
               errors={this.state.errors.verifyPassword}
             />
-            <input type='submit' value='Let Me In!!'></input>
-        </form>
-        <div className='center align-button'>
-          <Link to="/">
-          <div className="align-button">
+          </form>
+          <div className='login-signup-container'>
+            <div className='let-me-in'>
             <input
-              className='take-me-back'
+                    type='submit'
+                    value='Let Me In!!' />
+            </div>
+            <div className='take-me-back'>
+              <Link to="/">
+            <input
+              className='black'
               type='button'
               value='Take Me Back!!'>
             </input>
+              </Link>
+            </div>
           </div>
-          </Link>
-        </div>
       </div>
     );
   }

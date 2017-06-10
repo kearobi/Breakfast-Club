@@ -5,7 +5,7 @@
 .navbar{
   text-align: center;
 }
-.hamburger {
+/*.hamburger {
     position: fixed;
     top: 20px;
     z-index: 999;
@@ -15,7 +15,7 @@
     margin-left: -38px;
     background: transparent;
     border: none;
-}
+}*/
 .hamburger.is-open .hamb-top, .hamburger.is-open .hamb-bottom {
     top: 50%;
     margin-top: 0px;

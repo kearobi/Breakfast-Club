@@ -245,6 +245,17 @@ app.delete('/admin', function(request, response){
   })
 })
 
+app.delete('/admin', function(request, response){
+  let placeParams = request.body.id
+  Place.destroy({where: {id: placeParams}}).then(function(user){
+    repsonse.status(200)
+    response.json({status: 'success', place: place})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
+
 app.listen(4000, function () {
  console.log('listening on port 4000!');
 });

@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import {deleteUser} from '../../actions.js';
+import {deleteUser} from '../../actions';
+import {deletePlace} from '../../actions';
 
 class AdminTable extends Component {
   constructor(props){
     super(props)
   }
 
-  handleClick(){
+  handleDelete(){
       if(this.props.userTable){
     // let response = confirm("Wait really?")
     //could also pass this.props.user, but we added id so we're only handing it the data it needs to get the job done
         deleteUser(this.props.user.id)}
-      // else if(this.props.placeTable){
-      //
-      //   }
+      else if(this.props.placeTable){
+        deletePlace(this.props.place.id)}
   }
 
   deleteIcon(){
@@ -21,7 +21,7 @@ class AdminTable extends Component {
       <img id="delete_icon"
           src="https://www.iconfinder.com/data/icons/google-material-design-icons/48/ic_delete_48px-128.png"
           alt="delete"
-          onClick={this.handleClick.bind(this)} />
+          onClick={this.handleDelete.bind(this)} />
     )
   }
 
@@ -30,7 +30,8 @@ class AdminTable extends Component {
       <img id="edit_icon"
           src="http://megaicons.net/static/img/icons_sizes/8/178/512/editing-edit-icon.png"
           alt="edit"
-          onClick={this.handleClick.bind(this)}/>
+          // onClick={this.handleClick.bind(this)}
+        />
     )
   }
 

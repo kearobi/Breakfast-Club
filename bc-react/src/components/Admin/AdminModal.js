@@ -28,9 +28,7 @@ class AdminModal extends Component {
 //addUser and updateUsers are asynchronous because they're in the store
   handleSubmit(e){
     e.preventDefault();
-    if(this.props.userForm){
-    adminAddUser(this.state.user)
-    }
+    if(this.props.userForm){adminAddUser(this.state)}
     // else if (this.props.placeForm){
     // addPlace(this.state)}
 }

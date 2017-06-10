@@ -9,18 +9,6 @@ button:hover {
   color: black;
 }
 
-.let-me-in {
-  float: right;
-  display: inline-block;
-  margin-right: 35%;
-}
-
-.take-me-back {
-  float: left;
-  display: inline-block;
-  margin-left: 35%;
-}
-
 form {
   text-align: center;
   font-family: 'Abel';

@@ -33,6 +33,7 @@ class AdminStore extends EventEmitter{
 
   adminAddUser(attributes){
     return (this.users)
+    this.emit('change')
   }
 
   deleteUser(id){
@@ -42,13 +43,18 @@ class AdminStore extends EventEmitter{
     //emit says hey everybody that's listening, i did a thing! now we have to listen for the emit in the table full of users
     this.emit('change')}
 
+  deletePlace(id){
+    this.places = this.places.filter((place) => {
+      return (place.id !== place)
+    })
+    this.emit('change')}
+
   editUser(id){
     this.users = this.users.filter((user) => {
       return (this.users)
       })
       //emit says hey everybody that's listening, i did a thing! now we have to listen for the emit in the table full of users
-      this.emit('change')
-     debugger}
+      this.emit('change')}
 
   handleActions(action){
     switch(action.type){
@@ -62,7 +68,11 @@ class AdminStore extends EventEmitter{
         break
       }
       case("ADMIN_SIGNUP"):{
-        this.addUser(action.user)
+        this.adminAddUser(action.user)
+        break
+      }
+      case("DELETE_PLACE"):{
+        this.deletePlace(action.id)
         break
       }
       default:{}
