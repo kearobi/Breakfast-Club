@@ -1,0 +1,36 @@
+#messageBoard {
+  font-family: 'Amatic SC', cursive;
+  font-size: 25px;
+  padding: 30px;
+  background-color: #eeeeee;
+  border: 2px solid rgba(0, 0, 0, .5);
+  box-shadow: 2px 2px 2px 2px;
+  width: 300px;
+  margin-top: 50px;
+  height: 500px;
+}
+.message-box{
+  background-color: white;
+  height: 250px;
+  overflow: auto;
+  border: 2px solid rgba(0, 0, 0, .5);
+
+}
+.title{
+  font-size: 50px;
+}
+.sender{
+  font-size: 20px;
+  text-align: right;
+}
+.message-sent{
+  text-align: right;
+  color: blue;
+}
+.time-stamp{
+  text-align: right;
+  font-size: 20px;
+}
+.submit-field{
+  margin-top: 20px;
+}

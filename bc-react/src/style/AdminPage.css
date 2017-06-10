@@ -1,0 +1,49 @@
+#admin_container {
+  text-align: center;
+}
+
+#admin_button_wrapper {
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+
+.admin_button {
+  background-color: #eeeeee;
+  border-color: #c1c1c1;
+  border-width: thin;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Abel';
+  font-size: 20px;
+  margin-right: 3px;
+  width: 225px;
+}
+
+.add_button {
+  display: inline-block;
+  background-color: #eeeeee;
+  border-color: #c1c1c1;
+  border-width: thin;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Abel';
+  font-size: 20px;
+  padding-left: 22px;
+  padding-right: 22px;
+  margin-left: 3px;
+  float: left;
+}
+
+table {
+  width: 831px;
+}
+
+#admin-place-table {
+  width: 950px;
+}
+
+#icon_td {
+    background-color: white;
+    border: none;
+}
