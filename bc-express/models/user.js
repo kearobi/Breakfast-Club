@@ -23,6 +23,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    voted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
     encryptedPassword: {
       type: DataTypes.STRING,
       allowNull: false

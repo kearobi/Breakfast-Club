@@ -10,12 +10,20 @@ class CurrentEvent extends Component {
     super(props)
     this.state= {
       formId: '',
-      event: null
+      event: null,
+      message: 'welcome'
     }
   }
 
   componentWillMount(){
     eventStore.on('current event fetched', this.displayEvent.bind(this));
+    eventStore.on('vote registered', this.voteRegistered.bind(this));
+  }
+
+voteRegistered(){
+    this.setState({
+      message: "Vote Registered"
+    })
   }
 
   displayEvent(){
@@ -37,7 +45,10 @@ class CurrentEvent extends Component {
   render(){
     console.log("getevent", eventStore.getCurrentEvent())
       return (
-        <EventDetail data={eventStore.getCurrentEvent()} />
+        <div>
+          <p>{this.state.message}</p>
+          <EventDetail data={eventStore.getCurrentEvent()} />
+        </div>
         );
       }
   }

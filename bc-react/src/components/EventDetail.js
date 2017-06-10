@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import VoteButton from '../components/VoteButton';
 
 class EventDetail extends Component {
   render() {
@@ -24,6 +25,8 @@ class EventDetail extends Component {
           <h4>{this.props.data.places[0].name}</h4>
           <p>Choice 2</p>
           <h4>{this.props.data.places[1].name}</h4>
+        <VoteButton choice="1"/>
+        <VoteButton choice="2"/>
         </div>
         <div>
           <h4>Attendees</h4>

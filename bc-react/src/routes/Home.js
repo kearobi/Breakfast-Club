@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import MessageBoard from '../components/MessageBoard';
 import userStore from '../stores/UserStore';
 import SideBar from '../components/SideBar';
+import Reminder from '../components/Reminder';
 import {fetchMessages} from '../actions';
 import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
@@ -65,6 +66,9 @@ this.setState({
       <SideBar />
       <div className="home-page">
         <div className="container">
+          <div className="row">
+            <Reminder />
+          </div>
           <div className="row">
             <div className="col-xs-3"></div>
 
