@@ -232,40 +232,88 @@ export function fetchEvents(){
       }
     })
   }
-
-  export function adminGetUsers(){
-    // make the api calls to get the list of cats
-    const params = {
-      method: 'GET'}
-    fetch("http://localhost:4000/admin/get/users", params).then(function(response){
+export function adminUpdateUsers(){
+  const params = {method: 'GET'}
+    fetch("http://localhost:4000/get/users", params).then(function(response){
       if(response.status === 200){
         response.json().then(function(body){
           dispatcher.dispatch({
-            type: 'UPDATE_USERS',
+            type: 'ADMIN_UPDATE_USERS',
             users: body.users
           })
-        })
-      }
+        })}
     }).catch(function(error){
-    })
-  }
+      // adminStore.updateMessage("There was an error: " + error)
+  })}
+  export function adminUpdatePlaces(){
+    const params = {method: 'GET'}
+      fetch("http://localhost:4000/get/places", params).then(function(response){
+        if(response.status === 200){
+          response.json().then(function(body){
+            dispatcher.dispatch({
+              type: 'ADMIN_UPDATE_PLACES',
+              places: body.places
+            })
+          })}
+      }).catch(function(error){
+        // adminStore.updateMessage("There was an error: " + error)
+    })}
 
-  export function adminGetPlaces(){
-    // make the api calls to get the list of cats
-    const params = {
-      method: 'GET'}
-    fetch("http://localhost:4000/admin/get/places", params).then(function(response){
-      if(response.status === 200){
-        response.json().then(function(body){
-          dispatcher.dispatch({
-            type: 'UPDATE_PLACES',
-            places: body.places
-          })
+  export function adminUpdateEvents(){
+    const params = {method: 'GET'}
+      fetch("http://localhost:4000/get/events", params).then(function(response){
+        if(response.status === 200){
+          response.json().then(function(body){
+            dispatcher.dispatch({
+              type: 'ADMIN_UPDATE_EVENTS',
+              events: body.events
+            })
+          })}
+      }).catch(function(error){
+        // adminStore.updateMessage("There was an error: " + error)
+    })}
+
+export function adminGetUsers(){
+  const params = {method: 'GET'}
+  fetch("http://localhost:4000/admin/get/users", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'ADMIN_GET_USERS',
+          users: body.users
         })
-      }
+      })}
+  }).catch(function(error){
+    // adminStore.updateMessage("There was an error: " + error)
+  })}
+
+export function adminGetPlaces(){
+  const params = {method: 'GET'}
+  fetch("http://localhost:4000/admin/get/places", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'ADMIN_GET_PLACES',
+          places: body.places
+        })
+      })}
     }).catch(function(error){
-    })
-  }
+    // adminStore.updateMessage("There was an error: " + error)
+  })}
+
+export function adminGetEvents(){
+  const params = {method: 'GET'}
+  fetch("http://localhost:4000/admin/get/events", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'ADMIN_GET_EVENTS',
+          events: body.events
+        })
+      })}
+    }).catch(function(error){
+    // adminStore.updateMessage("There was an error: " + error)
+  })}
 
 export function adminDeletePlace(attributes){
   const params = {
@@ -276,12 +324,12 @@ export function adminDeletePlace(attributes){
   fetch("http://localhost:4000/admin/delete/place", params).then(function(response){
     if (response.status === 200){
       dispatcher.dispatch({
-        type: 'DELETE_PLACE',
+        type: 'ADMIN_DELETE_PLACE',
         id: attributes
       })
     }
   }).catch(function(error){
-    adminStore.updateMessage("There was an error: " + error)
+    // adminStore.updateMessage("There was an error: " + error)
   })
 }
 //attributes here is whatever we pass into delete user through the delete call. we set up the params that we're gonna send, then we do a delete call to express with those params. whatever express gives us back, we're gonna dispatch the delete user event and catch if there's any errors
@@ -301,15 +349,33 @@ export function adminDeletePlace(attributes){
       if(response.status === 200){
           // send the user to the store
           dispatcher.dispatch({
-            type: 'DELETE_USER',
+            type: 'ADMIN_DELETE_USER',
             id: attributes
 //we don't care what we get back from the server, so just attributes.
           })
       }
     }).catch(function(error){
-      adminStore.updateMessage("There was an error: " + error)
+      // adminStore.updateMessage("There was an error: " + error)
     })
   }
+
+export function adminDeleteEvent(attributes){
+  const params = {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({id: attributes})
+  }
+  fetch("http://localhost:4000/admin/delete/event", params).then(function(response){
+    if (response.status === 200){
+      dispatcher.dispatch({
+        type: 'ADMIN_DELETE_EVENT',
+        id: attributes
+      })
+    }
+  }).catch(function(error){
+    // adminStore.updateMessage("There was an error: " + error)
+  })
+}
 
   export function adminAddUser(attributes){
     const params = {
@@ -322,15 +388,13 @@ export function adminDeletePlace(attributes){
         response.json().then(function(body){
           // send the user to the store
           dispatcher.dispatch({
-            type: 'ADMIN_SIGNUP',
+            type: 'ADMIN_ADD_USER',
             user: body.user
           })
-        })
-      }
+        })}
     }).catch(function(error){
-      adminStore.updateMessage("There was an error: " + error)
-    })
-  }
+      // adminStore.updateMessage("There was an error: " + error)
+    })}
 
   export function adminAddPlace(attributes){
     const params = {
@@ -341,14 +405,29 @@ export function adminDeletePlace(attributes){
     fetch("http://localhost:4000/admin/add/place", params).then(function(response){
       if(response.status === 200){
         response.json().then(function(body){
-          // send the user to the store
           dispatcher.dispatch({
             type: 'ADMIN_ADD_PLACE',
             place: body.place
           })
-        })
-      }
+        })}
     }).catch(function(error){
-      adminStore.updateMessage("There was an error: " + error)
-    })
+      // adminStore.updateMessage("There was an error: " + error)
+    })}
+
+export function adminAddEvent(attributes){
+  const params = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(attributes)
   }
+  fetch("http://localhost:4000/admin/add/event", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'ADMIN_ADD_EVENT',
+          event: body.event
+        })
+      })}
+  }).catch(function(error){
+    // adminStore.updateMessage("There was an error: " + error)
+  })}

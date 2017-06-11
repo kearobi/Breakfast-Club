@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import AdminList from './AdminList';
 import SearchBar from './AdminSearchBar';
+import AdminModal from './AdminModal';
 import adminStore from '../../stores/AdminStore';
-import AdminModal from './AdminModal'
 //once you make the component generic, you move the parts that are different out to the parent and pass them in as props
 //const api
 //only the most parent component should be responsible for fetching data

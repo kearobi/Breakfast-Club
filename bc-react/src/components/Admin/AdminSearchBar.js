@@ -86,6 +86,20 @@ eventHeader(){
         })
       mappedFilter = filtered.map((place)=>{
         return <AdminTable place={place} key={place.id} placeTable={true} />})
+    } else if (this.props.eventSearchBar){
+      header = this.eventHeader()
+      filtered = this.props.events.filter(
+        (event) => {
+          return (
+            (event.date.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+            (event.place.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+            // || (event.neighborhood.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+            // (event.guest_speaker.indexOf(this.state.searchTerm) !== -1) ||
+            // (event.rsvp.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+          )
+        })
+      mappedFilter = filtered.map((event)=>{
+        return <AdminTable event={event} key={event.id} eventTable={true} />})
     }
 
     return (

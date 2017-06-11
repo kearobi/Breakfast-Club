@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {adminDeleteUser} from '../../actions';
 import {adminDeletePlace} from '../../actions';
+import {adminDeleteEvent} from '../../actions';
 
 class AdminTable extends Component {
   constructor(props){
@@ -14,6 +15,8 @@ class AdminTable extends Component {
         adminDeleteUser(this.props.user.id)}
       else if(this.props.placeTable){
         adminDeletePlace(this.props.place.id)}
+      else if(this.props.eventTable){
+        adminDeleteEvent(this.props.event.id)}
       }
 
   deleteIcon(){
@@ -60,8 +63,16 @@ class AdminTable extends Component {
           <td className="icon_td">{this.deleteIcon()}</td>
           <td className="icon_td">{this.editIcon()}</td>
         </tr>
-      )
-    }
+      )}
+      else if(this.props.eventTable){
+      <tr>
+        <td>{this.props.event.date}</td>
+        <td>{this.props.event.place}</td>
+        <td>neighborhood</td>
+        <td>guest speaker</td>
+        <td>rsvp</td>
+      </tr>
+      }
   }
 }
 

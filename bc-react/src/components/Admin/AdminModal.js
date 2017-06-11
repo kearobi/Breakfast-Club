@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {adminAddUser} from '../../actions';
 import {adminAddPlace} from '../../actions';
+import {adminAddEvent} from '../../actions';
 
 // goal: make this component generic. Make a single modal that covers both cases and gets anything that's the same from props. for exmaple, there would be prop.startingState and you would put your place in the starting state
 
@@ -9,27 +10,25 @@ class AdminModal extends Component {
     super(props)
     this.state = this.props.startingState}
 
+//check if this refactoring works
   handleChange(e){
     let target = e.target
-      if (this.props.userForm){
-        let user = this.state.user
-        user[target.name] = target.value
-        this.setState({
-          user: user
-        })
-    }else if(this.props.placeForm){
-      let place = this.state.place
-      place[target.name] = target.value
+    let item
+      if (this.props.userForm){item = this.user}
+      else if(this.props.placeForm){item = this.place}
+      else if(this.props.eventForm){item = this.event}
+      this.state.item
+      item[target.name] = target.value
       this.setState({
-        place: place
-      })
-    }}
+        item: item
+  })}
 
 //addUser and updateUsers are asynchronous because they're in the store
   handleSubmit(e){
     e.preventDefault();
     if(this.props.userForm){adminAddUser(this.state)}
     else if (this.props.placeForm){adminAddPlace(this.state)}
+    else if (this.props.eventForm){adminAddEvent(this.state)}
 }
 
   userFields(){
@@ -171,13 +170,54 @@ class AdminModal extends Component {
     </div>
     <br /></div>)}
 
+    eventFields(){
+      return(
+      <div>
+      <div className='formGroup'>
+        <input
+          placeholder='Date'
+          type='date'
+          name='date'
+          id='date'
+          value={this.state.event.date}
+          onChange={this.handleChange.bind(this)}>
+        </input>
+      </div>
+      <div className='formGroup'>
+        <input
+          placeholder='Restaurant'
+          type='text'
+          name='place'
+          id='place'
+          value={this.state.event.place}
+          onChange={this.handleChange.bind(this)}>
+        </input>
+      </div>
+      <div className='formGroup'>
+      <input
+        placeholder='Guest of Honor'
+        type='text'
+        name='guest'
+        id='guest'
+        value={this.state.event.guest}
+        onChange={this.handleChange.bind(this)}>
+      </input>
+      <div className='formGroup align-button'>
+        <input type='submit' value='submission'></input>
+      </div>
+      </div>
+      <br /></div>)}
+
   render(){
 
     let fields;
     if (this.props.userForm){
       fields = this.userFields()
     } else if (this.props.placeForm){
-      fields = this.placeFields()}
+      fields = this.placeFields()
+    } else if (this.props.eventForm){
+      fields = this.eventFields()
+    }
 
     return (
     <div>
