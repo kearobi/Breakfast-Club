@@ -63,10 +63,9 @@ app.post('/add-message', function(request, response){
 })
 
 app.post('/register-vote', function(request, response){
-  console.log("yo", request.body)
   let event_id = request.body.event.id;
-  let user_id = request.body.event.user.id;
-  let choice = request.body.choice
+  let user_id = request.body.user.id;
+  let choice = request.body.choice;
   return GuestList.update({
       vote: choice
     }, {where: {

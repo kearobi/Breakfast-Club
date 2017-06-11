@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {fetchEvent} from '../actions';
-import {fetchCurrentEvent} from '../actions';
 import eventStore from '../stores/EventStore';
 import EventDetail from '../components/EventDetail';
 
@@ -20,7 +18,7 @@ class CurrentEvent extends Component {
     eventStore.on('vote registered', this.voteRegistered.bind(this));
   }
 
-voteRegistered(){
+  voteRegistered(){
     this.setState({
       message: "Vote Registered"
     })
@@ -30,16 +28,6 @@ voteRegistered(){
     this.setState({
       event: eventStore.getCurrentEvent()
     })
-  }
-
-  handleChange(e){
-    this.setState({
-      formId: e.target.value
-    })
-  }
-
-  handleSubmit(e){
-    e.preventDefault();
   }
 
   render(){

@@ -3,9 +3,7 @@ import VoteButton from '../components/VoteButton';
 
 class EventDetail extends Component {
   render() {
-    console.log(this.props.data)
     var mappedUsers = this.props.data.users.map(function(user, i){
-      console.log(user)
       return (
         <div key={i}>
           <p>{user.firstName + " " + user.lastName}</p>
@@ -17,7 +15,7 @@ class EventDetail extends Component {
     return (
       <div>
         <div>
-          <h1>Event Data</h1>
+          <h1>Next breakfast club</h1>
           <p>Date: {this.props.data.event.date}</p>
         </div>
         <div>

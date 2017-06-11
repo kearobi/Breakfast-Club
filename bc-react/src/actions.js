@@ -22,13 +22,14 @@ export function registerVote(choice){
   fetch("http://localhost:4000/register-vote", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
+        console.log("yeah")
         dispatcher.dispatch({
           type: 'VOTE-REGISTERED'
         })
       })
     }
   }).catch(function(error){
-    userStore.updateMessage("There was an error: " + error)
+    console.log("There was an error: " + error)
   })
 }
 
@@ -162,7 +163,7 @@ export function addUser(attributes){
       })
     }
   }).catch(function(error){
-    userStore.updateMessage("There was an error: " + error)
+    console.log("There was an error: " + error);
   })
 }
 
@@ -183,7 +184,7 @@ export function addMessage(attributes){
       })
     }
   }).catch(function(error){
-    userStore.updateMessage("There was an error: " + error)
+    console.log("There was an error: " + error);
   })
 }
 
@@ -302,6 +303,6 @@ export function fetchEvents(){
           })
       }
     }).catch(function(error){
-      adminStore.updateMessage("There was an error: " + error)
+      console.log("There was an error: " + error)
     })
   }
