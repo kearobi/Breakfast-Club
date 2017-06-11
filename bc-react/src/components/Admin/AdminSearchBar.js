@@ -38,6 +38,19 @@ placeHeader(){
   )
 }
 
+eventHeader(){
+  return(
+      <tr>
+        <th>Date</th>
+        <th>Place</th>
+        <th>Neighborhood</th>
+        <th>Guest Speaker</th>
+        <th>RSVP</th>
+        <th className="invisible">..........</th>
+      </tr>
+  )
+}
+
 //the filter is a loop that takes a function (we're just using the fat arrow syntax). The parameter(user) gets filled in with each individual item in the array. If it returns true, then that user gets put in the output set, if it returns false, it gets skipped
   render() {
 

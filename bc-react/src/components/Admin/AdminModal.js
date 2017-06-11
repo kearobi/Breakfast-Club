@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {adminAddUser} from '../../actions';
-// import {addPlace} from '../../actions';
+import {adminAddPlace} from '../../actions';
 
 // goal: make this component generic. Make a single modal that covers both cases and gets anything that's the same from props. for exmaple, there would be prop.startingState and you would put your place in the starting state
 
@@ -29,8 +29,7 @@ class AdminModal extends Component {
   handleSubmit(e){
     e.preventDefault();
     if(this.props.userForm){adminAddUser(this.state)}
-    // else if (this.props.placeForm){
-    // addPlace(this.state)}
+    else if (this.props.placeForm){adminAddPlace(this.state)}
 }
 
   userFields(){

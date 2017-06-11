@@ -6,50 +6,56 @@ class AdminStore extends EventEmitter{
     super()
       this.users = []
       this.newUser = {}
+      this.places = []
+      this.newPlace = {}
   }
 
-  getUsers(){
-    return this.users
-  }
+  adminGetUsers(){return this.users}
+  adminGetPlaces(){return this.places}
 
-  getNewUser(){
-    return this.newUser
-  }
+  adminGetNewUser(){return this.newUser}
+  adminGetNewPlace(){return this.newPlace}
 
-  updateNewUser(attributes){
+  adminUpdateNewUser(attributes){
     this.newUser = attributes
     this.users.push(attributes)
-    this.emit('change')
-  }
+    this.emit('change')}
+  adminUpdateNewPlace(attributes){
+    this.newPlace = attributes
+    this.places.push(attributes)
+    this.emit('change')}
 
-  updateUsers(attributes){
+  adminUpdateUsers(attributes){
     this.users = attributes
-    this.emit('change')
-  }
+    this.emit('change')}
+  adminUpdatePlaces(attributes){
+    this.places = attributes
+    this.emit('change')}
 
   //we'll handle the delete here because this is where the users are setState
 
 //we want it to be TRUE if the user.id is NOT the attributes.id. We're saying, once we've deleted the user from the db, to get it out of the store, we'll get all the ones that AREN'T this one
 
+  adminAddPlace(attributes){
+    return (this.places)
+    this.emit('change')}
+
   adminAddUser(attributes){
     return (this.users)
-    this.emit('change')
-  }
+    this.emit('change')}
 
-  deleteUser(id){
+  adminDeleteUser(id){
     this.users = this.users.filter((user) => {
-      return (user.id !== id)
-    })
+      return (user.id !== id)})
     //emit says hey everybody that's listening, i did a thing! now we have to listen for the emit in the table full of users
     this.emit('change')}
-
-  deletePlace(id){
+  adminDeletePlace(id){
+    debugger
     this.places = this.places.filter((place) => {
-      return (place.id !== place)
-    })
+      return (place.id !== place)})
     this.emit('change')}
 
-  editUser(id){
+  adminEditUser(id){
     this.users = this.users.filter((user) => {
       return (this.users)
       })
@@ -59,20 +65,28 @@ class AdminStore extends EventEmitter{
   handleActions(action){
     switch(action.type){
       case("UPDATE_USERS"):{
-        this.updateUsers(action.users)
+        this.adminUpdateUsers(action.users)
+        break
+      }
+      case("UPDATE_PLACES"):{
+        this.adminUpdatePlaces(action.places)
         break
       }
       //this is linked to DELETE_USER in actions.js
       case("DELETE_USER"):{
-        this.deleteUser(action.id)
+        this.adminDeleteUser(action.id)
         break
       }
       case("ADMIN_SIGNUP"):{
         this.adminAddUser(action.user)
         break
       }
+      case("ADMIN_ADD_PLACE"):{
+        this.adminAddPlace(action.place)
+        break
+      }
       case("DELETE_PLACE"):{
-        this.deletePlace(action.id)
+        this.adminDeletePlace(action.id)
         break
       }
       default:{}

@@ -233,13 +233,11 @@ export function fetchEvents(){
     })
   }
 
-  export function updateUsers(){
+  export function adminGetUsers(){
     // make the api calls to get the list of cats
     const params = {
-      method: 'GET',
-    }
-
-    fetch("http://localhost:4000/admin", params).then(function(response){
+      method: 'GET'}
+    fetch("http://localhost:4000/admin/get/users", params).then(function(response){
       if(response.status === 200){
         response.json().then(function(body){
           dispatcher.dispatch({
@@ -252,13 +250,30 @@ export function fetchEvents(){
     })
   }
 
-export function deletePlace(attributes){
+  export function adminGetPlaces(){
+    // make the api calls to get the list of cats
+    const params = {
+      method: 'GET'}
+    fetch("http://localhost:4000/admin/get/places", params).then(function(response){
+      if(response.status === 200){
+        response.json().then(function(body){
+          dispatcher.dispatch({
+            type: 'UPDATE_PLACES',
+            places: body.places
+          })
+        })
+      }
+    }).catch(function(error){
+    })
+  }
+
+export function adminDeletePlace(attributes){
   const params = {
     method: 'DELETE',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({id: attributes})
   }
-  fetch("http://localhost:4000/admin", params).then(function(response){
+  fetch("http://localhost:4000/admin/delete/place", params).then(function(response){
     if (response.status === 200){
       dispatcher.dispatch({
         type: 'DELETE_PLACE',
@@ -270,7 +285,7 @@ export function deletePlace(attributes){
   })
 }
 //attributes here is whatever we pass into delete user through the delete call. we set up the params that we're gonna send, then we do a delete call to express with those params. whatever express gives us back, we're gonna dispatch the delete user event and catch if there's any errors
-  export function deleteUser(attributes){
+  export function adminDeleteUser(attributes){
     // set up the headers and request
     //Destroy often ends up calling delete, because delete is an HTTP method
     const params = {
@@ -280,7 +295,7 @@ export function deletePlace(attributes){
       body: JSON.stringify({id: attributes})
     }
     // send state to the backend server. it's /admin according to the API we built
-    fetch("http://localhost:4000/admin", params).then(function(response){
+    fetch("http://localhost:4000/admin/delete/user", params).then(function(response){
       // if post is successful update the message to be successful
       // and update the state to equal what we get back from the server
       if(response.status === 200){
@@ -302,13 +317,34 @@ export function deletePlace(attributes){
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(attributes)
     }
-    fetch("http://localhost:4000/admin", params).then(function(response){
+    fetch("http://localhost:4000/admin/add/user", params).then(function(response){
       if(response.status === 200){
         response.json().then(function(body){
           // send the user to the store
           dispatcher.dispatch({
             type: 'ADMIN_SIGNUP',
             user: body.user
+          })
+        })
+      }
+    }).catch(function(error){
+      adminStore.updateMessage("There was an error: " + error)
+    })
+  }
+
+  export function adminAddPlace(attributes){
+    const params = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(attributes)
+    }
+    fetch("http://localhost:4000/admin/add/place", params).then(function(response){
+      if(response.status === 200){
+        response.json().then(function(body){
+          // send the user to the store
+          dispatcher.dispatch({
+            type: 'ADMIN_ADD_PLACE',
+            place: body.place
           })
         })
       }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import AdminList from './AdminList';
 import SearchBar from './AdminSearchBar';
-import placeStore from '../../stores/PlaceStore';
+import adminStore from '../../stores/AdminStore';
 import AdminModal from './AdminModal'
 //once you make the component generic, you move the parts that are different out to the parent and pass them in as props
 //const api
@@ -12,15 +12,15 @@ import AdminModal from './AdminModal'
 class AdminPlaces extends Component {
   constructor(props){
     super(props)
-    this.state = {places: placeStore.getPlaces(),
+    this.state = {places: adminStore.adminGetPlaces(),
                   displayModal: false}
   }
-  updatePlaces(){
+  adminUpdatePlaces(){
     this.setState({
-      places: placeStore.getPlaces() })}
+      places: adminStore.adminGetPlaces() })}
 
   componentWillMount(){
-    placeStore.on('change', this.updatePlaces.bind(this)) }
+    adminStore.on('change', this.adminUpdatePlaces.bind(this)) }
 
   showPlaceList(){
     value: this.state.value }
@@ -41,7 +41,7 @@ class AdminPlaces extends Component {
   }
 
   placeListParams(){
-    return({places: placeStore.getPlaces()})
+    return({places: adminStore.adminGetPlaces()})
   }
 
   modalAdmin(){

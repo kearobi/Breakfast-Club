@@ -11,15 +11,15 @@ import AdminModal from './AdminModal';
 class AdminUsers extends Component {
   constructor(props){
     super(props)
-    this.state = {users: adminStore.getUsers(),
+    this.state = {users: adminStore.adminGetUsers(),
                   displayModal: false}
   }
-  updateUsers(){
+  adminUpdateUsers(){
     this.setState({
-      users: adminStore.getUsers() })}
+      users: adminStore.adminGetUsers() })}
 
   componentWillMount(){
-    adminStore.on('change', this.updateUsers.bind(this)) }
+    adminStore.on('change', this.adminUpdateUsers.bind(this)) }
 
   showUserList(){
     value: this.state.value }
@@ -40,7 +40,7 @@ class AdminUsers extends Component {
   }
 
   userListParams(){
-    return({users: adminStore.getUsers()})
+    return({users: adminStore.adminGetUsers()})
   }
 
   modalAdmin(){

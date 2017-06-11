@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import AdminTable from './AdminTable';
-import placeStore from '../../stores/PlaceStore';
-import { updatePlaces } from '../../actions.js';
+import { adminGetPlaces } from '../../actions.js';
 import adminStore from '../../stores/AdminStore';
-import { updateUsers } from '../../actions.js';
+import { adminGetUsers } from '../../actions.js';
+
 
 class AdminList extends Component {
   constructor(props){
@@ -12,24 +12,21 @@ class AdminList extends Component {
     //for users, this is users: adminStore.getUsers()
     //we're telling it to go to the db and get the users; i'm going to render for now, and once you're done, reload all the users for me. UserList is asking the action store to update with all the users
     //when user list shoes up, it says hey i need a fresh batch of users here
-    updatePlaces()
-    updateUsers()
+    adminGetPlaces()
+    adminGetUsers()
   }
 
 //wait... but this is the initial state. hmmmmmmm
   handleUpdate(){
     if(this.props.placeList){
-    this.setState({places: placeStore.getPlaces()})
+    this.setState({places: adminStore.adminGetPlaces()})
   }else if(this.props.userList){
-    this.setState({users: adminStore.getUsers()})
+    this.setState({users: adminStore.adminGetUsers()})
     }
   }
 
   componentWillMount(){
-    if(this.props.placeList){
-    placeStore.on('change', this.handleUpdate.bind(this))
-    }else if(this.props.userList){
-    adminStore.on('change', this.handleUpdate.bind(this))}
+    adminStore.on('change', this.handleUpdate.bind(this))
   }
 
   renderList(){

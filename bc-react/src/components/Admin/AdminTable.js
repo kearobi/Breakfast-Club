@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {deleteUser} from '../../actions';
-import {deletePlace} from '../../actions';
+import {adminDeleteUser} from '../../actions';
+import {adminDeletePlace} from '../../actions';
 
 class AdminTable extends Component {
   constructor(props){
@@ -11,10 +11,10 @@ class AdminTable extends Component {
       if(this.props.userTable){
     // let response = confirm("Wait really?")
     //could also pass this.props.user, but we added id so we're only handing it the data it needs to get the job done
-        deleteUser(this.props.user.id)}
+        adminDeleteUser(this.props.user.id)}
       else if(this.props.placeTable){
-        deletePlace(this.props.place.id)}
-  }
+        adminDeletePlace(this.props.place.id)}
+      }
 
   deleteIcon(){
     return(
