@@ -11,12 +11,13 @@ export function updateUser(){
 
 export function rsvp(){
   let event = eventStore.getCurrentEvent();
+  let user = userStore.getUser();
   const params = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       event_id: event.event.id,
-      user_id: event.user.id
+      user_id: user.id
     })
   }
   fetch("http://localhost:4000/rsvp", params).then(function(response){
@@ -47,9 +48,14 @@ export function registerVote(choice){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
-          type: 'VOTE-REGISTERED'
+          type:'VOTE-REGISTERED',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
         })
-        fetchCurrentEvent();
       })
     }
   }).catch(function(error){
@@ -111,11 +117,11 @@ export function fetchEvent(attributes){
   })
 }
 
-export function fetchCurrentEvent(attributes){
+export function fetchCurrentEvent(){
   const params = {
     method: "POST",
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(attributes)
+    body: JSON.stringify()
   }
   fetch("http://localhost:4000/current-event", params).then(function(response){
     if(response.status === 200){
@@ -152,7 +158,7 @@ export function loginUser(attributes){
       response.json().then(function(body){
         dispatcher.dispatch({
           type:'LOGIN',
-          user: body.user
+          user: body.user,
         })
       }).catch(function(error){
         console.log("login failed");

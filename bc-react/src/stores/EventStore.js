@@ -29,6 +29,7 @@ class EventStore extends EventEmitter{
         break;
       }
       case("VOTE-REGISTERED"):{
+        this.currentEvent = action.data;
         this.emit('vote registered');
         break;
       }

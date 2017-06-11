@@ -66,14 +66,13 @@ this.setState({
       <SideBar />
       <div className="home-page">
         <div className="container">
-          <div className="row">
-            <Reminder />
-          </div>
+
           <div className="row">
             <div className="col-xs-3"></div>
 
             <div className="col-xs-6">
               <h1>Welcome, {userStore.getUser().firstName}</h1>
+              <Reminder />
               <Link to='current-event'>Current Event</Link>
             </div>
             <div className="col-xs-3"></div>

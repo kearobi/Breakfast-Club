@@ -18,7 +18,6 @@ class Reminder extends Component {
     let toReturn = false;
     for (var i = 0; i < guestLists.length; i++){
       if (user_id == guestLists[i].user_id){
-        userStore.user.attending = true;
         return true;
       }
     }
@@ -68,7 +67,7 @@ class Reminder extends Component {
 
   render() {
     return (
-      <h1>{this.state.message}</h1>
+      <h4>{this.state.message}</h4>
     );
   }
 }

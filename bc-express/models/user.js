@@ -55,7 +55,8 @@ module.exports = function(sequelize, DataTypes) {
           email: this.get('email'),
           neighborhood: this.get('neighborhood'),
           authToken: this.get('authToken'),
-          authTokenExpiration: this.get('authTokenExpiration')
+          authTokenExpiration: this.get('authTokenExpiration'),
+          voted: this.get('voted')
         }
       },
       encrypt(value){

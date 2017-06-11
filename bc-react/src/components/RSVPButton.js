@@ -4,7 +4,7 @@ import {fetchEvent} from '../actions';
 
 class RSVPButton extends Component {
   handleClick(){
-    document.getElementById("vote-button").onclick = '#';
+    document.getElementById("rsvp-button").onclick = '#';
     rsvp();
   }
 

@@ -67,6 +67,10 @@ app.post('/add-message', function(request, response){
 
 // creates GuestList object with vote info and updates User vote status
 app.post('/register-vote', function(request, response){
+  let _event;
+  let _users = [];
+  let _places = [];
+  let _guestLists;
   let event_id = request.body.event.id;
   let user_id = request.body.user.id;
   let choice = request.body.choice;
@@ -87,12 +91,58 @@ app.post('/register-vote', function(request, response){
     })
   })
   .then(function(){
-    response.status(200)
-    response.json({status: 'success'})
+    return Bevent.findOne({
+        limit: 1,
+        order: [['date', 'DESC']]
+    })
   })
-  .catch(function(error){
-    response.status(400)
-    response.json({status: 'error', error: error})
+  .then(function(event){
+    _event = event;
+    return event.getGuestLists();
+  })
+  // for each GuestList save the corresponding User in _users
+  .then(function(lists){
+    _guestLists = lists;
+    listPromises = [];
+    for (var i = 0; i < lists.length; i++){
+      listPromises.push(User.findOne({
+        where:{id: lists[i].user_id}
+      }))
+    }
+    return Promise.all(listPromises);
+  })
+  // find the first restaurant option
+  .then(function(users){
+    for (var i = 0; i < users.length; i++){
+      if (users[i] != null){
+        _users.push(users[i]);
+      }
+    }
+    return Place.findOne({
+      where:{id: _event.place_1_id}
+    })
+  })
+  // find the second restaurant option
+  .then (function(place){
+    _places.push(place);
+    return Place.findOne({
+      where:{id: _event.place_2_id}
+    })
+  })
+  .then(function(place){
+    _places.push(place);
+    if(_event){
+      response.status(200)
+      response.json({
+        event: _event,
+        guestLists: _guestLists,
+        places: _places,
+        users: _users
+      })
+    }else{
+      response.status(400)
+      console.log('no data found')
+    }
   })
 })
 
@@ -210,10 +260,10 @@ app.post('/test-event', function(request, response){
 
 app.post('/current-event', function(request, response){
   let _event;
-  let _users;
+  let _users = [];
   let _places = [];
   let _guestLists;
-  // find the most recent event in the database
+  // find the current event
   Bevent.findOne({
     limit: 1,
     order: [['date', 'DESC']]
@@ -236,7 +286,11 @@ app.post('/current-event', function(request, response){
   })
   // find the first restaurant option
   .then(function(users){
-    _users = users;
+    for (var i = 0; i < users.length; i++){
+      if (users[i] != null){
+        _users.push(users[i]);
+      }
+    }
     return Place.findOne({
       where:{id: _event.place_1_id}
     })
@@ -273,9 +327,10 @@ app.post('/login', function(request, response){
   .then(function(user){
     if(user && user.verifyPassword(request.body.password)){
       response.status(200)
+      console.log("user: ", user)
       response.json({
         message: 'Success!',
-        user: user
+        user: user,
       })
     }else{
       response.status(400)

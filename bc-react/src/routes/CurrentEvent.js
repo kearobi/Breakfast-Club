@@ -8,9 +8,8 @@ class CurrentEvent extends Component {
   constructor(props){
     super(props)
     this.state= {
-      formId: '',
-      event: null,
-      voted: userStore.getUser().voted,
+      event: eventStore.getCurrentEvent(),
+      user: userStore.getUser(),
       rsvp: this.checkIfAttending(userStore.getUser().id, eventStore.getCurrentEvent().guestLists),
       message: 'welcome'
     }
@@ -20,7 +19,6 @@ class CurrentEvent extends Component {
     let toReturn = false;
     for (var i = 0; i < guestLists.length; i++){
       if (user_id == guestLists[i].user_id){
-        userStore.user.attending = true;
         return true;
       }
     }
@@ -35,13 +33,19 @@ class CurrentEvent extends Component {
 
   voteRegistered(){
     this.setState({
-      message: "Vote Registered"
+      event: eventStore.getCurrentEvent(),
+      user: userStore.getUser(),
+      message: "Vote Registered",
+      rsvp: this.checkIfAttending(userStore.getUser().id, eventStore.getCurrentEvent().guestLists)
     })
   }
 
   rsvpRegistered(){
     this.setState({
-      message: "RSVP'd"
+      event: eventStore.getCurrentEvent(),
+      user: userStore.getUser(),
+      message: "RSVP'd",
+      rsvp: this.checkIfAttending(userStore.getUser().id, eventStore.getCurrentEvent().guestLists)
     })
   }
 
@@ -55,7 +59,7 @@ class CurrentEvent extends Component {
       return (
         <div>
           <p>{this.state.message}</p>
-          <EventDetail voted={this.state.voted} rsvped={this.state.rsvped} user={userStore.getUser()} eventData={eventStore.getCurrentEvent()} />
+          <EventDetail voted={this.state.user.voted} rsvp={this.state.rsvp} user={this.state.user} eventData={this.state.event} />
           <Link to="/home">
             <div className="align-button">
               <input
