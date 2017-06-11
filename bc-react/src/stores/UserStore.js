@@ -5,14 +5,12 @@ class UserStore extends EventEmitter{
   constructor(){
     super()
     this.user = null
-    this.message = ""
+    this.message = "" 
   }
-
 
   getUser(){
     return this.user
   }
-
 
   updateUser(attributes){
     this.user = attributes
@@ -79,6 +77,10 @@ class UserStore extends EventEmitter{
       case("LOGOUT"):{
         this.logout()
         break
+      }
+      case("RSVP"):{
+        this.emit('rsvp');
+        break;
       }
       default:{}
     }

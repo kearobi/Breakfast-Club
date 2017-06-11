@@ -18,6 +18,7 @@ class Reminder extends Component {
     let toReturn = false;
     for (var i = 0; i < guestLists.length; i++){
       if (user_id == guestLists[i].user_id){
+        userStore.user.attending = true;
         return true;
       }
     }

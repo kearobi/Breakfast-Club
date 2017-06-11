@@ -17,6 +17,7 @@ app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.json())
 
+// TODO apply this middleware to all routes
 const authorization = function(request, response, next){
   const token = request.query.authToken || request.body.authToken
   if(token){
@@ -41,6 +42,7 @@ app.get('/', function (request, response) {
   response.json({message: 'API Example App'})
 });
 
+// fetches all messages from database
 app.get('/messages', function (request, response) {
   Message.findAll().then(function(messages){
     response.status(200)
@@ -51,6 +53,7 @@ app.get('/messages', function (request, response) {
   })
 })
 
+// adds a message to database and adds the created message to the response
 app.post('/add-message', function(request, response){
   let params = request.body
   Message.create(params).then(function(message){
@@ -62,22 +65,53 @@ app.post('/add-message', function(request, response){
   })
 })
 
+// creates GuestList object with vote info and updates User vote status
 app.post('/register-vote', function(request, response){
   let event_id = request.body.event.id;
   let user_id = request.body.user.id;
   let choice = request.body.choice;
-  return GuestList.update({
-      vote: choice
-    }, {where: {
-      event_id: event_id,
-      user_id: user_id
-    }
-  })
+  let params = {
+    event_id: event_id,
+    user_id: null,
+    vote: choice
+  }
+  // create GuestList without user id
+  return GuestList.create(params)
   .then(function(){
+    // set User voted column to true
     return User.update({
         voted: true
       }, {where: {
         id: user_id
+      }
+    })
+  })
+  .then(function(){
+    response.status(200)
+    response.json({status: 'success'})
+  })
+  .catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
+
+// finds an empty GuestList row and sets the user_id to the current User's id
+app.post('/rsvp', function(request, response){
+  let event_id = request.body.event_id;
+  let user_id = request.body.user_id;
+  return GuestList.findOne({
+    where: {
+              user_id: null,
+              event_id: event_id
+            }
+  })
+  .then(function(guestList){
+    let id = guestList.id;
+    return GuestList.update({
+        user_id: user_id
+      }, {where: {
+        id: id
       }
     })
   })
@@ -122,6 +156,7 @@ app.post('/signup', function(request, response){
   })
 })
 
+// for testing purposes only, called from front end test-route
 app.post('/test-event', function(request, response){
   let _event;
   let _users;
@@ -178,14 +213,17 @@ app.post('/current-event', function(request, response){
   let _users;
   let _places = [];
   let _guestLists;
+  // find the most recent event in the database
   Bevent.findOne({
     limit: 1,
     order: [['date', 'DESC']]
   })
+  // save associated GuestLists in _guestLists
   .then(function(event){
     _event = event;
     return event.getGuestLists();
   })
+  // for each GuestList save the corresponding User in _users
   .then(function(lists){
     _guestLists = lists;
     listPromises = [];
@@ -196,12 +234,14 @@ app.post('/current-event', function(request, response){
     }
     return Promise.all(listPromises);
   })
+  // find the first restaurant option
   .then(function(users){
     _users = users;
     return Place.findOne({
       where:{id: _event.place_1_id}
     })
   })
+  // find the second restaurant option
   .then (function(place){
     _places.push(place);
     return Place.findOne({
@@ -228,7 +268,9 @@ app.post('/current-event', function(request, response){
 app.post('/login', function(request, response){
   User.findOne({
     where:{email: request.body.email}
-  }).then(function(user){
+  })
+  // search for User by email
+  .then(function(user){
     if(user && user.verifyPassword(request.body.password)){
       response.status(200)
       response.json({

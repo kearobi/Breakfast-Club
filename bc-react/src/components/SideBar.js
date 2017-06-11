@@ -71,7 +71,7 @@ handleLogout(){
               <li>
                 <a href="#" className="login"> <img className='wobble side-bar-image profile top-image' src='../Images/user (1).png'/></a>
               </li>
-              <p className="image-text-1">User Info</p>
+              <Link to='/profile'><p className="image-text-1">User Info</p></Link>
             </div>
             <div className="side-bar-image-div">
               <li>

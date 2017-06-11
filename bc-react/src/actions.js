@@ -9,6 +9,30 @@ export function updateUser(){
   // TODO
 }
 
+export function rsvp(){
+  let event = eventStore.getCurrentEvent();
+  const params = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      event_id: event.event.id,
+      user_id: event.user.id
+    })
+  }
+  fetch("http://localhost:4000/rsvp", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'RSVP'
+        })
+        fetchCurrentEvent();
+      })
+    }
+  }).catch(function(error){
+    console.log("There was an error: " + error)
+  })
+}
+
 export function registerVote(choice){
   let event = eventStore.getCurrentEvent();
   let user = userStore.getUser();
@@ -22,10 +46,10 @@ export function registerVote(choice){
   fetch("http://localhost:4000/register-vote", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
-        console.log("yeah")
         dispatcher.dispatch({
           type: 'VOTE-REGISTERED'
         })
+        fetchCurrentEvent();
       })
     }
   }).catch(function(error){
