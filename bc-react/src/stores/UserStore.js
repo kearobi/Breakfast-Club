@@ -8,11 +8,9 @@ class UserStore extends EventEmitter{
     this.message = ""
   }
 
-
   getUser(){
     return this.user
   }
-
 
   updateUser(attributes){
     this.user = attributes

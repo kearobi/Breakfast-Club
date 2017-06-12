@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import Header from '../components/Header';
+import SideBar from '../components/SideBar';
 import {updateUser} from '../actions';
 import userStore from '../stores/UserStore';
 
@@ -35,8 +35,11 @@ class UserProfile extends Component {
   render(){
     return (
         <div>
+          <SideBar />
+          <div className='profile-container'>
+            Welcome, {this.user.firstName}!
           <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-            <p>First Name: {this.user.firstName}</p>
+            First Name: {this.user.firstName}
             <div className='formGroup'>
               <input
                 placeholder={this.user.email}
@@ -47,7 +50,7 @@ class UserProfile extends Component {
                 onChange={this.handleChange.bind(this)}>
               </input>
             </div>
-            <p>last Name: {this.user.lastName}</p>
+            Last Name: {this.user.lastName}
             <div className='formGroup'>
               <input
                 placeholder={this.user.lastName}
@@ -58,7 +61,7 @@ class UserProfile extends Component {
                 onChange={this.handleChange.bind(this)}>
               </input>
             </div>
-            <p>Email: {this.user.email}</p>
+            Email: {this.user.email}
             <div className='formGroup'>
               <input
                 placeholder={this.user.email}
@@ -69,7 +72,7 @@ class UserProfile extends Component {
                 onChange={this.handleChange.bind(this)}>
               </input>
             </div>
-            <p>Neighborhood: {this.user.neighborhood}</p>
+            Neighborhood: {this.user.neighborhood}
             <div className='formGroup'>
               <input
                 placeholder={this.user.neighborhood}
@@ -81,6 +84,7 @@ class UserProfile extends Component {
               </input>
             </div>
           </form>
+        </div>
         </div>
       );
     }

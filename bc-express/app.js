@@ -213,14 +213,25 @@ app.post('/login', function(request, response){
   })
 })
 
-app.get('/admin', function(request, response){
+//start Admin endpoints
+app.get('/admin/get/places', function(request, response){
+  Place.findAll().then(function(places){
+    response.status(200)
+    response.json({status: 'success', places: places})
+  })})
+app.get('/admin/get/users', function(request, response){
   User.findAll().then(function(users){
     response.status(200)
     response.json({status: 'success', users: users})
-  })
-})
+  })})
+//events error: it doesn't reach this point
+app.get('/admin/get/events', function(request, response){
+  Bevent.findAll().then(function(events){
+    response.status(200)
+    response.json({status: 'success', events: events})
+  })})
 
-app.post('/admin', function(request, response){
+app.post('/admin/add/user', function(request, response){
   let userParams = request.body.user
   User.create(userParams).then(function(user){
     response.status(200)
@@ -228,14 +239,31 @@ app.post('/admin', function(request, response){
   }).catch(function(error){
     response.status(400)
     response.json({status: 'error', error: error})
-  })
-})
+  })})
+app.post('/admin/add/place', function(request, response){
+  let placeParams = request.body.place
+  Place.create(placeParams).then(function(place){
+    response.status(200)
+    response.json({status: 'success', place: place})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })})
+app.post('/admin/add/event', function(request, response){
+  let eventParams = request.body.event
+  Bevent.create(eventParams).then(function(event){
+    response.status(200)
+    response.json({status: 'success', event: event})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })})
 
 //delete is name of HTTP method we're using. the userParams have ID because we're only passing the ID in
 //destroy is the sequelize call
-app.delete('/admin', function(request, response){
+//this is where the front end connects to the back end. The problem is we had two delete endpoints with the same URL. As we delete a user, we're sending a delete request to the backend and it's saying hey, i'm looking for this url, and on this url i want to perform these actions. However, you have to have a unique URL for every controller if you're trying to do something uniquely to each model
+app.delete('/admin/delete/user', function(request, response){
   let userParams = request.body.id
-  console.log(request.body.id)
   User.destroy({where: {id: userParams}}).then(function(user){
     response.status(200)
     //this user:user comes from the then function
@@ -244,6 +272,40 @@ app.delete('/admin', function(request, response){
     response.status(400)
     response.json({status: 'error', error: error})
   })
+})
+//swagger lets you see all the endpoints of an API in URL form
+app.delete('/admin/delete/place', function(request, response){
+  let placeParams = request.body.id
+  Place.destroy({where: {id: placeParams}}).then(function(place){
+    repsonse.status(200)
+    response.json({status: 'success', place: place})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })})
+app.delete('/admin/delete/event', function(request, response){
+  let eventParams = request.body.id
+  Bevent.destroy({where: {id: eventParams}}).then(function(event){
+    repsonse.status(200)
+    response.json({status: 'success', event: event})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })})
+
+//ask rob for help
+app.put('/admin/edit/user', function(request, response){
+  return User
+    .findById(request.params.user.id)
+    .then(user => {
+      return user
+        .update({
+          body: request.body
+        })
+        .then(() => response.status(200).send(user))
+        .catch((error) => response.status(400).send(error))
+    })
+    .catch((error) => response.status(400).send(error))
 })
 
 app.listen(4000, function () {

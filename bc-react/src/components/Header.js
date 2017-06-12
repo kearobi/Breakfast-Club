@@ -9,8 +9,6 @@ class Header extends Component {
   render() {
     return (
       <div className="Header">
-        <div className="Header-header">
-        </div>
         <span className="border">
           <span className="border-bottom">
             <h2>Breakfast Club</h2>

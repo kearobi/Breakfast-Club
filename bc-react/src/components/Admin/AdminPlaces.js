@@ -1,9 +1,11 @@
+//AdminPlaces passes props to AdminList, SearchBar, AdminModal
+
 import React, {Component} from 'react';
-import AdminPlaceIndex from './AdminPlaceIndex';
-import AdminPlaceSearchBar from './AdminPlaceSearchBar';
-import PlaceStore from '../../stores/PlaceStore';
-import AdminPlaceModal from './AdminPlaceModal';
-// import AdminPlaceModal from '../components/AdminPlaceModal';
+import AdminList from './AdminList';
+import SearchBar from './AdminSearchBar';
+import AdminModal from './AdminModal';
+import adminStore from '../../stores/AdminStore';
+//once you make the component generic, you move the parts that are different out to the parent and pass them in as props
 //const api
 //only the most parent component should be responsible for fetching data
 
@@ -12,25 +14,40 @@ import AdminPlaceModal from './AdminPlaceModal';
 class AdminPlaces extends Component {
   constructor(props){
     super(props)
-    this.state = {places: PlaceStore.getPlaces(),
+    this.state = {places: adminStore.adminReturnPlaces(),
                   displayModal: false}
   }
-  updatePlaces(){
+  adminReturnPlaces(){
     this.setState({
-      places: PlaceStore.getPlaces() })}
+      places: adminStore.adminReturnPlaces() })}
 
   componentWillMount(){
-    PlaceStore.on('change', this.updatePlaces.bind(this)) }
+    adminStore.on('change', this.adminReturnPlaces.bind(this)) }
 
-  showPlaceList(){
-    value: this.state.value }
+  showPlaceList(){ value: this.state.value }
 
   displayModal(){
     this.setState({displayModal: true})}
 
+  placeParams(){
+    return(
+      { place: {
+          name: "",
+          yelp_rating: "",
+          categories: "",
+          price: "",
+          address_street: "",
+          phone: ""
+      }})
+  }
+
+  placeListParams(){
+    return({places: adminStore.adminReturnPlaces()})
+  }
+
   modalAdmin(){
     if(this.state.displayModal === true){
-    return (<AdminPlaceModal />)
+    return (<AdminModal placeForm={true} startingState={this.placeParams()}/>)
     } else { return ("") }}
 
   render(){
@@ -42,10 +59,10 @@ class AdminPlaces extends Component {
             onClick={this.displayModal.bind(this)}>
             + place </button>
           {/* now SearchBar has access to places */}
-          <AdminPlaceSearchBar places={this.state.places}/>
+          <SearchBar places={this.state.places} placeSearchBar={true}/>
         </div>
           <br></br><br></br>
-          <AdminPlaceIndex />
+          <AdminList placeList={true} startingState={this.placeListParams()}/>
           {this.modalAdmin()}
       </div>
       );

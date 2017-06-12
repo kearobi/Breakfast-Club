@@ -3,17 +3,29 @@
 @import url('./Messageboard.css');
 @import url('./AdminPage.css');
 @import url('./Header.css');
-@import url('./SearchBar.css');
-@import url('./UserListing.css');
-@import url('./Icons.css');
 @import url('./React-big-calendar.css');
 @import url('./Home.css');
 @import url('./Forms.css');
-@import url('./SplashPage.css');
 @import url('./Places.css');
 @import url('./Modal.css');
+@import url('./SplashLoginSignUp.css');
 
 /*goal for centering: create one single div set the width of the elements and the margin around them to auto*/
+
+/*if we want anything centered:*/
+/*body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+.wrapper {
+  font-size: 100%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+}
 
 .FontAmatic {
   font-family: 'Amatic SC';
@@ -36,6 +48,10 @@ h3 {
   margin-top: -8px;
 }
 
-.active-button {
+.black {
+  color: black;
+}
+
+button:hover {
   background-color: #def9a3;
 }
