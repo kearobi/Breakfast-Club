@@ -53,6 +53,11 @@ class EventStore extends EventEmitter{
         this.emit('current event fetched');
         break;
       }
+      case("EVENT-CREATED"):{
+        this.currentEvent = action.data;
+        this.emit('event created');
+        break;
+      }
       default:{}
     }
   }

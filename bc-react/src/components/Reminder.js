@@ -13,6 +13,7 @@ class Reminder extends Component {
   componentWillMount(){
     eventStore.on('current event fetched', this.updateMessage.bind(this));
     eventStore.on('votes counted', this.updateMessage.bind(this));
+    eventStore.on('event created', this.updateMessage.bind(this));
   }
 
   checkIfAttending(user_id, guestLists){

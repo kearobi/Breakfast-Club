@@ -13,6 +13,14 @@ const corsOptions = {
   origin: 'http://localhost:3000'
 }
 
+function getNextBreakfast(dayOfWeek) {
+    var now = new Date();
+    var resultDate = new Date();
+    resultDate.setDate(now.getDate() + (7 + dayOfWeek - now.getDay()) % 7);
+    resultDate.setHours(8, 0, 0, 0)
+    return new Date(resultDate);
+}
+
 app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.json())
@@ -377,6 +385,78 @@ app.post('/signup', function(request, response){
     console.log("here", error)
     response.status(400)
     response.json({status: 'error', error: error})
+  })
+})
+
+// app.get('/create-event-test', function(request, response){
+//   Bevent.create({
+//       place_1_id: 1,
+//       place_2_id: 2,
+//       vote_status: true,
+//       date: '2017-06-12T22:53:09.840Z',
+//       winner: null,
+//       createdAt: Date.now(),
+//       updatedAt: Date.now()
+//   })
+//   .then(function(){
+//     response.status(200)
+//   })
+//   .catch(function(){
+//     response.status(400)
+//     console.log('error creating event')
+//   })
+// })
+
+app.get('/create-event', function(request,    response){
+  let _places;
+  let _place_id_1;
+  let _place_id_2;
+  return Place.findAll().then(function(places){
+    _places = places;
+    let num = _places.length;
+    let index1 = Math.floor(Math.random() * num)
+    let index2 = index1
+    while (index2 == index1){
+      index2 = Math.floor(Math.random() * num)
+    }
+    _place_id_1 = _places[index1].id;
+    _place_id_2 = _places[index2].id;
+  })
+  Bevent.create({
+      place_1_id: _place_id_1,
+      place_2_id: _place_id_2,
+      vote_status: true,
+      date: '2017-06-12T22:53:09.840Z',
+      winner: null,
+      "createdAt": Date.now(),
+      "updatedAt": Date.now()
+  })
+  .then(function(event){
+    _event = event;
+    return Place.findOne({
+      where:{id: _event.place_1_id}
+    })
+  })
+  .then (function(place){
+    _places.push(place);
+    return Place.findOne({
+      where:{id: _event.place_2_id}
+    })
+  })
+  .then(function(place){
+    console.log("CREATE EVENT HERE 2!!!!!!!!!!!!!!!!!!!!!!!!!")
+    _places.push(place);
+    response.status(200)
+    response.json({
+      event: _event,
+      guestLists: [],
+      places: _places,
+      users: []
+    })
+  })
+  .catch(function(){
+    response.status(400)
+    console.log('error creating event')
   })
 })
 

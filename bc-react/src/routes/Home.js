@@ -4,10 +4,9 @@ import MessageBoard from '../components/MessageBoard';
 import userStore from '../stores/UserStore';
 import SideBar from '../components/SideBar';
 import Reminder from '../components/Reminder';
-import {fetchMessages, checkIfVotingOver} from '../actions';
+import {fetchMessages, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions';
 import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
-import {fetchCurrentEvent} from '../actions'
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
 BigCalendar.setLocalizer(
@@ -29,6 +28,7 @@ class Home extends Component {
     userStore.on('logged-in',this.handleLogin.bind(this))
     userStore.on('logged-out', this.handleLogOut.bind(this))
     eventStore.on('current event fetched',this.updateCurrentEvent.bind(this))
+    eventStore.on('event created',this.updateCurrentEvent.bind(this))
     checkLoginRedir(this.props)
   }
 
@@ -50,6 +50,7 @@ class Home extends Component {
 
   updateCurrentEvent(){
     checkIfVotingOver(eventStore.getCurrentEvent())
+    checkEventOver(eventStore.getCurrentEvent())
     this.setState({
       event: eventStore.getCurrentEvent()
     })

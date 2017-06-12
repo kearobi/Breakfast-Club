@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Header from '../components/Header';
-import {loginUser, checkLoginRedir} from '../actions';
+import {loginUser, checkLoginRedir, testCreate} from '../actions';
 import userStore from '../stores/UserStore';
 
 class UserLogin extends Component {
