@@ -35,7 +35,7 @@ class App extends Component {
       <div className='wrapper'>
         <Router>
           <div>
-            <Header />
+            <Header className='header-component' />
             <Route exact path='/' component={SplashPage}/>
             <Route path='/signup' component={UserSignUp} />
             <Route path='/login' component={UserLogin} />

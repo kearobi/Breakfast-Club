@@ -82,14 +82,14 @@
   margin-top: 40px;
 }
 .side-bar-text-top{
-  font-family: 'Amatic SC', cursive;
+  font-family: 'Amatic SC', sans-serif, cursive;
   /*background-color: black;*/
   font-size: 50px;
   color: white;
   margin-left: -10px;
 }
 .side-bar-text-bottom{
-  font-family: 'Amatic SC', cursive;
+  font-family: 'Amatic SC', sans-serif, cursive;
   /*background-color: black;*/
   font-size: 50px;
   color: white;
@@ -98,6 +98,7 @@
 .side-bar-bottom{
   margin-top: 30px;
   margin-bottom: 60px;
+  padding-bottom: 50px;
 }
 .sidebar-nav li:nth-child(2):before {
     background-color: rgba(0, 0, 0, 0);

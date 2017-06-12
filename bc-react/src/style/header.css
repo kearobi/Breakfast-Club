@@ -2,8 +2,8 @@
   text-align: center;
 }
 
-h2, calendar-div, home-page {
-  font-family: 'Amatic SC', cursive;
+h2, calendar-div, home-page, login-signup {
+  font-family: 'Amatic SC', sans-serif, cursive;
   font-size: 100px;
   color: fuchsia;
   margin-top: -9px;
@@ -24,7 +24,7 @@ h2, calendar-div, home-page {
   padding: 40px;
   color: white;
   margin-bottom: -1000px;
-}*/
+}
 
 .Header-intro {
   font-size: large;

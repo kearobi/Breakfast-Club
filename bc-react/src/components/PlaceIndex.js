@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PlaceListing from './PlaceListing'
 import placeStore from '../stores/PlaceStore'
 import MessageBoard from '../components/MessageBoard';
+import SideBar from '../components/SideBar';
 
 class PlaceIndex extends Component {
   constructor(props){
@@ -35,6 +36,7 @@ class PlaceIndex extends Component {
   render(){
     return(
       <div>
+        <SideBar />
         <div>
             <h2>Place List</h2>
             <h2 className="place-list">{this.renderPlaces()}</h2>

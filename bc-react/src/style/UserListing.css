@@ -5,7 +5,7 @@ th, td {
   border-width: thin;
   text-align: center;
   text-decoration: none;
-  font-family: 'Abel';
+  font-family: 'Abel', sans-serif;
   font-size: 20px;
   padding-left: 5px;
   padding-right: 5px;

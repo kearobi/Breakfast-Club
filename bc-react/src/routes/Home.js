@@ -8,6 +8,9 @@ import {fetchMessages} from '../actions';
 import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
+import placeStore from '../stores/PlaceStore'
+
+
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 );
@@ -41,34 +44,25 @@ class Home extends Component {
   events(){
     return [
       {
-      'title': 'Long Event',
-      'start': new Date(2015, 3, 7),
-      'end': new Date(2015, 3, 10)
+      'title': 'B-Fast',
+      'start': new Date(2017,5, 16, 8,0,0),
+      'end': new Date(2017,5, 16, 9,0,0)
       }
     ]
   }
 //{userStore.getUser.firstName()}
   render(){
     return (
-      <div>
+      <div id="home-body">
       <SideBar />
-      <div className="home-page">
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-3"></div>
+        <div className="home-page">
 
-            <div className="col-xs-6">
-              <h1>Welcome, {userStore.getUser().firstName}</h1>
-            </div>
-            <div className="col-xs-3"></div>
-          </div>
+          <h1>Welcome, {userStore.getUser().firstName}</h1>
 
-          <hr className="hr-home"></hr>
+          <div className="container container-home">
 
           <div className="row">
-            <div className="col-xs-1"></div>
-
-            <div className="calendar-div col-xs-7">
+            <div className="calendar-div col-xs-8">
               <BigCalendar
                 events={this.events()}
               />
@@ -76,6 +70,7 @@ class Home extends Component {
             <div className="col-xs-4">
               <MessageBoard />
             </div>
+
           </div>
         </div>
       </div>

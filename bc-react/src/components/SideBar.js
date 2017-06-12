@@ -70,9 +70,9 @@ wrapperClass(){
             </div>
             <div className="side-bar-image-div">
               <li>
-                <a href="#"><img className="wobble side-bar-image" src='../Images/calendar (2).png'/></a>
+                <a href="/places"><img className="wobble side-bar-image" src='../Images/calendar (2).png'/></a>
               </li>
-              <p className="image-text-2">Events</p>
+              <p className="image-text-2">Places</p>
             </div>
             <div className="side-bar-image-div">
               <li>

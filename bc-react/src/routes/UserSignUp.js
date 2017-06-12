@@ -59,10 +59,13 @@ class UserSignUp extends Component {
 render(){
   return (
     <div>
+
         <div id="sign_up">
           Sign Up
         </div>
+
         {this.state.message}
+      <div className="container">
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
               <SignUpInput
                 name='firstName'
@@ -111,20 +114,22 @@ render(){
               onChange={this.handleChange.bind(this)}
               errors={this.state.errors.verifyPassword}
             />
-            <input type='submit' value='Let Me In!!'></input>
-        </form>
-        <div className='center align-button'>
-          <Link to="/">
-          <div className="align-button">
-            <input
-              className='take-me-back'
-              type='button'
-              value='Take Me Back!!'>
-            </input>
+          <div className="row bottom-links">
+            <div className="col-xs-6 left align-button">
+              <Link className="FontAmatic link-font" to="/">
+                Take Me Back!!
+              </Link>
+            </div>
+
+            <div className="col-xs-6 right align-button">
+              <input className="letMeIn wobble" type='submit' value='Let Me In!!'></input>
+            </div>
           </div>
-          </Link>
-        </div>
+        </form>
       </div>
+
+      </div>
+
     );
   }
 }

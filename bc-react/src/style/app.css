@@ -12,11 +12,13 @@
 @import url('./SplashPage.css');
 @import url('./Places.css');
 @import url('./Modal.css');
+@import url('./UserSignup.css');
+@import url('./UserLogin.css');
 
 /*goal for centering: create one single div set the width of the elements and the margin around them to auto*/
 
 .FontAmatic {
-  font-family: 'Amatic SC';
+  font-family: 'Amatic SC', sans-serif;
   font-size: 40px;
   text-align: center;
   color: black;
@@ -28,7 +30,7 @@
 }
 
 h3 {
-  font-family: 'Dancing Script';
+  font-family: 'Dancing Script',sans-serif;
   text-align: center;
   font-size: 52px;
   font-style: italic;

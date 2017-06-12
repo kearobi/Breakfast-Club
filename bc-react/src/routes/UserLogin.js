@@ -54,20 +54,17 @@ class UserLogin extends Component {
 
 render(){
   return (
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-4">
-            </div>
-            <div className="col-sm-4 FontAmatic">
-              Log In
-            </div>
-            <div className="col-sm-4">
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-3">
-            </div>
-            <div className="col-sm-6">
+    <div>
+
+      <div id="sign_up">
+        Log In
+      </div>
+
+      <div className="alert alert-warning"><strong>{this.state.message}</strong></div>
+
+      <div className="container">
+
+        <div>
               <form className='form' onSubmit={this.handleSubmit.bind(this)}>
                 <div className='formGroup'>
                   <input
@@ -89,33 +86,28 @@ render(){
                     onChange={this.handleChange.bind(this)}>
                   </input>
                 </div>
+
+                <div className="row bottom-links">
+                  <div className="col-xs-6 left align-button">
+                    <Link className="FontAmatic link-font" to="/">
+                      Take Me Back!!
+                    </Link>
+                  </div>
+
                 <div className='formGroup align-button'>
-                  <input className='let-me-in' type='submit' value='Let Me In!!'></input>
+                  <input className='wobble letMeIn' type='submit' value='Let Me In!!'></input>
                 </div>
-              </form>
-            </div>
-            <div className="col-sm-3">
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-4">
-            </div>
-            <div className="col-sm-4 center">
-              <Link to="/">
-              <div className="align-button">
-                <input
-                  className='take-me-back'
-                  type='button'
-                  value='Take Me Back!!'>
-                </input>
               </div>
-              </Link>
-              <div className="alert alert-warning"><strong>{this.state.message}</strong></div>
+              </form>
+
+          </div>
+
+
+
             </div>
             <div className="col-sm-4">
             </div>
           </div>
-        </div>
     );
   }
 }

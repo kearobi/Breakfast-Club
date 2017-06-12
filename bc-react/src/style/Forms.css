@@ -4,7 +4,7 @@ button:hover {
 
 .align-button {
   text-align: center;
-  font-family: 'Amatic SC';
+  font-family: 'Amatic SC', sans-serif;
   font-size: 35px;
   color: black;
 }
@@ -23,7 +23,7 @@ button:hover {
 
 form {
   text-align: center;
-  font-family: 'Abel';
+  font-family: 'Abel', sans-serif;
   font-size: 20px;
 }
 
