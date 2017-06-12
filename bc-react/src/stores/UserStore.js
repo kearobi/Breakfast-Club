@@ -63,7 +63,7 @@ class UserStore extends EventEmitter{
         break
       }
       case("VOTE-REGISTERED"):{
-        this.updateUser = action.data.user;
+        this.updateUser(action.data.user);
         break;
       }
       case("LOGIN"):{

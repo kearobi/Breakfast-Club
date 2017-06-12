@@ -136,6 +136,7 @@ app.post('/register-vote', function(request, response){
   })
   .then(function(user){
     _user = user;
+    console.log("_user: ", _user);
     if(_event){
       response.status(200)
       response.json({
