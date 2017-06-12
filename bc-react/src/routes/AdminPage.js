@@ -1,3 +1,5 @@
+//AdminPage imports AdminUsers, AdminPlaces, AdminEvents but does not pass props
+
 import React, {Component} from 'react';
 import AdminUsers from '../components/Admin/AdminUsers';
 import AdminPlaces from '../components/Admin/AdminPlaces';
@@ -13,8 +15,9 @@ class AdminPage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      places: adminStore.adminGetPlaces(),
-      users: adminStore.adminGetUsers(),
+      users: adminStore.adminReturnUsers(),
+      places: adminStore.adminReturnPlaces(),
+      events: adminStore.adminReturnEvents(),
       displayUsers: false,
       displayPlaces: false,
       displayEvents: false
@@ -23,8 +26,9 @@ class AdminPage extends Component {
   //the admin store deletes a user, it yells 'ive changed!' to everyone who's listening, and when it does that it calls updateUsers. (we told componentwillmount to issue this whenever there's a change)
   adminUpdate(){
     this.setState({
-      users: adminStore.adminGetUsers(),
-      places: adminStore.adminGetPlaces()
+      users: adminStore.adminReturnUsers(),
+      places: adminStore.adminReturnPlaces(),
+      events: adminStore.adminReturnEvents()
     })
   }
 
@@ -34,6 +38,7 @@ class AdminPage extends Component {
 
   showUserList(){ value: this.state.value }
   showPlaceList(){ value: this.state.value }
+  showEventList(){ value: this.state.value }
 
   displayUsers(){
     this.setState({displayUsers: true})

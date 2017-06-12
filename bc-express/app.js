@@ -213,6 +213,7 @@ app.post('/login', function(request, response){
   })
 })
 
+//start Admin endpoints
 app.get('/admin/get/places', function(request, response){
   Place.findAll().then(function(places){
     response.status(200)
@@ -237,9 +238,7 @@ app.post('/admin/add/user', function(request, response){
   }).catch(function(error){
     response.status(400)
     response.json({status: 'error', error: error})
-  })
-})
-
+  })})
 app.post('/admin/add/place', function(request, response){
   let placeParams = request.body.place
   Place.create(placeParams).then(function(place){
@@ -248,9 +247,7 @@ app.post('/admin/add/place', function(request, response){
   }).catch(function(error){
     response.status(400)
     response.json({status: 'error', error: error})
-  })
-})
-
+  })})
 app.post('/admin/add/event', function(request, response){
   let eventParams = request.body.event
   Bevent.create(eventParams).then(function(event){
@@ -259,8 +256,7 @@ app.post('/admin/add/event', function(request, response){
   }).catch(function(error){
     response.status(400)
     response.json({status: 'error', error: error})
-  })
-})
+  })})
 
 //delete is name of HTTP method we're using. the userParams have ID because we're only passing the ID in
 //destroy is the sequelize call
@@ -285,9 +281,7 @@ app.delete('/admin/delete/place', function(request, response){
   }).catch(function(error){
     response.status(400)
     response.json({status: 'error', error: error})
-  })
-})
-
+  })})
 app.delete('/admin/delete/event', function(request, response){
   let eventParams = request.body.id
   Bevent.destroy({where: {id: eventParams}}).then(function(event){
@@ -296,8 +290,7 @@ app.delete('/admin/delete/event', function(request, response){
   }).catch(function(error){
     response.status(400)
     response.json({status: 'error', error: error})
-  })
-})
+  })})
 
 app.listen(4000, function () {
  console.log('listening on port 4000!');

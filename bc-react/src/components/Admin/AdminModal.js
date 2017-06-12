@@ -1,3 +1,5 @@
+//AdminModal gets props from AdminUsers, AdminPlaces, AdminEvents
+//AdminModal does not pass props
 import React, { Component } from 'react';
 import {adminAddUser} from '../../actions';
 import {adminAddPlace} from '../../actions';
@@ -14,14 +16,11 @@ class AdminModal extends Component {
   handleChange(e){
     let target = e.target
     let item
-      if (this.props.userForm){item = this.user}
-      else if(this.props.placeForm){item = this.place}
-      else if(this.props.eventForm){item = this.event}
-      this.state.item
-      item[target.name] = target.value
-      this.setState({
-        item: item
-  })}
+      if (this.props.userForm){item = this.state.user}
+      else if(this.props.placeForm){item = this.state.place}
+      else if(this.props.eventForm){item = this.state.event}
+        item[target.name] = target.value
+        this.setState({ item: item })}
 
 //addUser and updateUsers are asynchronous because they're in the store
   handleSubmit(e){

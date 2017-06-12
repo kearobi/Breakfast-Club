@@ -1,3 +1,5 @@
+//AdminUsers passes props to AdminList, SearchBar, AdminModal
+
 import React, {Component} from 'react';
 import AdminList from './AdminList';
 import SearchBar from './AdminSearchBar';
@@ -10,18 +12,18 @@ import adminStore from '../../stores/AdminStore';
 class AdminUsers extends Component {
   constructor(props){
     super(props)
-    this.state = {users: adminStore.adminGetUsers(),
+    this.state = {users: adminStore.adminReturnUsers(),
                   displayModal: false}
   }
-  adminUpdateUsers(){
+  adminReturnUsers(){
     this.setState({
-      users: adminStore.adminGetUsers() })}
+      users: adminStore.adminReturnUsers() })}
 
   componentWillMount(){
-    adminStore.on('change', this.adminUpdateUsers.bind(this)) }
+    adminStore.on('change',
+    this.adminReturnUsers.bind(this)) }
 
-  showUserList(){
-    value: this.state.value }
+  showUserList(){ value: this.state.value }
 
   displayModal(){
     this.setState({displayModal: true})}
@@ -34,12 +36,10 @@ class AdminUsers extends Component {
             email: "",
             neighborhood: "",
             password: "",
-            verifyPassword: ""
-    }})
-  }
+            verifyPassword: ""}})}
 
   userListParams(){
-    return({users: adminStore.adminGetUsers()})
+    return({users: adminStore.adminReturnUsers()})
   }
 
   modalAdmin(){

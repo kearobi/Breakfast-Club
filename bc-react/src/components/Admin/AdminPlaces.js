@@ -1,3 +1,5 @@
+//AdminPlaces passes props to AdminList, SearchBar, AdminModal
+
 import React, {Component} from 'react';
 import AdminList from './AdminList';
 import SearchBar from './AdminSearchBar';
@@ -12,18 +14,17 @@ import adminStore from '../../stores/AdminStore';
 class AdminPlaces extends Component {
   constructor(props){
     super(props)
-    this.state = {places: adminStore.adminGetPlaces(),
+    this.state = {places: adminStore.adminReturnPlaces(),
                   displayModal: false}
   }
-  adminUpdatePlaces(){
+  adminReturnPlaces(){
     this.setState({
-      places: adminStore.adminGetPlaces() })}
+      places: adminStore.adminReturnPlaces() })}
 
   componentWillMount(){
-    adminStore.on('change', this.adminUpdatePlaces.bind(this)) }
+    adminStore.on('change', this.adminReturnPlaces.bind(this)) }
 
-  showPlaceList(){
-    value: this.state.value }
+  showPlaceList(){ value: this.state.value }
 
   displayModal(){
     this.setState({displayModal: true})}
@@ -41,7 +42,7 @@ class AdminPlaces extends Component {
   }
 
   placeListParams(){
-    return({places: adminStore.adminGetPlaces()})
+    return({places: adminStore.adminReturnPlaces()})
   }
 
   modalAdmin(){

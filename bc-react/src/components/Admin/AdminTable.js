@@ -1,3 +1,6 @@
+//AdminTable gets props from AdminList
+//AdminTable does not pass props
+
 import React, { Component } from 'react';
 import {adminDeleteUser} from '../../actions';
 import {adminDeletePlace} from '../../actions';

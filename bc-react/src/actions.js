@@ -17,7 +17,6 @@ export function checkLoginRedir(props){
   }else{
     return true
   }
-
 }
 
 export function checkLogin(){
@@ -232,54 +231,17 @@ export function fetchEvents(){
       }
     })
   }
-export function adminUpdateUsers(){
-  const params = {method: 'GET'}
-    fetch("http://localhost:4000/get/users", params).then(function(response){
-      if(response.status === 200){
-        response.json().then(function(body){
-          dispatcher.dispatch({
-            type: 'ADMIN_UPDATE_USERS',
-            users: body.users
-          })
-        })}
-    }).catch(function(error){
-      // adminStore.updateMessage("There was an error: " + error)
-  })}
-  export function adminUpdatePlaces(){
-    const params = {method: 'GET'}
-      fetch("http://localhost:4000/get/places", params).then(function(response){
-        if(response.status === 200){
-          response.json().then(function(body){
-            dispatcher.dispatch({
-              type: 'ADMIN_UPDATE_PLACES',
-              places: body.places
-            })
-          })}
-      }).catch(function(error){
-        // adminStore.updateMessage("There was an error: " + error)
-    })}
 
-  export function adminUpdateEvents(){
-    const params = {method: 'GET'}
-      fetch("http://localhost:4000/get/events", params).then(function(response){
-        if(response.status === 200){
-          response.json().then(function(body){
-            dispatcher.dispatch({
-              type: 'ADMIN_UPDATE_EVENTS',
-              events: body.events
-            })
-          })}
-      }).catch(function(error){
-        // adminStore.updateMessage("There was an error: " + error)
-    })}
-
-export function adminGetUsers(){
-  const params = {method: 'GET'}
+//start of Admin actions
+export function adminLoadUsers(){
+  const params = {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}}
   fetch("http://localhost:4000/admin/get/users", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
-          type: 'ADMIN_GET_USERS',
+          type: 'ADMIN_LOAD_USERS',
           users: body.users
         })
       })}
@@ -287,13 +249,15 @@ export function adminGetUsers(){
     // adminStore.updateMessage("There was an error: " + error)
   })}
 
-export function adminGetPlaces(){
-  const params = {method: 'GET'}
+export function adminLoadPlaces(){
+  const params = {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}}
   fetch("http://localhost:4000/admin/get/places", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
-          type: 'ADMIN_GET_PLACES',
+          type: 'ADMIN_LOAD_PLACES',
           places: body.places
         })
       })}
@@ -301,13 +265,15 @@ export function adminGetPlaces(){
     // adminStore.updateMessage("There was an error: " + error)
   })}
 
-export function adminGetEvents(){
-  const params = {method: 'GET'}
+export function adminLoadEvents(){
+  const params = {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}}
   fetch("http://localhost:4000/admin/get/events", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
-          type: 'ADMIN_GET_EVENTS',
+          type: 'ADMIN_LOAD_EVENTS',
           events: body.events
         })
       })}
@@ -324,7 +290,7 @@ export function adminDeletePlace(attributes){
   fetch("http://localhost:4000/admin/delete/place", params).then(function(response){
     if (response.status === 200){
       dispatcher.dispatch({
-        type: 'ADMIN_DELETE_PLACE',
+        type: 'ADMIN_DESTROY_PLACE',
         id: attributes
       })
     }
@@ -349,7 +315,7 @@ export function adminDeletePlace(attributes){
       if(response.status === 200){
           // send the user to the store
           dispatcher.dispatch({
-            type: 'ADMIN_DELETE_USER',
+            type: 'ADMIN_DESTROY_USER',
             id: attributes
 //we don't care what we get back from the server, so just attributes.
           })
@@ -368,7 +334,7 @@ export function adminDeleteEvent(attributes){
   fetch("http://localhost:4000/admin/delete/event", params).then(function(response){
     if (response.status === 200){
       dispatcher.dispatch({
-        type: 'ADMIN_DELETE_EVENT',
+        type: 'ADMIN_DESTROY_EVENT',
         id: attributes
       })
     }
@@ -381,14 +347,13 @@ export function adminDeleteEvent(attributes){
     const params = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(attributes)
-    }
+      body: JSON.stringify(attributes)}
     fetch("http://localhost:4000/admin/add/user", params).then(function(response){
       if(response.status === 200){
         response.json().then(function(body){
           // send the user to the store
           dispatcher.dispatch({
-            type: 'ADMIN_ADD_USER',
+            type: 'ADMIN_CREATE_USER',
             user: body.user
           })
         })}
@@ -400,13 +365,12 @@ export function adminDeleteEvent(attributes){
     const params = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(attributes)
-    }
+      body: JSON.stringify(attributes)}
     fetch("http://localhost:4000/admin/add/place", params).then(function(response){
       if(response.status === 200){
         response.json().then(function(body){
           dispatcher.dispatch({
-            type: 'ADMIN_ADD_PLACE',
+            type: 'ADMIN_CREATE_PLACE',
             place: body.place
           })
         })}
@@ -418,13 +382,12 @@ export function adminAddEvent(attributes){
   const params = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(attributes)
-  }
+    body: JSON.stringify(attributes)}
   fetch("http://localhost:4000/admin/add/event", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
-          type: 'ADMIN_ADD_EVENT',
+          type: 'ADMIN_CREATE_EVENT',
           event: body.event
         })
       })}

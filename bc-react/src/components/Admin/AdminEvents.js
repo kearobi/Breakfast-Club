@@ -1,3 +1,5 @@
+//AdminEvents passes props to AdminList, SearchBar, AdminModal
+
 import React, {Component} from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
@@ -12,7 +14,7 @@ BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 class AdminEvents extends Component {
   constructor(props){
     super(props)
-    this.state = {events: adminStore.adminGetEvents(),
+    this.state = {events: adminStore.adminReturnEvents(),
                   displayModal: false}
 
   fetchCurrentEvent()
@@ -28,11 +30,11 @@ class AdminEvents extends Component {
     ]
   }
 
-  adminUpdateEvents(){
-    this.setState({events: adminStore.adminGetEvents})}
+  adminReturnEvents(){
+    this.setState({events: adminStore.adminReturnEvents})}
 
   componentWillMount(){
-    adminStore.on('change', this.adminUpdateEvents.bind(this))}
+    adminStore.on('change', this.adminReturnEvents.bind(this))}
 
   showEventList(){value: this.state.value}
 
@@ -51,7 +53,7 @@ class AdminEvents extends Component {
     }
 
   eventListParams(){
-    return({events: adminStore.adminGetEvents()})}
+    return({events: adminStore.adminReturnEvents()})}
 
   modalAdmin(){
     if(this.state.displayModal){

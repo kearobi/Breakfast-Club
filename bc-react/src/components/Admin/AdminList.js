@@ -1,9 +1,11 @@
+//AdminList gets props from AdminUsers, AdminPlaces, AdminEvents
+//AdminList passes props to AdminTable
 import React, { Component } from 'react';
 import AdminTable from './AdminTable';
 import adminStore from '../../stores/AdminStore';
-import { adminGetUsers } from '../../actions.js';
-import { adminGetPlaces } from '../../actions.js';
-import { adminGetEvents } from '../../actions.js';
+import { adminLoadUsers } from '../../actions.js';
+import { adminLoadPlaces } from '../../actions.js';
+import { adminLoadEvents } from '../../actions.js';
 
 class AdminList extends Component {
   constructor(props){
@@ -12,19 +14,19 @@ class AdminList extends Component {
     //for users, this is users: adminStore.getUsers()
     //we're telling it to go to the db and get the users; i'm going to render for now, and once you're done, reload all the users for me. UserList is asking the action store to update with all the users
     //when user list shoes up, it says hey i need a fresh batch of users here
-    adminGetUsers()
-    adminGetPlaces()
-    adminGetEvents()
+    adminLoadUsers()
+    adminLoadPlaces()
+    adminLoadEvents()
   }
 
-//wait... but this is the initial state. hmmmmmmm
+//wait... but this is the initial state. hmmmmmmm... and this never gets called
   handleUpdate(){
     if(this.props.placeList){
-    this.setState({places: adminStore.adminGetPlaces()})
+    this.setState({places: adminStore.adminReturnPlaces()})
   }else if(this.props.userList){
-    this.setState({users: adminStore.adminGetUsers()})
+    this.setState({users: adminStore.adminReturnUsers()})
   }else if(this.props.eventList){
-    this.setState({events: adminStore.adminGetEvents()})}
+    this.setState({events: adminStore.adminReturnEvents()})}
   }
 
   componentWillMount(){
