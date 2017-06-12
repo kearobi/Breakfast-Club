@@ -68,6 +68,7 @@ app.post('/add-message', function(request, response){
 // creates GuestList object with vote info and updates User vote status
 app.post('/register-vote', function(request, response){
   let _event;
+  let _user;
   let _users = [];
   let _places = [];
   let _guestLists;
@@ -131,13 +132,18 @@ app.post('/register-vote', function(request, response){
   })
   .then(function(place){
     _places.push(place);
+    return User.findById(user_id)
+  })
+  .then(function(user){
+    _user = user;
     if(_event){
       response.status(200)
       response.json({
         event: _event,
         guestLists: _guestLists,
         places: _places,
-        users: _users
+        users: _users,
+        user: _user
       })
     }else{
       response.status(400)

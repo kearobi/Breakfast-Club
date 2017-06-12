@@ -24,9 +24,14 @@ export function rsvp(){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
-          type: 'RSVP'
+          type: 'RSVP',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
         })
-        fetchCurrentEvent();
       })
     }
   }).catch(function(error){
@@ -53,7 +58,8 @@ export function registerVote(choice){
             event: body.event,
             users: body.users,
             places: body.places,
-            guestLists: body.guestLists
+            guestLists: body.guestLists,
+            user: body.user
           }
         })
       })
@@ -156,8 +162,6 @@ export function loginUser(attributes){
   fetch("http://localhost:4000/login", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
-        fetchMessages();
-        fetchCurrentEvent()
         dispatcher.dispatch({
           type:'LOGIN',
           user: body.user,
@@ -251,7 +255,6 @@ export function fetchMessages(){
     })
     .then((body)=>{
       if (success){
-        console.log("success!", body)
         let messages = body.messages
         dispatcher.dispatch({
           type: "FETCH-MESSAGES",
@@ -279,7 +282,6 @@ export function fetchEvents(){
     })
     .then((body)=>{
       if (success){
-        console.log("success!", body)
         let events = body.events
         dispatcher.dispatch({
           type: "FETCH-EVENTS",

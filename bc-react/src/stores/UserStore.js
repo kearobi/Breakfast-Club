@@ -20,6 +20,7 @@ class UserStore extends EventEmitter{
     localStorage.setItem('lastName', attributes.lastName);
     localStorage.setItem('email', attributes.email);
     localStorage.setItem('neighborhood', attributes.neighborhood)
+    localStorage.setItem('voted', attributes.voted)
     // store user credentials 'authToken, expire and email' locally in user browser.
   }
 
@@ -33,7 +34,9 @@ class UserStore extends EventEmitter{
           firstName: localStorage.getItem('firstName'),
           lastName: localStorage.getItem('lastName'),
           email: localStorage.getItem('email'),
-          neighborhood: localStorage.getItem('neighborhood')
+          neighborhood: localStorage.getItem('neighborhood'),
+          voted: localStorage.getItem('voted')
+
         }
         this.emit('logged-in')
     }
@@ -47,7 +50,7 @@ class UserStore extends EventEmitter{
      localStorage.setItem('lastName', "");
      localStorage.setItem('email', "");
      localStorage.setItem('neighborhood', "")
-
+     localStorage.setItem('voted', false)
      this.emit('logged-out')
    }
 
@@ -58,6 +61,10 @@ class UserStore extends EventEmitter{
         this.message = "User Created"
         this.emit("User Created")
         break
+      }
+      case("VOTE-REGISTERED"):{
+        this.updateUser = action.data.user;
+        break;
       }
       case("LOGIN"):{
         this.updateUser(action.user)
@@ -76,10 +83,6 @@ class UserStore extends EventEmitter{
       case("LOGOUT"):{
         this.logout()
         break
-      }
-      case("RSVP"):{
-        this.emit('rsvp');
-        break;
       }
       default:{}
     }

@@ -32,11 +32,13 @@ class CurrentEvent extends Component {
   }
 
   voteRegistered(){
+    console.log("vote registered: ", eventStore.getCurrentEvent())
+    console.log("vote registered: ", userStore.getUser())
     this.setState({
       event: eventStore.getCurrentEvent(),
       user: userStore.getUser(),
       message: "Vote Registered",
-      rsvp: this.checkIfAttending(userStore.getUser().id, eventStore.getCurrentEvent().guestLists)
+      rsvp: false
     })
   }
 
@@ -45,7 +47,7 @@ class CurrentEvent extends Component {
       event: eventStore.getCurrentEvent(),
       user: userStore.getUser(),
       message: "RSVP'd",
-      rsvp: this.checkIfAttending(userStore.getUser().id, eventStore.getCurrentEvent().guestLists)
+      rsvp: true
     })
   }
 
