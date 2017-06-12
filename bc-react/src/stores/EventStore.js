@@ -21,6 +21,26 @@ class EventStore extends EventEmitter{
     return this.events;
   }
 
+  updateEvent(attributes){
+    this.events = attributes
+    localStorage.setItem('event', attributes.event);
+    localStorage.setItem('users', attributes.users);
+    localStorage.setItem('places', attributes.places);
+    localStorage.setItem('guestLists', attributes.guestLists);
+    // store user credentials 'authToken, expire and email' locally in user browser.
+  }
+
+  setEventLocal(){
+    this.events ={
+      event: localStorage.getItem('event'),
+      users: localStorage.getItem('users'),
+      places: localStorage.getItem('places'),
+      guestLists: localStorage.getItem('guestLists'),
+        }
+      }
+
+
+
   handleActions(action){
     switch(action.type){
       case("FETCH-EVENTS"):{
@@ -47,6 +67,16 @@ class EventStore extends EventEmitter{
       case("CURRENT-EVENT"):{
         this.currentEvent = action.data;
         this.emit('current event fetched');
+        break;
+      }
+      case("LOCAL-EVENT"):{
+        this.updateEvent(action.events)
+        // this.emit('local event set');
+        break;
+      }
+      case("SAVE-LOCAL-EVENT"):{
+        this.setEventLocal()
+        // this.emit('local event saved');
         break;
       }
       default:{}
