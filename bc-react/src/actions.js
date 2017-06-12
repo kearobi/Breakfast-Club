@@ -3,9 +3,70 @@ import userStore from './stores/UserStore';
 import messageStore from './stores/MessageStore';
 import adminStore from './stores/AdminStore';
 import placeStore from './stores/PlaceStore'
+import eventStore from './stores/EventStore'
 
 export function updateUser(){
   // TODO
+}
+
+export function rsvp(){
+  let event = eventStore.getCurrentEvent();
+  let user = userStore.getUser();
+  const params = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      event_id: event.event.id,
+      user_id: user.id
+    })
+  }
+  fetch("http://localhost:4000/rsvp", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'RSVP',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
+        })
+      })
+    }
+  }).catch(function(error){
+    console.log("There was an error: " + error)
+  })
+}
+
+export function registerVote(choice){
+  let event = eventStore.getCurrentEvent();
+  let user = userStore.getUser();
+  event.choice = choice;
+  event.user = user;
+  const params = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(event)
+  }
+  fetch("http://localhost:4000/register-vote", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type:'VOTE-REGISTERED',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists,
+            user: body.user
+          }
+        })
+      })
+    }
+  }).catch(function(error){
+    console.log("There was an error: " + error)
+  })
 }
 
 export function checkLoginRedir(props){
@@ -61,11 +122,11 @@ export function fetchEvent(attributes){
   })
 }
 
-export function fetchCurrentEvent(attributes){
+export function fetchCurrentEvent(){
   const params = {
     method: "POST",
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(attributes)
+    body: JSON.stringify()
   }
   fetch("http://localhost:4000/current-event", params).then(function(response){
     if(response.status === 200){
@@ -102,7 +163,7 @@ export function loginUser(attributes){
       response.json().then(function(body){
         dispatcher.dispatch({
           type:'LOGIN',
-          user: body.user
+          user: body.user,
         })
       }).catch(function(error){
         console.log("login failed");
@@ -137,7 +198,7 @@ export function addUser(attributes){
       })
     }
   }).catch(function(error){
-    userStore.updateMessage("There was an error: " + error)
+    console.log("There was an error: " + error);
   })
 }
 
@@ -158,7 +219,7 @@ export function addMessage(attributes){
       })
     }
   }).catch(function(error){
-    userStore.updateMessage("There was an error: " + error)
+    console.log("There was an error: " + error);
   })
 }
 
@@ -193,7 +254,6 @@ export function fetchMessages(){
     })
     .then((body)=>{
       if (success){
-        console.log("success!", body)
         let messages = body.messages
         dispatcher.dispatch({
           type: "FETCH-MESSAGES",
@@ -219,7 +279,6 @@ export function fetchEvents(){
     })
     .then((body)=>{
       if (success){
-        console.log("success!", body)
         let events = body.events
         dispatcher.dispatch({
           type: "FETCH-EVENTS",
@@ -321,7 +380,7 @@ export function adminDeletePlace(attributes){
           })
       }
     }).catch(function(error){
-      // adminStore.updateMessage("There was an error: " + error)
+      console.log("There was an error: " + error)
     })
   }
 

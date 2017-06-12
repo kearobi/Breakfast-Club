@@ -14,7 +14,6 @@ class UserLogin extends Component {
       },
       message: ''
     }
-    console.log(this.state)
   }
 
   componentWillMount(){

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import MessageBoard from '../components/MessageBoard';
 import userStore from '../stores/UserStore';
 import SideBar from '../components/SideBar';
+import Reminder from '../components/Reminder';
 import {fetchMessages} from '../actions';
 import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
@@ -15,11 +16,11 @@ BigCalendar.setLocalizer(
 class Home extends Component {
   constructor(props){
   super(props)
+  fetchMessages();
+  fetchCurrentEvent();
   this.state = {
     user: userStore.getUser(),
     }
-    fetchMessages();
-    fetchCurrentEvent()
   }
 
   componentWillMount(){
@@ -64,11 +65,13 @@ this.setState({
       <SideBar />
       <div className="home-page">
         <div className="container">
-            <div className="row">
-              <br></br>  <br></br>  <br></br>
-            <div className="welcome-message">
-              Welcome, {userStore.getUser().firstName}! This
-               <Link to="/current-event" > FRIDAY</Link> - Mission or Broken Yolk? CAST YOUR VOTE!
+          <div className="row">
+            <div className="col-xs-3"></div>
+
+            <div className="col-xs-6 welcome-message">
+              <h1>Welcome, {userStore.getUser().firstName}</h1>
+              <Reminder />
+              <Link to='/current-event'>Current Event</Link>
             </div>
             <div className="calendar-div col-xs-7">
               <BigCalendar
