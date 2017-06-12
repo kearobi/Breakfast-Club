@@ -49,6 +49,7 @@ class UserLogin extends Component {
       })
     }
     else {
+      console.log("login")
       loginUser(this.state.user)
     }
   }
@@ -80,22 +81,24 @@ render(){
                     onChange={this.handleChange.bind(this)}>
                   </input>
                 </div>
-              </form>
-              <div className='login-signup-container'>
-                <div className='let-me-in'>
-                <input
-                        type='submit'
-                        value='Let Me In!!' />
+                <div className='login-signup-container'>
+                  <div className='let-me-in'>
+                    <input
+                      type='submit'
+                      value='Let Me In!!' />
+                  </div>
                 </div>
-              <div className='take-me-back'>
-                <Link to="/">
-                <input
-                  className='black'
-                  type='button'
-                  value='Take Me Back!!'>
-                </input>
-                </Link>
-              </div></div><br></br>
+                <div className='take-me-back'>
+                  <Link to="/">
+                  <input
+                    className='black'
+                    type='button'
+                    value='Take Me Back!!'>
+                  </input>
+                  </Link>
+                </div>
+              </form>
+              <br></br>
               <div className='alert alert-warning'>
                 <strong>{this.state.message}</strong>
               </div>
