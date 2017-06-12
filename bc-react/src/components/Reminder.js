@@ -5,6 +5,7 @@ import userStore from '../stores/UserStore';
 class Reminder extends Component {
   constructor(props){
     super(props)
+    localEvents()
     this.state = {
       message: 'Reminder',
       event: {}
@@ -13,6 +14,8 @@ class Reminder extends Component {
   componentWillMount(){
     eventStore.on('current event fetched', this.updateMessage.bind(this));
   }
+
+
 
   checkIfAttending(user_id, guestLists){
     let toReturn = false;
