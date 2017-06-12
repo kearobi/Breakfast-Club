@@ -17,7 +17,6 @@ BigCalendar.setLocalizer(
 class Home extends Component {
   constructor(props){
   super(props)
-  console.log("home constructor called")
   fetchMessages();
   fetchCurrentEvent();
   this.state = {

@@ -35,6 +35,7 @@ class EventStore extends EventEmitter{
       }
       case("RSVP"):{
         this.currentEvent = action.data;
+        console.log("event from handleAction: ", this.currentEvent)
         this.emit('rsvp');
         break;
       }

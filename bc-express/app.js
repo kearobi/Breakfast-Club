@@ -155,6 +155,11 @@ app.post('/register-vote', function(request, response){
 
 // finds an empty GuestList row and sets the user_id to the current User's id
 app.post('/rsvp', function(request, response){
+  let _event;
+  let _user;
+  let _users = [];
+  let _places = [];
+  let _guestLists;
   let event_id = request.body.event_id;
   let user_id = request.body.user_id;
   return GuestList.findOne({
@@ -173,8 +178,58 @@ app.post('/rsvp', function(request, response){
     })
   })
   .then(function(){
+    return Bevent.findOne({
+        limit: 1,
+        order: [['date', 'DESC']]
+    })
+  })
+  .then(function(event){
+    _event = event;
+    return event.getGuestLists();
+  })
+  // for each GuestList save the corresponding User in _users
+  .then(function(lists){
+    _guestLists = lists;
+    listPromises = [];
+    for (var i = 0; i < lists.length; i++){
+      listPromises.push(User.findOne({
+        where:{id: lists[i].user_id}
+      }))
+    }
+    return Promise.all(listPromises);
+  })
+  // find the first restaurant option
+  .then(function(users){
+    for (var i = 0; i < users.length; i++){
+      if (users[i] != null){
+        _users.push(users[i]);
+      }
+    }
+    return Place.findOne({
+      where:{id: _event.place_1_id}
+    })
+  })
+  // find the second restaurant option
+  .then (function(place){
+    _places.push(place);
+    return Place.findOne({
+      where:{id: _event.place_2_id}
+    })
+  })
+  .then(function(place){
+    _places.push(place);
+    return User.findById(user_id)
+  })
+  .then(function(user){
+    _user = user
     response.status(200)
-    response.json({status: 'success'})
+    response.json({
+      event: _event,
+      guestLists: _guestLists,
+      places: _places,
+      users: _users,
+      user: _user
+    })
   })
   .catch(function(error){
     response.status(400)

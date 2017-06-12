@@ -4,7 +4,6 @@ import RSVPButton from '../components/RSVPButton';
 
 class EventDetail extends Component {
   render() {
-    console.log("event detail's props:", this.props)
     var mappedUsers;
     if (this.props.eventData.users.length == 0){
       mappedUsers = <p>No RSVPs yet</p>
