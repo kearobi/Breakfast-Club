@@ -53,21 +53,19 @@ class Home extends Component {
   }
 
   events(){
-    debugger
     let bevents = eventStore.getAllEvents()
-    let events = bevents.map(function(bevent){
-      let start = bevent.date
-      let end = bevent.date
-      debugger
+    let newEvents = bevents.map(function(bevent){
+      let start = moment(bevent.date).toDate()
+      let end = moment(bevent.date).add(1, 'hours').toDate()
       return {
-        title: 'TODO Place names?',
-        start: start,
-        end: end
+        'title': 'TODO Place names?',
+        'start': start,
+        'end': end
       }
     })
-    this.setState = {
-      events: events
-    }
+    this.setState({
+      events: newEvents
+    })
   }
 
 //{userStore.getUser.firstName()}
