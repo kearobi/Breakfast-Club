@@ -28,12 +28,10 @@ class CurrentEvent extends Component {
   componentWillMount(){
     eventStore.on('current event fetched', this.displayEvent.bind(this));
     eventStore.on('vote registered', this.voteRegistered.bind(this));
-    userStore.on('rsvp', this.rsvpRegistered.bind(this));
+    eventStore.on('rsvp', this.rsvpRegistered.bind(this));
   }
 
   voteRegistered(){
-    console.log("vote registered: ", eventStore.getCurrentEvent())
-    console.log("vote registered: ", userStore.getUser())
     this.setState({
       event: eventStore.getCurrentEvent(),
       user: userStore.getUser(),
