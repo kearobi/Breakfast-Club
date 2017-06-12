@@ -18,7 +18,6 @@ class MessageBoard extends Component {
   }
 
   updateMessages(){
-    console.log("updateMessages called")
     this.setState({
       messages: messageStore.getLastFiveMessages()
     })

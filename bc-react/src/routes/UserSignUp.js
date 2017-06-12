@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
 import SignUpInput from '../components/SignUpInput'
-import Header from '../components/Header';
 import signUpStore from '../stores/SignUpStore'
 import userStore from '../stores/UserStore'
 
@@ -22,7 +21,6 @@ class UserSignUp extends Component {
   }
 
   redirectToHome(){
-    console.log('test')
     this.props.history.push("/Home");
   }
 
@@ -59,64 +57,64 @@ class UserSignUp extends Component {
 render(){
   return (
     <div>
+      <div id="sign_up">
+        Sign Up
+      </div>
 
-        <div id="sign_up">
-          Sign Up
-        </div>
-
-        {this.state.message}
+      {this.state.message}
       <div className="container">
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-              <SignUpInput
-                name='firstName'
-                type={this.state.type}
-                placeholder='first name'
-                value={this.state.user.firstName}
-                onChange={this.handleChange.bind(this)}
-                errors={this.state.errors.firstName}/>
-            <SignUpInput
-              placeholder='last name'
-              type={this.state.type}
-              name='lastName'
-              value={this.state.user.lastName}
-              onChange={this.handleChange.bind(this)}
-              errors={this.state.errors.lastName}
+          <SignUpInput
+            name='firstName'
+            type={this.state.type}
+            placeholder='first name'
+            value={this.state.user.firstName}
+            onChange={this.handleChange.bind(this)}
+            errors={this.state.errors.firstName}/>
+          <SignUpInput
+            placeholder='last name'
+            type={this.state.type}
+            name='lastName'
+            value={this.state.user.lastName}
+            onChange={this.handleChange.bind(this)}
+            errors={this.state.errors.lastName}
             />
-            <SignUpInput
-              placeholder='email address'
-              type={this.state.type}
-              name='email'
-              value={this.state.user.email}
-              onChange={this.handleChange.bind(this)}
-              errors={this.state.errors.email}
+          <SignUpInput
+            placeholder='email address'
+            type={this.state.type}
+            name='email'
+            value={this.state.user.email}
+            onChange={this.handleChange.bind(this)}
+            errors={this.state.errors.email}
             />
-            <SignUpInput
-              placeholder='neighborhood'
-              type={this.state.type}
-              name='neighborhood'
-              value={this.state.user.neighborhood}
-              onChange={this.handleChange.bind(this)}
-              errors={this.state.errors.neighborhood}
+          <SignUpInput
+            placeholder='neighborhood'
+            type={this.state.type}
+            name='neighborhood'
+            value={this.state.user.neighborhood}
+            onChange={this.handleChange.bind(this)}
+            errors={this.state.errors.neighborhood}
             />
-            <SignUpInput
-              placeholder='password'
-              type='password'
-              name='password'
-              value={this.state.user.password}
-              onChange={this.handleChange.bind(this)}
-              errors={this.state.errors.password}
+          <SignUpInput
+            placeholder='password'
+            type='password'
+            name='password'
+            value={this.state.user.password}
+            onChange={this.handleChange.bind(this)}
+            errors={this.state.errors.password}
             />
-            <SignUpInput
-              placeholder='reenter password'
-              type='password'
-              name='verifyPassword'
-              value={this.state.user.verifyPassword}
-              onChange={this.handleChange.bind(this)}
-              errors={this.state.errors.verifyPassword}
+          <SignUpInput
+            placeholder='reenter password'
+            type='password'
+            name='verifyPassword'
+            value={this.state.user.verifyPassword}
+            onChange={this.handleChange.bind(this)}
+            errors={this.state.errors.verifyPassword}
             />
+
           <div className="row bottom-links">
             <div className="col-xs-6 left align-button">
-              <Link className="FontAmatic link-font" to="/">
+              <Link className="link-font" to="/">
                 Take Me Back!!
               </Link>
             </div>
@@ -127,8 +125,7 @@ render(){
           </div>
         </form>
       </div>
-
-      </div>
+    </div>
 
     );
   }

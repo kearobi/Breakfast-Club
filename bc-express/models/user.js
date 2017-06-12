@@ -23,6 +23,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    voted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
     encryptedPassword: {
       type: DataTypes.STRING,
       allowNull: false
@@ -51,7 +55,8 @@ module.exports = function(sequelize, DataTypes) {
           email: this.get('email'),
           neighborhood: this.get('neighborhood'),
           authToken: this.get('authToken'),
-          authTokenExpiration: this.get('authTokenExpiration')
+          authTokenExpiration: this.get('authTokenExpiration'),
+          voted: this.get('voted')
         }
       },
       encrypt(value){

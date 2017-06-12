@@ -9,11 +9,9 @@ class Header extends Component {
   render() {
     return (
       <div className="Header">
-        <div className="Header-header">
-        </div>
         <span className="border">
           <span className="border-bottom">
-            <h2><img className="cupcake" src="../Images/coffee.png"/>Breakfast Club<img className="cupcake" src="../Images/cupcake.png"/></h2>
+            <h2 className="splash">Breakfast Club</h2>
           </span>
           <hr className="header-line"></hr>
         </span>

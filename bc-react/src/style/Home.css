@@ -1,12 +1,25 @@
+body{
+  overflow: hidden;
+}
+
+.giphy-div {
+  width:100%;
+  height:0;
+  padding-bottom:73%;
+  position:relative;
+}
+
+.giphy-embed{
+  position: absolute;
+  width height: 100%
+}
 
 .home-page{
   text-align: center;
   margin-left: 220px;
 }
 
-/*.container-home{
-  background-color: blue;
-}*/
+
 .header-line{
   width: 700px;
 }
@@ -21,28 +34,12 @@
   padding: 50px;
   font-family: 'Amatic SC', sans-serif, cursive;
   font-size: 50px;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 50px;
   font-weight: bold;
   margin-left: 0px;
 }
-.hr-home{
-  width: 80%;
-}
-/*.col-xs-7{
-  background-color: red;
-}*/
-/*.col-xs-3{
-  background-color: blue;
-  height: 50px;
-}*/
-/*.col-xs-4{
-  background-color: green;
-  height: 50px;
-}*/
-/*.col-xs-8{
-  background-color: yellow;
-}*/
+
 .rbc-agenda-view table thead > tr > th {
     padding: 17px 5px;
     text-align: left;
@@ -54,4 +51,13 @@
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+h2 {
+    font-family: 'Amatic SC', sans-serif, cursive;
+    font-size: 130px;
+    color: fuchsia;
+    margin-top: -9px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 220px;
 }

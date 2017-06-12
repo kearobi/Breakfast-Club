@@ -38,7 +38,7 @@ class PlaceIndex extends Component {
       <div>
         <SideBar />
         <div>
-            <h2 className="place-header">Place List</h2>
+            <h2 id="place-h2" className="place-header">Place List</h2>
             <h2 className="place-list">{this.renderPlaces()}</h2>
         </div>
       </div>
