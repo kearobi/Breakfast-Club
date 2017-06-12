@@ -12,6 +12,21 @@
 
 /*goal for centering: create one single div set the width of the elements and the margin around them to auto*/
 
+/*if we want anything centered:*/
+/*body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+.wrapper {
+  font-size: 100%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+}
+
 .FontAmatic {
   font-family: 'Amatic SC';
   font-size: 40px;

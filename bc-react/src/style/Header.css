@@ -10,25 +10,11 @@ h2, calendar-div, home-page {
   font-weight: bold;
   }
 
-/*.Header-logo {
+.Header-logo {
   animation: Header-logo-spin infinite 20s linear;
   height: 80px;
-}*/
-
-.Header-header {
-
-  max-height: 1000px;
-  max-width: 150px;
-  min-height: 1000px;
-  min-width: 150px;
-  padding: 40px;
-  color: white;
-  margin-bottom: -1000px;
-}*/
-
-.Header-intro {
-  font-size: large;
 }
+
 
 @keyframes Header-logo-spin {
   from { transform: rotate(0deg); }

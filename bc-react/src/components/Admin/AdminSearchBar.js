@@ -110,7 +110,7 @@ eventHeader(){
     return (
       <div>
         <input
-          size='70'
+          size='75'
           type='search'
           placeholder='Search'
           value={this.state.searchTerm}
