@@ -36,7 +36,6 @@ class UserStore extends EventEmitter{
           email: localStorage.getItem('email'),
           neighborhood: localStorage.getItem('neighborhood'),
           voted: localStorage.getItem('voted')
-
         }
         this.emit('logged-in')
     }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import VoteButton from '../components/VoteButton';
-import RSVPButton from '../components/RSVPButton';
+import Img from 'react-image'
+import VoteButton from './VoteButton';
+import RSVPButton from './RSVPButton';
+import EventChoice from './EventChoice'
 
 class EventDetail extends Component {
   render() {
@@ -28,10 +30,14 @@ class EventDetail extends Component {
           <p>Date: {this.props.eventData.event.date}</p>
         </div>
         <div>
-          <p>Choice 1</p>
-          <h4>{this.props.eventData.places[0].name}</h4>
-          <p>Choice 2</p>
-          <h4>{this.props.eventData.places[1].name}</h4>
+          {(this.props.winner == 1 || this.props.winner == null) && <EventChoice
+            place={this.props.eventData.places[0]}
+            choice={1}
+            />}
+          {(this.props.winner == 2 || this.props.winner == null) && <EventChoice
+            place={this.props.eventData.places[1]}
+            choice={2}
+            />}
         {!this.props.voted && <VoteButton choice="1"/>}
         {!this.props.voted && <VoteButton choice="2"/>}
         {!this.props.rsvp && this.props.voted && <RSVPButton/>}

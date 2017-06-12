@@ -4,10 +4,11 @@ import MessageBoard from '../components/MessageBoard';
 import userStore from '../stores/UserStore';
 import SideBar from '../components/SideBar';
 import Reminder from '../components/Reminder';
-import {fetchMessages} from '../actions';
+import {fetchMessages, checkIfVotingOver} from '../actions';
 import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
 import {fetchCurrentEvent} from '../actions'
+import eventStore from '../stores/EventStore';
 import moment from 'moment';
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
@@ -19,15 +20,16 @@ class Home extends Component {
   fetchMessages();
   fetchCurrentEvent();
   this.state = {
-    user: userStore.getUser(),
+      user: userStore.getUser(),
+      event: eventStore.getCurrentEvent()
     }
   }
 
   componentWillMount(){
     userStore.on('logged-in',this.handleLogin.bind(this))
     userStore.on('logged-out', this.handleLogOut.bind(this))
+    eventStore.on('current event fetched',this.updateCurrentEvent.bind(this))
     checkLoginRedir(this.props)
-
   }
 
  //  componentWillUpdate(){
@@ -35,19 +37,23 @@ class Home extends Component {
  // }
 
   handleLogin(){
-  this.setState({
-    user: userStore.getUser()
-  })
+    this.setState({
+      user: userStore.getUser(),
+    })
 }
 
-handleLogOut(){
-this.setState({
-  user: userStore.getUser()
-})
-}
+  handleLogOut(){
+    this.setState({
+      user: userStore.getUser()
+    })
+  }
 
-
-
+  updateCurrentEvent(){
+    checkIfVotingOver(eventStore.getCurrentEvent())
+    this.setState({
+      event: eventStore.getCurrentEvent()
+    })
+  }
 
   events(){
     return [

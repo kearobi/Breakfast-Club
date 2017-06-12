@@ -65,6 +65,119 @@ app.post('/add-message', function(request, response){
   })
 })
 
+// returns the id of the winning restaurant for the current event
+app.get('/count-votes', function (request, response) {
+  let _event;
+  let _user;
+  let _users = [];
+  let _places = [];
+  let _guestLists;
+  let event_id;
+	let count_1 = 0;
+	let count_2 = 0;
+  let winner;
+	return Bevent.findOne({
+			limit: 1,
+			order: [['date', 'DESC']]
+	})
+	.then(function(event){
+		event_id = event.id;
+		return GuestList.findAll({
+			where:{
+				event_id: event_id
+			}
+	   })
+   })
+	.then(function(lists){
+		for (var i = 0; i < lists.length; i++){
+			if (lists[i].vote == '1'){
+				count_1++;
+			}
+			else if (lists[i].vote == '2'){
+				count_2++;
+			}
+		}
+		if (count_1 > count_2){
+      winner = 1
+		}
+    else {
+      winner = 2
+    }
+    return Bevent.update({
+        winner: winner
+      }, {where: {
+        id: event_id
+      }
+    })
+  })
+  // set Bevent.vote_status to false
+  .then(function(){
+    return Bevent.update({
+        vote_status: false
+      }, {where: {
+        id: event_id
+      }
+    })
+  })
+  .then(function(){
+    return Bevent.findOne({
+        limit: 1,
+        order: [['date', 'DESC']]
+    })
+  })
+  .then(function(event){
+    _event = event;
+    return event.getGuestLists();
+  })
+  // for each GuestList save the corresponding User in _users
+  .then(function(lists){
+    _guestLists = lists;
+    listPromises = [];
+    for (var i = 0; i < lists.length; i++){
+      listPromises.push(User.findOne({
+        where:{id: lists[i].user_id}
+      }))
+    }
+    return Promise.all(listPromises);
+  })
+  // find the first restaurant option
+  .then(function(users){
+    for (var i = 0; i < users.length; i++){
+      if (users[i] != null){
+        _users.push(users[i]);
+      }
+    }
+    return Place.findOne({
+      where:{id: _event.place_1_id}
+    })
+  })
+  // find the second restaurant option
+  .then (function(place){
+    _places.push(place);
+    return Place.findOne({
+      where:{id: _event.place_2_id}
+    })
+  })
+  .then(function(place){
+    _places.push(place);
+    if(_event){
+      response.status(200)
+      response.json({
+        event: _event,
+        guestLists: _guestLists,
+        places: _places,
+        users: _users
+      })
+    }else{
+      response.status(400)
+      console.log('else count votes failed')
+    }
+  })
+  .catch(function(){
+    console.log('catch count votes failed')
+  })
+});
+
 // creates GuestList object with vote info and updates User vote status
 app.post('/register-vote', function(request, response){
   let _event;
@@ -136,7 +249,6 @@ app.post('/register-vote', function(request, response){
   })
   .then(function(user){
     _user = user;
-    console.log("_user: ", _user);
     if(_event){
       response.status(200)
       response.json({

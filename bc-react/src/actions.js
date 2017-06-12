@@ -9,6 +9,33 @@ export function updateUser(){
   // TODO
 }
 
+export function checkIfVotingOver(event){
+  if (new Date(event.event.date) - Date.now() < 86400000) {
+    countVotes()
+  }
+}
+
+export function countVotes(){
+  const params = {
+    method: 'GET'
+  }
+  fetch("http://localhost:4000/count-votes", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'VOTES-COUNTED',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
+        })
+      })
+    }
+  })
+}
+
 export function rsvp(){
   let event = eventStore.getCurrentEvent();
   let user = userStore.getUser();
