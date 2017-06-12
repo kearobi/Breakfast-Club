@@ -98,7 +98,7 @@
 .side-bar-bottom{
   margin-top: 30px;
   margin-bottom: 60px;
-  padding-bottom: 50px;
+  padding-bottom: 500px;
 }
 .sidebar-nav li:nth-child(2):before {
     background-color: rgba(0, 0, 0, 0);

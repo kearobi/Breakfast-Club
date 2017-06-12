@@ -13,8 +13,9 @@ class Header extends Component {
         </div>
         <span className="border">
           <span className="border-bottom">
-            <h2>Breakfast Club</h2>
+            <h2><img className="cupcake" src="../Images/coffee.png"/>Breakfast Club<img className="cupcake" src="../Images/cupcake.png"/></h2>
           </span>
+          <hr className="header-line"></hr>
         </span>
       </div>
     );

@@ -14,7 +14,10 @@ h2, calendar-div, home-page, login-signup {
   animation: Header-logo-spin infinite 20s linear;
   height: 80px;
 }*/
-
+.cupcake{
+  width: 100px;
+  height: 100px;
+}
 .Header-header {
 
   max-height: 1000px;

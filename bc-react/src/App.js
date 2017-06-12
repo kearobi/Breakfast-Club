@@ -26,7 +26,7 @@ class App extends Component {
   constructor(props){
     super(props)
     checkLogin()
-    // updatePlaces()
+    updatePlaces()
     this.state = {}
 }
 
