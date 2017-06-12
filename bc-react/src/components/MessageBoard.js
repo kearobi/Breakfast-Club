@@ -65,22 +65,24 @@ class MessageBoard extends Component {
             {mapped}
           </div>
         </div>
-        <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-          <div className='formGroup'>
-            <input className='col-xs-8 formGroup submit-field'
-              type='text'
-              name='message'
-              value={this.state.currentMessage}
-              onChange={this.handleChange.bind(this)}>
-            </input>
-          </div>
-          <div className='formGroup'>
-            <input className="col-xs-4 btn btn-primary submit-field"
-              type='submit'
-              value='Send'>
-            </input>
-          </div>
-        </form>
+        <div>
+          <form className='form' onSubmit={this.handleSubmit.bind(this)}>
+            <div className='formGroup'>
+              <input className='formGroup submit-field'
+                type='text'
+                name='message'
+                value={this.state.currentMessage}
+                onChange={this.handleChange.bind(this)}>
+              </input>
+            </div>
+            <div className='formGroup'>
+              <input className="btn btn-primary submit-field-button"
+                type='submit'
+                value='Send'>
+              </input>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

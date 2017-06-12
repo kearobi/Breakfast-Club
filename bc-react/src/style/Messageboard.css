@@ -1,5 +1,5 @@
 #messageBoard {
-  font-family: 'Amatic SC', cursive;
+  font-family: 'Amatic SC', sans-serif, cursive;
   font-size: 25px;
   padding: 30px;
   background-color: #eeeeee;
@@ -11,13 +11,16 @@
 }
 .message-box{
   background-color: white;
-  height: 250px;
+  height: 300px;
   overflow: auto;
   border: 2px solid rgba(0, 0, 0, .5);
+  margin-bottom: 20px
 
 }
 .title{
   font-size: 50px;
+  margin-bottom: -10px;
+  margin-top: -5px;
 }
 .sender{
   font-size: 20px;
@@ -32,5 +35,11 @@
   font-size: 20px;
 }
 .submit-field{
-  margin-top: 20px;
+  width: 200px;
+  margin-left: -300px;
+}
+.submit-field-button{
+  width: 50px;
+  margin-top: -65px;
+  margin-left: -80px;
 }
