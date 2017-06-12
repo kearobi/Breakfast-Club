@@ -20,8 +20,6 @@ class Home extends Component {
   this.state = {
     user: userStore.getUser(),
     }
-    fetchMessages();
-    fetchCurrentEvent()
   }
 
   componentWillMount(){

@@ -156,6 +156,8 @@ export function loginUser(attributes){
   fetch("http://localhost:4000/login", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
+        fetchMessages();
+        fetchCurrentEvent()
         dispatcher.dispatch({
           type:'LOGIN',
           user: body.user,
