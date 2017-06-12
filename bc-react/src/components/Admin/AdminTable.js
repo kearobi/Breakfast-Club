@@ -28,6 +28,7 @@ class AdminTable extends Component {
       <img id="delete_icon"
           src="https://www.iconfinder.com/data/icons/google-material-design-icons/48/ic_delete_48px-128.png"
           alt="delete"
+          title="delete"
           onClick={this.handleDelete.bind(this)} />
     )
   }
@@ -37,6 +38,7 @@ class AdminTable extends Component {
       <img id="edit_icon"
           src="http://megaicons.net/static/img/icons_sizes/8/178/512/editing-edit-icon.png"
           alt="edit"
+          title="edit"
           // onClick={this.handleClick.bind(this)}
         />
     )
@@ -46,11 +48,11 @@ class AdminTable extends Component {
     if(this.props.userTable){
       return (
         <tr>
-            <td contentEditable={false}>{this.props.user.firstName}</td>
-            <td contentEditable={false}>{this.props.user.lastName}</td>
-            <td contentEditable={false}>{this.props.user.email}</td>
-            <td contentEditable={false}>{this.props.user.neighborhood}</td>
-            <td contentEditable={false}>{this.props.user.encryptedPassword}</td>
+            <td className="admin-td" contentEditable={false}>{this.props.user.firstName}</td>
+            <td className="admin-td" contentEditable={false}>{this.props.user.lastName}</td>
+            <td className="admin-td" contentEditable={false}>{this.props.user.email}</td>
+            <td className="admin-td" contentEditable={false}>{this.props.user.neighborhood}</td>
+            <td className="admin-td" contentEditable={false}>{this.props.user.encryptedPassword}</td>
             <td className="icon_td">{this.deleteIcon()}</td>
             <td className="icon_td">{this.editIcon()}</td>
         </tr>
@@ -58,23 +60,23 @@ class AdminTable extends Component {
     } else if(this.props.placeTable){
       return (
         <tr>
-          <td contentEditable={false}>{this.props.place.name}</td>
-          <td contentEditable={false}>{this.props.place.yelp_rating}</td>
-          <td contentEditable={false}>{this.props.place.categories}</td>
-          <td contentEditable={false}>{this.props.place.price}</td>
-          <td contentEditable={false}>{this.props.place.address_street}</td>
-          <td contentEditable={false}>{this.props.place.phone}</td>
+          <td className="admin-td" contentEditable={false}>{this.props.place.name}</td>
+          <td className="admin-td" contentEditable={false}>{this.props.place.yelp_rating}</td>
+          <td className="admin-td" contentEditable={false}>{this.props.place.categories}</td>
+          <td className="admin-td" contentEditable={false}>{this.props.place.price}</td>
+          <td className="admin-td" contentEditable={false}>{this.props.place.address_street}</td>
+          <td className="admin-td" contentEditable={false}>{this.props.place.phone}</td>
           <td className="icon_td">{this.deleteIcon()}</td>
           <td className="icon_td">{this.editIcon()}</td>
         </tr>
       )}
       else if(this.props.eventTable){
       <tr>
-        <td contentEditable={false}>{this.props.event.date}</td>
-        <td contentEditable={false}>{this.props.event.place}</td>
-        <td contentEditable={false}>neighborhood</td>
-        <td contentEditable={false}>guest speaker</td>
-        <td contentEditable={false}>rsvp</td>
+        <td className="admin-td" contentEditable={false}>{this.props.event.date}</td>
+        <td className="admin-td" contentEditable={false}>{this.props.event.place}</td>
+        <td className="admin-td" contentEditable={false}>neighborhood</td>
+        <td className="admin-td" contentEditable={false}>guest speaker</td>
+        <td className="admin-td" contentEditable={false}>rsvp</td>
       </tr>
       }
   }

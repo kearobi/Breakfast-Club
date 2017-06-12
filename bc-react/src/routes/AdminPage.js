@@ -18,9 +18,9 @@ class AdminPage extends Component {
       users: adminStore.adminReturnUsers(),
       places: adminStore.adminReturnPlaces(),
       events: adminStore.adminReturnEvents(),
-      displayUsers: false,
-      displayPlaces: false,
-      displayEvents: false
+      userButton: "admin_button",
+      placeButton: "admin_button",
+      eventButton: "admin_button"
     }
   }
   //the admin store deletes a user, it yells 'ive changed!' to everyone who's listening, and when it does that it calls updateUsers. (we told componentwillmount to issue this whenever there's a change)
@@ -33,35 +33,33 @@ class AdminPage extends Component {
   }
 
   componentWillMount(){
-    adminStore.on('change', this.adminUpdate.bind(this))
-  }
+    adminStore.on('change', this.adminUpdate.bind(this))}
 
-  showUserList(){ value: this.state.value }
-  showPlaceList(){ value: this.state.value }
-  showEventList(){ value: this.state.value }
-
-  displayUsers(){
-    this.setState({displayUsers: true})
-    this.setState({displayEvents: false})
-    this.setState({displayPlaces: false})
-  }
-  displayEvents(){
-    this.setState({displayUsers: false})
-    this.setState({displayEvents: true})
-    this.setState({displayPlaces: false})
-  }
-  displayPlaces(){
-    this.setState({displayUsers: false})
-    this.setState({displayEvents: false})
-    this.setState({displayPlaces: true})
-  }
+  handleUserClick(){
+    this.setState({
+      userButton: "admin_button_clicked",
+      eventButton: "admin_button",
+      placeButton: "admin_button"
+    })}
+  handleEventClick(){
+    this.setState({
+      eventButton: "admin_button_clicked",
+      userButton: "admin_button",
+      placeButton: "admin_button"
+    })}
+  handlePlaceClick(){
+    this.setState({
+      placeButton: "admin_button_clicked",
+      userButton: "admin_button",
+      eventButton: "admin_button"
+    })}
 
   pageAdmin(){
-    if(this.state.displayUsers){
+    if(this.state.userButton === "admin_button_clicked"){
       return (<AdminUsers />)
-    }else if (this.state.displayPlaces){
+    }else if (this.state.placeButton === "admin_button_clicked"){
       return (<AdminPlaces />)
-    }else if (this.state.displayEvents){
+    }else if (this.state.eventButton === "admin_button_clicked"){
       return (<AdminEvents />)}}
 
 
@@ -72,19 +70,19 @@ class AdminPage extends Component {
         <br></br>
         <div id="admin_button_wrapper">
           <button
-            className="admin_button"
+            className={this.state.placeButton}
             type="button"
-            onClick={this.displayPlaces.bind(this)}>
+            onClick={this.handlePlaceClick.bind(this)}>
           manage places</button>
           <button
-            className="admin_button"
+            className={this.state.userButton}
             type="button"
-            onClick={this.displayUsers.bind(this)}>
+            onClick={this.handleUserClick.bind(this)}>
           manage users</button>
           <button
-            className="admin_button"
+            className={this.state.eventButton}
             type="button"
-            onClick={this.displayEvents.bind(this)}>
+            onClick={this.handleEventClick.bind(this)}>
             manage events</button>
         </div>
         <br></br><br></br><br></br>

@@ -51,3 +51,7 @@ h3 {
 .black {
   color: black;
 }
+
+button:hover {
+  background-color: #def9a3;
+}

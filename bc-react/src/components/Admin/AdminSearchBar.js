@@ -16,11 +16,11 @@ updateSearch(event){
 userHeader(){
   return (
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email Address</th>
-        <th>Neighborhood</th>
-        <th>Password</th>
+        <th className="admin-th">First Name</th>
+        <th className="admin-th">Last Name</th>
+        <th className="admin-th">Email Address</th>
+        <th className="admin-th">Neighborhood</th>
+        <th className="admin-th">Password</th>
         <th className="invisible">..........</th>
       </tr>
   )
@@ -29,12 +29,12 @@ userHeader(){
 placeHeader(){
   return(
       <tr>
-        <th>Name</th>
-        <th>Yelp Rating</th>
-        <th>Category</th>
-        <th>Price</th>
-        <th>Steet Address</th>
-        <th>Phone</th>
+        <th className="admin-th">Name</th>
+        <th className="admin-th">Yelp Rating</th>
+        <th className="admin-th">Category</th>
+        <th className="admin-th">Price</th>
+        <th className="admin-th">Steet Address</th>
+        <th className="admin-th">Phone</th>
         <th className="invisible">..........</th>
       </tr>
   )
@@ -43,11 +43,11 @@ placeHeader(){
 eventHeader(){
   return(
       <tr>
-        <th>Date</th>
-        <th>Place</th>
-        <th>Neighborhood</th>
-        <th>Guest Speaker</th>
-        <th>RSVP</th>
+        <th className="admin-th">Date</th>
+        <th className="admin-th">Place</th>
+        <th className="admin-th">Neighborhood</th>
+        <th className="admin-th">Guest Speaker</th>
+        <th className="admin-th">RSVP</th>
         <th className="invisible">..........</th>
       </tr>
   )
@@ -117,7 +117,7 @@ eventHeader(){
           onChange={this.updateSearch.bind(this)}
         />
         <br></br><br></br>
-        <table>
+        <table className="admin-table">
           <tbody>
             {header}
             {mappedFilter}
