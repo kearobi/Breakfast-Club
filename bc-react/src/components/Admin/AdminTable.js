@@ -9,6 +9,7 @@ import {adminDeleteEvent} from '../../actions';
 class AdminTable extends Component {
   constructor(props){
     super(props)
+    //add state to the table so it's aware and it can do handleChange
   }
 
   handleDelete(){
@@ -45,11 +46,11 @@ class AdminTable extends Component {
     if(this.props.userTable){
       return (
         <tr>
-            <td>{this.props.user.firstName}</td>
-            <td>{this.props.user.lastName}</td>
-            <td>{this.props.user.email}</td>
-            <td>{this.props.user.neighborhood}</td>
-            <td>{this.props.user.encryptedPassword}</td>
+            <td contentEditable={false}>{this.props.user.firstName}</td>
+            <td contentEditable={false}>{this.props.user.lastName}</td>
+            <td contentEditable={false}>{this.props.user.email}</td>
+            <td contentEditable={false}>{this.props.user.neighborhood}</td>
+            <td contentEditable={false}>{this.props.user.encryptedPassword}</td>
             <td className="icon_td">{this.deleteIcon()}</td>
             <td className="icon_td">{this.editIcon()}</td>
         </tr>
@@ -57,23 +58,23 @@ class AdminTable extends Component {
     } else if(this.props.placeTable){
       return (
         <tr>
-          <td>{this.props.place.name}</td>
-          <td>{this.props.place.yelp_rating}</td>
-          <td>{this.props.place.categories}</td>
-          <td>{this.props.place.price}</td>
-          <td>{this.props.place.address_street}</td>
-          <td>{this.props.place.phone}</td>
+          <td contentEditable={false}>{this.props.place.name}</td>
+          <td contentEditable={false}>{this.props.place.yelp_rating}</td>
+          <td contentEditable={false}>{this.props.place.categories}</td>
+          <td contentEditable={false}>{this.props.place.price}</td>
+          <td contentEditable={false}>{this.props.place.address_street}</td>
+          <td contentEditable={false}>{this.props.place.phone}</td>
           <td className="icon_td">{this.deleteIcon()}</td>
           <td className="icon_td">{this.editIcon()}</td>
         </tr>
       )}
       else if(this.props.eventTable){
       <tr>
-        <td>{this.props.event.date}</td>
-        <td>{this.props.event.place}</td>
-        <td>neighborhood</td>
-        <td>guest speaker</td>
-        <td>rsvp</td>
+        <td contentEditable={false}>{this.props.event.date}</td>
+        <td contentEditable={false}>{this.props.event.place}</td>
+        <td contentEditable={false}>neighborhood</td>
+        <td contentEditable={false}>guest speaker</td>
+        <td contentEditable={false}>rsvp</td>
       </tr>
       }
   }

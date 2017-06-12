@@ -37,61 +37,51 @@ class UserProfile extends Component {
         <div>
           <SideBar />
           <div className='profile-container'>
-            Welcome, {/* {this.user.firstName} */}!
+            Welcome, {this.user.firstName}!
           <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-            First Name:
-              {/* {this.user.firstName} */}
+            First Name: {this.user.firstName}
             <div className='formGroup'>
               <input
-                // placeholder={this.user.email}
+                placeholder={this.user.email}
                 type='text'
                 name='firstName'
                 id='firstName'
-                // value={this.state.editedUser.firstName}
+                value={this.state.editedUser.firstName}
                 onChange={this.handleChange.bind(this)}>
               </input>
             </div>
-            Last Name:
-            {/* {this.user.lastName} */}
+            Last Name: {this.user.lastName}
             <div className='formGroup'>
               <input
-                // placeholder={this.user.lastName}
+                placeholder={this.user.lastName}
                 type='text'
                 name='lastName'
                 id='lastName'
-                // value={this.state.editedUser.lastName}
+                value={this.state.editedUser.lastName}
                 onChange={this.handleChange.bind(this)}>
               </input>
             </div>
-            Email:
-              {/* {this.user.email} */}
+            Email: {this.user.email}
             <div className='formGroup'>
               <input
-                // placeholder={this.user.email}
+                placeholder={this.user.email}
                 type='email'
                 name='email'
                 id='email'
-                // value={this.state.editedUser.email}
+                value={this.state.editedUser.email}
                 onChange={this.handleChange.bind(this)}>
               </input>
             </div>
-            Neighborhood:
-              {/* {this.user.neighborhood} */}
+            Neighborhood: {this.user.neighborhood}
             <div className='formGroup'>
               <input
-                // placeholder={this.user.neighborhood}
+                placeholder={this.user.neighborhood}
                 type='text'
                 name='neighborhood'
                 id='neighborhood'
-                // value={this.state.editedUser.neighborhood}
+                value={this.state.editedUser.neighborhood}
                 onChange={this.handleChange.bind(this)}>
               </input>
-            </div>
-            <div className='formGroup'>
-              <input
-                type='submit'
-                value='Save'
-              />
             </div>
           </form>
         </div>

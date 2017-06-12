@@ -224,6 +224,7 @@ app.get('/admin/get/users', function(request, response){
     response.status(200)
     response.json({status: 'success', users: users})
   })})
+//events error: it doesn't reach this point
 app.get('/admin/get/events', function(request, response){
   Bevent.findAll().then(function(events){
     response.status(200)
@@ -291,6 +292,21 @@ app.delete('/admin/delete/event', function(request, response){
     response.status(400)
     response.json({status: 'error', error: error})
   })})
+
+//ask rob for help
+app.put('/admin/edit/user', function(request, response){
+  return User
+    .findById(request.params.user.id)
+    .then(user => {
+      return user
+        .update({
+          body: request.body
+        })
+        .then(() => response.status(200).send(user))
+        .catch((error) => response.status(400).send(error))
+    })
+    .catch((error) => response.status(400).send(error))
+})
 
 app.listen(4000, function () {
  console.log('listening on port 4000!');
