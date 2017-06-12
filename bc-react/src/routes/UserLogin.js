@@ -55,23 +55,13 @@ class UserLogin extends Component {
 
 render(){
   return (
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-4">
-            </div>
-            <div className="col-sm-4 FontAmatic">
+        <div className="login-signup-container">
+            <div className="FontAmatic">
               Log In
             </div>
-            <div className="col-sm-4">
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-3">
-            </div>
-            <div className="col-sm-6">
-              <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-                <div className='formGroup'>
-                  <input
+            <form className='form' onSubmit={this.handleSubmit.bind(this)}>
+              <div className='formGroup'>
+                <input
                     placeholder='email address'
                     type='email'
                     name='email'
@@ -90,33 +80,26 @@ render(){
                     onChange={this.handleChange.bind(this)}>
                   </input>
                 </div>
-                <div className='formGroup align-button'>
-                  <input className='let-me-in' type='submit' value='Let Me In!!'></input>
-                </div>
               </form>
-            </div>
-            <div className="col-sm-3">
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-4">
-            </div>
-            <div className="col-sm-4 center">
-              <Link to="/">
-              <div className="align-button">
+              <div className='login-signup-container'>
+                <div className='let-me-in'>
                 <input
-                  className='take-me-back'
+                        type='submit'
+                        value='Let Me In!!' />
+                </div>
+              <div className='take-me-back'>
+                <Link to="/">
+                <input
+                  className='black'
                   type='button'
                   value='Take Me Back!!'>
                 </input>
+                </Link>
+              </div></div><br></br>
+              <div className='alert alert-warning'>
+                <strong>{this.state.message}</strong>
               </div>
-              </Link>
-              <div className="alert alert-warning"><strong>{this.state.message}</strong></div>
             </div>
-            <div className="col-sm-4">
-            </div>
-          </div>
-        </div>
     );
   }
 }

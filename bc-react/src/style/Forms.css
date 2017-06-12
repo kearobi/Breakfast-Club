@@ -1,24 +1,8 @@
-button:hover {
-  background-color: #def9a3;
-}
-
 .align-button {
   text-align: center;
   font-family: 'Amatic SC';
   font-size: 35px;
   color: black;
-}
-
-.let-me-in {
-  float: right;
-  display: inline-block;
-  margin-right: 35%;
-}
-
-.take-me-back {
-  float: left;
-  display: inline-block;
-  margin-left: 35%;
 }
 
 form {

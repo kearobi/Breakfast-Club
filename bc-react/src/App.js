@@ -13,7 +13,7 @@ import PlaceIndex from './components/PlaceIndex'
 import CurrentEvent from './routes/CurrentEvent'
 
 // import placeStore from './stores/PlaceStore'
-// import './style/app.css';
+// import './style/App.css';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import userStore from './stores/UserStore';
 
