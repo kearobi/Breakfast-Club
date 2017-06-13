@@ -56,8 +56,16 @@
     border: none;
 }
 
-.clicked {
-  background-color: #def9a3;
+.highlight {
+  font-style: italic;
+  color: fuchsia;
+  text-shadow: 0.1px 0.1px black;
+}
+
+.no-highlight {
+  font-style: normal;
+  color: black;
+  text-shadow: none;
 }
 
 .admin-th, .admin-td {
@@ -71,8 +79,9 @@
   font-size: 20px;
   padding-left: 5px;
   padding-right: 5px;
+  white-space: nowrap;
+  overflow: hidden;
 }
-
 
 .table_icons {
   background-color: white;
@@ -88,10 +97,14 @@
 }
 
 #delete_icon {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   margin-top: -25px;
   margin-left: -10px;
+}
+
+#edit_icon:hover, #delete_icon:hover {
+  cursor: pointer;
 }
 
 .admin-table {
@@ -105,9 +118,9 @@
   border-color: dimgray;
   text-align: center;
   display: inline-block;
-  width: 760px;
+  width: auto;
 }
-
+``
 #invisible {
   background-color: white;
   color: white;

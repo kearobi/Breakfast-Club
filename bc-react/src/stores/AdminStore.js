@@ -87,7 +87,7 @@ class AdminStore extends EventEmitter{
         break
       }
       case("ADMIN_LOAD_EVENTS"):{
-        debugger
+        // debugger
         //right after this spot, the error occurs
         this.adminLoadEvents(action.events)
         break

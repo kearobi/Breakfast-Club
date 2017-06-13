@@ -25,7 +25,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     voted: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      defaultValue: false
     },
     encryptedPassword: {
       type: DataTypes.STRING,

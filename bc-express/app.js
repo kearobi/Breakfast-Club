@@ -421,12 +421,14 @@ app.get('/admin/get/events', function(request, response){
 
 app.post('/admin/add/user', function(request, response){
   let userParams = request.body.user
+  console.log("userParams: ", userParams)
   User.create(userParams).then(function(user){
     response.status(200)
     response.json({status: 'success', user: user})
   }).catch(function(error){
     response.status(400)
     response.json({status: 'error', error: error})
+    console.log("error: ", error)
   })})
 app.post('/admin/add/place', function(request, response){
   let placeParams = request.body.place
