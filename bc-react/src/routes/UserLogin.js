@@ -24,7 +24,7 @@ class UserLogin extends Component {
   }
 
   redirectToHome(){
-    this.props.history.push("/home");
+    this.props.history.push("/home-initial");
   }
 
   loginFailed(){

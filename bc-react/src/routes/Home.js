@@ -23,9 +23,11 @@ class Home extends Component {
       user: userStore.getUser(),
       event: eventStore.getCurrentEvent()
     }
-    fetchCurrentEvent();
-    fetchMessages();
-    fetchEvents();
+    console.log("this.props.initial:", this.props.initial)
+    if (this.props.initial){
+      fetchMessages()
+      fetchCurrentEvent()
+    }
   }
 
   componentWillMount(){
@@ -42,18 +44,21 @@ class Home extends Component {
  // }
 
   handleLogin(){
+    console.log("handleLogin called")
     this.setState({
       user: userStore.getUser(),
     })
   }
 
   handleLogOut(){
+    console.log("handleLogOut called")
     this.setState({
       user: userStore.getUser() // TODO wha?
     })
   }
 
   updateCurrentEvent(){
+    console.log("updateCurrentEvent")
     checkIfVotingOver(eventStore.getCurrentEvent())
     checkEventOver(eventStore.getCurrentEvent())
     this.setState({
@@ -62,6 +67,7 @@ class Home extends Component {
   }
 
   events(){
+    console.log("events")
     let bevents = eventStore.getAllEvents()
     let newEvents = bevents.map(function(bevent){
       let start = moment(bevent.date).toDate()
@@ -92,9 +98,9 @@ class Home extends Component {
 
             <div className="row">
               <div className="calendar-div col-xs-8">
-                <BigCalendar
+                {/* <BigCalendar
                   events={this.state.events}
-                  />
+                  /> */}
               </div>
               <div className="col-xs-4">
                 <MessageBoard />

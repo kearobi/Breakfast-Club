@@ -29,7 +29,13 @@ class App extends Component {
     checkLogin()
     updatePlaces()
     this.state = {}
-}
+  }
+
+  handleHome(){
+    return (
+      <Home initial="true"/>
+    )
+  }
 
   render() {
     return (
@@ -42,6 +48,7 @@ class App extends Component {
             <Route exact path='/login' component={UserLogin} />
             <Route exact path='/places' component={PlaceIndex} />
             <Route exact path='/admin' component={AdminPage} />
+            <Route exact path='/home-initial' render={this.handleHome} />
             <Route exact path='/home' component={Home} />
             <Route exact path='/profile' component={UserProfile} />
             <Route exact path='/test-event' component={TestEvent} />
