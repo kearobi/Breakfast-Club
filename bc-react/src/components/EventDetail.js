@@ -25,8 +25,6 @@ class EventDetail extends Component {
       <div>
         <div>
           <h1>Next breakfast club</h1>
-          <p>Voted: {this.props.voted}</p>
-          <p>RSVP: {this.props.rsvp}</p>
           <p>Date: {this.props.eventData.event.date}</p>
         </div>
         <div>
