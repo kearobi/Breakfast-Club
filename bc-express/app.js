@@ -357,6 +357,14 @@ app.post('/rsvp', function(request, response){
   })
 })
 
+app.get('/events', function(request, response){
+  Bevent.findAll().then(function(events){
+    response.status(200)
+    response.json({status: 'success', events: events})
+  })
+})
+
+
 app.get('/places', function(request, response){
   Place.findAll().then(function(places){
     response.status(200)

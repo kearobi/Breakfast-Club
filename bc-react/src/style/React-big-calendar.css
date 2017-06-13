@@ -25,6 +25,8 @@ button.rbc-input::-moz-focus-inner {
       flex-direction: column;
   -ms-flex-align: stretch;
       align-items: stretch;
+  font-size: 20px;
+  font-family: sans-serif;
 }
 .rbc-calendar *,
 .rbc-calendar *:before,

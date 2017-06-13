@@ -2,9 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Abel');
 @import url('./Messageboard.css');
 @import url('./AdminPage.css');
-@import url('./Header.css');
+/*@import url('./Header.css');*/
 @import url('./React-big-calendar.css');
-@import url('./Home.css');
 @import url('./Forms.css');
 @import url('./Places.css');
 @import url('./Modal.css');
@@ -28,7 +27,7 @@
 }
 
 .FontAmatic {
-  font-family: 'Amatic SC';
+  font-family: 'Amatic SC', sans-serif;
   font-size: 40px;
   text-align: center;
   color: black;
@@ -40,7 +39,7 @@
 }
 
 h3 {
-  font-family: 'Dancing Script';
+  font-family: 'Dancing Script',sans-serif;
   text-align: center;
   font-size: 52px;
   font-style: italic;
