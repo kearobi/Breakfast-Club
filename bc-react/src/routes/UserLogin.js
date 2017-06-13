@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Header from '../components/Header';
-import {loginUser, checkLoginRedir} from '../actions';
+import {loginUser, checkLoginRedir, testCreate} from '../actions';
 import userStore from '../stores/UserStore';
 import ('../style/UserLogin.css');
 
@@ -50,6 +50,7 @@ class UserLogin extends Component {
       })
     }
     else {
+      console.log("login")
       loginUser(this.state.user)
     }
   }

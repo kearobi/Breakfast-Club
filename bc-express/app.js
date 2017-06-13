@@ -13,6 +13,14 @@ const corsOptions = {
   origin: 'http://localhost:3000'
 }
 
+function getNextBreakfast(dayOfWeek) {
+    var now = new Date();
+    var resultDate = new Date();
+    resultDate.setDate(now.getDate() + (7 + dayOfWeek - now.getDay()) % 7);
+    resultDate.setHours(8, 0, 0, 0)
+    return new Date(resultDate);
+}
+
 app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.json())
@@ -64,6 +72,119 @@ app.post('/add-message', function(request, response){
     response.json({status: 'error', error: error})
   })
 })
+
+// returns the id of the winning restaurant for the current event
+app.get('/count-votes', function (request, response) {
+  let _event;
+  let _user;
+  let _users = [];
+  let _places = [];
+  let _guestLists;
+  let event_id;
+	let count_1 = 0;
+	let count_2 = 0;
+  let winner;
+	return Bevent.findOne({
+			limit: 1,
+			order: [['date', 'DESC']]
+	})
+	.then(function(event){
+		event_id = event.id;
+		return GuestList.findAll({
+			where:{
+				event_id: event_id
+			}
+	   })
+   })
+	.then(function(lists){
+		for (var i = 0; i < lists.length; i++){
+			if (lists[i].vote == '1'){
+				count_1++;
+			}
+			else if (lists[i].vote == '2'){
+				count_2++;
+			}
+		}
+		if (count_1 > count_2){
+      winner = 1
+		}
+    else {
+      winner = 2
+    }
+    return Bevent.update({
+        winner: winner
+      }, {where: {
+        id: event_id
+      }
+    })
+  })
+  // set Bevent.vote_status to false
+  .then(function(){
+    return Bevent.update({
+        vote_status: false
+      }, {where: {
+        id: event_id
+      }
+    })
+  })
+  .then(function(){
+    return Bevent.findOne({
+        limit: 1,
+        order: [['date', 'DESC']]
+    })
+  })
+  .then(function(event){
+    _event = event;
+    return event.getGuestLists();
+  })
+  // for each GuestList save the corresponding User in _users
+  .then(function(lists){
+    _guestLists = lists;
+    listPromises = [];
+    for (var i = 0; i < lists.length; i++){
+      listPromises.push(User.findOne({
+        where:{id: lists[i].user_id}
+      }))
+    }
+    return Promise.all(listPromises);
+  })
+  // find the first restaurant option
+  .then(function(users){
+    for (var i = 0; i < users.length; i++){
+      if (users[i] != null){
+        _users.push(users[i]);
+      }
+    }
+    return Place.findOne({
+      where:{id: _event.place_1_id}
+    })
+  })
+  // find the second restaurant option
+  .then (function(place){
+    _places.push(place);
+    return Place.findOne({
+      where:{id: _event.place_2_id}
+    })
+  })
+  .then(function(place){
+    _places.push(place);
+    if(_event){
+      response.status(200)
+      response.json({
+        event: _event,
+        guestLists: _guestLists,
+        places: _places,
+        users: _users
+      })
+    }else{
+      response.status(400)
+      console.log('else count votes failed')
+    }
+  })
+  .catch(function(){
+    console.log('catch count votes failed')
+  })
+});
 
 // creates GuestList object with vote info and updates User vote status
 app.post('/register-vote', function(request, response){
@@ -136,7 +257,6 @@ app.post('/register-vote', function(request, response){
   })
   .then(function(user){
     _user = user;
-    console.log("_user: ", _user);
     if(_event){
       response.status(200)
       response.json({
@@ -273,6 +393,78 @@ app.post('/signup', function(request, response){
     console.log("here", error)
     response.status(400)
     response.json({status: 'error', error: error})
+  })
+})
+
+// app.get('/create-event-test', function(request, response){
+//   Bevent.create({
+//       place_1_id: 1,
+//       place_2_id: 2,
+//       vote_status: true,
+//       date: '2017-06-12T22:53:09.840Z',
+//       winner: null,
+//       createdAt: Date.now(),
+//       updatedAt: Date.now()
+//   })
+//   .then(function(){
+//     response.status(200)
+//   })
+//   .catch(function(){
+//     response.status(400)
+//     console.log('error creating event')
+//   })
+// })
+
+app.get('/create-event', function(request,    response){
+  let _places;
+  let _place_id_1;
+  let _place_id_2;
+  return Place.findAll().then(function(places){
+    _places = places;
+    let num = _places.length;
+    let index1 = Math.floor(Math.random() * num)
+    let index2 = index1
+    while (index2 == index1){
+      index2 = Math.floor(Math.random() * num)
+    }
+    _place_id_1 = _places[index1].id;
+    _place_id_2 = _places[index2].id;
+  })
+  Bevent.create({
+      place_1_id: _place_id_1,
+      place_2_id: _place_id_2,
+      vote_status: true,
+      date: '2017-06-12T22:53:09.840Z',
+      winner: null,
+      "createdAt": Date.now(),
+      "updatedAt": Date.now()
+  })
+  .then(function(event){
+    _event = event;
+    return Place.findOne({
+      where:{id: _event.place_1_id}
+    })
+  })
+  .then (function(place){
+    _places.push(place);
+    return Place.findOne({
+      where:{id: _event.place_2_id}
+    })
+  })
+  .then(function(place){
+    console.log("CREATE EVENT HERE 2!!!!!!!!!!!!!!!!!!!!!!!!!")
+    _places.push(place);
+    response.status(200)
+    response.json({
+      event: _event,
+      guestLists: [],
+      places: _places,
+      users: []
+    })
+  })
+  .catch(function(){
+    response.status(400)
+    console.log('error creating event')
   })
 })
 

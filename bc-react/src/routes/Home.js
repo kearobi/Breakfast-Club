@@ -5,10 +5,10 @@ import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
 import SideBar from '../components/SideBar';
 import Reminder from '../components/Reminder';
-import {fetchMessages, fetchEvents} from '../actions';
+import {fetchMessages, fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions';
 import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
-import {fetchCurrentEvent} from '../actions'
+import eventStore from '../stores/EventStore';
 import moment from 'moment';
 import placeStore from '../stores/PlaceStore'
 import ('../style/Home.css');
@@ -22,7 +22,7 @@ class Home extends Component {
     super(props)
     this.state = {
       user: userStore.getUser(),
-      events: []
+      event: eventStore.getCurrentEvent()
     }
     fetchCurrentEvent();
     fetchMessages();
@@ -32,6 +32,8 @@ class Home extends Component {
   componentWillMount(){
     userStore.on('logged-in',this.handleLogin.bind(this))
     userStore.on('logged-out', this.handleLogOut.bind(this))
+    eventStore.on('current event fetched',this.updateCurrentEvent.bind(this))
+    eventStore.on('event created',this.updateCurrentEvent.bind(this))
     eventStore.on('events fetched', this.events.bind(this))
     checkLoginRedir(this.props)
   }
@@ -42,13 +44,21 @@ class Home extends Component {
 
   handleLogin(){
     this.setState({
-      user: userStore.getUser()
+      user: userStore.getUser(),
     })
   }
 
   handleLogOut(){
     this.setState({
-      user: userStore.getUser()
+      user: userStore.getUser() // TODO wha?
+    })
+  }
+
+  updateCurrentEvent(){
+    checkIfVotingOver(eventStore.getCurrentEvent())
+    checkEventOver(eventStore.getCurrentEvent())
+    this.setState({
+      event: eventStore.getCurrentEvent()
     })
   }
 

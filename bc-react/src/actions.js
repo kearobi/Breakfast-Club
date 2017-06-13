@@ -9,6 +9,73 @@ export function updateUser(){
   // TODO
 }
 
+export function testCreate(){
+  const params = {
+    method: 'GET'
+  }
+  fetch("http://localhost:4000/create-event-test", params).then(function(response){
+    if(response.status === 200){
+      console.log("success")
+    }
+  })
+}
+
+export function checkIfVotingOver(event){
+  if (new Date(event.event.date) - Date.now() < 86400000) {
+    countVotes()
+  }
+}
+
+export function checkEventOver(event){
+  let previous = new Date(event.event.date)
+  let newEvent = Date.now()
+  if (previous < newEvent) {
+    createNewEvent()
+  }
+}
+
+export function createNewEvent(){
+  const params = {
+    method: 'GET'
+  }
+  fetch("http://localhost:4000/create-event", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'EVENT-CREATED',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
+        })
+      })
+    }
+  })
+}
+
+export function countVotes(){
+  const params = {
+    method: 'GET'
+  }
+  fetch("http://localhost:4000/count-votes", params).then(function(response){
+    if(response.status === 200){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'VOTES-COUNTED',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
+        })
+      })
+    }
+  })
+}
+
 export function rsvp(){
   let event = eventStore.getCurrentEvent();
   let user = userStore.getUser();
