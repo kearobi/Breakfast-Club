@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import eventStore from '../stores/EventStore';
 import userStore from '../stores/UserStore';
+import {localEvents} from '../actions.js';
 
 class Reminder extends Component {
   constructor(props){

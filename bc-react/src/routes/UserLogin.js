@@ -80,7 +80,7 @@ render(){
                     onChange={this.handleChange.bind(this)}>
                   </input>
                 </div>
-              </form>
+
               <div className='login-signup-container'>
                 <div className='let-me-in'>
                 <input
@@ -99,7 +99,8 @@ render(){
               <div className='alert alert-warning'>
                 <strong>{this.state.message}</strong>
               </div>
-            </div>
+            </form>
+          </div>
     );
   }
 }

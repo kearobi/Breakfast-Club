@@ -95,8 +95,9 @@ export function userLogout(){
 export function localEvents(){
   dispatcher.dispatch({
     type: "LOCAL-EVENT"
-    type: "SAVE-LOCAL-EVENT"
+
   })
+    type: "SAVE-LOCAL-EVENT"
 }
 
 export function fetchEvent(attributes){

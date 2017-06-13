@@ -71,6 +71,7 @@ class EventStore extends EventEmitter{
       }
       case("LOCAL-EVENT"):{
         this.updateEvent(action.events)
+        console.log(action.events)
         // this.emit('local event set');
         break;
       }

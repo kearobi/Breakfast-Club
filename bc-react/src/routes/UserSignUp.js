@@ -109,7 +109,7 @@ render(){
               onChange={this.handleChange.bind(this)}
               errors={this.state.errors.verifyPassword}
             />
-          </form>
+
           <div className='login-signup-container'>
             <div className='let-me-in'>
             <input
@@ -126,6 +126,7 @@ render(){
               </Link>
             </div>
           </div>
+        </form>
       </div>
     );
   }
