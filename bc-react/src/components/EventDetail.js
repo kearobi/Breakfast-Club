@@ -5,7 +5,20 @@ import RSVPButton from './RSVPButton';
 import EventChoice from './EventChoice'
 
 class EventDetail extends Component {
+  dateParser(){
+    var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let temp = this.props.eventData.event.date.split('T')
+    let date = temp[0].split('-')
+    let dayOfWeek = weekday[new Date(date).getDay()]
+    let month = months[new Date(date).getMonth()]
+    let day = new Date(date).getDate()
+    let hourTime = new Date(temp).getHours()
+    let minuteTime = new Date(temp).getMinutes()
+    console.log(dayOfWeek, "," , month, "", day, " @ ", hourTime,":", minuteTime)
+  }
   render() {
+    this.dateParser()
     var mappedUsers;
     if (this.props.eventData.users.length == 0){
       mappedUsers = <p>No RSVPs yet</p>
@@ -21,6 +34,7 @@ class EventDetail extends Component {
       })
     }
 
+
     return (
       <div>
         <div>
@@ -31,6 +45,8 @@ class EventDetail extends Component {
           {(this.props.winner == 1 || this.props.winner == null) && <EventChoice
             place={this.props.eventData.places[0]}
             choice={1}
+
+
             />}
           {(this.props.winner == 2 || this.props.winner == null) && <EventChoice
             place={this.props.eventData.places[1]}
