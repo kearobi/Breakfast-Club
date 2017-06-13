@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import MessageBoard from '../components/MessageBoard';
-import userStore from '../stores/UserStore';
-import eventStore from '../stores/EventStore';
 import SideBar from '../components/SideBar';
 import Reminder from '../components/Reminder';
 import {fetchMessages, fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions';
 import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
+import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
 import placeStore from '../stores/PlaceStore'
