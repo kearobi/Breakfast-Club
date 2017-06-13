@@ -23,8 +23,6 @@ class AdminUsers extends Component {
     adminStore.on('change',
     this.adminReturnUsers.bind(this)) }
 
-  showUserList(){ value: this.state.value }
-
   displayModal(){
     this.setState({displayModal: true})}
 

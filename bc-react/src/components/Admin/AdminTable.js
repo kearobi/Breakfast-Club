@@ -5,47 +5,56 @@ import React, { Component } from 'react';
 import {adminDeleteUser} from '../../actions';
 import {adminDeletePlace} from '../../actions';
 import {adminDeleteEvent} from '../../actions';
+import {adminEditUser} from '../../actions';
+import {adminEditPlace} from '../../actions';
+import {adminEditEvent} from '../../actions';
+import adminStore from '../../stores/AdminStore';
 
 class AdminTable extends Component {
   constructor(props){
     super(props)
     this.state = {
+      editUser: '',
       deleteIcon: '../Images/delete-black.png',
       editIcon: '../Images/edit-black.png',
       contentEditable: false,
-      highlight: ''
+      highlight: 'no-highlight'
     }
   }
 
-  handleHover(e){
-    if (e.target.id === 'delete_icon' && this.state.deleteIcon === '../Images/delete-black.png')
-    {this.setState({deleteIcon: '../Images/delete-pink.png'})}
-    else if (e.target.id === "edit_icon" && this.state.editIcon === '../Images/edit-black.png')
-    {this.setState({editIcon: '../Images/edit-pink.png'})}
-  }
+  // componentWillMount(){
+  //   adminStore.on('change', this.handleSave.bind(this))}
 
-  handleEdit(){
-    if(this.state.editIcon === '../Images/edit-pink.png'){
-      this.setState({editIcon: '../Images/save-pink.png', contentEditable: true, highlight: 'highlight'}
-      )}
-    if(this.state.editIcon === '../Images/save-pink.png'){
+  handleSave(){ if(this.props.userTable){
+                  this.setState({editUser: adminEditUser(this.props.user.id)})}
+                if(this.props.placeTable){
+                  this.setState({editPlace: adminEditPlace(this.props.user.id)})}
+                // if(this.props.eventTable){adminEditEvent(this.props.event.id)}
+              }
+  //
+  // handleHover(e){
+  //   if (e.target.id === 'delete_icon' && this.state.deleteIcon === '../Images/delete-black.png')
+  //   {this.setState({deleteIcon: '../Images/delete-pink.png'})}
+  //   else if (e.target.id === "edit_icon" && this.state.editIcon === '../Images/edit-black.png')
+  //   {this.setState({editIcon: '../Images/edit-pink.png'})}
+  // }
+
+  handleClick(){
+    if(this.props.userTable && this.state.editIcon === '../Images/edit-pink.png'){
+      this.setState({editIcon: '../Images/save-pink.png', contentEditable: true, highlight: 'highlight'})}
+    else if(this.props.userTable && this.state.editIcon === '../Images/save-pink.png'){
       this.setState({editIcon: '../Images/edit-black.png', contentEditable: false, highlight: 'no-highlight'})
-      // adminEditUser(this.props.user.id)
-    }
+      this.handleSave()}
+    else if (this.props.userTable
+      // && this.state.deleteIcon === '../Images/delete-pink.png'
+    ){adminDeleteUser(this.props.user.id)}
+    else if (this.props.placeTable && this.state.deleteIcon === '../Images/delete-pink.png'){
+      adminDeletePlace(this.props.place.id)}
+    else if (this.props.eventTable && this.state.deleteIcon === '../Images/delete-pink.png'){
+      adminDeleteEvent(this.props.event.id)}    }
   // let response = confirm("Wait really?")
   //could also pass this.props.user, but we added id so we're only handing it the data it needs to get the job done
-}
-
-  handleDelete(){
-      if(this.props.userTable){
-    // let response = confirm("Wait really?")
-    //could also pass this.props.user, but we added id so we're only handing it the data it needs to get the job done
-        adminDeleteUser(this.props.user.id)}
-      else if(this.props.placeTable){
-        adminDeletePlace(this.props.place.id)}
-      else if(this.props.eventTable){
-        adminDeleteEvent(this.props.event.id)}
-      }
+// }
 
   deleteIcon(){
     return(
@@ -53,8 +62,8 @@ class AdminTable extends Component {
           src={this.state.deleteIcon}
           alt="delete"
           title="delete"
-          onMouseOver={this.handleHover.bind(this)}
-          onClick={this.handleDelete.bind(this)} />
+          // onMouseOver={this.handleHover.bind(this)}
+          onClick={this.handleClick.bind(this)} />
     )
   }
 
@@ -64,8 +73,8 @@ class AdminTable extends Component {
           src={this.state.editIcon}
           alt="edit"
           title="edit"
-          onMouseOver={this.handleHover.bind(this)}
-          onClick={this.handleEdit.bind(this)}
+          // onMouseOver={this.handleHover.bind(this)}
+          onClick={this.handleClick.bind(this)}
         />
     )
   }
@@ -73,7 +82,7 @@ class AdminTable extends Component {
   render(){
     if(this.props.userTable){
       return (
-        <tr contentEditable={this.state.contentEditable} className={this.state.editRow}>
+        <tr contentEditable={this.state.contentEditable} className={this.state.highlight}>
             <td className="admin-td"><span className={this.state.highlight}>{this.props.user.firstName}</span></td>
             <td className="admin-td"><span className={this.state.highlight}>{this.props.user.lastName}</span></td>
             <td className="admin-td"><span className={this.state.highlight}>{this.props.user.email}</span></td>
@@ -85,7 +94,7 @@ class AdminTable extends Component {
       )
     } else if(this.props.placeTable){
       return (
-        <tr contentEditable={this.state.contentEditable} className={this.state.editRow}>
+        <tr contentEditable={this.state.contentEditable} className={this.state.highlight}>
           <td className="admin-td"><span className={this.state.highlight}>{this.props.place.name}</span></td>
           <td className="admin-td"><span className={this.state.highlight}>{this.props.place.yelp_rating}</span></td>
           <td className="admin-td"><span className={this.state.highlight}>{this.props.place.categories}</span></td>
@@ -97,12 +106,14 @@ class AdminTable extends Component {
         </tr>
       )}
       else if(this.props.eventTable){
-      <tr contentEditable={this.state.contentEditable} className={this.state.editRow}>
+      <tr contentEditable={this.state.contentEditable} className={this.state.highlight}>
         <td className="admin-td"><span className={this.state.highlight}>{this.props.event.date}</span></td>
         <td className="admin-td"><span className={this.state.highlight}>{this.props.event.place}</span></td>
         <td className="admin-td"><span className={this.state.highlight}>neighborhood</span></td>
         <td className="admin-td"><span className={this.state.highlight}>guest speaker</span></td>
         <td className="admin-td"><span className={this.state.highlight}>rsvp</span></td>
+        <td className="icon_td">{this.deleteIcon()}</td>
+        <td className="icon_td">{this.editIcon()}</td>
       </tr>
       }
   }

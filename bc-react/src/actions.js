@@ -1,8 +1,5 @@
 import dispatcher from './Dispatcher';
 import userStore from './stores/UserStore';
-import messageStore from './stores/MessageStore';
-import adminStore from './stores/AdminStore';
-import placeStore from './stores/PlaceStore'
 import eventStore from './stores/EventStore'
 
 export function updateUser(){
@@ -454,3 +451,57 @@ export function adminAddEvent(attributes){
   }).catch(function(error){
     // adminStore.updateMessage("There was an error: " + error)
   })}
+
+  export function adminEditUser(attributes){
+    const params = {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({id: attributes})
+    }
+    fetch("http://localhost:4000/admin/edit/user", params).then(function(response){
+      if (response.status === 200){
+        dispatcher.dispatch({
+          type: 'ADMIN_UPDATE_USER',
+          id: attributes
+        })
+      }
+    }).catch(function(error){
+      // adminStore.updateMessage("There was an error: " + error)
+    })
+  }
+
+  export function adminEditPlace(attributes){
+    const params = {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({id: attributes})
+    }
+    fetch("http://localhost:4000/admin/edit/place", params).then(function(response){
+      if (response.status === 200){
+        dispatcher.dispatch({
+          type: 'ADMIN_UPDATE_PLACE',
+          id: attributes
+        })
+      }
+    }).catch(function(error){
+      // adminStore.updateMessage("There was an error: " + error)
+    })
+  }
+
+  export function adminEditEvent(attributes){
+    const params = {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({id: attributes})
+    }
+    fetch("http://localhost:4000/admin/edit/event", params).then(function(response){
+      if (response.status === 200){
+        dispatcher.dispatch({
+          type: 'ADMIN_UPDATE_EVENT',
+          id: attributes
+        })
+      }
+    }).catch(function(error){
+      // adminStore.updateMessage("There was an error: " + error)
+    })
+  }

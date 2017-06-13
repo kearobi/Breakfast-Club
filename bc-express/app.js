@@ -485,18 +485,32 @@ app.delete('/admin/delete/event', function(request, response){
 
 //ask rob for help
 app.put('/admin/edit/user', function(request, response){
-  return User
-    .findById(request.params.user.id)
-    .then(user => {
-      return user
-        .update({
-          body: request.body
-        })
-        .then(() => response.status(200).send(user))
-        .catch((error) => response.status(400).send(error))
-    })
-    .catch((error) => response.status(400).send(error))
-})
+  let userParams = request.body.id
+  User.update({where: {id: userParams}}).then(function(user){
+    response.status(200)
+    response.json({status: 'success', user: user})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })})
+app.put('/admin/edit/place', function(request, response){
+  let placeParams = request.body.id
+  Place.update({where: {id: placeParams}}).then(function(user){
+    response.status(200)
+    response.json({status: 'success', user: user})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })})
+app.put('/admin/edit/event', function(request, response){
+  let eventParams = request.body.id
+  Bevent.update({where: {id: eventParams}}).then(function(user){
+    response.status(200)
+    response.json({status: 'success', user: user})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })})
 
 app.listen(4000, function () {
  console.log('listening on port 4000!');
