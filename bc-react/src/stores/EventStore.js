@@ -28,14 +28,36 @@ class EventStore extends EventEmitter{
         this.emit('events fetched');
         break;
       }
+      case("VOTE-REGISTERED"):{
+        this.currentEvent = action.data;
+        this.emit('vote registered');
+        break;
+      }
+      case("VOTES-COUNTED"):{
+        this.currentEvent = action.data;
+        this.emit('votes counted');
+        break;
+      }
+      case("RSVP"):{
+        this.currentEvent = action.data;
+        this.emit('rsvp');
+        break;
+      }
       case("EVENT-TEST"):{
         this.testEvent = action.data;
         this.emit('event fetched');
         break;
       }
       case("CURRENT-EVENT"):{
+        console.log("CURRENT-EVENT")
         this.currentEvent = action.data;
         this.emit('current event fetched');
+        break;
+      }
+      case("EVENT-CREATED"):{
+        console.log("EVENT-CREATED")
+        this.currentEvent = action.data;
+        this.emit('event created');
         break;
       }
       default:{}

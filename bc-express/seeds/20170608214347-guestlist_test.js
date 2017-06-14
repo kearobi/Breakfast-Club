@@ -7,7 +7,7 @@ module.exports = {
       id: 1,
       user_id: 1,
       event_id: 1,
-      vote: '1',
+      vote: '0',
       createdAt: '2017-06-02 07:52:29-07',
       updatedAt: '2017-06-02 07:52:29-07'
     },
@@ -15,7 +15,7 @@ module.exports = {
       id: 2,
       user_id: 2,
       event_id: 1,
-      vote: '1',
+      vote: '0',
       createdAt: '2017-06-02 07:52:29-07',
       updatedAt: '2017-06-02 07:52:29-07'
     },
@@ -23,7 +23,7 @@ module.exports = {
       id: 3,
       user_id: 3,
       event_id: 2,
-      vote: '2',
+      vote: '0',
       createdAt: '2017-06-02 07:52:29-07',
       updatedAt: '2017-06-02 07:52:29-07'
     },
@@ -31,7 +31,7 @@ module.exports = {
       id: 4,
       user_id: 4,
       event_id: 2,
-      vote: '2',
+      vote: '0',
       createdAt: '2017-06-02 07:52:29-07',
       updatedAt: '2017-06-02 07:52:29-07'
     }
@@ -44,7 +44,7 @@ module.exports = {
       id: 1,
       user_id: 1,
       event_id: 1,
-      vote: '1',
+      vote: '0',
       createdAt: '2017-06-02 07:52:29-07',
       updatedAt: '2017-06-02 07:52:29-07'
     },
@@ -52,7 +52,7 @@ module.exports = {
       id: 2,
       user_id: 2,
       event_id: 1,
-      vote: '1',
+      vote: '0',
       createdAt: '2017-06-02 07:52:29-07',
       updatedAt: '2017-06-02 07:52:29-07'
     },
@@ -60,7 +60,7 @@ module.exports = {
       id: 3,
       user_id: 3,
       event_id: 2,
-      vote: '2',
+      vote: '0',
       createdAt: '2017-06-02 07:52:29-07',
       updatedAt: '2017-06-02 07:52:29-07'
     },
@@ -68,7 +68,7 @@ module.exports = {
       id: 4,
       user_id: 4,
       event_id: 2,
-      vote: '2',
+      vote: '0',
       createdAt: '2017-06-02 07:52:29-07',
       updatedAt: '2017-06-02 07:52:29-07'
     }

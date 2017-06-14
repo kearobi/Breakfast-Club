@@ -1,35 +1,48 @@
+//AdminUsers passes props to AdminList, SearchBar, AdminModal
+
 import React, {Component} from 'react';
-import AdminUserIndex from './AdminUserIndex';
-import AdminUserSearchBar from './AdminUserSearchBar';
-import AdminStore from '../../stores/AdminStore';
-import AdminUserModal from './AdminUserModal';
-//const api
-//only the most parent component should be responsible for fetching data
+import AdminList from './AdminList';
+import SearchBar from './AdminSearchBar';
+import AdminModal from './AdminModal';
+import adminStore from '../../stores/AdminStore';
+//only the most parent component should be responsible for fetching data. Does that mean I should be fetching the data in AdminPage?
 
 //now in our Admin page we have users, and we want to put that into our Search Bar so it can use those props
 
 class AdminUsers extends Component {
   constructor(props){
     super(props)
-    this.state = {users: AdminStore.getUsers(),
+    this.state = {users: adminStore.adminReturnUsers(),
                   displayModal: false}
   }
-  updateUsers(){
+  adminReturnUsers(){
     this.setState({
-      users: AdminStore.getUsers() })}
+      users: adminStore.adminReturnUsers() })}
 
   componentWillMount(){
-    AdminStore.on('change', this.updateUsers.bind(this)) }
-
-  showUserList(){
-    value: this.state.value }
+    adminStore.on('change',
+    this.adminReturnUsers.bind(this)) }
 
   displayModal(){
     this.setState({displayModal: true})}
 
+  userParams(){
+    return(
+      { user: {
+            firstName: "",
+            lastName: "",
+            email: "",
+            neighborhood: "",
+            password: "",
+            verifyPassword: ""}})}
+
+  userListParams(){
+    return({users: adminStore.adminReturnUsers()})
+  }
+
   modalAdmin(){
-    if(this.state.displayModal === true){
-    return (<AdminUserModal />)
+    if(this.state.displayModal){
+    return (<AdminModal userForm={true} startingState={this.userParams()} />)
     } else { return ("") }}
 
   render(){
@@ -41,10 +54,10 @@ class AdminUsers extends Component {
             onClick={this.displayModal.bind(this)}>
             + user </button>
           {/* now SearchBar has access to users */}
-          <AdminUserSearchBar users={this.state.users}/>
+          <SearchBar users={this.state.users} userSearchBar={true}/>
         </div>
           <br></br><br></br>
-          <AdminUserIndex />
+          <AdminList userList={true} startingState={this.userListParams()}/>
           {this.modalAdmin()}
       </div>
       );

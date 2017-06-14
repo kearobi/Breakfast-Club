@@ -4,7 +4,8 @@ module.exports = function(sequelize, DataTypes) {
     date: DataTypes.DATE,
     place_1_id: DataTypes.INTEGER,
     place_2_id: DataTypes.INTEGER,
-    vote_status: DataTypes.BOOLEAN
+    vote_status: DataTypes.BOOLEAN,
+    winner: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {

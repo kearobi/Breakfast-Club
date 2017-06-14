@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Header from '../components/Header';
-import {loginUser, checkLoginRedir} from '../actions';
+import {loginUser, checkLoginRedir, createNewEvent} from '../actions';
 import userStore from '../stores/UserStore';
+import ('../style/UserLogin.css');
 
 class UserLogin extends Component {
   constructor(props){
@@ -14,7 +15,6 @@ class UserLogin extends Component {
       },
       message: ''
     }
-    console.log(this.state)
   }
 
   componentWillMount(){
@@ -24,7 +24,7 @@ class UserLogin extends Component {
   }
 
   redirectToHome(){
-    this.props.history.push("/home");
+    this.props.history.push("/home-initial");
   }
 
   loginFailed(){
@@ -56,68 +56,49 @@ class UserLogin extends Component {
 
 render(){
   return (
+    <div className="login-signup-container">
+      <div className="FontAmatic">
+        Log In
+      </div>
+      <div className="alert alert-warning"><strong>{this.state.message}</strong></div>
         <div className="container">
-          <div className="row">
-            <div className="col-sm-4">
-            </div>
-            <div className="col-sm-4 FontAmatic">
-              Log In
-            </div>
-            <div className="col-sm-4">
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-3">
-            </div>
-            <div className="col-sm-6">
-              <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-                <div className='formGroup'>
-                  <input
-                    placeholder='email address'
-                    type='email'
-                    name='email'
-                    id='email'
-                    value={this.state.user.email}
-                    onChange={this.handleChange.bind(this)}>
-                  </input>
-                </div>
-                <div className='formGroup'>
-                  <input
-                    placeholder='password'
-                    type='password'
-                    name='password'
-                    id='password'
-                    value={this.state.user.password}
-                    onChange={this.handleChange.bind(this)}>
-                  </input>
-                </div>
-                <div className='formGroup align-button'>
-                  <input className='let-me-in' type='submit' value='Let Me In!!'></input>
-                </div>
-              </form>
-            </div>
-            <div className="col-sm-3">
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-4">
-            </div>
-            <div className="col-sm-4 center">
-              <Link to="/">
-              <div className="align-button">
+          <div>
+            <form className='form' onSubmit={this.handleSubmit.bind(this)}>
+              <div className='formGroup'>
                 <input
-                  className='take-me-back'
-                  type='button'
-                  value='Take Me Back!!'>
+                  placeholder='email address'
+                  type='email'
+                  name='email'
+                  id='email'
+                  value={this.state.user.email}
+                  onChange={this.handleChange.bind(this)}>
                 </input>
               </div>
-              </Link>
-              <div className="alert alert-warning"><strong>{this.state.message}</strong></div>
+              <div className='formGroup'>
+                <input
+                  placeholder='password'
+                  type='password'
+                  name='password'
+                  id='password'
+                  value={this.state.user.password}
+                  onChange={this.handleChange.bind(this)}>
+                </input>
+              </div>
+              <div className="row bottom-links">
+                <div className="col-xs-6 left align-button">
+                  <Link className="FontAmatic link-font" to="/">
+                    Take Me Back!!
+                  </Link>
+                </div>
+              <div className='formGroup align-button'>
+                <input className='wobble letMeIn' type='submit' value='Let Me In!!'></input>
+              </div>
             </div>
-            <div className="col-sm-4">
-            </div>
-          </div>
+          </form>
         </div>
+      </div>
+    </div>
+
     );
   }
 }
