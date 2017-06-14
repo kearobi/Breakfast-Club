@@ -9,6 +9,10 @@ if(process.env.NODE_ENV === 'production'){
   apiUrl = "http://localhost:4000/"
 }
 
+export function updateUser(){
+//TODO
+  return 'stuff'
+}
 export function testCreate(){
   const params = {
     method: 'GET'
@@ -62,7 +66,6 @@ export function createNewEvent(id){
 }
 
 export function countVotes(){
-if(process.env.NODE_ENV === 'production'){
   const params = {
     method: 'GET'
   }
