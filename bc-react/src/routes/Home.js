@@ -33,7 +33,6 @@ class Home extends Component {
       fetchMessages()
       fetchCurrentEvent()
       fetchEvents();
-
     }
   }
 
