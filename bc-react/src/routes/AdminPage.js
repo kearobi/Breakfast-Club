@@ -22,6 +22,7 @@ class AdminPage extends Component {
       placeButton: "admin_button",
       eventButton: "admin_button"
     }
+    this.onAdminUpdate = this.adminUpdate.bind(this)
   }
   //the admin store deletes a user, it yells 'ive changed!' to everyone who's listening, and when it does that it calls updateUsers. (we told componentwillmount to issue this whenever there's a change)
   adminUpdate(){
@@ -38,7 +39,14 @@ class AdminPage extends Component {
   }
 
   componentWillMount(){
-    adminStore.on('change', this.adminUpdate.bind(this))}
+    adminStore.on('change', this.onAdminUpdate)
+  }
+
+  componentWillUnmount(){
+    adminStore.removeListener('change', this.onAdminUpdate)
+  }
+
+
 
   handleUserClick(){
     this.setState({

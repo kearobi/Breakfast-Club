@@ -27,15 +27,27 @@ class Home extends Component {
     fetchCurrentEvent();
     fetchMessages();
     fetchEvents();
+    this.onlogin = this.handleLogin.bind(this)
+    this.onlogout = this.handleLogOut.bind(this)
+    this.oncurrent = this.updateCurrentEvent.bind(this)
+    this.onevents = this.events.bind(this)
   }
 
   componentWillMount(){
-    userStore.on('logged-in',this.handleLogin.bind(this))
-    userStore.on('logged-out', this.handleLogOut.bind(this))
-    eventStore.on('current event fetched',this.updateCurrentEvent.bind(this))
-    eventStore.on('event created',this.updateCurrentEvent.bind(this))
-    eventStore.on('events fetched', this.events.bind(this))
+    userStore.on('logged-in', this.onlogin)
+    userStore.on('logged-out', this.onlogout)
+    eventStore.on('current event fetched', this.oncurrent)
+    eventStore.on('event created',this.oncurrent)
+    eventStore.on('events fetched', this.onevents)
     checkLoginRedir(this.props)
+  }
+
+  componentWillUnmount(){
+    userStore.removeListener('logged-in', this.onlogin)
+    userStore.removeListener('logged-out', this.onlogout)
+    eventStore.removeListener('current event fetched', this.oncurrent)
+    eventStore.removeListener('event created',this.oncurrent)
+    eventStore.removeListener('events fetched', this.onevents)
   }
 
  //  componentWillUpdate(){
