@@ -36,8 +36,6 @@ class AdminEvents extends Component {
   componentWillMount(){
     adminStore.on('change', this.adminReturnEvents.bind(this))}
 
-  showEventList(){value: this.state.value}
-
   displayModal(){
     this.setState({displayModal: true})}
 

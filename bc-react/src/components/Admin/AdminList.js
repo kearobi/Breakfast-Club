@@ -36,10 +36,10 @@ class AdminList extends Component {
   renderList(){
 
     let listRender;
-
+    let i;
     if(this.props.placeList){
       listRender = []
-    for(var i=0; i<this.state.places.length; i++){
+    for(i=0; i<this.state.places.length; i++){
       let placeId = "place-" + i
       listRender.push(
         <AdminTable key={placeId} place={this.state.places[i]} placeTable={true}/>)}
@@ -47,7 +47,7 @@ class AdminList extends Component {
 
     else if(this.props.userList){
       listRender = []
-      for(var i=0; i<this.state.users.length; i++){
+      for(i=0; i<this.state.users.length; i++){
         let userId = "user-" + i
         listRender.push(
           <AdminTable key={userId} user={this.state.users[i]} userTable={true}/>)}
@@ -55,7 +55,7 @@ class AdminList extends Component {
 
     else if(this.props.eventList){
       listRender = []
-      for(var i=0; i<this.state.events.length; i++){
+      for(i=0; i<this.state.events.length; i++){
         let eventId = "event-" + i
         listRender.push(
           <AdminTable key={eventId} event={this.state.events[i]} eventTable={true}/>)}

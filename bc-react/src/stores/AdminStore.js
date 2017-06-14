@@ -48,6 +48,19 @@ class AdminStore extends EventEmitter{
     this.events.push(attributes)
     this.emit('change')}
 
+  adminEditUser(attributes){
+    this.users = this.users.filter((user) => {
+      return (user.id)})
+    this.emit('change')}
+  adminEditPlace(attributes){
+    this.places = this.places.filter((place) => {
+      return (place.id)})
+    this.emit('change')}
+  adminEditEvent(attributes){
+    this.events = this.events.filter((event) => {
+      return (event.id)})
+    this.emit('change')}
+
   updateMessage(newMessage){
     this.message = newMessage
     this.emit('message')}
@@ -87,7 +100,7 @@ class AdminStore extends EventEmitter{
         break
       }
       case("ADMIN_LOAD_EVENTS"):{
-        debugger
+        // debugger
         //right after this spot, the error occurs
         this.adminLoadEvents(action.events)
         break
@@ -115,6 +128,10 @@ class AdminStore extends EventEmitter{
       }
       case("ADMIN_DESTROY_EVENT"):{
         this.adminDestroyEvent(action.id)
+        break
+      }
+      case("ADMIN_UPDATE_USER"):{
+        this.admiEditUser(action.user)
         break
       }
       default:{}

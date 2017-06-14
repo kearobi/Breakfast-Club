@@ -1,5 +1,5 @@
 #place-h2 {
-  font-family: 'Amatic SC', sans-serif, cursive;
+  font-family: 'Amatic SC', cursive;
   font-size: 100px;
   color: fuchsia;
   margin-top: -9px;
@@ -20,9 +20,14 @@ ul {
   list-style-type: none;
   width: 395px;
   box-shadow: 2px 2px 2px 2px;
-  font-family: 'Amatic SC', sans-serif, cursive;
+  font-family: 'Amatic SC', cursive;
   font-size: 30px;
-  margin-left: 75px;
+  margin-left: 50px;
+}
+li {
+  width: 375px;
+  margin-left: -30px;
+  margin-top: 5px;
 }
 .list-background{
   background-color: #eeeeee;
@@ -31,11 +36,7 @@ ul {
 .place-header{
   font-size: 100px;
 }
-li {
-  width: 375px;
-  margin-left: -30px;
-  margin-top: 5px;
-}
+
 .fields{
   text-align: left;
   border: 0.5px solid black;
