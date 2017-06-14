@@ -28,13 +28,17 @@ export function checkIfVotingOver(event){
 
 export function checkEventOver(event){
   let previous = new Date(event.event.date)
-  let newEvent = Date.now()
+  let newEvent = new Date(Date.now())
+  console.log(previous, "previous")
+  console.log(newEvent, "newEvent")
   if (previous < newEvent) {
+    console.log("checkEventOver called")
     createNewEvent()
   }
 }
 
 export function createNewEvent(){
+  console.log("createNewEvent Called")
   const params = {
     method: 'GET'
   }
