@@ -675,7 +675,6 @@ app.delete('/admin/delete/user', function(request, response){
 //swagger lets you see all the endpoints of an API in URL form
 app.delete('/admin/delete/place', function(request, response){
   let placeParams = request.body.id
-  // Bevent.destroy({where: {id:placeParams}}).then(function(){
   Place.destroy({where: {id: placeParams}}).then(function(place){
     repsonse.status(200)
     response.json({status: 'success', place: place})
@@ -683,7 +682,6 @@ app.delete('/admin/delete/place', function(request, response){
     response.status(400)
     response.json({status: 'error', error: error})
   })})
-// })
 app.delete('/admin/delete/event', function(request, response){
   let eventParams = request.body.id
   Bevent.destroy({where: {id: eventParams}}).then(function(event){
@@ -720,7 +718,7 @@ app.put('/admin/edit/event', function(request, response){
   let eventParams = request.body.event
   Bevent.update(eventParams, {where: {id: eventParams.id}}).then(function(event){
     response.status(200)
-    response.json({status: 'success', event: event})
+    response.json({status: 'success', event: user})
   }).catch(function(error){
     response.status(400)
     response.json({status: 'error', error: error})

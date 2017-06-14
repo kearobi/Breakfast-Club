@@ -47,29 +47,35 @@ class AdminTable extends Component {
         this.setState({editIcon: '../Images/edit.png', readOnly: true, title: 'edit', className: 'read-only'})
         this.handleSave()}
     else if(this.state.deleteIcon === '../Images/hover-delete.png'){
-      if(this.props.userTable){adminDeleteUser(this.props.user.id)}
-      else if(this.props.placeTable){adminDeletePlace(this.props.place.id)}
-      else if(this.props.eventTable){adminDeleteEvent(this.props.event.id)}}  }
+      if(this.props.userTable){adminDeleteUser(this.state.user.id)}
+      else if(this.props.placeTable){adminDeletePlace(this.state.place.id)}
+      else if(this.props.eventTable){adminDeleteEvent(this.state.event.id)}}  }
+
+      //there are two ways to read/set property of the object. 1. dot notation (user.firstName) 2. square bracket notation (user["firstName"]). if you're looking for a variable substitution, best to use the square bracket
 
   handleEdit(e){
-    console.log("state: ", this.state)
-    console.log("value: ", e.nativeEvent.target.value)
-    debugger
-      // this.setState({user: {user: {firstName: e.nativeEvent.target.value}}})
-      // this.setState({...this.state, user: {
-      //     ...this.state.user,
-      //     user: {...this.state.user.user, firstName: e.nativeEvent.target.value}}})
-      console.log("new user state: ", this.state.user)
+    let target = e.nativeEvent.target
+    let user = this.state.user
+    let place = this.state.place
+    let event = this.state.event
+      if(this.props.userTable){
+        user[target.name] = target.value
+        this.setState({user: user})  }
+      else if(this.props.placeTable){
+        place[target.name] = target.value
+        this.setState({place: place})  }
+      else if(this.props.eventTable){
+        event[target.name] = target.value
+        this.setState({event: event})  }
     }
-
 
   handleSave(){
     if(this.props.userTable){
-      adminEditUser(this.props.user)}
+      adminEditUser(this.state.user)}
     else if(this.props.placeTable){
-      adminEditPlace(this.props.place)}
+      adminEditPlace(this.state.place)}
     else if(this.props.eventTable){
-      adminEditEvent(this.props.event)}  }
+      adminEditEvent(this.state.event)}  }
 
   // let response = confirm("Wait really?")
   //could also pass this.props.user, but we added id so we're only handing it the data it needs to get the job done
@@ -100,31 +106,36 @@ class AdminTable extends Component {
       return (
         <tr className={this.state.className}>
             <td>
-              <input  value={this.state.user.firstName}
+              <input  name='firstName'
+                      value={this.state.user.firstName}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
                       size='9'/>
             </td>
             <td>
-              <input  value={this.state.user.lastName}
+              <input  name='lastName'
+                      value={this.state.user.lastName}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
                       size='11'/>
             </td>
             <td>
-              <input  value={this.state.user.email}
+              <input  name='email'
+                      value={this.state.user.email}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
                       size='15'/>
             </td>
             <td>
-              <input  value={this.state.user.neighborhood}
+              <input  name='neighborhood'
+                      value={this.state.user.neighborhood}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
                       size='8' />
             </td>
             <td>
-              <input  value={this.state.user.encryptedPassword}
+              <input  name='encryptedPassword'
+                      value={this.state.user.encryptedPassword}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
                       size='7'/>
@@ -137,6 +148,7 @@ class AdminTable extends Component {
         <tr className={this.state.className}>
           <td>
             <input
+              name='name'
               value={this.state.place.name}
               size='20'
               onChange={this.handleEdit.bind(this)}
@@ -144,6 +156,7 @@ class AdminTable extends Component {
           </td>
           <td>
             <input
+              name='yelp_rating'
               value={this.state.place.yelp_rating}
               size='3'
               onChange={this.handleEdit.bind(this)}
@@ -151,12 +164,14 @@ class AdminTable extends Component {
           </td>
           <td>
             <input
+              name='categories'
               value={this.state.place.categories}
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly} />
           </td>
           <td>
             <input
+              name='price'
               value={this.state.place.price}
               size='3'
               onChange={this.handleEdit.bind(this)}
@@ -164,12 +179,14 @@ class AdminTable extends Component {
           </td>
           <td>
             <input
+              name='address_street'
               value={this.state.place.address_street}
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly} />
           </td>
           <td>
             <input
+              name='phone'
               value={this.state.place.phone}
               size='15'
               onChange={this.handleEdit.bind(this)}
@@ -182,14 +199,16 @@ class AdminTable extends Component {
       <tr className={this.state.className}>
         <td>
           <input
-          value={this.props.event.date}
-          onChange={this.handleEdit.bind(this)}
-          disabled={this.state.readOnly} /></td>
+            name='date'
+            value={this.state.event.date}
+            onChange={this.handleEdit.bind(this)}
+            disabled={this.state.readOnly} /></td>
         <td>
           <input
-          value={this.props.event.place}
-          onChange={this.handleEdit.bind(this)}
-          disabled={this.state.readOnly} /></td>
+            name='place'
+            value={this.state.event.place}
+            onChange={this.handleEdit.bind(this)}
+            disabled={this.state.readOnly} /></td>
         <td>neighborhood</td>
         <td>guest speaker</td>
         <td>rsvp</td>
