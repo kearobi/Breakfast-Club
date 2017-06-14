@@ -1,6 +1,7 @@
 //AdminModal gets props from AdminUsers, AdminPlaces, AdminEvents
 //AdminModal does not pass props
 import React, { Component } from 'react';
+import {Modal, Button} from 'react-bootstrap';
 import {adminAddUser} from '../../actions';
 import {adminAddPlace} from '../../actions';
 import {adminAddEvent} from '../../actions';
@@ -220,10 +221,23 @@ class AdminModal extends Component {
 
     return (
     <div>
-      <div id='modal'>
-        <span>&times;</span>
+      <div className='static-modal'>
+        <Modal.Dialog>
+          <Modal.Header>
+            <Modal.Title>Modal title</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            {fields}
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button>Close</Button>
+            <Button bsStyle="primary" onSubmit={this.handleSubmit.bind(this)}>SUBMISSION</Button>
+          </Modal.Footer>
+
+        </Modal.Dialog>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-          {fields}
         </form>
       </div>
     </div>
