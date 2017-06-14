@@ -415,7 +415,7 @@ app.post('/signup', function(request, response){
 //   })
 // })
 
-app.get('/create-event', function(request,    response){
+app.get('/create-event', function(request, response){
   let _places;
   let _place_id_1;
   let _place_id_2;
@@ -429,17 +429,20 @@ app.get('/create-event', function(request,    response){
     }
     _place_id_1 = _places[index1].id;
     _place_id_2 = _places[index2].id;
-  })
+    console.log("event created here")
+  }).then( function(){
   Bevent.create({
       place_1_id: _place_id_1,
       place_2_id: _place_id_2,
       vote_status: true,
-      date: '2017-06-12T22:53:09.840Z',
+      date: '2017-06-18T22:53:09.840Z',
       winner: null,
       "createdAt": Date.now(),
       "updatedAt": Date.now()
+    })
   })
   .then(function(event){
+    console.log("event created here")
     _event = event;
     return Place.findOne({
       where:{id: _event.place_1_id}

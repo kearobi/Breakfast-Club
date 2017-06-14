@@ -24,9 +24,11 @@ class Home extends Component {
       event: eventStore.getCurrentEvent(),
       events: []
     }
-    fetchCurrentEvent();
-    fetchMessages();
-    fetchEvents();
+    console.log("this.props.initial:", this.props.initial)
+    if (this.props.initial){
+      fetchMessages()
+      fetchCurrentEvent()
+    }
   }
 
   componentWillMount(){
@@ -43,6 +45,7 @@ class Home extends Component {
  // }
 
   handleLogin(){
+    console.log("handleLogin called")
     this.setState({
       user: userStore.getUser(),
     })
