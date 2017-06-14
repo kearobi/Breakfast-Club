@@ -8,6 +8,7 @@ var GuestList = require('./models').GuestList
 // var payload = require('./api').payload
 var User = require('./models').User
 var Message = require('./models').Message
+var moment = require('moment');
 
 const corsOptions = {
   origin: 'http://localhost:3000'
@@ -415,10 +416,11 @@ app.post('/signup', function(request, response){
 //   })
 // })
 
-app.get('/create-event', function(request, response){
+app.post('/create-event', function(request, response){
   let _places;
   let _place_id_1;
   let _place_id_2;
+  let u_id = request.body.id;
   return Place.findAll().then(function(places){
     _places = places;
     let num = _places.length;
@@ -429,45 +431,64 @@ app.get('/create-event', function(request, response){
     }
     _place_id_1 = _places[index1].id;
     _place_id_2 = _places[index2].id;
-    console.log("event created here")
+    console.log("B")
   }).then( function(){
-  Bevent.create({
-      place_1_id: _place_id_1,
-      place_2_id: _place_id_2,
-      vote_status: true,
-      date: '2017-06-18T22:53:09.840Z',
-      winner: null,
-      "createdAt": Date.now(),
-      "updatedAt": Date.now()
+    let date = moment().hour(8).day(12).minute(0).second(0)
+    console.log("date", date)
+    return Bevent.create({
+        place_1_id: _place_id_1,
+        place_2_id: _place_id_2,
+        vote_status: true,
+        date: date,
+        winner: null,
+        "createdAt": Date.now(),
+        "updatedAt": Date.now()
     })
   })
   .then(function(event){
-    console.log("event created here")
+    console.log("C")
+    console.log("place ids: ", _place_id_2, _place_id_1)
     _event = event;
+    console.log("_event:", _event)
     return Place.findOne({
       where:{id: _event.place_1_id}
     })
   })
   .then (function(place){
+    console.log("D")
     _places.push(place);
     return Place.findOne({
       where:{id: _event.place_2_id}
     })
   })
   .then(function(place){
-    console.log("CREATE EVENT HERE 2!!!!!!!!!!!!!!!!!!!!!!!!!")
+    console.log("line 459")
     _places.push(place);
+  })
+  .then(function(){
+    console.log("line 470")
+    return User.update({
+        voted: false
+    }, {where: {}})
+  })
+  .then(function(){
+    console.log("line 470")
+    return User.findById(u_id)
+  })
+  .then(function(user){
+    console.log("USER id: ", u_id)
     response.status(200)
     response.json({
       event: _event,
       guestLists: [],
       places: _places,
-      users: []
+      users: [],
+      user: user
     })
   })
-  .catch(function(){
+  .catch(function(error){
     response.status(400)
-    console.log('error creating event')
+    console.log('error creating event', error)
   })
 })
 
@@ -592,7 +613,6 @@ app.post('/login', function(request, response){
   .then(function(user){
     if(user && user.verifyPassword(request.body.password)){
       response.status(200)
-      console.log("user: ", user)
       response.json({
         message: 'Success!',
         user: user,

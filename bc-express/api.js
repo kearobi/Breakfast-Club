@@ -40,7 +40,7 @@ rapid.call('YelpAPI', 'getBusinesses', {
       newObj.name = vals[i].name,
       newObj.image_url = vals[i].image_url,
       newObj.review_count = vals[i].review_count,
-      newObj.title = vals[i].title,
+      // newObj.title = vals[i].title,
       newObj.yelp_rating = vals[i].rating,
       newObj.price = vals[i].price,
       newObj.address_street = vals[i].location.address1,
