@@ -31,7 +31,7 @@ class AdminEvents extends Component {
   }
 
   adminReturnEvents(){
-    this.setState({events: adminStore.adminReturnEvents})}
+    this.setState({events: adminStore.adminReturnEvents() })}
 
   componentWillMount(){
     adminStore.on('change', this.adminReturnEvents.bind(this))}
@@ -43,10 +43,6 @@ class AdminEvents extends Component {
     return(
       { event: {
               date: "",
-              place: "",
-              neighborhood: "",
-              guestSpeaker: "",
-              rsvp: ""
       }})
     }
 

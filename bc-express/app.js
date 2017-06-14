@@ -638,7 +638,6 @@ app.get('/admin/get/users', function(request, response){
     response.status(200)
     response.json({status: 'success', users: users})
   })})
-//events error: it doesn't reach this point
 app.get('/admin/get/events', function(request, response){
   Bevent.findAll().then(function(events){
     response.status(200)

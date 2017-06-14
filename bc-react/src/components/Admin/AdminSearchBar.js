@@ -93,8 +93,9 @@ eventHeader(){
       filtered = this.props.events.filter(
         (event) => {
           return (
-            (event.date.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-            (event.place.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+            (event.date.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+            // ||
+            // (event.place.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
             // || (event.neighborhood.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             // (event.guest_speaker.indexOf(this.state.searchTerm) !== -1) ||
             // (event.rsvp.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||

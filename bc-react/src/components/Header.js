@@ -10,7 +10,6 @@ class Header extends Component {
           <span className="border-bottom">
             <h2 className="splash">Breakfast Club</h2>
           </span>
-          <hr className="header-line"></hr>
         </span>
       </div>
     );
