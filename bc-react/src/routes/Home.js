@@ -33,7 +33,6 @@ class Home extends Component {
       fetchMessages()
       fetchCurrentEvent()
       fetchEvents();
-
     }
   }
 
@@ -73,7 +72,7 @@ class Home extends Component {
 
   updateCurrentEvent(){
     checkIfVotingOver(eventStore.getCurrentEvent())
-    checkEventOver(eventStore.getCurrentEvent())
+    checkEventOver(eventStore.getCurrentEvent(), this.state.user.id)
     this.setState({
       event: eventStore.getCurrentEvent()
     })

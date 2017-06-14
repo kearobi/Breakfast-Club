@@ -63,6 +63,9 @@ module.exports = {
         updatedAt: "2017-06-02 14:52:29"
       }
     ])
+    .then(function(){
+      return queryInterface.sequelize.query('ALTER SEQUENCE "Users_id_seq" RESTART 10')
+    })
   },
 
   down: function (queryInterface, Sequelize) {
@@ -131,6 +134,9 @@ module.exports = {
         updatedAt: "2017-06-02 14:52:29"
       }
     ])
+    .then(function(){
+      return queryInterface.sequelize.query('ALTER SEQUENCE "Users_id_seq" RESTART 1')
+    })
 
 
   }
