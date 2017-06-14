@@ -12,6 +12,8 @@ class Reminder extends Component {
   }
   componentWillMount(){
     eventStore.on('current event fetched', this.updateMessage.bind(this));
+    eventStore.on('votes counted', this.updateMessage.bind(this));
+    eventStore.on('event created', this.updateMessage.bind(this));
   }
 
   checkIfAttending(user_id, guestLists){
@@ -27,11 +29,12 @@ class Reminder extends Component {
   updateMessage(){
     let currentEvent = eventStore.getCurrentEvent();
     let user = userStore.getUser();
-    if (currentEvent.vote_status){
+    if (!currentEvent.event.vote_status){
+      console.log("vote_status is false")
       if (this.checkIfAttending(user.id, currentEvent.guestLists)){
         this.setState({
-          event: eventStore.getCurrentEvent(),
-          message: `You have a breakfast to attend! Breakfast on ${currentEvent.date} at ${currentEvent.vote_status == "1" ? currentEvent.place_1_id : currentEvent.place_2_id}`
+          event: currentEvent,
+          message: `You have a breakfast to attend! Breakfast on ${currentEvent.event.date} at ${currentEvent.event.winner == 1 ? currentEvent.places[0].name : currentEvent.places[1].name}`
         })
       }
       else {

@@ -27,7 +27,7 @@ class App extends Component {
   constructor(props){
     super(props)
     checkLogin()
-    // updatePlaces()
+    updatePlaces()
     this.state = {}
 }
 
@@ -36,7 +36,7 @@ class App extends Component {
       <div className='wrapper'>
         <Router>
           <div>
-            <Header />
+            <Header className='header-component' />
             <Route exact path='/' component={SplashPage}/>
             <Route exact path='/signup' component={UserSignUp} />
             <Route exact path='/login' component={UserLogin} />

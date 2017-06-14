@@ -24,7 +24,7 @@
   overflow: scroll; }
 
 .FontAmatic {
-  font-family: 'Amatic SC';
+  font-family: 'Amatic SC', sans-serif;
   font-size: 40px;
   text-align: center;
   color: black;
@@ -34,7 +34,7 @@
   text-align: center; }
 
 h3 {
-  font-family: 'Dancing Script';
+  font-family: 'Dancing Script',sans-serif;
   text-align: center;
   font-size: 52px;
   font-style: italic;

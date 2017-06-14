@@ -6,7 +6,7 @@ class PlaceListing extends Component {
       <div className="outside">
 
         <div className="list col-xs-3">
-          <ul>
+          <ul className="list-background">
 
             <li className="image">
               <img src={this.props.place.image_url} ></img>

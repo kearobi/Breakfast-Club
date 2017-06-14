@@ -1,33 +1,40 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import MessageBoard from '../components/MessageBoard';
-import userStore from '../stores/UserStore';
 import SideBar from '../components/SideBar';
 import Reminder from '../components/Reminder';
-import {fetchMessages} from '../actions';
+import {fetchMessages, fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions';
 import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
-import {fetchCurrentEvent} from '../actions'
+import userStore from '../stores/UserStore';
+import eventStore from '../stores/EventStore';
 import moment from 'moment';
+import placeStore from '../stores/PlaceStore'
+import ('../style/Home.css');
+
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 );
 
 class Home extends Component {
   constructor(props){
-  super(props)
-  fetchMessages();
-  fetchCurrentEvent();
-  this.state = {
-    user: userStore.getUser(),
+    super(props)
+    this.state = {
+      user: userStore.getUser(),
+      event: eventStore.getCurrentEvent()
     }
+    fetchCurrentEvent();
+    fetchMessages();
+    fetchEvents();
   }
 
   componentWillMount(){
     userStore.on('logged-in',this.handleLogin.bind(this))
     userStore.on('logged-out', this.handleLogOut.bind(this))
+    eventStore.on('current event fetched',this.updateCurrentEvent.bind(this))
+    eventStore.on('event created',this.updateCurrentEvent.bind(this))
+    eventStore.on('events fetched', this.events.bind(this))
     checkLoginRedir(this.props)
-
   }
 
  //  componentWillUpdate(){
@@ -35,58 +42,68 @@ class Home extends Component {
  // }
 
   handleLogin(){
-  this.setState({
-    user: userStore.getUser()
-  })
-}
+    this.setState({
+      user: userStore.getUser(),
+    })
+  }
 
-handleLogOut(){
-this.setState({
-  user: userStore.getUser()
-})
-}
+  handleLogOut(){
+    this.setState({
+      user: userStore.getUser() // TODO wha?
+    })
+  }
 
-
-
+  updateCurrentEvent(){
+    checkIfVotingOver(eventStore.getCurrentEvent())
+    checkEventOver(eventStore.getCurrentEvent())
+    this.setState({
+      event: eventStore.getCurrentEvent()
+    })
+  }
 
   events(){
-    return [
-      {
-      'title': 'Long Event',
-      'start': new Date(2015, 3, 7),
-      'end': new Date(2015, 3, 10)
+    let bevents = eventStore.getAllEvents()
+    let newEvents = bevents.map(function(bevent){
+      let start = moment(bevent.date).toDate()
+      let end = moment(bevent.date).add(1, 'hours').toDate()
+      return {
+        'title': 'TODO Place names?',
+        'start': start,
+        'end': end
       }
-    ]
+    })
+    this.setState({
+      events: newEvents
+    })
   }
+
 //{userStore.getUser.firstName()}
   render(){
     return (
-      <div>
-      <SideBar />
-      <div className="home-page">
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-3"></div>
+      <div id="home-body">
+        <SideBar />
+        <div className="home-page">
+          <div className="col-xs-6 welcome-message">
+            <h1>Welcome, {userStore.getUser().firstName}</h1>
+            <Reminder />
+            <Link to='/current-event'>Current Event</Link>
+          </div>
+          <div className="container container-home">
 
-            <div className="col-xs-6 welcome-message">
-              <h1>Welcome, {userStore.getUser().firstName}</h1>
-              <Reminder />
-              <Link to='/current-event'>Current Event</Link>
-            </div>
-            <div className="calendar-div col-xs-7">
-              <BigCalendar
-                events={this.events()}
-              />
-            </div>
-            <div className="col-xs-4">
-              <MessageBoard />
+            <div className="row">
+              <div className="calendar-div col-xs-8">
+                <BigCalendar
+                  events={this.state.events}
+                  />
+              </div>
+              <div className="col-xs-4">
+                <MessageBoard />
+              </div>
             </div>
           </div>
         </div>
+        <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe>
       </div>
-      <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe>
-
-</div>
       );
   }
 }
