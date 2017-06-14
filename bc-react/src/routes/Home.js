@@ -21,7 +21,8 @@ class Home extends Component {
     super(props)
     this.state = {
       user: userStore.getUser(),
-      event: eventStore.getCurrentEvent()
+      event: eventStore.getCurrentEvent(),
+      events: []
     }
     fetchCurrentEvent();
     fetchMessages();
