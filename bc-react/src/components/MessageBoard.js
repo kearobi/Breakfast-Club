@@ -10,12 +10,19 @@ class MessageBoard extends Component {
       messages: [],
       currentMessage: ''
     }
+    this.onUpdate = this.updateMessages.bind(this)
   }
 
   componentWillMount(){
-    messageStore.on('messages fetched', this.updateMessages.bind(this));
-    messageStore.on('message added', this.updateMessages.bind(this));
+    messageStore.on('messages fetched', this.onUpdate);
+    messageStore.on('message added', this.onUpdate);
   }
+
+  componentWillUnmount(){
+    messageStore.removeListener('messages fetched', this.onUpdate);
+    messageStore.removeListener('message added', this.onUpdate);
+  }
+
 
   updateMessages(){
     this.setState({
