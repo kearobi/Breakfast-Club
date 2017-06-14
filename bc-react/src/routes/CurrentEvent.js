@@ -29,6 +29,7 @@ class CurrentEvent extends Component {
     eventStore.on('current event fetched', this.displayEvent.bind(this));
     eventStore.on('vote registered', this.voteRegistered.bind(this));
     eventStore.on('rsvp', this.rsvpRegistered.bind(this));
+    eventStore.on('votes counted', this.votesCounted.bind(this));
   }
 
   voteRegistered(){
@@ -37,6 +38,12 @@ class CurrentEvent extends Component {
       user: userStore.getUser(),
       message: "Vote Registered",
       rsvp: false
+    })
+  }
+
+  votesCounted(){
+    this.setState({
+      event: eventStore.getCurrentEvent()
     })
   }
 
@@ -59,7 +66,7 @@ class CurrentEvent extends Component {
       return (
         <div>
           <p>{this.state.message}</p>
-          <EventDetail voted={this.state.user.voted} rsvp={this.state.rsvp} user={this.state.user} eventData={this.state.event} />
+          <EventDetail voted={this.state.user.voted} rsvp={this.state.rsvp} user={this.state.user} eventData={this.state.event} winner={this.state.event.event.winner} />
           <Link to="/home">
             <div className="align-button">
               <input

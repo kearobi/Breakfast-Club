@@ -33,9 +33,13 @@ class EventStore extends EventEmitter{
         this.emit('vote registered');
         break;
       }
+      case("VOTES-COUNTED"):{
+        this.currentEvent = action.data;
+        this.emit('votes counted');
+        break;
+      }
       case("RSVP"):{
         this.currentEvent = action.data;
-        console.log("event from handleAction: ", this.currentEvent)
         this.emit('rsvp');
         break;
       }
@@ -47,6 +51,11 @@ class EventStore extends EventEmitter{
       case("CURRENT-EVENT"):{
         this.currentEvent = action.data;
         this.emit('current event fetched');
+        break;
+      }
+      case("EVENT-CREATED"):{
+        this.currentEvent = action.data;
+        this.emit('event created');
         break;
       }
       default:{}
