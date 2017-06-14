@@ -22,18 +22,31 @@ class AdminPage extends Component {
       placeButton: "admin_button",
       eventButton: "admin_button"
     }
+    this.onAdminUpdate = this.adminUpdate.bind(this)
   }
   //the admin store deletes a user, it yells 'ive changed!' to everyone who's listening, and when it does that it calls updateUsers. (we told componentwillmount to issue this whenever there's a change)
   adminUpdate(){
-    this.setState({
-      users: adminStore.adminReturnUsers(),
-      places: adminStore.adminReturnPlaces(),
-      events: adminStore.adminReturnEvents()
-    })
+    if(this.state.userButton === "admin_button_clicked"){
+      this.setState({users: adminStore.adminReturnUsers()})
+    }
+    else if (this.state.placeButton === "admin_button_clicked"){
+      this.setState({places: adminStore.adminReturnPlaces()})
+    }
+    else if (this.state.placeButton === "admin_button_clicked"){
+      this.setState({events: adminStore.adminReturnEvents()})
+      //something's wrong here. didnt even hti console log
+      console.log("events: ", this.state.events)}
   }
 
   componentWillMount(){
-    adminStore.on('change', this.adminUpdate.bind(this))}
+    adminStore.on('change', this.onAdminUpdate)
+  }
+
+  componentWillUnmount(){
+    adminStore.removeListener('change', this.onAdminUpdate)
+  }
+
+
 
   handleUserClick(){
     this.setState({
@@ -72,17 +85,17 @@ class AdminPage extends Component {
           <button
             className={this.state.placeButton}
             type="button"
-            onClick={this.handlePlaceClick.bind(this)}>
+            onMouseOver={this.handlePlaceClick.bind(this)}>
           manage places</button>
           <button
             className={this.state.userButton}
             type="button"
-            onClick={this.handleUserClick.bind(this)}>
+            onMouseOver={this.handleUserClick.bind(this)}>
           manage users</button>
           <button
             className={this.state.eventButton}
             type="button"
-            onClick={this.handleEventClick.bind(this)}>
+            onMouseOver={this.handleEventClick.bind(this)}>
             manage events</button>
         </div>
         <br></br><br></br><br></br>

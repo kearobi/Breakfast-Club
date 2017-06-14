@@ -1,8 +1,5 @@
 import dispatcher from './Dispatcher';
 import userStore from './stores/UserStore';
-import messageStore from './stores/MessageStore';
-import adminStore from './stores/AdminStore';
-import placeStore from './stores/PlaceStore'
 import eventStore from './stores/EventStore'
 
 export function updateUser(){
@@ -28,13 +25,17 @@ export function checkIfVotingOver(event){
 
 export function checkEventOver(event){
   let previous = new Date(event.event.date)
-  let newEvent = Date.now()
+  let newEvent = new Date(Date.now())
+  console.log(previous, "previous")
+  console.log(newEvent, "newEvent")
   if (previous < newEvent) {
+    console.log("checkEventOver called")
     createNewEvent()
   }
 }
 
 export function createNewEvent(){
+  console.log("createNewEvent Called")
   const params = {
     method: 'GET'
   }
@@ -435,6 +436,7 @@ export function adminDeletePlace(attributes){
       body: JSON.stringify({id: attributes})
     }
     // send state to the backend server. it's /admin according to the API we built
+    // debugger
     fetch("http://localhost:4000/admin/delete/user", params).then(function(response){
       // if post is successful update the message to be successful
       // and update the state to equal what we get back from the server
@@ -520,3 +522,57 @@ export function adminAddEvent(attributes){
   }).catch(function(error){
     // adminStore.updateMessage("There was an error: " + error)
   })}
+
+  export function adminEditUser(attributes){
+    const params = {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({user: attributes})
+    }
+    fetch("http://localhost:4000/admin/edit/user", params).then(function(response){
+      if (response.status === 200){
+        dispatcher.dispatch({
+          type: 'ADMIN_UPDATE_USER',
+          id: attributes
+        })
+      }
+    }).catch(function(error){
+      // adminStore.updateMessage("There was an error: " + error)
+    })
+  }
+
+  export function adminEditPlace(attributes){
+    const params = {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({id: attributes})
+    }
+    fetch("http://localhost:4000/admin/edit/place", params).then(function(response){
+      if (response.status === 200){
+        dispatcher.dispatch({
+          type: 'ADMIN_UPDATE_PLACE',
+          id: attributes
+        })
+      }
+    }).catch(function(error){
+      // adminStore.updateMessage("There was an error: " + error)
+    })
+  }
+
+  export function adminEditEvent(attributes){
+    const params = {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({id: attributes})
+    }
+    fetch("http://localhost:4000/admin/edit/event", params).then(function(response){
+      if (response.status === 200){
+        dispatcher.dispatch({
+          type: 'ADMIN_UPDATE_EVENT',
+          id: attributes
+        })
+      }
+    }).catch(function(error){
+      // adminStore.updateMessage("There was an error: " + error)
+    })
+  }

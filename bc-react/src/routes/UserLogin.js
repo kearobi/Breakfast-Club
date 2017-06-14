@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Header from '../components/Header';
-import {loginUser, checkLoginRedir, testCreate} from '../actions';
+import {loginUser, checkLoginRedir, createNewEvent} from '../actions';
 import userStore from '../stores/UserStore';
 import ('../style/UserLogin.css');
 
@@ -24,7 +24,7 @@ class UserLogin extends Component {
   }
 
   redirectToHome(){
-    this.props.history.push("/home");
+    this.props.history.push("/home-initial");
   }
 
   loginFailed(){
@@ -50,7 +50,6 @@ class UserLogin extends Component {
       })
     }
     else {
-      console.log("login")
       loginUser(this.state.user)
     }
   }

@@ -415,7 +415,7 @@ app.post('/signup', function(request, response){
 //   })
 // })
 
-app.get('/create-event', function(request,    response){
+app.get('/create-event', function(request, response){
   let _places;
   let _place_id_1;
   let _place_id_2;
@@ -429,17 +429,20 @@ app.get('/create-event', function(request,    response){
     }
     _place_id_1 = _places[index1].id;
     _place_id_2 = _places[index2].id;
-  })
+    console.log("event created here")
+  }).then( function(){
   Bevent.create({
       place_1_id: _place_id_1,
       place_2_id: _place_id_2,
       vote_status: true,
-      date: '2017-06-12T22:53:09.840Z',
+      date: '2017-06-18T22:53:09.840Z',
       winner: null,
       "createdAt": Date.now(),
       "updatedAt": Date.now()
+    })
   })
   .then(function(event){
+    console.log("event created here")
     _event = event;
     return Place.findOne({
       where:{id: _event.place_1_id}
@@ -621,12 +624,14 @@ app.get('/admin/get/events', function(request, response){
 
 app.post('/admin/add/user', function(request, response){
   let userParams = request.body.user
+  console.log("userParams: ", userParams)
   User.create(userParams).then(function(user){
     response.status(200)
     response.json({status: 'success', user: user})
   }).catch(function(error){
     response.status(400)
     response.json({status: 'error', error: error})
+    console.log("error: ", error)
   })})
 app.post('/admin/add/place', function(request, response){
   let placeParams = request.body.place
@@ -650,15 +655,21 @@ app.post('/admin/add/event', function(request, response){
 //delete is name of HTTP method we're using. the userParams have ID because we're only passing the ID in
 //destroy is the sequelize call
 //this is where the front end connects to the back end. The problem is we had two delete endpoints with the same URL. As we delete a user, we're sending a delete request to the backend and it's saying hey, i'm looking for this url, and on this url i want to perform these actions. However, you have to have a unique URL for every controller if you're trying to do something uniquely to each model
+
+//so now it will destroy all the guest lists and then it will destroy the user
 app.delete('/admin/delete/user', function(request, response){
   let userParams = request.body.id
-  User.destroy({where: {id: userParams}}).then(function(user){
-    response.status(200)
-    //this user:user comes from the then function
-    response.json({status: 'success', user: user})
-  }).catch(function(error){
-    response.status(400)
-    response.json({status: 'error', error: error})
+  console.log("userParams:" + userParams)
+  GuestList.destroy({where: {user_id:userParams}}).then(function(){
+    User.destroy({where: {id: userParams}}).then(function(user){
+      response.status(200)
+      //this user:user comes from the then function
+      response.json({status: 'success', user: user})
+    }).catch(function(error){
+      response.status(400)
+      console.log("error", error)
+      response.json({status: 'error', error: error})
+    })
   })
 })
 //swagger lets you see all the endpoints of an API in URL form
@@ -683,18 +694,35 @@ app.delete('/admin/delete/event', function(request, response){
 
 //ask rob for help
 app.put('/admin/edit/user', function(request, response){
-  return User
-    .findById(request.params.user.id)
-    .then(user => {
-      return user
-        .update({
-          body: request.body
-        })
-        .then(() => response.status(200).send(user))
-        .catch((error) => response.status(400).send(error))
-    })
-    .catch((error) => response.status(400).send(error))
-})
+  //the body contains the user, and the user contains the properties
+  let userParams = request.body.user
+  console.log("userParams", userParams)
+  User.update(userParams, {where: {id: userParams.id}}).then(function(user){
+    response.status(200)
+    response.json({status: 'success', user: user})
+  }).catch(function(error){
+  console.log("error", error)
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })})
+app.put('/admin/edit/place', function(request, response){
+  let placeParams = request.body.place
+  Place.update(placeParams, {where: {id: placeParams.id}}).then(function(place){
+    response.status(200)
+    response.json({status: 'success', place: place})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })})
+app.put('/admin/edit/event', function(request, response){
+  let eventParams = request.body.event
+  Bevent.update(eventParams, {where: {id: eventParams.id}}).then(function(event){
+    response.status(200)
+    response.json({status: 'success', event: user})
+  }).catch(function(error){
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })})
 
 app.listen(4000, function () {
  console.log('listening on port 4000!');

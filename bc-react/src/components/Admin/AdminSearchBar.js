@@ -10,8 +10,7 @@ class SearchBar extends Component {
   }
 
 updateSearch(event){
-  this.setState({searchTerm: event.target.value})
-}
+  this.setState({searchTerm: event.target.value})}
 
 userHeader(){
   return (
@@ -37,8 +36,7 @@ placeHeader(){
         <th className="admin-th">Phone</th>
         <th className="invisible">..........</th>
       </tr>
-  )
-}
+  )}
 
 eventHeader(){
   return(
@@ -50,8 +48,7 @@ eventHeader(){
         <th className="admin-th">RSVP</th>
         <th className="invisible">..........</th>
       </tr>
-  )
-}
+  )}
 
 //the filter is a loop that takes a function (we're just using the fat arrow syntax). The parameter(user) gets filled in with each individual item in the array. If it returns true, then that user gets put in the output set, if it returns false, it gets skipped
   render() {
@@ -110,7 +107,8 @@ eventHeader(){
     return (
       <div>
         <input
-          size='75'
+          id='search-bar'
+          size='72'
           type='search'
           placeholder='Search'
           value={this.state.searchTerm}
