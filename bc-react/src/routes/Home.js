@@ -24,13 +24,17 @@ class Home extends Component {
       event: eventStore.getCurrentEvent(),
       events: []
     }
-    fetchCurrentEvent();
-    fetchMessages();
-    fetchEvents();
     this.onlogin = this.handleLogin.bind(this)
     this.onlogout = this.handleLogOut.bind(this)
     this.oncurrent = this.updateCurrentEvent.bind(this)
     this.onevents = this.events.bind(this)
+    console.log("this.props.initial:", this.props.initial)
+    if (this.props.initial){
+      fetchMessages()
+      fetchCurrentEvent()
+      fetchEvents();
+
+    }
   }
 
   componentWillMount(){
@@ -55,6 +59,7 @@ class Home extends Component {
  // }
 
   handleLogin(){
+    console.log("handleLogin called")
     this.setState({
       user: userStore.getUser(),
     })
