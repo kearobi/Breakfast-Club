@@ -8,6 +8,7 @@ var GuestList = require('./models').GuestList
 // var payload = require('./api').payload
 var User = require('./models').User
 var Message = require('./models').Message
+var moment = require('moment');
 
 const corsOptions = {
   origin: 'http://localhost:3000'
@@ -432,14 +433,16 @@ app.post('/create-event', function(request, response){
     _place_id_2 = _places[index2].id;
     console.log("B")
   }).then( function(){
-  return Bevent.create({
-      place_1_id: _place_id_1,
-      place_2_id: _place_id_2,
-      vote_status: true,
-      date: '2017-06-18T22:53:09.840Z',
-      winner: null,
-      "createdAt": Date.now(),
-      "updatedAt": Date.now()
+    let date = moment().hour(8).day(12).minute(0).second(0)
+    console.log("date", date)
+    return Bevent.create({
+        place_1_id: _place_id_1,
+        place_2_id: _place_id_2,
+        vote_status: true,
+        date: date,
+        winner: null,
+        "createdAt": Date.now(),
+        "updatedAt": Date.now()
     })
   })
   .then(function(event){
