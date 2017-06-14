@@ -124,14 +124,14 @@ class AdminTable extends Component {
                       value={this.state.user.email}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
-                      size='15'/>
+                      size='20'/>
             </td>
             <td>
               <input  name='neighborhood'
                       value={this.state.user.neighborhood}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
-                      size='8' />
+                      size='15' />
             </td>
             <td>
               <input  name='encryptedPassword'

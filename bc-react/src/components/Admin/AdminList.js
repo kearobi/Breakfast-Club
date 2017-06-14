@@ -32,34 +32,34 @@ class AdminList extends Component {
     adminStore.on('change', this.handleUpdate.bind(this))
   }
 
-  renderList(){
-
-    let listRender;
-    let i;
-    if(this.props.placeList){
-      listRender = []
-    for(i=0; i<this.state.places.length; i++){
-      let placeId = "place-" + i
-      listRender.push(
-        <AdminTable key={placeId} place={this.state.places[i]} placeTable={true}/>)}
-    return listRender}
-
-    else if(this.props.userList){
-      listRender = []
-      for(i=0; i<this.state.users.length; i++){
-        let userId = "user-" + i
-        listRender.push(
-          <AdminTable key={userId} user={this.state.users[i]} userTable={true}/>)}
-    return listRender}
-
-    else if(this.props.eventList){
-      listRender = []
-      for(i=0; i<this.state.events.length; i++){
-        let eventId = "event-" + i
-        listRender.push(
-          <AdminTable key={eventId} event={this.state.events[i]} eventTable={true}/>)}
-    return listRender}
-  }
+  // renderList(){
+  //
+  //   let listRender;
+  //   let i;
+  //   if(this.props.placeList){
+  //     listRender = []
+  //   for(i=0; i<this.state.places.length; i++){
+  //     let placeId = "place-" + i
+  //     listRender.push(
+  //       <AdminTable key={placeId} place={this.state.places[i]} placeTable={true}/>)}
+  //   return listRender}
+  //
+  //   else if(this.props.userList){
+  //     listRender = []
+  //     for(i=0; i<this.state.users.length; i++){
+  //       let userId = "user-" + i
+  //       listRender.push(
+  //         <AdminTable key={userId} user={this.state.users[i]} userTable={true}/>)}
+  //   return listRender}
+  //
+  //   else if(this.props.eventList){
+  //     listRender = []
+  //     for(i=0; i<this.state.events.length; i++){
+  //       let eventId = "event-" + i
+  //       listRender.push(
+  //         <AdminTable key={eventId} event={this.state.events[i]} eventTable={true}/>)}
+  //   return listRender}
+  // }
 
   render(){
     return(<div></div>)
