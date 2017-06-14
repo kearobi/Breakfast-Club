@@ -31,9 +31,15 @@ class App extends Component {
     this.state = {}
   }
 
-  handleHome(){
+  handleInitialHome(){
     return (
       <Home initial="true"/>
+    )
+  }
+
+  handleDefaultHome(){
+    return (
+      <Home initial="false"/>
     )
   }
 
@@ -48,8 +54,8 @@ class App extends Component {
             <Route exact path='/login' component={UserLogin} />
             <Route exact path='/places' component={PlaceIndex} />
             <Route exact path='/admin' component={AdminPage} />
-            <Route exact path='/home-initial' render={this.handleHome} />
-            <Route exact path='/home' component={Home} />
+            <Route exact path='/home-initial' render={this.handleInitialHome} />
+            <Route exact path='/home' render={this.handleDefaultHome} />
             <Route exact path='/profile' component={UserProfile} />
             <Route exact path='/test-event' component={TestEvent} />
             <Route path='/current-event' component={CurrentEvent} />

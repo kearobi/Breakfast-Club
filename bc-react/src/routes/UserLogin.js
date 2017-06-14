@@ -50,7 +50,6 @@ class UserLogin extends Component {
       })
     }
     else {
-      console.log("login")
       loginUser(this.state.user)
     }
   }

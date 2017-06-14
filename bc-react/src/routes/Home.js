@@ -51,14 +51,12 @@ class Home extends Component {
   }
 
   handleLogOut(){
-    console.log("handleLogOut called")
     this.setState({
       user: userStore.getUser() // TODO wha?
     })
   }
 
   updateCurrentEvent(){
-    console.log("updateCurrentEvent")
     checkIfVotingOver(eventStore.getCurrentEvent())
     checkEventOver(eventStore.getCurrentEvent())
     this.setState({
@@ -67,7 +65,6 @@ class Home extends Component {
   }
 
   events(){
-    console.log("events")
     let bevents = eventStore.getAllEvents()
     let newEvents = bevents.map(function(bevent){
       let start = moment(bevent.date).toDate()
