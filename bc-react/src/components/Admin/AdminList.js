@@ -19,7 +19,6 @@ class AdminList extends Component {
     adminLoadEvents()
   }
 
-//wait... but this is the initial state. hmmmmmmm... and this never gets called
   handleUpdate(){
     if(this.props.placeList){
     this.setState({places: adminStore.adminReturnPlaces()})

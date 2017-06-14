@@ -196,6 +196,7 @@ class AdminTable extends Component {
           <td className="icon_td">{this.editIcon()}</td>
         </tr>
     )}else if(this.props.eventTable){
+      return(
       <tr className={this.state.className}>
         <td>
           <input
@@ -205,17 +206,22 @@ class AdminTable extends Component {
             disabled={this.state.readOnly} /></td>
         <td>
           <input
-            name='place'
-            value={this.state.event.place}
-            onChange={this.handleEdit.bind(this)}
-            disabled={this.state.readOnly} /></td>
+            // name='place'
+            // value={this.state.event.place}
+            // onChange={this.handleEdit.bind(this)}
+            // disabled={this.state.readOnly}
+          /></td>
         <td>neighborhood</td>
         <td>guest speaker</td>
         <td>rsvp</td>
         <td className="icon_td">{this.deleteIcon()}</td>
         <td className="icon_td">{this.editIcon()}</td>
       </tr>
-    }}
+    )}else{
+      return(
+        <div>Oops</div>
+    )}
+  }
 }
 
 export default AdminTable;
