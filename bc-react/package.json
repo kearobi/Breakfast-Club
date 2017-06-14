@@ -6,6 +6,8 @@
     "flux": "^3.1.2",
     "jquery": "^3.2.1",
     "moment": "^2.18.1",
+    "node-sass-chokidar": "^0.0.2",
+    "npm-run-all": "^4.0.2",
     "react": "^15.5.4",
     "react-addons-css-transition-group": "^15.5.2",
     "react-big-calendar": "^0.14.0",
@@ -24,10 +26,13 @@
     "react-scripts": "1.0.7"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
   },
   "main": "index.js",
   "license": "MIT"

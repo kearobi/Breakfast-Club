@@ -26,11 +26,15 @@ class AdminPage extends Component {
   //the admin store deletes a user, it yells 'ive changed!' to everyone who's listening, and when it does that it calls updateUsers. (we told componentwillmount to issue this whenever there's a change)
   adminUpdate(){
     if(this.state.userButton === "admin_button_clicked"){
-      this.setState({users: adminStore.adminReturnUsers()})}
+      this.setState({users: adminStore.adminReturnUsers()})
+    }
     else if (this.state.placeButton === "admin_button_clicked"){
-      this.setState({places: adminStore.adminReturnPlaces()})}
+      this.setState({places: adminStore.adminReturnPlaces()})
+    }
     else if (this.state.placeButton === "admin_button_clicked"){
-      this.setState({events: adminStore.adminReturnEvents()})}
+      this.setState({events: adminStore.adminReturnEvents()})
+      //something's wrong here. didnt even hti console log
+      console.log("events: ", this.state.events)}
   }
 
   componentWillMount(){

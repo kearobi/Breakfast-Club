@@ -365,7 +365,7 @@ export function adminDeletePlace(attributes){
       body: JSON.stringify({id: attributes})
     }
     // send state to the backend server. it's /admin according to the API we built
-    debugger
+    // debugger
     fetch("http://localhost:4000/admin/delete/user", params).then(function(response){
       // if post is successful update the message to be successful
       // and update the state to equal what we get back from the server
@@ -456,7 +456,7 @@ export function adminAddEvent(attributes){
     const params = {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({id: attributes})
+      body: JSON.stringify({user: attributes})
     }
     fetch("http://localhost:4000/admin/edit/user", params).then(function(response){
       if (response.status === 200){
