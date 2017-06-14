@@ -24,8 +24,6 @@ class AdminPlaces extends Component {
   componentWillMount(){
     adminStore.on('change', this.adminReturnPlaces.bind(this)) }
 
-  showPlaceList(){ value: this.state.value }
-
   displayModal(){
     this.setState({displayModal: true})}
 
