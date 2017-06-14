@@ -21,7 +21,8 @@ class Home extends Component {
     super(props)
     this.state = {
       user: userStore.getUser(),
-      event: eventStore.getCurrentEvent()
+      event: eventStore.getCurrentEvent(),
+      events: []
     }
     fetchCurrentEvent();
     fetchMessages();
@@ -77,6 +78,17 @@ class Home extends Component {
     })
   }
 
+  checkCalendar(){
+    if(this.state.events.length > 0){
+      return(
+      <BigCalendar
+        events={this.state.events}
+      />
+    )
+  }else{
+    return(<div>Loading...</div>)
+  }
+  }
 //{userStore.getUser.firstName()}
   render(){
     return (
@@ -92,9 +104,7 @@ class Home extends Component {
 
             <div className="row">
               <div className="calendar-div col-xs-8">
-                <BigCalendar
-                  events={this.state.events}
-                  />
+                {this.checkCalendar()}
               </div>
               <div className="col-xs-4">
                 <MessageBoard />
