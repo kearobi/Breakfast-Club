@@ -68,6 +68,9 @@ module.exports = {
         updatedAt: '2017-06-02 07:52:29-07'
       }
     ])
+    .then(function(){
+      return queryInterface.sequelize.query('ALTER SEQUENCE "Places_id_seq" RESTART 10')
+    })
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -140,6 +143,9 @@ module.exports = {
         updatedAt: '2017-06-02 07:52:29-07'
       }
     ])
+    .then(function(){
+      return queryInterface.sequelize.query('ALTER SEQUENCE "Places_id_seq" RESTART 1')
+    })
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

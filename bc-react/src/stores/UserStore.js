@@ -83,6 +83,12 @@ class UserStore extends EventEmitter{
         this.logout()
         break
       }
+      case("EVENT-CREATED"):{
+        this.updateUser(action.data.user)
+        this.emit('voted set to false')
+        break
+      }
+
       default:{}
     }
   }

@@ -7,13 +7,34 @@ class Reminder extends Component {
     super(props)
     this.state = {
       message: 'Reminder',
-      event: {}
+      event: {},
+      userUpdated: false,
+      eventUpdated: true
     }
   }
   componentWillMount(){
     eventStore.on('current event fetched', this.updateMessage.bind(this));
     eventStore.on('votes counted', this.updateMessage.bind(this));
-    eventStore.on('event created', this.updateMessage.bind(this));
+    userStore.on('voted set to false', this.updateUser.bind(this));
+    eventStore.on('new event created', this.updateEvent.bind(this));
+  }
+
+  updateUser(){
+    this.setState({
+      userUpdated: true
+    })
+    if (this.state.eventUpdated){
+      this.updateMessage()
+    }
+  }
+
+  updateEvent(){
+    this.setState({
+      eventUpdated: true
+    })
+    if (this.state.userUpdated){
+      this.updateMessage()
+    }
   }
 
   checkIfAttending(user_id, guestLists){
@@ -30,7 +51,6 @@ class Reminder extends Component {
     let currentEvent = eventStore.getCurrentEvent();
     let user = userStore.getUser();
     if (!currentEvent.event.vote_status){
-      console.log("vote_status is false")
       if (this.checkIfAttending(user.id, currentEvent.guestLists)){
         this.setState({
           event: currentEvent,

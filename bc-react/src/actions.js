@@ -23,21 +23,22 @@ export function checkIfVotingOver(event){
   }
 }
 
-export function checkEventOver(event){
+export function checkEventOver(event, id){
   let previous = new Date(event.event.date)
   let newEvent = new Date(Date.now())
-  console.log(previous, "previous")
-  console.log(newEvent, "newEvent")
   if (previous < newEvent) {
-    console.log("checkEventOver called")
-    createNewEvent()
+    createNewEvent(id)
   }
 }
 
-export function createNewEvent(){
+export function createNewEvent(id){
   console.log("createNewEvent Called")
   const params = {
-    method: 'GET'
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      id: id
+    })
   }
   fetch("http://localhost:4000/create-event", params).then(function(response){
     if(response.status === 200){
@@ -48,7 +49,8 @@ export function createNewEvent(){
             event: body.event,
             users: body.users,
             places: body.places,
-            guestLists: body.guestLists
+            guestLists: body.guestLists,
+            user: body.user
           }
         })
       })

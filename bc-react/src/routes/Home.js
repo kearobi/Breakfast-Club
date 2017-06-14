@@ -24,7 +24,6 @@ class Home extends Component {
       event: eventStore.getCurrentEvent(),
       events: []
     }
-    console.log("this.props.initial:", this.props.initial)
     if (this.props.initial){
       fetchMessages()
       fetchCurrentEvent()
@@ -59,7 +58,7 @@ class Home extends Component {
 
   updateCurrentEvent(){
     checkIfVotingOver(eventStore.getCurrentEvent())
-    checkEventOver(eventStore.getCurrentEvent())
+    checkEventOver(eventStore.getCurrentEvent(), this.state.user.id)
     this.setState({
       event: eventStore.getCurrentEvent()
     })

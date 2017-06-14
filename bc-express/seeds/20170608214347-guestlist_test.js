@@ -36,6 +36,9 @@ module.exports = {
       updatedAt: '2017-06-02 07:52:29-07'
     }
     ])
+    .then(function(){
+      return queryInterface.sequelize.query('ALTER SEQUENCE "GuestLists_id_seq" RESTART 10')
+    })
   },
 
   down: function (queryInterface, Sequelize) {
@@ -73,5 +76,8 @@ module.exports = {
       updatedAt: '2017-06-02 07:52:29-07'
     }
     ])
+    .then(function(){
+      return queryInterface.sequelize.query('ALTER SEQUENCE "GuestLists_id_seq" RESTART 1')
+    })
   }
 };
