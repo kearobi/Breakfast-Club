@@ -56,8 +56,9 @@ class UserLogin extends Component {
 
 render(){
   return (
-    <div className="login-signup-container">
-      <div className="FontAmatic">
+    // <div className="login-signup-container">
+    //   <div className="FontAmatic">
+      <div id="sign_up">
         Log In
       </div>
       <div className="alert alert-warning"><strong>{this.state.message}</strong></div>
@@ -97,8 +98,6 @@ render(){
           </form>
         </div>
       </div>
-    </div>
-
     );
   }
 }
