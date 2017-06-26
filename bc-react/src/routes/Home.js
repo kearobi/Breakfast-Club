@@ -21,20 +21,36 @@ class Home extends Component {
     super(props)
     this.state = {
       user: userStore.getUser(),
-      event: eventStore.getCurrentEvent()
+      event: eventStore.getCurrentEvent(),
+      events: []
     }
-    fetchCurrentEvent();
-    fetchMessages();
-    fetchEvents();
+    this.onlogin = this.handleLogin.bind(this)
+    this.onlogout = this.handleLogOut.bind(this)
+    this.oncurrent = this.updateCurrentEvent.bind(this)
+    this.onevents = this.events.bind(this)
+    console.log("this.props.initial:", this.props.initial)
+    if (this.props.initial){
+      fetchMessages()
+      fetchCurrentEvent()
+      fetchEvents();
+    }
   }
 
   componentWillMount(){
-    userStore.on('logged-in',this.handleLogin.bind(this))
-    userStore.on('logged-out', this.handleLogOut.bind(this))
-    eventStore.on('current event fetched',this.updateCurrentEvent.bind(this))
-    eventStore.on('event created',this.updateCurrentEvent.bind(this))
-    eventStore.on('events fetched', this.events.bind(this))
+    userStore.on('logged-in', this.onlogin)
+    userStore.on('logged-out', this.onlogout)
+    eventStore.on('current event fetched', this.oncurrent)
+    eventStore.on('event created',this.oncurrent)
+    eventStore.on('events fetched', this.onevents)
     checkLoginRedir(this.props)
+  }
+
+  componentWillUnmount(){
+    userStore.removeListener('logged-in', this.onlogin)
+    userStore.removeListener('logged-out', this.onlogout)
+    eventStore.removeListener('current event fetched', this.oncurrent)
+    eventStore.removeListener('event created',this.oncurrent)
+    eventStore.removeListener('events fetched', this.onevents)
   }
 
  //  componentWillUpdate(){
@@ -42,6 +58,7 @@ class Home extends Component {
  // }
 
   handleLogin(){
+    console.log("handleLogin called")
     this.setState({
       user: userStore.getUser(),
     })
@@ -55,7 +72,7 @@ class Home extends Component {
 
   updateCurrentEvent(){
     checkIfVotingOver(eventStore.getCurrentEvent())
-    checkEventOver(eventStore.getCurrentEvent())
+    checkEventOver(eventStore.getCurrentEvent(), this.state.user.id)
     this.setState({
       event: eventStore.getCurrentEvent()
     })
@@ -77,6 +94,17 @@ class Home extends Component {
     })
   }
 
+  checkCalendar(){
+    if(this.state.events.length > 0){
+      return(
+      <BigCalendar
+        events={this.state.events}
+      />
+    )
+  }else{
+    return(<div>Loading...</div>)
+  }
+  }
 //{userStore.getUser.firstName()}
   render(){
     return (
@@ -92,9 +120,7 @@ class Home extends Component {
 
             <div className="row">
               <div className="calendar-div col-xs-8">
-                <BigCalendar
-                  events={this.state.events}
-                  />
+                {this.checkCalendar()}
               </div>
               <div className="col-xs-4">
                 <MessageBoard />

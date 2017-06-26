@@ -7,13 +7,44 @@ class Reminder extends Component {
     super(props)
     this.state = {
       message: 'Reminder',
-      event: {}
+      event: {},
+      userUpdated: false,
+      eventUpdated: true
     }
+    this.onUpdateMessage = this.updateMessage.bind(this)
+    this.onUpdateUser = this.updateUser.bind(this)
+    this.onUpdateEvent = this.updateEvent.bind(this)
   }
   componentWillMount(){
-    eventStore.on('current event fetched', this.updateMessage.bind(this));
-    eventStore.on('votes counted', this.updateMessage.bind(this));
-    eventStore.on('event created', this.updateMessage.bind(this));
+    eventStore.on('current event fetched', this.onUpdateMessage);
+    eventStore.on('votes counted', this.onUpdateMessage);
+    userStore.on('voted set to false', this.onUpdateUser);
+    eventStore.on('new event created', this.onUpdateEvent);
+  }
+
+  componentWillUnmount(){
+    eventStore.removeListener('current event fetched', this.onUpdateMessage);
+    eventStore.removeListener('votes counted', this.onUpdateMessage);
+    userStore.removeListener('voted set to false', this.onUpdateUser);
+    eventStore.removeListener('new event created', this.onUpdateEvent);
+  }
+
+  updateUser(){
+    this.setState({
+      userUpdated: true
+    })
+    if (this.state.eventUpdated){
+      this.updateMessage()
+    }
+  }
+
+  updateEvent(){
+    this.setState({
+      eventUpdated: true
+    })
+    if (this.state.userUpdated){
+      this.updateMessage()
+    }
   }
 
   checkIfAttending(user_id, guestLists){
@@ -30,7 +61,6 @@ class Reminder extends Component {
     let currentEvent = eventStore.getCurrentEvent();
     let user = userStore.getUser();
     if (!currentEvent.event.vote_status){
-      console.log("vote_status is false")
       if (this.checkIfAttending(user.id, currentEvent.guestLists)){
         this.setState({
           event: currentEvent,

@@ -19,21 +19,19 @@
     "react-dom": "^15.5.4",
     "react-event-calendar": "^0.3.0",
     "react-image": "^1.0.1",
+    "react-images-uploader": "^1.0.1",
     "react-infinite-calendar": "^2.3.1",
     "react-modal": "^1.7.8",
     "react-router-dom": "^4.1.1",
     "react-scripts": "^1.0.7",
     "react-transition-group": "^1.1.1"
   },
-  "devDependencies": {
-    "react-scripts": "1.0.7"
-  },
   "scripts": {
-    "start-js": "react-scripts start",
+    "start-js": "./node_modules/react-scripts/bin/react-scripts.js start",
     "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "build": "npm run build-css && ./node_modules/react-scripts/bin/react-scripts.js build",
+    "test": "./node_modules/react-scripts/bin/react-scripts.js test --env=jsdom",
+    "eject": "./node_modules/react-scripts/bin/react-scripts.js eject",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
   },
