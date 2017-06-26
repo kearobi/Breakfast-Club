@@ -1,12 +1,12 @@
-//AdminEvents passes props to AdminList, SearchBar, AdminModal
+//AdminEvents gets props from AdminPage and passes props to AdminTable, SearchBar, AdminModal
 
 import React, {Component} from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import {fetchCurrentEvent} from '../../actions'
-import AdminList from './AdminList';
 import SearchBar from './AdminSearchBar';
 import AdminModal from './AdminModal';
+import AdminTable from './AdminTable';
 import adminStore from '../../stores/AdminStore';
 
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
@@ -14,7 +14,7 @@ BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 class AdminEvents extends Component {
   constructor(props){
     super(props)
-    this.state = {events: adminStore.adminReturnEvents(),
+    this.state = {events: this.props.events,
                   displayModal: false}
 
   fetchCurrentEvent()
@@ -31,7 +31,7 @@ class AdminEvents extends Component {
   }
 
   adminReturnEvents(){
-    this.setState({events: adminStore.adminReturnEvents() })}
+    this.setState({events: this.props.events})}
 
   componentWillMount(){
     adminStore.on('change', this.adminReturnEvents.bind(this))}
@@ -43,11 +43,7 @@ class AdminEvents extends Component {
     return(
       { event: {
               date: "",
-      }})
-    }
-
-  eventListParams(){
-    return({events: adminStore.adminReturnEvents()})}
+      }})}
 
   modalAdmin(){
     if(this.state.displayModal){
@@ -62,10 +58,10 @@ class AdminEvents extends Component {
             <button className="add_button" type="button"
             onClick={this.displayModal.bind(this)}>
             + event </button>
-            <SearchBar events={this.state.events} eventSearchBar={true}/>
+            <SearchBar events={this.props.events} eventSearchBar={true}/>
           </div>
           <br></br><br></br>
-          <AdminList eventList={true} startingState={this.eventListParams()}/>
+          <AdminTable eventList={true} />
           {this.modalAdmin()}
         <div className="calendar-div admin-calendar">
         <BigCalendar events={this.events()}/>

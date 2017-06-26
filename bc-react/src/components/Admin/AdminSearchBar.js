@@ -87,9 +87,6 @@ eventHeader(){
         return <AdminTable place={place} key={place.id} placeTable={true} />})
     } else if (this.props.eventSearchBar){
       header = this.eventHeader()
-      // debugger
-      // console.log('These are the props!' + JSON.stringify(this.props))
-      //problem: this.props.events is an empty array; it's not getting filled with info from the DB
       filtered = this.props.events.filter(
         (event) => {
           return (

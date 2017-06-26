@@ -1,6 +1,21 @@
 #admin_container {
+
   text-align: center;
   padding: none;
+
+  button {
+    border-width: thin;
+    font-family: 'Abel';
+    font-size: 20px;
+    border-color: #c1c1c1;
+    text-align: center;
+    text-decoration: none;
+    background-color: #eeeeee;
+  }
+
+  button:hover {
+    background-color: #def9a3;
+  }
 
   // text-align: center;
   #admin_button_wrapper {
@@ -9,43 +24,20 @@
     text-align: center;
   }
 
-  .admin-calendar {
-    width: 65%;
-  }
-
   .admin_button_clicked {
     background-color: #def9a3;
-    border-color: #c1c1c1;
-    border-width: thin;
-    text-align: center;
-    text-decoration: none;
-    font-family: 'Abel';
-    font-size: 20px;
     margin-right: 3px;
     width: 225px;
   }
 
   .admin_button {
-    background-color: #eeeeee;
-    border-color: #c1c1c1;
-    border-width: thin;
-    text-align: center;
     text-decoration: none;
-    font-family: 'Abel';
-    font-size: 20px;
     margin-right: 3px;
     width: 225px;
   }
 
   .add_button {
     display: inline-block;
-    background-color: #eeeeee;
-    border-color: #c1c1c1;
-    border-width: thin;
-    text-align: center;
-    text-decoration: none;
-    font-family: 'Abel';
-    font-size: 20px;
     padding-left: 22px;
     padding-right: 22px;
     margin-left: 3px;
@@ -150,13 +142,20 @@
     border-color: white;
   }
 
+  .calendar-div {
+    align-items: center;
+    position: relative;
+    width: 2000px;
+    margin: auto;
+  }
+
   .admin-calendar {
     background-color: rgba(0, 0, 0, .5);
     border: 2px solid rgba(0, 0, 0, .5);
     /*border-radius: 20px;*/
     box-shadow: 2px 2px 2px 2px;
     text-align: center;
-    /*width: 100%;*/
+    width: 65%;
     height: 500px;
     padding: 50px;
     font-family: 'Amatic SC', cursive;
