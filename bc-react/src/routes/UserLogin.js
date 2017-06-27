@@ -58,6 +58,7 @@ render(){
   return (
     // <div className="login-signup-container">
     //   <div className="FontAmatic">
+    <div>
       <div id="sign_up">
         Log In
       </div>
@@ -98,6 +99,7 @@ render(){
           </form>
         </div>
       </div>
+    </div>
     );
   }
 }
