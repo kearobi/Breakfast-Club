@@ -7,7 +7,6 @@ class SplashPage extends Component {
   render(){
     return (
       <div>
-        <div className="login-signup">
           <div className="container">
 
             <Coverflow
@@ -29,31 +28,21 @@ class SplashPage extends Component {
               <img src='../Images/11.jpg' alt=' ' data-action="../Images/11.jpg"/>
               <img src='../Images/12.jpg' alt=' ' data-action="../Images/12.jpg"/>
               <img src='../Images/13.jpg' alt=' ' data-action="../Images/13.jpg"/>
-
             </Coverflow>
           </div>
-
-          <div className="row">
-
-            <div className="col-xs-1"></div>
-
-            <div className="col-xs-5 FontAmatic login">
+          <div className="splash-button-container">
+            <div className="login">
               <Link className="FontAmatic" to="/login">
                 Log In
               </Link>
             </div>
-
-            <div className='col-xs-5 FontAmatic signup'>
+            <div className='signup'>
               <Link className="FontAmatic" to="/signup">
                 Sign Up
               </Link>
             </div>
-
-            <div className="col-xs-1"></div>
           </div>
-
         </div>
-      </div>
 
       );
     }

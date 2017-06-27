@@ -56,14 +56,12 @@ class UserLogin extends Component {
 
 render(){
   return (
-    // <div className="login-signup-container">
-    //   <div className="FontAmatic">
-    <div>
+    <div className="login-signup-container">
+      <div className="FontAmatic">
       <div id="sign_up">
         Log In
       </div>
       <div className="alert alert-warning"><strong>{this.state.message}</strong></div>
-        <div className="container">
           <div>
             <form className='form' onSubmit={this.handleSubmit.bind(this)}>
               <div className='formGroup'>
@@ -86,20 +84,18 @@ render(){
                   onChange={this.handleChange.bind(this)}>
                 </input>
               </div>
-              <div className="row bottom-links">
-                <div className="col-xs-6 left align-button">
-                  <Link className="FontAmatic link-font" to="/">
+              <div className="login-signup-container">
+                  <Link className="take-me-back" to="/">
                     Take Me Back!!
                   </Link>
-                </div>
-              <div className='formGroup align-button'>
-                <input className='wobble letMeIn' type='submit' value='Let Me In!!'></input>
+              <div className='formGroup signup'>
+                <input className='' type='submit' value='Let Me In!!'></input>
               </div>
-            </div>
+              </div>
           </form>
         </div>
       </div>
-    </div>
+      </div>
     );
   }
 }
