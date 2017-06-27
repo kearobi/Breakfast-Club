@@ -13,7 +13,7 @@ class UserLogin extends Component {
         email: "",
         password: ""
       },
-      message: ''
+      message: "../Images/white.png"
     }
   }
 
@@ -46,7 +46,7 @@ class UserLogin extends Component {
     e.preventDefault();
     if (this.state.user.email === "" || this.state.user.password === ""){
       this.setState({
-        message: "Email and password required"
+        message: '../Images/Email-password-verification.PNG'
       })
     }
     else {
@@ -56,12 +56,12 @@ class UserLogin extends Component {
 
 render(){
   return (
+    <div className="">
     <div className="login-signup-container">
       <div className="FontAmatic">
       <div id="sign_up">
         Log In
       </div>
-      <div className="alert alert-warning"><strong>{this.state.message}</strong></div>
           <div>
             <form className='form' onSubmit={this.handleSubmit.bind(this)}>
               <div className='formGroup'>
@@ -95,7 +95,9 @@ render(){
           </form>
         </div>
       </div>
-      </div>
+    </div>
+  <img className="login-field-verification" src={this.state.message}></img>
+</div>
     );
   }
 }

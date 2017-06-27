@@ -20,14 +20,6 @@
     align-items: center;
 }*/
 
-.wrapper {
-  font-size: 100%;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  overflow: scroll;
-}
-
 .FontAmatic {
   font-family: 'Amatic SC';
   font-size: 40px;
@@ -69,7 +61,7 @@ button:hover {
 .row:before,
 .row:after {
     content:"";
-    display: table ;
+    display: table;
     clear: both;
 }
 //column positioning: If our columns are empty, our floated columns will stack on top of each other. To prevent this, we'll give our columns a min-height of 1px as well as float them. To find the width of one column, all we have to do is divide the total number of columns by the width of the container. In our case, the width of the container is 100%, and we want 6 columns, so 100/6 = 16.66, so our base column width is 16.66%.If we want a section that's 2 columns wide, we have to create an 2-column-wide column. The calculations are pretty simple. The only thing we have consider when using these column combinations is that the total number of columns in a row adds up to 6 (or whatever the total number of columns is).
