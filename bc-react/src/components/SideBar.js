@@ -1,7 +1,5 @@
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import React, { Component } from 'react';
-import Img from 'react-image'
-import '../style/Sidebar.css';
 
 class SideBar extends Component {
   constructor(props){
@@ -33,17 +31,6 @@ triggerClass(){
     return "hamburger is-open"
   }
 }
-//if isclosed(true) css style "hamburger is-closed" will be used and if isClosed(false) css style "hamburger is-opened".
-
-overlayStyle() {
-  if(this.state.isClosed) {
-    return {display: 'none'}
-  } else {
-    return {display: 'none'}
-    // if block it will block use of the back page.. if none back page is usable
-  }
-}
-//if isclosed(true) css style display will be set to "none" if isClosed(false) css style will display "block".
 
 wrapperClass(){
   if(this.state.isClosed){
@@ -58,15 +45,14 @@ wrapperClass(){
 
     return (
       <div id="wrapper" className={this.wrapperClass()}>
-        <div className="overlay" style={this.overlayStyle()}></div>
-        <nav className="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+        <nav className="navbar navbar-fixed-top" id="sidebar-wrapper" role="navigation">
           <ul className="nav sidebar-nav">
               <a className="side-bar-text-top" href="/home">Home</a>
             <div className="side-bar-image-div">
               <li>
                 <a href="#" className="login"> <img className='wobble side-bar-image profile top-image' src='../Images/user (1).png'/></a>
               </li>
-              <p className="image-text-1">User Info</p>
+              <p className="image-text-1">Profile</p>
             </div>
             <div className="side-bar-image-div">
               <li>
@@ -81,23 +67,10 @@ wrapperClass(){
               <p className="image-text-3">Log Out</p>
             </div>
             <div className="side-bar-bottom">
-              <div>
                 <a className="side-bar-text-bottom" href="#">Team</a>
-              </div>
-              <div>
-                <a className="side-bar-text-bottom" href="#">Contact</a>
-              </div>
             </div>
           </ul>
         </nav>
-
-        <div id="page-content-wrapper">
-          <button type="button" className={this.triggerClass()} data-toggle="offcanvas" onClick={this.handleBurgerClick.bind(this)}>
-            <span className="hamb-top"></span>
-            <span className="hamb-middle"></span>
-            <span className="hamb-bottom"></span>
-          </button>
-        </div>
       </div>
     );
   }

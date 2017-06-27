@@ -8,39 +8,24 @@
 .hamburger {
     position: fixed;
     top: 20px;
-    z-index: 999;
     display: block;
-    width: 32px;
-    height: 32px;
     margin-left: -38px;
-    background: transparent;
-    border: none;
-}
-.hamburger.is-open .hamb-top, .hamburger.is-open .hamb-bottom {
-    top: 50%;
-    margin-top: 0px;
-    margin-left: 0px;
-    z-index: 1;
-    background: transparent;
 }
 .side-bar-image{
-  width: 150px;
-  height: 150px;
+  width: 125px;
+  height: 125px;
   /*background-color: black;*/
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left: 10px;
 }
-.side-bar-image-div:hover .image-text-1{
+.side-bar-image-div:hover .image-text-1,
+.side-bar-image-div:hover .image-text-2,
+.side-bar-image-div:hover .image-text-3 {
   display: block;
 }
-.side-bar-image-div:hover .image-text-2{
-  display: block;
-}
-.side-bar-image-div:hover .image-text-3{
-  display: block;
-}
-.image-text-1{
+
+.image-text-1, .image-text-2, .image-text-3 {
   /*border: 1px solid #ccc;*/
   display: none;
   font-size: 10px;
@@ -53,66 +38,19 @@
   height: 50px;
 }
 
-.image-text-2{
-  /*border: 1px solid #ccc;*/
-  display: none;
-  font-size: 10px;
-  padding-top: 35px;
-  text-transform: uppercase;
-  margin-top: -30px;
-  margin-left: 0px;
-  font-size: 40px;
-  line-height: 1px;
-  height: 50px;
-}
-.image-text-3{
-  /*border: 1px solid #ccc;*/
-  display: none;
-  font-size: 10px;
-  padding-top: 35px;
-  text-transform: uppercase;
-  margin-top: -30px;
-  margin-left: 0px;
-  font-size: 40px;
-  line-height: 1px;
-  height: 50px;
+.side-bar-text-top, .side-bar-text-bottom {
+  font-family: 'Amatic SC', sans-serif, cursive;
+  /*background-color: black;*/
+  font-size: 50px;
+  color: white;
+  margin-left: -10px;
 }
 
-.top-image{
-  margin-top: 40px;
-}
-.side-bar-text-top{
-  font-family: 'Amatic SC', sans-serif, cursive;
-  /*background-color: black;*/
-  font-size: 50px;
-  color: white;
-  margin-left: -10px;
-}
-.side-bar-text-bottom{
-  font-family: 'Amatic SC', sans-serif, cursive;
-  /*background-color: black;*/
-  font-size: 50px;
-  color: white;
-  margin-left: -10px;
-}
 .side-bar-bottom{
   margin-top: 30px;
-  margin-bottom: 60px;
   padding-bottom: 50px;
 }
-.sidebar-nav li:nth-child(2):before {
-    background-color: rgba(0, 0, 0, 0);
-}
-.sidebar-nav li:nth-child(3):before {
-    background-color: rgba(0, 0, 0, 0);
-}
-.sidebar-nav li:nth-child(4):before {
-    background-color: rgba(0, 0, 0, 0);
-}
-.sidebar-nav li:first-child a {
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0);
-}
+
 .sidebar-nav li:before {
     content: '';
     position: absolute;
@@ -153,39 +91,6 @@
   }
 }
 
-@keyframes wobble {
-  16.65% {
-    -webkit-transform: translateY(8px);
-    -ms-transform: translateY(8px);
-    transform: translateY(8px);
-  }
-  33.3% {
-    -webkit-transform: translateY(-6px);
-    -ms-transform: translateY(-6px);
-    transform: translateY(-6px);
-  }
-  49.95% {
-    -webkit-transform: translateY(4px);
-    -ms-transform: translateY(4px);
-    transform: translateY(4px);
-  }
-  66.6% {
-    -webkit-transform: translateY(-2px);
-    -ms-transform: translateY(-2px);
-    transform: translateY(-2px);
-  }
-  83.25% {
-    -webkit-transform: translateY(1px);
-    -ms-transform: translateY(1px);
-    transform: translateY(1px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-
 .wobble {
   display: inline-block;
   -webkit-transform: translateZ(0);
@@ -203,4 +108,43 @@
   animation-timing-function: ease-in-out;
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    left: 220px;
+    width: 0;
+    height: 100%;
+    margin-left: -220px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: rgba(255,0,255,.6);
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 220px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    position: relative;
+    line-height: 20px;
+    display: inline-block;
+    width: 100%;
+}
+
+.sidebar-nav li a {
+    display: block;
+    color: #ddd;
+    text-decoration: none;
+    padding: 10px 15px 10px 30px;
 }
