@@ -32,13 +32,13 @@ class SignUpStore {
 
   validatePassword(fieldName){
     if(this.fields[fieldName] !== this.fields.password){
-      this.addError(fieldName, 'Please verify your password')
+      this.addError(fieldName, 'please verify your password')
     }
   }
 
   validatePresence(fieldName){
     if(this.fields[fieldName] === ''){
-      this.addError(fieldName, 'is Required')
+      this.addError(fieldName, 'required field')
     }
   }
 
@@ -46,7 +46,7 @@ class SignUpStore {
   validateEmail(fieldName){
     const filter = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     if(!filter.test(this.fields[fieldName])){
-      this.addError(fieldName, 'is not an email')
+      this.addError(fieldName, 'invalid email address')
     }
   }
 

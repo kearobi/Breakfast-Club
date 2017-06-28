@@ -13,7 +13,7 @@ class UserLogin extends Component {
         email: "",
         password: ""
       },
-      message: ""
+      message: '../Images/white.PNG'
     }
   }
 

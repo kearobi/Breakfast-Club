@@ -8,8 +8,6 @@ export default class SignUpInput extends Component {
     }
   }
 
-
-
   render(){
     return(
       <div className="formGroup">
