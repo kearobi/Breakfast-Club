@@ -1,13 +1,13 @@
-//AdminTable gets props from AdminList
+//AdminTable gets props from AdminUsers, AdminPlaces, AdminEvents
 //AdminTable does not pass props
 
 import React, { Component } from 'react';
 import {adminDeleteUser} from '../../actions';
 import {adminDeletePlace} from '../../actions';
 import {adminDeleteEvent} from '../../actions';
-import {adminEditUser} from '../../actions';
-import {adminEditPlace} from '../../actions';
-import {adminEditEvent} from '../../actions';
+import {adminEditUser, adminLoadUsers} from '../../actions';
+import {adminEditPlace, adminLoadPlaces} from '../../actions';
+import {adminEditEvent, adminLoadEvents} from '../../actions';
 import adminStore from '../../stores/AdminStore';
 
 //need to get starting state and update the state accordingly
@@ -25,19 +25,24 @@ class AdminTable extends Component {
       title: 'edit',
       className: 'read-only'
     }
+    adminLoadUsers()
+    adminLoadPlaces()
+    adminLoadEvents()
   }
 
   handleMouseEnter(e){
     if (e.target.id === 'delete_icon' && this.state.deleteIcon === '../Images/delete.png')
     {this.setState({deleteIcon: '../Images/hover-delete.png'})}
     else if (e.target.id === "edit_icon" && this.state.editIcon === '../Images/edit.png')
-    {this.setState({editIcon: '../Images/hover-edit.png'})}    }
+    {this.setState({editIcon: '../Images/hover-edit.png'})}
+    else {return ""}}
 
   handleMouseLeave(e){
     if (e.target.id === 'delete_icon' && this.state.deleteIcon === '../Images/hover-delete.png')
     {this.setState({deleteIcon: '../Images/delete.png'})}
     else if (e.target.id === "edit_icon" && this.state.editIcon === '../Images/hover-edit.png')
-    {this.setState({editIcon: '../Images/edit.png'})}    }
+    {this.setState({editIcon: '../Images/edit.png'})}
+    else {return ""}}
 
   handleClick(){
     if(this.state.editIcon === '../Images/hover-edit.png'){
@@ -49,7 +54,8 @@ class AdminTable extends Component {
     else if(this.state.deleteIcon === '../Images/hover-delete.png'){
       if(this.props.userTable){adminDeleteUser(this.state.user.id)}
       else if(this.props.placeTable){adminDeletePlace(this.state.place.id)}
-      else if(this.props.eventTable){adminDeleteEvent(this.state.event.id)}}  }
+      else if(this.props.eventTable){adminDeleteEvent(this.state.event.id)}}
+      else {return ""}}
 
       //there are two ways to read/set property of the object. 1. dot notation (user.firstName) 2. square bracket notation (user["firstName"]). if you're looking for a variable substitution, best to use the square bracket
 
@@ -218,9 +224,7 @@ class AdminTable extends Component {
         <td className="icon_td">{this.editIcon()}</td>
       </tr>
     )}else{
-      return(
-        <div>Oops</div>
-    )}
+      return(<div></div>)}
   }
 }
 

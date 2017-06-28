@@ -1,0 +1,9 @@
+- Password verification on User Add
+- Calendar on events
+- Guest speaker in event model
+- 404 page if route doesn't exist (react router)
+- sort search results by Category
+- parse Place phone number and Event date
+- Email notification to slack channel instead?
+- Change password
+- Fix search bar for numbers

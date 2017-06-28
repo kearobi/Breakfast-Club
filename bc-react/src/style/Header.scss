@@ -2,21 +2,25 @@
   text-align: center;
 }
 
-h2, calendar-div, home-page {
-  font-family: 'Amatic SC', cursive;
+h2, calendar-div, home-page, login-signup {
+  font-family: 'Amatic SC', sans-serif, cursive;
   font-size: 100px;
   color: fuchsia;
   margin-top: -9px;
   font-weight: bold;
   }
 
-.Header-logo {
-  animation: Header-logo-spin infinite 20s linear;
-  height: 80px;
-}
+// .Header-header {
+//
+//   max-height: 1000px;
+//   max-width: 150px;
+//   min-height: 1000px;
+//   min-width: 150px;
+//   padding: 40px;
+//   color: white;
+//   margin-bottom: -1000px;
+// }
 
-
-@keyframes Header-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+/*-------------------------------*/
+/*           Wrappers            */
+/*-------------------------------*/

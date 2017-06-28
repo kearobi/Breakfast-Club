@@ -1,9 +1,9 @@
-//AdminPlaces passes props to AdminList, SearchBar, AdminModal
+//AdminPlaces gets props from AdminPage and passes props to AdminTable, SearchBar, AdminModal
 
 import React, {Component} from 'react';
-import AdminList from './AdminList';
 import SearchBar from './AdminSearchBar';
 import AdminModal from './AdminModal';
+import AdminTable from './AdminTable';
 import adminStore from '../../stores/AdminStore';
 //once you make the component generic, you move the parts that are different out to the parent and pass them in as props
 //const api
@@ -14,12 +14,11 @@ import adminStore from '../../stores/AdminStore';
 class AdminPlaces extends Component {
   constructor(props){
     super(props)
-    this.state = {places: adminStore.adminReturnPlaces(),
+    this.state = {places: this.props.places,
                   displayModal: false}
   }
   adminReturnPlaces(){
-    this.setState({
-      places: adminStore.adminReturnPlaces() })}
+    this.setState({places: this.props.places})}
 
   componentWillMount(){
     adminStore.on('change', this.adminReturnPlaces.bind(this)) }
@@ -39,10 +38,6 @@ class AdminPlaces extends Component {
       }})
   }
 
-  placeListParams(){
-    return({places: adminStore.adminReturnPlaces()})
-  }
-
   modalAdmin(){
     if(this.state.displayModal === true){
     return (<AdminModal placeForm={true} startingState={this.placeParams()}/>)
@@ -57,10 +52,10 @@ class AdminPlaces extends Component {
             onClick={this.displayModal.bind(this)}>
             + place </button>
           {/* now SearchBar has access to places */}
-          <SearchBar places={this.state.places} placeSearchBar={true}/>
+          <SearchBar places={this.props.places} placeSearchBar={true}/>
         </div>
           <br></br><br></br>
-          <AdminList placeList={true} startingState={this.placeListParams()}/>
+          <AdminTable placeList={true}/>
           {this.modalAdmin()}
       </div>
       );

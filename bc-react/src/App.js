@@ -45,7 +45,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className='wrapper'>
+      <div className='grid-container'>
         <Router>
           <div>
             <Header className='header-component' />

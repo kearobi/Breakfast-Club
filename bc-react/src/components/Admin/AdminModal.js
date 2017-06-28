@@ -1,6 +1,7 @@
 //AdminModal gets props from AdminUsers, AdminPlaces, AdminEvents
 //AdminModal does not pass props
 import React, { Component } from 'react';
+import {Modal, Button} from 'react-bootstrap';
 import {adminAddUser} from '../../actions';
 import {adminAddPlace} from '../../actions';
 import {adminAddEvent} from '../../actions';
@@ -19,16 +20,17 @@ class AdminModal extends Component {
       if (this.props.userForm){item = this.state.user}
       else if(this.props.placeForm){item = this.state.place}
       else if(this.props.eventForm){item = this.state.event}
+      else {return ("Oops")}
         item[target.name] = target.value
-        this.setState({ item: item })}
-
+        this.setState({ item: item })
+      }
 //addUser and updateUsers are asynchronous because they're in the store
   handleSubmit(e){
     e.preventDefault();
     if(this.props.userForm){adminAddUser(this.state)}
     else if (this.props.placeForm){adminAddPlace(this.state)}
     else if (this.props.eventForm){adminAddEvent(this.state)}
-}
+    else {return ("")}}
 
   userFields(){
       return(
@@ -216,17 +218,28 @@ class AdminModal extends Component {
       fields = this.placeFields()
     } else if (this.props.eventForm){
       fields = this.eventFields()
-    }
+    } else {return ("Oops")}
 
     return (
-    <div>
-      <div id='modal'>
-        <span>&times;</span>
+      <div className='static-modal'>
+        <Modal.Dialog>
+          <Modal.Header>
+            <Modal.Title>Modal title</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            {fields}
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button>Close</Button>
+            <Button bsStyle="primary" onSubmit={this.handleSubmit.bind(this)}>SUBMISSION</Button>
+          </Modal.Footer>
+
+        </Modal.Dialog>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-          {fields}
         </form>
       </div>
-    </div>
     )
   }
 }
