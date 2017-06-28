@@ -5,11 +5,13 @@
 @import url('./Header.css');
 @import url('./React-big-calendar.css');
 @import url('./Home.css');
-@import url('./Forms.css');
 @import url('./Places.css');
 @import url('./Modal.css');
-@import url('./SplashLoginSignUp.css');
 @import url('./Sidebar.css');
+@import url('./SplashPage.css');
+@import url('./UserLogin.css');
+@import url('./UserSignUp.css');
+@import url('./UserProfile.css');
 
 /*goal for centering: create one single div set the width of the elements and the margin around them to auto*/
 
@@ -58,12 +60,6 @@ form {
   font-family: 'Amatic SC', sans-serif;
   font-size: 35px;
   color: black;
-}
-
-#sign_up {
-  text-align: center;
-  font-family: 'Amatic SC', sans-serif;
-  font-size: 40px;
 }
 
 button:hover {

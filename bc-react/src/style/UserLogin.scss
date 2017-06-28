@@ -1,3 +1,29 @@
-.login-field-verification img {
-  width: 600px
+.login-page {
+  img {
+    width: 300px
+  }
+  .entry-header {
+    text-align: center;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 3em;
+  }
+  .button-container {
+    position: relative;
+    width: 340px;
+    margin: auto;
+  }
+  .let-me-in, .take-me-back {
+    width: 50%;
+    text-align: center;
+    display: inline-block;
+    font-family: 'Amatic SC';
+    color: black;
+    font-size: 35px;
+    margin-top: 30px;
+  }
+  .entry-button {
+    background-color: rgba(255, 0, 0, 0);
+    border-radius: 20px;
+  }
+
 }

@@ -29,14 +29,14 @@ class SplashPage extends Component {
               <img src='../Images/13.jpg' alt=' ' data-action="../Images/13.jpg"/>
             </Coverflow>
             </div> */}
-              <div className='splash-button-container'>
-                <div className="login">
-                  <Link className="FontAmatic" to="/login">
+              <div className='button-container'>
+                <div className='login'>
+                  <Link className='FontAmatic' to='/login'>
                     Log In
                   </Link>
                 </div>
                 <div className='signup'>
-                  <Link className="FontAmatic" to="/signup">
+                  <Link className='FontAmatic' to='/signup'>
                     Sign Up
                   </Link>
                 </div>

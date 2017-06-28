@@ -56,11 +56,10 @@ class UserSignUp extends Component {
 
 render(){
   return (
-    <div>
-      <div id="sign_up">
+    <div className='signup-page'>
+      <div className="entry-header">
         Sign Up
       </div>
-
       {this.state.message}
       <div className="container">
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
