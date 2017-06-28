@@ -11,17 +11,11 @@ import {updatePlaces} from './actions'
 import {checkLogin} from './actions'
 import PlaceIndex from './components/PlaceIndex'
 import CurrentEvent from './routes/CurrentEvent'
-
-// import placeStore from './stores/PlaceStore'
-// import './style/App.css';
+import './style/App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import userStore from './stores/UserStore';
 
-// import userStore from './stores/UserStore';
-// import { addUser } from './actions';
-
-//only the most parent component should be responsible for fetching data, aka here
-
+//only the most parent component should be responsible for fetching data, aka here?
 
 class App extends Component {
   constructor(props){
@@ -45,10 +39,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className='grid-container'>
+      <div className='wrapper'>
         <Router>
           <div>
-            <Header className='header-component' />
+            <Header />
             <Route exact path='/' component={SplashPage}/>
             <Route exact path='/signup' component={UserSignUp} />
             <Route exact path='/login' component={UserLogin} />
