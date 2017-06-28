@@ -1,9 +1,15 @@
 .login-page {
-  img {
+
+  .validate {
+    text-align: center;
+  }
+
+  .validate img {
+    padding-top: 20px;
     width: 300px;
     max-height: 200px;
   }
-  
+
   .entry-header {
     text-align: center;
     font-family: 'Amatic SC', sans-serif;
@@ -24,7 +30,7 @@
     margin-top: 30px;
   }
   .entry-button {
-    background-color: rgba(255, 0, 0, 0);
+    background-color: white;
     border-radius: 20px;
   }
 

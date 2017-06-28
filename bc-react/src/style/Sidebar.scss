@@ -1,23 +1,16 @@
 #wrapper.toggled #sidebar-wrapper {
-    width: 220px;
+    width: 170px;
     overflow: hidden;
 }
 .navbar{
   text-align: center;
 }
-.hamburger {
-    position: fixed;
-    top: 20px;
-    display: block;
-    margin-left: -38px;
-}
+
 .side-bar-image{
-  width: 125px;
-  height: 125px;
-  /*background-color: black;*/
+  width: 105px;
+  height: 105px;
   margin-top: 0px;
   margin-bottom: 0px;
-  margin-left: 10px;
 }
 .side-bar-image-div:hover .image-text-1,
 .side-bar-image-div:hover .image-text-2,

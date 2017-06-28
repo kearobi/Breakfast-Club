@@ -111,7 +111,7 @@ render(){
             errors={this.state.errors.verifyPassword}
             />
             <div className="button-container">
-              <Link className="take-me-back entry-button" to="/">
+              <Link className="take-me-back" to="/">
                 <button className='entry-button wobble'>Take Me Back!!</button>
               </Link>
             <div className='formGroup let-me-in'>
@@ -120,7 +120,8 @@ render(){
           </div>
         </form>
       </div>
-    </div>
+    <img className='fruit-border' src='../Images/fruit-border.jpg'></img>
+  </div>
     );
   }
 }

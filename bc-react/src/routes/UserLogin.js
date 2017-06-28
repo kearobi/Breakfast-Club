@@ -57,12 +57,9 @@ class UserLogin extends Component {
 render(){
   return (
     <div className="login-page">
-      <div className='row'>
-        <div className='col-md-4'></div>
-        <div className='col-md-4'>
-          <div className="entry-header">
-            Log In
-          </div>
+      <div className="entry-header">
+        Log In
+      </div>
           <form className='form' onSubmit={this.handleSubmit.bind(this)}>
             <div className='formGroup'>
               <input
@@ -85,7 +82,7 @@ render(){
               </input>
               </div>
                 <div className="button-container">
-                  <Link className="take-me-back entry-button" to="/">
+                  <Link className="take-me-back" to="/">
                     <button className='entry-button wobble'>Take Me Back!!</button>
                   </Link>
                 <div className='formGroup let-me-in'>
@@ -93,12 +90,11 @@ render(){
                 </div>
               </div>
             </form>
-          </div>
-        <div className='col-md-4'>
-          <img src={this.state.message}></img>
-        </div>
-      </div>
-    </div>
+            <div className='validate'>
+              <img src={this.state.message}></img>
+            </div>
+    <img className='fruit-border' src='../Images/fruit-border.jpg'></img>
+  </div>
   );
   }
 }

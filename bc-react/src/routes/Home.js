@@ -10,7 +10,6 @@ import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
 import placeStore from '../stores/PlaceStore'
-import ('../style/Home.css');
 
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
@@ -103,16 +102,16 @@ class Home extends Component {
     )
   }else{
     return(<div>Loading...</div>)
+    }
   }
-  }
-//{userStore.getUser.firstName()}
+
   render(){
     return (
       <div id="home-body">
         <SideBar />
         <div className="home-page">
           <div className="col-xs-6 welcome-message">
-            <h1>Welcome, {userStore.getUser().firstName}</h1>
+            Welcome, {userStore.getUser().firstName}
             <Reminder />
             <Link to='/current-event'>Current Event</Link>
           </div>

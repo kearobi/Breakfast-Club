@@ -41,7 +41,8 @@ class SplashPage extends Component {
                   </Link>
                 </div>
             </div>
-          </div>
+          <img className='fruit-border' src='../Images/fruit-border.jpg'></img>
+        </div>
       );
     }
 }
