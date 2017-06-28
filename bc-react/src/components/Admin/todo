@@ -7,3 +7,5 @@
 - Email notification to slack channel instead?
 - Change password
 - Fix search bar for numbers
+
+eventually to make the layout responsive, we should use max/min height and width css

@@ -6,9 +6,8 @@ import Coverflow from 'react-coverflow';
 class SplashPage extends Component {
   render(){
     return (
-      <div>
-          <div className="container">
-
+      <div className='splash-page'>
+        {/* <div className='col-md-12'>
             <Coverflow
               width={960}
               height={480}
@@ -29,21 +28,20 @@ class SplashPage extends Component {
               <img src='../Images/12.jpg' alt=' ' data-action="../Images/12.jpg"/>
               <img src='../Images/13.jpg' alt=' ' data-action="../Images/13.jpg"/>
             </Coverflow>
-          </div>
-          <div className="splash-button-container">
-            <div className="login">
-              <Link className="FontAmatic" to="/login">
-                Log In
-              </Link>
+            </div> */}
+              <div className='splash-button-container'>
+                <div className="login">
+                  <Link className="FontAmatic" to="/login">
+                    Log In
+                  </Link>
+                </div>
+                <div className='signup'>
+                  <Link className="FontAmatic" to="/signup">
+                    Sign Up
+                  </Link>
+                </div>
             </div>
-            <div className='signup'>
-              <Link className="FontAmatic" to="/signup">
-                Sign Up
-              </Link>
-            </div>
           </div>
-        </div>
-
       );
     }
 }

@@ -41,8 +41,29 @@ h3 {
   margin-top: -8px;
 }
 
-.black {
+form {
+  text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-size: 1.35em;
+}
+
+/* this code center-aligns the placeholder text in our forms for multiple browser/verisons */
+::-webkit-input-placeholder {text-align: center;}
+:-moz-placeholder {/* older Firefox*/text-align: center;}
+::-moz-placeholder { /* Firefox 19+ */ text-align: center;}
+:-ms-input-placeholder {text-align: center;}
+
+.align-button {
+  text-align: center;
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 35px;
   color: black;
+}
+
+#sign_up {
+  text-align: center;
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 40px;
 }
 
 button:hover {
