@@ -40,8 +40,8 @@ class UserSignUp extends Component {
   }
 
   validate(){
-  signUpStore.validate()
-  this.setState({errors: signUpStore.getErrors()})
+    signUpStore.validate()
+    this.setState({errors: signUpStore.getErrors()})
   }
 
 

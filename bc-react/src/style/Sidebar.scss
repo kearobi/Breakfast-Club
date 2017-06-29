@@ -6,23 +6,22 @@
   table {
     height: 100%;
     position: fixed;
-    width: 170px;
-    background-image: url('./pink.jpg');
+    width: 160px;
+    background-color: fuchsia;
   }
 
-.side-bar-image{
-  width: 105px;
-  height: 105px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-.side-bar-image-div:hover .image-text-1,
-.side-bar-image-div:hover .image-text-2,
-.side-bar-image-div:hover .image-text-3 {
-  display: block;
-}
+  img {
+    width: 80px;
+    height: 80px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
 
-.image-text-1, .image-text-2, .image-text-3 {
+  img:hover .caption {
+    display: block;
+  }
+
+.caption {
   /*border: 1px solid #ccc;*/
   display: none;
   font-size: 10px;
@@ -35,15 +34,7 @@
   height: 50px;
 }
 
-.side-bar-text-top, .side-bar-text-bottom {
-  font-family: 'Amatic SC', sans-serif, cursive;
-  /*background-color: black;*/
-  font-size: 50px;
-  color: white;
-  margin-left: -10px;
-}
-
-.sidebar-nav li:before {
+img:before {
     content: '';
     position: absolute;
     top: 0;

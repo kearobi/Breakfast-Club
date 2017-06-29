@@ -11,6 +11,7 @@ import {updatePlaces} from './actions'
 import {checkLogin} from './actions'
 import PlaceIndex from './components/PlaceIndex'
 import CurrentEvent from './routes/CurrentEvent'
+import Slideshow from './routes/Slideshow'
 import './style/App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import userStore from './stores/UserStore';
@@ -53,6 +54,7 @@ class App extends Component {
             <Route exact path='/profile' component={UserProfile} />
             <Route exact path='/test-event' component={TestEvent} />
             <Route path='/current-event' component={CurrentEvent} />
+            <Route path='/photos' component={Slideshow} />
           </div>
         </Router>
       </div>
