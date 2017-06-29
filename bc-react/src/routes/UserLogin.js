@@ -93,9 +93,9 @@ render(){
             <div className='validate'>
               <img src={this.state.message}></img>
             </div>
-    <img className='fruit-border' src='../Images/fruit-border.jpg'></img>
-  </div>
-  );
+          <img className='fruit-border' src='../Images/fruit-border.jpg'></img>
+        </div>
+    );
   }
 }
 export default UserLogin;

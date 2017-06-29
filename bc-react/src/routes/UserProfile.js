@@ -38,7 +38,7 @@ class UserProfile extends Component {
     return (
         <div>
           <SideBar />
-          <div className='profile-container'>
+          <div className='profile-page'>
 
             {/* <MyUploader /> */}
 

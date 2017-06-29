@@ -92,7 +92,6 @@ class AdminPage extends Component {
         </div>
         <br></br><br></br><br></br>
           {this.pageAdmin()}
-          <img className='fruit-border' src='../Images/fruit-border.jpg'></img>
       </div>
       );
     }

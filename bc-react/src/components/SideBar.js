@@ -13,7 +13,7 @@ class SideBar extends Component {
               <tbody>
               <tr>
                 <td>
-                  <a href="/profile"> <img className='wobble' src='../Images/user.png'/></a>
+                  <a href="/profile2"> <img className='wobble' src='../Images/user.png'/></a>
                   <p className="caption">profile</p>
                 </td>
               </tr>
