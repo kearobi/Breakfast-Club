@@ -1,10 +1,14 @@
-#wrapper.toggled #sidebar-wrapper {
+.sidebar {
+  tr {
+    text-align: center;
+  }
+
+  table {
+    height: 100%;
+    position: fixed;
     width: 170px;
-    overflow: hidden;
-}
-.navbar{
-  text-align: center;
-}
+    background-image: url('./pink.jpg');
+  }
 
 .side-bar-image{
   width: 105px;
@@ -37,11 +41,6 @@
   font-size: 50px;
   color: white;
   margin-left: -10px;
-}
-
-.side-bar-bottom{
-  margin-top: 30px;
-  padding-bottom: 50px;
 }
 
 .sidebar-nav li:before {
@@ -140,4 +139,5 @@
     color: #ddd;
     text-decoration: none;
     padding: 10px 15px 10px 30px;
+}
 }

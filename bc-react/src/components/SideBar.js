@@ -4,49 +4,40 @@ import React, { Component } from 'react';
 class SideBar extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      isClosed: false
-      // true will make it collapse into a hamburger icon
     }
-  }
-//set staet for sidebar
-
-handleBurgerClick(e){
-  if(this.state.isClosed){
-    this.setState({
-      isClosed: false
-    })
-  } else {
-    this.setState({
-      isClosed: true
-    })
-  }
-}
-//if isClosed(false) on click will open if in original state isClosed(true)
-
-triggerClass(){
-  if(this.state.isClosed){
-    return "hamburger is-closed"
-  } else {
-    return "hamburger is-open"
-  }
-}
-
-wrapperClass(){
-  if(this.state.isClosed){
-    return ""
-  } else {
-    return "toggled"
-  }
-}
-//if isclosed(true) css style will be set to default isClosed ("") if isClosed(false) css style will be set to taggled ("toggled").
 
   render() {
-
     return (
-      <div id="wrapper" className={this.wrapperClass()}>
-        <nav className="navbar navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-          <ul className="nav sidebar-nav">
+      <div className='sidebar'>
+            <table>
+              <tbody>
+              <tr>
+                <td>
+                  <a href="/profile"> <img className='wobble side-bar-image profile top-image' src='../Images/user (1).png'/></a>
+                  <p className="image-text-1">Profile</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="/home"><img className="wobble side-bar-image" src='../Images/calendar (2).png'/></a>
+                  <p className="image-text-2">Home</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#"><img className="wobble side-bar-image" src='../Images/dish-fork-and-knife.png'/></a>
+                  <p className="image-text-3">restaurants</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#"><img className="wobble side-bar-image" src='../Images/logout.png'/></a>
+                  <p className="image-text-3">Log Out</p>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          {/* <ul className="nav sidebar-nav">
               <a className="side-bar-text-top" href="/home">Home</a>
             <div className="side-bar-image-div">
               <li>
@@ -69,8 +60,7 @@ wrapperClass(){
             <div className="side-bar-bottom">
                 <a className="side-bar-text-bottom" href="#">Team</a>
             </div>
-          </ul>
-        </nav>
+          </ul> */}
       </div>
     );
   }

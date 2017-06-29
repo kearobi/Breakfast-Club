@@ -82,12 +82,12 @@ render(){
               </input>
               </div>
                 <div className="button-container">
+                  <div className='formGroup let-me-in'>
+                      <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
+                  </div>
                   <Link className="take-me-back" to="/">
                     <button className='entry-button wobble'>Take Me Back!!</button>
                   </Link>
-                <div className='formGroup let-me-in'>
-                    <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
-                </div>
               </div>
             </form>
             <div className='validate'>
