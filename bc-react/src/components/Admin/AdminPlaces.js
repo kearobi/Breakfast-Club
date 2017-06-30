@@ -31,17 +31,8 @@ class AdminPlaces extends Component {
   closeModal(){
     this.setState({className: "closeModal"})}
 
-//might be problems here
-    handleChange(e){
-      let target = e.target
-      let item
-      item[target.name] = target.value
-      this.setState({ item: item })}
-
-    handleSubmit(e){
-      e.preventDefault();
-      adminAddPlace(this.state)
-      this.setState({className: "closeModal"})}
+  closeModalOnSubmit(modal){
+    this.setState(modal)}
 
   placeParams(){
     return(
@@ -54,11 +45,6 @@ class AdminPlaces extends Component {
           phone: ""
       }})
   }
-
-  // modalAdmin(){
-  //   if(this.state.displayModal === true){
-  //   return (<AdminModal placeForm={true} startingState={this.placeParams()}/>)
-  //   } else { return ("") }}
 
   render(){
     return(
@@ -73,15 +59,10 @@ class AdminPlaces extends Component {
         </div>
           <br></br><br></br>
           <AdminTable placeList={true}/>
-        <div className={this.state.className}>
-          <span id='x' onClick={this.closeModal.bind(this)}>&times;</span>
-            <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-              <AdminModal placeForm={true} startingState={this.placeParams()}/>
-                <div className='formGroup align-button'>
-                  <input type='submit' value='submission'></input>
-            </div>
-          </form>
-        </div>
+          <div className={this.state.className}>
+            <span id='x' onClick={this.closeModal.bind(this)}>&times;</span>
+              <AdminModal placeForm={true} startingState={this.placeParams()}  closeModal={this.closeModalOnSubmit.bind(this)}/>
+          </div>
       </div>
       );
     }

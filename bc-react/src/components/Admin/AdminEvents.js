@@ -15,7 +15,7 @@ class AdminEvents extends Component {
   constructor(props){
     super(props)
     this.state = {events: this.props.events,
-                  displayModal: false}
+                  className: "closeModal"}
 
   fetchCurrentEvent()
   }
@@ -36,8 +36,14 @@ class AdminEvents extends Component {
   componentWillMount(){
     adminStore.on('change', this.adminReturnEvents.bind(this))}
 
-  displayModal(){
-    this.setState({displayModal: true})}
+    openModal(){
+      this.setState({className: "openModal"})}
+
+    closeModal(){
+      this.setState({className: "closeModal"})}
+
+    closeModalOnSubmit(modal){
+      this.setState(modal)}
 
   eventParams(){
     return(
@@ -45,24 +51,22 @@ class AdminEvents extends Component {
               date: "",
       }})}
 
-  modalAdmin(){
-    if(this.state.displayModal){
-    return (<AdminModal eventForm={true} startingState={this.eventParams()} />)
-    } else { return ("") }}
-
   render(){
     return(
       <div id="admin_container">
         <h3 className='center'>Events</h3>
           <div id="search_bar_wrapper">
             <button className="add_button" type="button"
-            onClick={this.displayModal.bind(this)}>
+            onClick={this.openModal.bind(this)}>
             + event </button>
             <SearchBar events={this.props.events} eventSearchBar={true}/>
           </div>
           <br></br><br></br>
           <AdminTable eventList={true} />
-          {this.modalAdmin()}
+          <div className={this.state.className}>
+            <span id='x' onClick={this.closeModal.bind(this)}>&times;</span>
+              <AdminModal eventForm={true} startingState={this.eventParams()}  closeModal={this.closeModalOnSubmit.bind(this)}/>
+          </div>
         <div className="calendar-div admin-calendar">
         <BigCalendar events={this.events()}/>
       </div>
