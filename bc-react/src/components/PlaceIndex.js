@@ -1,3 +1,5 @@
+//PlaceIndex passes props to PlaceListing
+
 import React, { Component } from 'react';
 import PlaceListing from './PlaceListing'
 import placeStore from '../stores/PlaceStore'

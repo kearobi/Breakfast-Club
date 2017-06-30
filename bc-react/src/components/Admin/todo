@@ -1,5 +1,4 @@
 - Password verification on User Add
-- Calendar on events
 - Guest speaker in event model
 - 404 page if route doesn't exist (react router)
 - sort search results by Category

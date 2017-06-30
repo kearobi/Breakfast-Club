@@ -1,3 +1,5 @@
+//PlaceListing gets props from PlaceIndex
+
 import React, { Component } from 'react';
 
 class PlaceListing extends Component {

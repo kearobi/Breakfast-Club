@@ -1,3 +1,5 @@
+//Reminder fetches data from EventStore and UserStore
+
 import React, { Component } from 'react';
 import eventStore from '../stores/EventStore';
 import userStore from '../stores/UserStore';

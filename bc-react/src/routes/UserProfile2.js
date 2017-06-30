@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import SideBar from '../components/SideBar';
 import {updateUser} from '../actions';
 import userStore from '../stores/UserStore';
+import {adminEditUser} from '../actions';
 // import MyUploader from '../components/PhotoUpload'
 
 class UserProfile2 extends Component {
@@ -63,9 +64,8 @@ class UserProfile2 extends Component {
     })
     }
 
-  handleSave(e){
-    e.preventDefault();
-    updateUser(this.state.user);
+  handleSave(){
+    adminEditUser(this.state.user);
   }
 
   // handleChange(e){

@@ -1,3 +1,5 @@
+//UserSignUp passes props to SignUpInput
+
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';

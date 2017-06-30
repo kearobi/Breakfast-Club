@@ -1,3 +1,5 @@
+//SignUpInput gets props from UserSignUp
+
 import React, { Component } from 'react';
 
 export default class SignUpInput extends Component {

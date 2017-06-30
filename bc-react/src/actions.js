@@ -554,7 +554,7 @@ export function adminAddEvent(attributes){
     const params = {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({id: attributes})
+      body: JSON.stringify({place: attributes})
     }
     fetch("http://localhost:4000/admin/edit/place", params).then(function(response){
       if (response.status === 200){
@@ -572,7 +572,7 @@ export function adminAddEvent(attributes){
     const params = {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({id: attributes})
+      body: JSON.stringify({event: attributes})
     }
     fetch("http://localhost:4000/admin/edit/event", params).then(function(response){
       if (response.status === 200){

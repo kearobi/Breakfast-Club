@@ -1,15 +1,16 @@
+//EventChoice gets props from EventDetail
+
 import React, { Component } from 'react';
 
 class EventChoice extends Component {
 
   render() {
     return (
-      <div>
-        <p>Choice {this.props.choice}</p>
-        <h4>{this.props.place.name}</h4>
-        <img src={this.props.place.image_url} />
-        <img className="yelp-rating" src={`../Images/small_${this.props.place.yelp_rating}.png`} />
-      </div>
+      <tbody>
+        <tr className='place-name'>{this.props.place.name}</tr>
+        <tr><img className='place-img' src={this.props.place.image_url} alt='restaurant' /></tr>
+        <tr><img className='yelp-rating' src={`../Images/small_${this.props.place.yelp_rating}.png`} alt='rating' /></tr>
+      </tbody>
     );
   }
 }

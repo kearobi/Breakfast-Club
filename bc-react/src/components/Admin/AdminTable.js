@@ -56,6 +56,10 @@ class AdminTable extends Component {
       else if(this.props.eventTable){adminDeleteEvent(this.state.event.id)}}
       else {return ""}}
 
+      // let response = confirm("Wait really?")
+      //could also pass this.props.user, but we added id so we're only handing it the data it needs to get the job done
+    // }
+
       //there are two ways to read/set property of the object. 1. dot notation (user.firstName) 2. square bracket notation (user["firstName"]). if you're looking for a variable substitution, best to use the square bracket
 
   handleEdit(e){
@@ -81,10 +85,6 @@ class AdminTable extends Component {
       adminEditPlace(this.state.place)}
     else if(this.props.eventTable){
       adminEditEvent(this.state.event)}  }
-
-  // let response = confirm("Wait really?")
-  //could also pass this.props.user, but we added id so we're only handing it the data it needs to get the job done
-// }
 
   deleteIcon(){
     return(
