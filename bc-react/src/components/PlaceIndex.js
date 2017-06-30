@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PlaceListing from './PlaceListing'
 import placeStore from '../stores/PlaceStore'
-import MessageBoard from '../components/MessageBoard';
+// import MessageBoard from '../components/MessageBoard';
 import SideBar from '../components/SideBar';
 
 class PlaceIndex extends Component {

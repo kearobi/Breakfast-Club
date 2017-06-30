@@ -50,7 +50,7 @@ class Reminder extends Component {
   checkIfAttending(user_id, guestLists){
     let toReturn = false;
     for (var i = 0; i < guestLists.length; i++){
-      if (user_id == guestLists[i].user_id){
+      if (user_id === guestLists[i].user_id){
         return true;
       }
     }
@@ -64,7 +64,7 @@ class Reminder extends Component {
       if (this.checkIfAttending(user.id, currentEvent.guestLists)){
         this.setState({
           event: currentEvent,
-          message: `See you on ${currentEvent.event.date} at ${currentEvent.event.winner == 1 ? currentEvent.places[0].name : currentEvent.places[1].name}!`
+          message: `See you on ${currentEvent.event.date} at ${currentEvent.event.winner === 1 ? currentEvent.places[0].name : currentEvent.places[1].name}!`
         })
       }
       else {

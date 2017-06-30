@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import Header from '../components/Header';
 import Coverflow from 'react-coverflow';
 import SideBar from '../components/SideBar';
 

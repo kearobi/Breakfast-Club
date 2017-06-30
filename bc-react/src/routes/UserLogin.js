@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import Header from '../components/Header';
-import {loginUser, checkLoginRedir, createNewEvent} from '../actions';
+import {loginUser, checkLoginRedir} from '../actions';
 import userStore from '../stores/UserStore';
-import ('../style/UserLogin.css');
 
 class UserLogin extends Component {
   constructor(props){
@@ -91,9 +89,9 @@ render(){
               </div>
             </form>
             <div className='validate'>
-              <img src={this.state.message}></img>
+              <img src={this.state.message} alt='verification'></img>
             </div>
-          <img className='fruit-border' src='../Images/fruit-border.jpg'></img>
+          <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
         </div>
     );
   }

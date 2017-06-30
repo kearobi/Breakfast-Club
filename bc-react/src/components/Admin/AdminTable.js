@@ -8,7 +8,6 @@ import {adminDeleteEvent} from '../../actions';
 import {adminEditUser, adminLoadUsers} from '../../actions';
 import {adminEditPlace, adminLoadPlaces} from '../../actions';
 import {adminEditEvent, adminLoadEvents} from '../../actions';
-import adminStore from '../../stores/AdminStore';
 
 //need to get starting state and update the state accordingly
 

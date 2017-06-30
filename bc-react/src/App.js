@@ -15,7 +15,6 @@ import CurrentEvent from './routes/CurrentEvent'
 import Slideshow from './routes/Slideshow'
 import './style/App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import userStore from './stores/UserStore';
 
 //only the most parent component should be responsible for fetching data, aka here?
 

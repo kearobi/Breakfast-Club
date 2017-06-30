@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import {updateUser} from '../actions';
 import userStore from '../stores/UserStore';
-import MyUploader from '../components/PhotoUpload'
+// import MyUploader from '../components/PhotoUpload'
 
 class UserProfile2 extends Component {
   constructor(props){
@@ -162,7 +162,7 @@ class UserProfile2 extends Component {
             </tbody>
           </table>
         </div>
-      <img className='fruit-border' src='../Images/fruit-border.jpg'></img>
+      <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
     </div>
       );
     }

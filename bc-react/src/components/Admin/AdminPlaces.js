@@ -5,7 +5,6 @@ import SearchBar from './AdminSearchBar';
 import AdminModal from './AdminModal';
 import AdminTable from './AdminTable';
 import adminStore from '../../stores/AdminStore';
-import {adminAddPlace} from '../../actions';
 
 //once you make the component generic, you move the parts that are different out to the parent and pass them in as props
 //const api

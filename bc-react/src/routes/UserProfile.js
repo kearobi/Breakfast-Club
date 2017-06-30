@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import {updateUser} from '../actions';
 import userStore from '../stores/UserStore';
-import MyUploader from '../components/PhotoUpload'
+// import MyUploader from '../components/PhotoUpload'
 
 class UserProfile extends Component {
   constructor(props){

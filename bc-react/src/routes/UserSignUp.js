@@ -120,7 +120,7 @@ render(){
           </div>
         </form>
       </div>
-    <img className='fruit-border' src='../Images/fruit-border.jpg'></img>
+    <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
   </div>
     );
   }
