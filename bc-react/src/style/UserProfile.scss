@@ -1,14 +1,13 @@
 .profile-page {
-
   .wrapper {
     display: flex;
     height: 100vh;
     border: 10px solid yellow;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: row;
   }
 
   .welcome-user {
+    background-color: lightblue;
     text-align: center;
     font-family: 'Dancing Script';
     font-size: 52px;

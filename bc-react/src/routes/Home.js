@@ -111,26 +111,23 @@ class Home extends Component {
     return (
         <div className="home-page">
           <div className="wrapper">
-            <SideBar />
+            <div className='sidebar-wrapper'>
+              <SideBar />
+            </div>
+          <div className='entirepage'>
             <Header />
           <div className="welcome-message">
             <div className='welcome-user'>Welcome, {userStore.getUser().firstName}! </div>
             <div className='reminder'><Reminder /></div>
             <div className='upcoming-event'><Link to='/current-event'>Current Event</Link></div>
           </div>
-          <div className="container-home">
-
-              <div className="calendar-div">
-                {this.checkCalendar()}
-              </div>
-              <div className="">
-                <MessageBoard />
-              </div>
-            </div>
-          </div>
-        <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe>
+          <div className="calendar-div">{this.checkCalendar()}</div>
+          {/* <div className=""><MessageBoard /></div> */}
+        </div>
+        {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}
       </div>
-      );
+    </div>
+    );
   }
 }
 
