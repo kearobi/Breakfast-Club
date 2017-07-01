@@ -7,7 +7,10 @@ class SplashPage extends Component {
     return (
       <div className='splash-page'>
         <div className='wrapper'>
+          <div className='header-wrapper'>
           <Header />
+          </div>
+          <div className='button-container'>
             <div className='login'>
               <Link className='FontAmatic' to='/login'>Log In</Link>
             </div>
@@ -15,6 +18,7 @@ class SplashPage extends Component {
               <Link className='FontAmatic' to='/signup'>Sign Up</Link>
             </div>
             <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
+        </div>
         </div>
       </div>
     );

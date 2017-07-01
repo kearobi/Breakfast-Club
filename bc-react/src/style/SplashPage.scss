@@ -8,18 +8,25 @@
     justify-content: center;
   }
 
-  .login {
+  .header-wrapper {
+    margin-top: -60px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .login, .signup {
+    width: 155px;
+    flex-wrap: wrap;
     background-color: orange;
     font-family: 'Amatic SC', sans-serif;
     text-align: center;
-    color: black;
+    display: inline-block;
   }
 
-  .signup {
-    background-color: lightblue;
-    text-align: center;
-    font-family: 'Amatic SC', sans-serif;
-    color: black;
-  }
+  .login {background-color: lightblue;}
+  .signup {background-color: orange;}
 
 }

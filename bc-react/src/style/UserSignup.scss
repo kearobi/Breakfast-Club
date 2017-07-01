@@ -44,19 +44,14 @@
     background-color: salmon;
   }
 
-  .button-container {
-    position: relative;
-    margin: auto;
-    background-color: orange;
-  }
   .let-me-in, .take-me-back {
     width: 155px;
     flex-wrap: wrap;
     text-align: center;
-    display: inline-block;
     font-family: 'Amatic SC', sans-serif;
     color: black;
     font-size: 35px;
+    display: inline-block;
   }
   .entry-button {
     background-color: white;
