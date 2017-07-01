@@ -6,6 +6,7 @@ import {addUser} from '../actions';
 import SignUpInput from '../components/SignUpInput'
 import signUpStore from '../stores/SignUpStore'
 import userStore from '../stores/UserStore'
+import Header from '../components/Header';
 
 class UserSignUp extends Component {
   constructor(props){
@@ -58,6 +59,8 @@ class UserSignUp extends Component {
 render(){
   return (
     <div className='signup-page'>
+        <div className="wrapper">
+          <Header />
       <div className="entry-header">
         Sign Up
       </div>
@@ -123,7 +126,7 @@ render(){
         </form>
       </div>
     <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
-  </div>
+  </div></div>
     );
   }
 }

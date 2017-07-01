@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import Coverflow from 'react-coverflow';
 import SideBar from '../components/SideBar';
+import Header from '../components/Header';
 
 class Slideshow extends Component {
   render(){
     return (
       <div className='slideshow-page'>
-        <SideBar />
+        <div className="wrapper">
+          <Header />
+          <SideBar />
         <div className='col-md-12'>
             <Coverflow
               width={960}
@@ -30,6 +33,7 @@ class Slideshow extends Component {
             </Coverflow>
             </div>
         </div>
+      </div>
       );
     }
 }

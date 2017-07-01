@@ -1,4 +1,5 @@
 .sidebar {
+
   tr {
     text-align: center;
   }
@@ -6,11 +7,13 @@
   table {
     height: 100%;
     position: fixed;
-    width: 150px;
     background-color: fuchsia;
+    justify-content: flex-start;
   }
 
   img {
+    padding-left: 25px;
+    padding-right: 25px;
     width: 80px;
     height: 80px;
     margin-top: 0px;

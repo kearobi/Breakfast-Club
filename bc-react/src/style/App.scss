@@ -15,14 +15,11 @@
 @import url('./SearchBar.css');
 @import url('./Events.css');
 
-/*goal for centering: create one single div set the width of the elements and the margin around them to auto*/
-
-/*if we want anything centered:*/
-/*body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}*/
+.box1 {background-color: red;}
+.box2 {background-color: orange;}
+.box3 {background-color: yellow;}
+.box4 {background-color: green;}
+.box5 {background-color: blue;}
 
 //this code removes the blue outline on links and buttons
 input:focus, button:focus {

@@ -14,6 +14,7 @@ import PlaceIndex from './components/PlaceIndex'
 import CurrentEvent from './routes/CurrentEvent'
 import Slideshow from './routes/Slideshow'
 import VotePage from './routes/VotePage'
+import FlexPractice from './components/FlexPractice'
 import './style/App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
@@ -41,26 +42,26 @@ class App extends Component {
 
   render() {
     return (
-      <div className='wrapper'>
-        <Header />
-          <Router>
-            <div>
-              <Route exact path='/' component={SplashPage}/>
-              <Route exact path='/signup' component={UserSignUp} />
-              <Route exact path='/login' component={UserLogin} />
-              <Route exact path='/places' component={PlaceIndex} />
-              <Route exact path='/admin' component={AdminPage} />
-              <Route exact path='/home-initial' render={this.handleInitialHome} />
-              <Route exact path='/home' render={this.handleDefaultHome} />
-              <Route exact path='/profile' component={UserProfile} />
-              <Route exact path='/profile2' component={UserProfile2} />
-              <Route exact path='/test-event' component={TestEvent} />
-              <Route path='/current-event' component={CurrentEvent} />
-              <Route path='/photos' component={Slideshow} />
-              <Route path='/vote' component={VotePage} />
-            </div>
-          </Router>
-      </div>
+      <div>
+      <Router>
+        <div>
+            <Route exact path='/' component={SplashPage}/>
+            <Route exact path='/signup' component={UserSignUp} />
+            <Route exact path='/login' component={UserLogin} />
+            <Route exact path='/places' component={PlaceIndex} />
+            <Route exact path='/admin' component={AdminPage} />
+            <Route exact path='/home-initial' render={this.handleInitialHome} />
+            <Route exact path='/home' render={this.handleDefaultHome} />
+            <Route exact path='/profile' component={UserProfile} />
+            <Route exact path='/profile2' component={UserProfile2} />
+            <Route exact path='/test-event' component={TestEvent} />
+            <Route path='/current-event' component={CurrentEvent} />
+            <Route path='/photos' component={Slideshow} />
+            <Route path='/vote' component={VotePage} />
+            <Route path='/flex' component={FlexPractice} />
+        </div>
+      </Router>
+    </div>
     );
   }
 }

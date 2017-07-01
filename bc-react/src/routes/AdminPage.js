@@ -5,6 +5,7 @@ import AdminUsers from '../components/Admin/AdminUsers';
 import AdminPlaces from '../components/Admin/AdminPlaces';
 import AdminEvents from '../components/Admin/AdminEvents';
 import adminStore from '../stores/AdminStore';
+import Header from '../components/Header';
 
 class AdminPage extends Component {
   constructor(props){
@@ -71,6 +72,8 @@ class AdminPage extends Component {
   render(){
     return(
       <div id="admin_container">
+        <div className="wrapper">
+          <Header />
         <h3>hello there, admin</h3>
         <br></br>
         <div id="admin_button_wrapper">
@@ -92,6 +95,7 @@ class AdminPage extends Component {
         </div>
         <br></br><br></br><br></br>
           {this.pageAdmin()}
+      </div>
       </div>
       );
     }

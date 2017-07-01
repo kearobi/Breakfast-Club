@@ -1,21 +1,23 @@
 .splash-page {
-  // .coverflow__container__1P-xE {
-  //     position: relative;
-  //     background: rgba(0, 0, 0, 0.69);
-  //     margin: 0 auto;
-  //     padding: 0;
-  //     overflow: hidden;
-  // }
-  .button-container {
-    position: relative;
-    width: 240px;
-    margin: auto;
+
+  .wrapper {
+    display: flex;
+    height: 100vh;
+    border: 10px solid yellow;
+    flex-direction: column;
+    justify-content: center;
   }
-  .login, .signup {
-    width: 50%;
+
+  .login {
+    background-color: orange;
+    font-family: 'Amatic SC', sans-serif;
     text-align: center;
-    overflow: hidden;
-    display: inline-block;
+    color: black;
+  }
+
+  .signup {
+    background-color: lightblue;
+    text-align: center;
     font-family: 'Amatic SC', sans-serif;
     color: black;
   }

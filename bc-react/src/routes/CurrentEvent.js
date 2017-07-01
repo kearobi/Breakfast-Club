@@ -6,6 +6,8 @@ import eventStore from '../stores/EventStore';
 import userStore from '../stores/UserStore';
 import EventDetail from '../components/EventDetail';
 import SideBar from '../components/SideBar';
+import Header from '../components/Header';
+
 class CurrentEvent extends Component {
   constructor(props){
     super(props)
@@ -60,9 +62,12 @@ class CurrentEvent extends Component {
   render(){
       return (
         <div className='events-page'>
+          <div className="wrapper">
+            <Header />
           <SideBar />
           <p>{this.state.message}</p>
           <EventDetail voted={this.state.user.voted} rsvp={this.state.rsvp} user={this.state.user} eventData={this.state.event} winner={this.state.event.event.winner} />
+        </div>
         </div>
         );
       }

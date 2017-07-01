@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {loginUser, checkLoginRedir} from '../actions';
 import userStore from '../stores/UserStore';
+import Header from '../components/Header';
 
 class UserLogin extends Component {
   constructor(props){
@@ -55,6 +56,8 @@ class UserLogin extends Component {
 render(){
   return (
     <div className="login-page">
+      <div className="wrapper">
+        <Header />
       <div className="entry-header">
         Log In
       </div>
@@ -92,7 +95,7 @@ render(){
               <img src={this.state.message} alt='verification'></img>
             </div>
           <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
-        </div>
+        </div></div>
     );
   }
 }

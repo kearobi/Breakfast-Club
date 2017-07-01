@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-// import MessageBoard from '../components/MessageBoard';
+import MessageBoard from '../components/MessageBoard';
 import SideBar from '../components/SideBar';
 import Reminder from '../components/Reminder';
 import {fetchMessages, fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions';
@@ -9,6 +9,8 @@ import BigCalendar from 'react-big-calendar';
 import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
+import Header from '../components/Header';
+
 // import placeStore from '../stores/PlaceStore'
 
 BigCalendar.setLocalizer(
@@ -108,22 +110,23 @@ class Home extends Component {
   render(){
     return (
       <div id="home-page">
-        <SideBar />
         <div className="home-page">
-          <div className="col-xs-6 welcome-message">
+          <div className="wrapper">
+            <SideBar />
+            <Header />
+          <div className="welcome-message">
             <div className='welcome-user'>Welcome, {userStore.getUser().firstName}! </div>
             <div className='reminder'><Reminder /></div>
             <div className='upcoming-event'><Link to='/current-event'>Current Event</Link></div>
           </div>
-          <div className="container container-home">
+          <div className="container-home">
 
-            <div className="row">
-              <div className="calendar-div col-xs-8">
+              <div className="calendar-div">
                 {this.checkCalendar()}
               </div>
-              {/* <div className="col-xs-4">
+              <div className="col-xs-4">
                 <MessageBoard />
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
