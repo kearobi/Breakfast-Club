@@ -111,9 +111,7 @@ class Home extends Component {
     return (
         <div className="home-page">
           <div className="wrapper">
-            <div className='sidebar-wrapper'>
-              <SideBar />
-            </div>
+            <div className='sidebar-wrapper'><SideBar /></div>
           <div className='entirepage'>
             <Header />
           <div className="welcome-message">

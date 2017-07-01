@@ -89,8 +89,8 @@ class UserProfile2 extends Component {
     return (
           <div className='profile-page'>
             <div className="wrapper">
+              <div className="sidebar-wrapper"><SideBar /></div>
               <Header />
-              <SideBar />
             <div className='welcome-user'>
               Welcome, {this.state.user.firstName}
             </div>

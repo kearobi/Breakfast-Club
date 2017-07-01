@@ -6,6 +6,15 @@
     flex-direction: row;
   }
 
+  .sidebar-wrapper{
+    display: flex;
+    width: 140px;
+    background-color: fuchsia;
+    justify-content: space-around;
+    flex-direction: column;
+    text-align: center;
+  }
+
   .welcome-user {
     background-color: lightblue;
     text-align: center;
@@ -66,6 +75,16 @@
 
   .profile-table {
     background-color: white;
+      input {
+        border: none;
+        font-family: 'Abel', sans-serif;
+        font-size: 1.3em;
+        padding-left: 5px;
+        padding-right: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        background-color: white;
+      }
   }
 
 }
