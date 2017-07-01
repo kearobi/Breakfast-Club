@@ -117,7 +117,7 @@ class Home extends Component {
           <div className='entirepage'>
             <Header />
           <div className="welcome-message">
-            <div className='welcome-user'>Welcome, {userStore.getUser().firstName}! </div>
+            <div className='welcome-user'>Hey, {userStore.getUser().firstName}! </div>
             <div className='reminder'><Reminder /></div>
             <div className='upcoming-event'><Link to='/current-event'>Current Event</Link></div>
           </div>
@@ -126,6 +126,7 @@ class Home extends Component {
         </div>
         {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}
       </div>
+      <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
     </div>
     );
   }
