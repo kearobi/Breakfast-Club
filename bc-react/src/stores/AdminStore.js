@@ -82,13 +82,6 @@ class AdminStore extends EventEmitter{
       return (event.id !== event)})
     this.emit('change')}
 
-  // adminEditUser(id){
-  //   this.users = this.users.filter((user) => {
-  //     return (this.users)
-  //     })
-  //     //emit says hey everybody that's listening, i did a thing! now we have to listen for the emit in the table full of users
-  //     this.emit('change')}
-
   handleActions(action){
     switch(action.type){
       case("ADMIN_LOAD_USERS"):{
@@ -100,8 +93,6 @@ class AdminStore extends EventEmitter{
         break
       }
       case("ADMIN_LOAD_EVENTS"):{
-        // debugger
-        //right after this spot, the error occurs
         this.adminLoadEvents(action.events)
         break
       }
@@ -132,6 +123,14 @@ class AdminStore extends EventEmitter{
       }
       case("ADMIN_UPDATE_USER"):{
         this.admiEditUser(action.user)
+        break
+      }
+      case("ADMIN_UPDATE_PLACE"):{
+        this.admiEditPlace(action.place)
+        break
+      }
+      case("ADMIN_UPDATE_EVENT"):{
+        this.admiEditEvent(action.event)
         break
       }
       default:{}

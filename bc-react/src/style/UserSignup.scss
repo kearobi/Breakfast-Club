@@ -1,43 +1,51 @@
-.container{
-  display: flex;
-  /*background-color: blue;*/
-  justify-content: center;
-}
-h2 {
-    font-family: 'Amatic SC', sans-serif, cursive;
-    font-size: 130px;
-    color: fuchsia;
-    margin-top: -9px;
-    font-weight: bold;
-    text-align: center;
-    margin-left: 220px;
-}
-#sign_up {
-    text-align: center;
-    font-family: 'Amatic SC', sans-serif;
-    font-size: 60px;
-}
-form {
-  /*background-color: red;*/
-  width: 500px;
-}
-.form-group {
-  margin-bottom: 0px;
-}
-.link-font{
-  font-size: 40px;
-}
-.bottom-links{
-  margin-top: 50px;
-}
+
 .help-block {
     display: block;
     margin-top: -30px;
     margin-bottom: 10px;
     margin-right: -620px;
-    color: #737373;
+    color: #e22020;
 }
-.letMeIn{
-  background-color: rgba(255, 0, 0, 0);
-  border-radius: 20px;
-}
+
+.signup-page {
+  .container{
+    display: flex;
+    justify-content: center;
+  }
+
+  form {
+    width: 500px;
+  }
+
+  .form-group {
+    margin-bottom: 0px;
+  }
+
+  .letMeIn{
+    background-color: rgba(255, 0, 0, 0);
+    border-radius: 20px;
+  }
+  .entry-header {
+    text-align: center;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 3em;
+  }
+  .button-container {
+    position: relative;
+    width: 315px;
+    margin: auto;
+  }
+  .let-me-in, .take-me-back {
+    width: 50%;
+    text-align: center;
+    display: inline-block;
+    font-family: 'Amatic SC', sans-serif;
+    color: black;
+    font-size: 35px;
+    margin-top: 30px;
+  }
+  .entry-button {
+    background-color: white;
+    border-radius: 20px;
+    }
+  }

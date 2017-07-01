@@ -5,11 +5,15 @@
 @import url('./Header.css');
 @import url('./React-big-calendar.css');
 @import url('./Home.css');
-@import url('./Forms.css');
 @import url('./Places.css');
 @import url('./Modal.css');
-@import url('./SplashLoginSignUp.css');
 @import url('./Sidebar.css');
+@import url('./SplashPage.css');
+@import url('./UserLogin.css');
+@import url('./UserSignUp.css');
+@import url('./UserProfile.css');
+@import url('./SearchBar.css');
+@import url('./Events.css');
 
 /*goal for centering: create one single div set the width of the elements and the margin around them to auto*/
 
@@ -20,60 +24,99 @@
     align-items: center;
 }*/
 
+//this code removes the blue outline on links and buttons
+input:focus, button:focus {
+    outline:none !important;
+}
+//fruit border at bottom of splash, login, signup pages
+.fruit-border {
+  position: fixed;
+  bottom:0;
+  right:0;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+//general font
 .FontAmatic {
-  font-family: 'Amatic SC';
+  font-family: 'Amatic SC', sans-serif;
   font-size: 40px;
   text-align: center;
   color: black;
   margin-top: 30px;
 }
 
-.center {
+//general styling for forms
+form {
   text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-size: 1.35em;
 }
 
-h3 {
-  font-family: 'Dancing Script';
-  text-align: center;
-  font-size: 52px;
-  font-style: italic;
-  font-weight: bold;
-  margin-top: -8px;
+/* this code center-aligns the placeholder text in our forms for multiple browser/verisons */
+::-webkit-input-placeholder {text-align: center;}
+:-moz-placeholder {/* older Firefox*/text-align: center;}
+::-moz-placeholder { /* Firefox 19+ */ text-align: center;}
+:-ms-input-placeholder {text-align: center;}
+
+
+//this code makes sure that autofilled fields have a white background (default is yellow)
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
 
-.black {
+//button styling for admin and current event pages
+.align-button {
+  text-align: center;
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 35px;
   color: black;
 }
 
-button:hover {
-  background-color: #def9a3;
+//wobble effect used on login, sign up, sidebar components
+@-webkit-keyframes wobble {
+  16.65% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  33.3% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+  49.95% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+  66.6% {
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+  83.25% {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
 }
 
-//grid begins here
-
-//grid-container: The purpose of the container is to set the width of the entire grid. The width of the container is generally 100%, but you might want to set a max-width for larger displays.
-.grid-container {
-    width : 100%;
-    max-width : 1200px;
-    box-sizing: border-box;
-}
-//row: The purpose of the row element is to keep the columns inside it from overflowing onto other rows. To achieve this, we'll use the clearfix hack to make sure everything inside the row stays inside the row.
-.row:before,
-.row:after {
-    content:"";
-    display: table;
-    clear: both;
-}
-//column positioning: If our columns are empty, our floated columns will stack on top of each other. To prevent this, we'll give our columns a min-height of 1px as well as float them. To find the width of one column, all we have to do is divide the total number of columns by the width of the container. In our case, the width of the container is 100%, and we want 6 columns, so 100/6 = 16.66, so our base column width is 16.66%.If we want a section that's 2 columns wide, we have to create an 2-column-wide column. The calculations are pretty simple. The only thing we have consider when using these column combinations is that the total number of columns in a row adds up to 6 (or whatever the total number of columns is).
-[class*='col-'] {
-    float: left;
-    min-height: 1px;
-    width: 16.66%;
-    /*-- our gutter --*/
-    padding: 12px;
-    background-color: #FFDCDC;
+.wobble {
+  display: inline-block;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
 
-.outline, .outline *{
-    outline: 1px solid #F6A1A1;
+.wobble:hover {
+  -webkit-animation-name: wobble;
+  animation-name: wobble;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
 }

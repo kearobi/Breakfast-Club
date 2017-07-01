@@ -1,5 +1,8 @@
+//EventDetail gets props from CurrentEvent, TestEvent
+//EventDetail passes props to VoteButton, EventChoice
+//EventDetail imports RSVPButton
+
 import React, { Component } from 'react';
-import Img from 'react-image'
 import VoteButton from './VoteButton';
 import RSVPButton from './RSVPButton';
 import EventChoice from './EventChoice'
@@ -20,7 +23,7 @@ class EventDetail extends Component {
   render() {
     this.dateParser()
     var mappedUsers;
-    if (this.props.eventData.users.length == 0){
+    if (this.props.eventData.users.length === 0){
       mappedUsers = <p>No RSVPs yet</p>
     }
     else {
@@ -36,19 +39,18 @@ class EventDetail extends Component {
 
 
     return (
-      <div>
+      <div className='events-page'>
         <div>
-          <h1>Next breakfast club</h1>
-          <p>Date: {this.props.eventData.event.date}</p>
+          <p className='FontAmatic'>{this.props.eventData.event.date}</p>
         </div>
         <div>
-          {(this.props.winner == 1 || this.props.winner == null) && <EventChoice
+          {(this.props.winner === 1 || this.props.winner === null) && <EventChoice
             place={this.props.eventData.places[0]}
             choice={1}
 
 
             />}
-          {(this.props.winner == 2 || this.props.winner == null) && <EventChoice
+          {(this.props.winner === 2 || this.props.winner === null) && <EventChoice
             place={this.props.eventData.places[1]}
             choice={2}
             />}
@@ -57,7 +59,7 @@ class EventDetail extends Component {
         {!this.props.rsvp && this.props.voted && <RSVPButton/>}
         </div>
         <div>
-          <h4>Attendees</h4>
+          <h4 className='FontAmatic'>Who's In:</h4>
           {mappedUsers}
         </div>
       </div>

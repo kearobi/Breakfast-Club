@@ -4,6 +4,7 @@ import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
 import UserProfile from './routes/UserProfile';
+import UserProfile2 from './routes/UserProfile2';
 import TestEvent from './routes/TestEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
@@ -11,17 +12,12 @@ import {updatePlaces} from './actions'
 import {checkLogin} from './actions'
 import PlaceIndex from './components/PlaceIndex'
 import CurrentEvent from './routes/CurrentEvent'
-
-// import placeStore from './stores/PlaceStore'
-// import './style/App.css';
+import Slideshow from './routes/Slideshow'
+import VotePage from './routes/VotePage'
+import './style/App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import userStore from './stores/UserStore';
 
-// import userStore from './stores/UserStore';
-// import { addUser } from './actions';
-
-//only the most parent component should be responsible for fetching data, aka here
-
+//only the most parent component should be responsible for fetching data, aka here?
 
 class App extends Component {
   constructor(props){
@@ -45,22 +41,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className='grid-container'>
-        <Router>
-          <div>
-            <Header className='header-component' />
-            <Route exact path='/' component={SplashPage}/>
-            <Route exact path='/signup' component={UserSignUp} />
-            <Route exact path='/login' component={UserLogin} />
-            <Route exact path='/places' component={PlaceIndex} />
-            <Route exact path='/admin' component={AdminPage} />
-            <Route exact path='/home-initial' render={this.handleInitialHome} />
-            <Route exact path='/home' render={this.handleDefaultHome} />
-            <Route exact path='/profile' component={UserProfile} />
-            <Route exact path='/test-event' component={TestEvent} />
-            <Route path='/current-event' component={CurrentEvent} />
-          </div>
-        </Router>
+      <div className='wrapper'>
+        <Header />
+          <Router>
+            <div>
+              <Route exact path='/' component={SplashPage}/>
+              <Route exact path='/signup' component={UserSignUp} />
+              <Route exact path='/login' component={UserLogin} />
+              <Route exact path='/places' component={PlaceIndex} />
+              <Route exact path='/admin' component={AdminPage} />
+              <Route exact path='/home-initial' render={this.handleInitialHome} />
+              <Route exact path='/home' render={this.handleDefaultHome} />
+              <Route exact path='/profile' component={UserProfile} />
+              <Route exact path='/profile2' component={UserProfile2} />
+              <Route exact path='/test-event' component={TestEvent} />
+              <Route path='/current-event' component={CurrentEvent} />
+              <Route path='/photos' component={Slideshow} />
+              <Route path='/vote' component={VotePage} />
+            </div>
+          </Router>
       </div>
     );
   }

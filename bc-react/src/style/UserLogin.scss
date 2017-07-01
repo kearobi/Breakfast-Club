@@ -1,3 +1,37 @@
-.login-field-verification img {
-  width: 600px
+.login-page {
+
+  .validate {
+    text-align: center;
+  }
+
+  .validate img {
+    padding-top: 20px;
+    width: 300px;
+    max-height: 200px;
+  }
+
+  .entry-header {
+    text-align: center;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 3em;
+  }
+  .button-container {
+    position: relative;
+    width: 315px;
+    margin: auto;
+  }
+  .let-me-in, .take-me-back {
+    width: 50%;
+    text-align: center;
+    display: inline-block;
+    font-family: 'Amatic SC', sans-serif;
+    color: black;
+    font-size: 35px;
+    margin-top: 30px;
+  }
+  .entry-button {
+    background-color: white;
+    border-radius: 20px;
+  }
+
 }

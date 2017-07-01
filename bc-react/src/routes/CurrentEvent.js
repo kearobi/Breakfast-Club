@@ -1,9 +1,11 @@
+//CurrentEvent fetches data from EventStore,userStore
+//CurrentEvent passes props to EventDetail
+
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import eventStore from '../stores/EventStore';
 import userStore from '../stores/UserStore';
 import EventDetail from '../components/EventDetail';
-
+import SideBar from '../components/SideBar';
 class CurrentEvent extends Component {
   constructor(props){
     super(props)
@@ -11,7 +13,7 @@ class CurrentEvent extends Component {
       event: eventStore.getCurrentEvent(),
       user: userStore.getUser(),
       rsvp: this.checkIfAttending(userStore.getUser().id, eventStore.getCurrentEvent().guestLists),
-      message: 'welcome'
+      message: ''
     }
   }
 
@@ -57,18 +59,10 @@ class CurrentEvent extends Component {
 
   render(){
       return (
-        <div>
+        <div className='events-page'>
+          <SideBar />
           <p>{this.state.message}</p>
           <EventDetail voted={this.state.user.voted} rsvp={this.state.rsvp} user={this.state.user} eventData={this.state.event} winner={this.state.event.event.winner} />
-          <Link to="/home">
-            <div className="align-button">
-              <input
-                className='take-me-back'
-                type='button'
-                value='Take Me Back!!'>
-              </input>
-            </div>
-          </Link>
         </div>
         );
       }

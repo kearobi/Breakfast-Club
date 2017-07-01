@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import MessageBoard from '../components/MessageBoard';
+// import MessageBoard from '../components/MessageBoard';
 import SideBar from '../components/SideBar';
 import Reminder from '../components/Reminder';
 import {fetchMessages, fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions';
@@ -9,8 +9,7 @@ import BigCalendar from 'react-big-calendar';
 import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
-import placeStore from '../stores/PlaceStore'
-import ('../style/Home.css');
+// import placeStore from '../stores/PlaceStore'
 
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
@@ -103,18 +102,18 @@ class Home extends Component {
     )
   }else{
     return(<div>Loading...</div>)
+    }
   }
-  }
-//{userStore.getUser.firstName()}
+
   render(){
     return (
-      <div id="home-body">
+      <div id="home-page">
         <SideBar />
         <div className="home-page">
           <div className="col-xs-6 welcome-message">
-            <h1>Welcome, {userStore.getUser().firstName}</h1>
-            <Reminder />
-            <Link to='/current-event'>Current Event</Link>
+            <div className='welcome-user'>Welcome, {userStore.getUser().firstName}! </div>
+            <div className='reminder'><Reminder /></div>
+            <div className='upcoming-event'><Link to='/current-event'>Current Event</Link></div>
           </div>
           <div className="container container-home">
 
@@ -122,9 +121,9 @@ class Home extends Component {
               <div className="calendar-div col-xs-8">
                 {this.checkCalendar()}
               </div>
-              <div className="col-xs-4">
+              {/* <div className="col-xs-4">
                 <MessageBoard />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

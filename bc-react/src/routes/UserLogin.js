@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import Header from '../components/Header';
-import {loginUser, checkLoginRedir, createNewEvent} from '../actions';
+import {loginUser, checkLoginRedir} from '../actions';
 import userStore from '../stores/UserStore';
-import ('../style/UserLogin.css');
 
 class UserLogin extends Component {
   constructor(props){
@@ -13,7 +11,7 @@ class UserLogin extends Component {
         email: "",
         password: ""
       },
-      message: "../Images/white.png"
+      message: '../Images/white.PNG'
     }
   }
 
@@ -29,7 +27,7 @@ class UserLogin extends Component {
 
   loginFailed(){
     this.setState({
-      message: 'Login failed, credentials invalid'
+      message: '../Images/InvalidCred.PNG'
     })
   }
 
@@ -56,48 +54,45 @@ class UserLogin extends Component {
 
 render(){
   return (
-    <div className="">
-    <div className="login-signup-container">
-      <div className="FontAmatic">
-      <div id="sign_up">
+    <div className="login-page">
+      <div className="entry-header">
         Log In
       </div>
-          <div>
-            <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-              <div className='formGroup'>
-                <input
-                  placeholder='email address'
-                  type='email'
-                  name='email'
-                  id='email'
-                  value={this.state.user.email}
-                  onChange={this.handleChange.bind(this)}>
-                </input>
+          <form className='form' onSubmit={this.handleSubmit.bind(this)}>
+            <div className='formGroup'>
+              <input
+                placeholder='email address'
+                type='email'
+                name='email'
+                id='email'
+                value={this.state.user.email}
+                onChange={this.handleChange.bind(this)}>
+              </input>
+            </div>
+            <div className='formGroup'>
+              <input
+                placeholder='password'
+                type='password'
+                name='password'
+                id='password'
+                value={this.state.user.password}
+                onChange={this.handleChange.bind(this)}>
+              </input>
               </div>
-              <div className='formGroup'>
-                <input
-                  placeholder='password'
-                  type='password'
-                  name='password'
-                  id='password'
-                  value={this.state.user.password}
-                  onChange={this.handleChange.bind(this)}>
-                </input>
-              </div>
-              <div className="login-signup-container">
+                <div className="button-container">
+                  <div className='formGroup let-me-in'>
+                      <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
+                  </div>
                   <Link className="take-me-back" to="/">
-                    Take Me Back!!
+                    <button className='entry-button wobble'>Take Me Back!!</button>
                   </Link>
-              <div className='formGroup signup'>
-                <input className='' type='submit' value='Let Me In!!'></input>
               </div>
-              </div>
-          </form>
+            </form>
+            <div className='validate'>
+              <img src={this.state.message} alt='verification'></img>
+            </div>
+          <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
         </div>
-      </div>
-    </div>
-  <img className="login-field-verification" src={this.state.message}></img>
-</div>
     );
   }
 }

@@ -718,7 +718,6 @@ app.delete('/admin/delete/event', function(request, response){
 app.put('/admin/edit/user', function(request, response){
   //the body contains the user, and the user contains the properties
   let userParams = request.body.user
-  console.log("userParams", userParams)
   User.update(userParams, {where: {id: userParams.id}}).then(function(user){
     response.status(200)
     response.json({status: 'success', user: user})
@@ -729,6 +728,8 @@ app.put('/admin/edit/user', function(request, response){
   })})
 app.put('/admin/edit/place', function(request, response){
   let placeParams = request.body.place
+  console.log("request", request)
+  console.log("placeParams", placeParams)
   Place.update(placeParams, {where: {id: placeParams.id}}).then(function(place){
     response.status(200)
     response.json({status: 'success', place: place})

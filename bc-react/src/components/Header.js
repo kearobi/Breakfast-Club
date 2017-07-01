@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
-import '../style/App.css';
-
 
 class Header extends Component {
   render() {
     return (
-      <div className="Header">
-        <span className="border">
-          <span className="border-bottom">
-            <h2 className="splash">Breakfast Club</h2>
-          </span>
-        </span>
+      <div className="header col-md-12">
+        <h2>Breakfast Club</h2>
       </div>
     );
   }
 }
-
 
 export default Header

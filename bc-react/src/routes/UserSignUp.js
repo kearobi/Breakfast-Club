@@ -1,3 +1,5 @@
+//UserSignUp passes props to SignUpInput
+
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
@@ -17,7 +19,7 @@ class UserSignUp extends Component {
 
   componentWillMount(){
     userStore.on('User Created', this.redirectToHome.bind(this))
-  userStore.on('user create fail', this.loginFailed.bind(this))
+    userStore.on('user create fail', this.loginFailed.bind(this))
   }
 
   redirectToHome(){
@@ -26,7 +28,7 @@ class UserSignUp extends Component {
 
   loginFailed(){
     this.setState({
-      message: 'Registration failed, credentials invalid'
+      message: 'registration failed, credentials invalid'
     })
   }
 
@@ -40,8 +42,8 @@ class UserSignUp extends Component {
   }
 
   validate(){
-  signUpStore.validate()
-  this.setState({errors: signUpStore.getErrors()})
+    signUpStore.validate()
+    this.setState({errors: signUpStore.getErrors()})
   }
 
 
@@ -53,16 +55,14 @@ class UserSignUp extends Component {
     }
   }
 
-
 render(){
   return (
-    <div>
-      <div id="sign_up">
+    <div className='signup-page'>
+      <div className="entry-header">
         Sign Up
       </div>
-
-      {this.state.message}
-      <div className="container">
+        {this.state.message}
+      <div className='container'>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
           <SignUpInput
             name='firstName'
@@ -70,7 +70,8 @@ render(){
             placeholder='first name'
             value={this.state.user.firstName}
             onChange={this.handleChange.bind(this)}
-            errors={this.state.errors.firstName}/>
+            errors={this.state.errors.firstName}
+          />
           <SignUpInput
             placeholder='last name'
             type={this.state.type}
@@ -111,22 +112,18 @@ render(){
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.verifyPassword}
             />
-
-          <div className="row bottom-links">
-            <div className="col-xs-6 left align-button">
-              <Link className="link-font" to="/">
-                Take Me Back!!
+            <div className="button-container">
+              <div className='formGroup let-me-in'>
+                  <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
+              </div>
+              <Link className="take-me-back" to="/">
+                <button className='entry-button wobble'>Take Me Back!!</button>
               </Link>
-            </div>
-
-            <div className="col-xs-6 right align-button">
-              <input className="letMeIn wobble" type='submit' value='Let Me In!!'></input>
-            </div>
           </div>
         </form>
       </div>
-    </div>
-
+    <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
+  </div>
     );
   }
 }

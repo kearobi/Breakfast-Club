@@ -29,7 +29,7 @@
   "scripts": {
     "start-js": "node ./node_modules/react-scripts/bin/react-scripts.js start",
     "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && ./node_modules/react-scripts/bin/react-scripts.js build",
+    "build": "npm run build-css && node ./node_modules/react-scripts/bin/react-scripts.js build",
     "test": "node ./node_modules/react-scripts/bin/react-scripts.js test --env=jsdom",
     "eject": "node ./node_modules/react-scripts/bin/react-scripts.js eject",
     "build-css": "node-sass-chokidar src/ -o src/",

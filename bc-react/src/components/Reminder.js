@@ -1,3 +1,5 @@
+//Reminder fetches data from EventStore and UserStore
+
 import React, { Component } from 'react';
 import eventStore from '../stores/EventStore';
 import userStore from '../stores/UserStore';
@@ -50,7 +52,7 @@ class Reminder extends Component {
   checkIfAttending(user_id, guestLists){
     let toReturn = false;
     for (var i = 0; i < guestLists.length; i++){
-      if (user_id == guestLists[i].user_id){
+      if (user_id === guestLists[i].user_id){
         return true;
       }
     }
@@ -64,7 +66,7 @@ class Reminder extends Component {
       if (this.checkIfAttending(user.id, currentEvent.guestLists)){
         this.setState({
           event: currentEvent,
-          message: `You have a breakfast to attend! Breakfast on ${currentEvent.event.date} at ${currentEvent.event.winner == 1 ? currentEvent.places[0].name : currentEvent.places[1].name}`
+          message: `See you on ${currentEvent.event.date} at ${currentEvent.event.winner === 1 ? currentEvent.places[0].name : currentEvent.places[1].name}!`
         })
       }
       else {
@@ -85,14 +87,14 @@ class Reminder extends Component {
         else {
           this.setState({
             event: eventStore.getCurrentEvent(),
-            message: "Time to RSVP!"
+            message: "Are you in or are you in?"
           })
         }
       }
       else {
         this.setState({
           event: eventStore.getCurrentEvent(),
-          message: "Time to vote!"
+          message: "Cast your vote!"
         })
       }
     }
@@ -100,7 +102,7 @@ class Reminder extends Component {
 
   render() {
     return (
-      <h4>{this.state.message}</h4>
+      <div> {this.state.message} </div>
     );
   }
 }

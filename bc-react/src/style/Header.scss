@@ -1,26 +1,11 @@
-.Header {
+.header {
   text-align: center;
-}
 
-h2, calendar-div, home-page, login-signup {
-  font-family: 'Amatic SC', sans-serif, cursive;
-  font-size: 100px;
-  color: fuchsia;
-  margin-top: -9px;
-  font-weight: bold;
+    h2 {
+      font-family: 'Amatic SC', sans-serif;
+      font-size: 7.5em;
+      color: fuchsia;
+      font-weight: bold;
   }
 
-// .Header-header {
-//
-//   max-height: 1000px;
-//   max-width: 150px;
-//   min-height: 1000px;
-//   min-width: 150px;
-//   padding: 40px;
-//   color: white;
-//   margin-bottom: -1000px;
-// }
-
-/*-------------------------------*/
-/*           Wrappers            */
-/*-------------------------------*/
+}
