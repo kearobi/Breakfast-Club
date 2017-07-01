@@ -30,18 +30,17 @@
   }
   .button-container {
     position: relative;
-    width: 315px;
     margin: auto;
     background-color: orange;
   }
   .let-me-in, .take-me-back {
-    width: 50%;
+    width: 155px;
+    flex-wrap: wrap;
     text-align: center;
     display: inline-block;
     font-family: 'Amatic SC', sans-serif;
     color: black;
     font-size: 35px;
-    margin-top: 30px;
   }
 
   .let-me-in {

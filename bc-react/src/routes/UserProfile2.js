@@ -103,7 +103,7 @@ class UserProfile2 extends Component {
               />
               {this.editIcon()}
             </div>
-          <table>
+          <table classname='profile-table'>
             <tbody>
               <tr>
                 <td className='field'>First Name:</td>

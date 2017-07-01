@@ -5,11 +5,10 @@
     height: 100vh;
     border: 10px solid yellow;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .welcome-user {
-    margin-left: -200px;
     text-align: center;
     font-family: 'Dancing Script';
     font-size: 52px;
@@ -37,7 +36,7 @@
     font-family: 'Amatic SC';
     font-size: 3em;
   }
-
+.profile-table {
   .fields {
     font-weight: bold;
   }
@@ -63,7 +62,7 @@
     background-color: transparent;
     margin: 0;
   }
-
+}
   img:hover {
     cursor: pointer;
   }
