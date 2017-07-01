@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {loginUser, checkLoginRedir} from '../actions';
 import userStore from '../stores/UserStore';
+import Header from '../components/Header';
 
 class UserLogin extends Component {
   constructor(props){
@@ -55,11 +56,11 @@ class UserLogin extends Component {
 render(){
   return (
     <div className="login-page">
-      <div className="entry-header">
-        Log In
-      </div>
+      <div className="wrapper">
+        <div className='header-wrapper'><Header /></div>
+          <div className="entry-header">Log In</div>
           <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-            <div className='formGroup'>
+            <div>
               <input
                 placeholder='email address'
                 type='email'
@@ -69,7 +70,7 @@ render(){
                 onChange={this.handleChange.bind(this)}>
               </input>
             </div>
-            <div className='formGroup'>
+            <div>
               <input
                 placeholder='password'
                 type='password'
@@ -79,20 +80,18 @@ render(){
                 onChange={this.handleChange.bind(this)}>
               </input>
               </div>
-                <div className="button-container">
-                  <div className='formGroup let-me-in'>
+                  <div className='let-me-in'>
                       <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
                   </div>
                   <Link className="take-me-back" to="/">
                     <button className='entry-button wobble'>Take Me Back!!</button>
                   </Link>
-              </div>
             </form>
             <div className='validate'>
               <img src={this.state.message} alt='verification'></img>
             </div>
           <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
-        </div>
+        </div></div>
     );
   }
 }

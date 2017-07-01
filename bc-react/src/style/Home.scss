@@ -1,7 +1,11 @@
 .home-page {
-
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    border: 10px solid yellow;
+    min-height: 100vh;
+  }
     text-align: center;
-    margin-left: 15%;
 
     //sexy toast
     .giphy-div {

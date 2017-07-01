@@ -5,6 +5,7 @@ import {updateUser} from '../actions';
 import userStore from '../stores/UserStore';
 import {adminEditUser} from '../actions';
 // import MyUploader from '../components/PhotoUpload'
+import Header from '../components/Header';
 
 class UserProfile2 extends Component {
   constructor(props){
@@ -22,6 +23,7 @@ class UserProfile2 extends Component {
       title: 'edit',
       header: 'Edit Profile'
     }
+    console.log(this.state.user)
   }
 
   editIcon(){
@@ -85,9 +87,10 @@ class UserProfile2 extends Component {
   render(){
 
     return (
-        <div>
-          <SideBar />
           <div className='profile-page'>
+            <div className="wrapper">
+              <Header />
+              <SideBar />
             <div className='welcome-user'>
               Welcome, {this.state.user.firstName}
             </div>
@@ -100,7 +103,7 @@ class UserProfile2 extends Component {
               />
               {this.editIcon()}
             </div>
-          <table>
+          <table classname='profile-table'>
             <tbody>
               <tr>
                 <td className='field'>First Name:</td>

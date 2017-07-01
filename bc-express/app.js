@@ -717,6 +717,7 @@ app.delete('/admin/delete/event', function(request, response){
 //ask rob for help
 app.put('/admin/edit/user', function(request, response){
   //the body contains the user, and the user contains the properties
+  console.log(request.body)
   let userParams = request.body.user
   User.update(userParams, {where: {id: userParams.id}}).then(function(user){
     response.status(200)

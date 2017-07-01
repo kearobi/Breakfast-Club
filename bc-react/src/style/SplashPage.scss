@@ -1,23 +1,36 @@
 .splash-page {
-  // .coverflow__container__1P-xE {
-  //     position: relative;
-  //     background: rgba(0, 0, 0, 0.69);
-  //     margin: 0 auto;
-  //     padding: 0;
-  //     overflow: hidden;
-  // }
-  .button-container {
-    position: relative;
-    width: 240px;
-    margin: auto;
+
+  .wrapper {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
   }
-  .login, .signup {
-    width: 50%;
-    text-align: center;
-    overflow: hidden;
-    display: inline-block;
-    font-family: 'Amatic SC', sans-serif;
+
+  .header-wrapper {
+    margin-top: -160px;
+  }
+
+  .button-container {
+    align-self: center;
+    width: 300px;
+  }
+
+  .link {
     color: black;
+    text-decoration: none;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
+
+  .login, .signup {
+    width: 150px;
+    font-family: 'Amatic SC', sans-serif;
+    text-align: center;
+    flex-wrap: wrap;
+    display: inline-block;
+    font-size: 40px;
   }
 
 }

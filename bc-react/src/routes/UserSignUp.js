@@ -6,6 +6,7 @@ import {addUser} from '../actions';
 import SignUpInput from '../components/SignUpInput'
 import signUpStore from '../stores/SignUpStore'
 import userStore from '../stores/UserStore'
+import Header from '../components/Header';
 
 class UserSignUp extends Component {
   constructor(props){
@@ -58,11 +59,12 @@ class UserSignUp extends Component {
 render(){
   return (
     <div className='signup-page'>
+        <div className="wrapper">
+          <Header />
       <div className="entry-header">
         Sign Up
       </div>
         {this.state.message}
-      <div className='container'>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
           <SignUpInput
             name='firstName'
@@ -112,14 +114,12 @@ render(){
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.verifyPassword}
             />
-            <div className="button-container">
-              <div className='formGroup let-me-in'>
+              <div className='let-me-in'>
                   <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
               </div>
               <Link className="take-me-back" to="/">
                 <button className='entry-button wobble'>Take Me Back!!</button>
               </Link>
-          </div>
         </form>
       </div>
     <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>

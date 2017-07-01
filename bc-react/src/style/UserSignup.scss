@@ -1,24 +1,28 @@
 
 .help-block {
     display: block;
-    margin-top: -30px;
-    margin-bottom: 10px;
-    margin-right: -620px;
+    font-size: .9em;
     color: #e22020;
+    margin-left: 350px;
+    margin-top: -26px;
 }
 
 .signup-page {
-  .container{
+
+  .wrapper {
     display: flex;
-    justify-content: center;
+    height: 100vh;
+    // border: 10px solid yellow;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   form {
-    width: 500px;
-  }
-
-  .form-group {
-    margin-bottom: 0px;
+    // background-color: pink;
+      input {
+        font-family: 'Abel', sans-serif;
+        font-size: .9em;
+      }
   }
 
   .letMeIn{
@@ -29,23 +33,27 @@
     text-align: center;
     font-family: 'Amatic SC', sans-serif;
     font-size: 3em;
+    // background-color: lightgreen;
   }
-  .button-container {
-    position: relative;
-    width: 315px;
-    margin: auto;
-  }
+
   .let-me-in, .take-me-back {
-    width: 50%;
-    text-align: center;
+    flex-wrap: wrap;
     display: inline-block;
-    font-family: 'Amatic SC', sans-serif;
-    color: black;
-    font-size: 35px;
-    margin-top: 30px;
+    margin-top: 12px;
   }
   .entry-button {
     background-color: white;
     border-radius: 20px;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 35px;
+    text-align: center;
+    color: black;
     }
+  .entry-button:hover {
+    cursor: pointer;
+  }
+
+  .let-me-in {width: 140px;}
+  .take-me-back {width: 180px;}
+
   }

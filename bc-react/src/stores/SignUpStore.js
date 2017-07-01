@@ -32,7 +32,7 @@ class SignUpStore {
 
   validatePassword(fieldName){
     if(this.fields[fieldName] !== this.fields.password){
-      this.addError(fieldName, 'please verify your password')
+      this.addError(fieldName, 'verify password')
     }
   }
 
