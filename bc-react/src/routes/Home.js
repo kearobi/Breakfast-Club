@@ -109,7 +109,6 @@ class Home extends Component {
 
   render(){
     return (
-      <div id="home-page">
         <div className="home-page">
           <div className="wrapper">
             <SideBar />
@@ -124,12 +123,11 @@ class Home extends Component {
               <div className="calendar-div">
                 {this.checkCalendar()}
               </div>
-              <div className="col-xs-4">
+              <div className="">
                 <MessageBoard />
               </div>
             </div>
           </div>
-        </div>
         <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe>
       </div>
       );

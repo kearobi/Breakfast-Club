@@ -1,5 +1,12 @@
 .profile-page {
-  margin-left: 200px;
+
+  .wrapper {
+    display: flex;
+    height: 100vh;
+    border: 10px solid yellow;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   .welcome-user {
     margin-left: -200px;

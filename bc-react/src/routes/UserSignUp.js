@@ -65,7 +65,6 @@ render(){
         Sign Up
       </div>
         {this.state.message}
-      <div className='container'>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
           <SignUpInput
             name='firstName'
@@ -126,7 +125,7 @@ render(){
         </form>
       </div>
     <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
-  </div></div>
+  </div>
     );
   }
 }

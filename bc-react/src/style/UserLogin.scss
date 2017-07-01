@@ -1,5 +1,17 @@
 .login-page {
 
+  .wrapper {
+    display: flex;
+    height: 100vh;
+    border: 10px solid yellow;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  form {
+    background-color: pink;
+  }
+
   .validate {
     text-align: center;
   }
@@ -14,11 +26,13 @@
     text-align: center;
     font-family: 'Amatic SC', sans-serif;
     font-size: 3em;
+    background-color: lightgreen;
   }
   .button-container {
     position: relative;
     width: 315px;
     margin: auto;
+    background-color: orange;
   }
   .let-me-in, .take-me-back {
     width: 50%;
@@ -29,6 +43,15 @@
     font-size: 35px;
     margin-top: 30px;
   }
+
+  .let-me-in {
+    background-color: lightblue;
+  }
+
+  .take-me-back {
+    background-color: salmon;
+  }
+
   .entry-button {
     background-color: white;
     border-radius: 20px;

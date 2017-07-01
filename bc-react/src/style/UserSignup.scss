@@ -8,13 +8,17 @@
 }
 
 .signup-page {
-  .container{
+
+  .wrapper {
     display: flex;
-    justify-content: center;
+    height: 100vh;
+    border: 10px solid yellow;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   form {
-    width: 500px;
+    background-color: pink;
   }
 
   .form-group {
@@ -29,12 +33,23 @@
     text-align: center;
     font-family: 'Amatic SC', sans-serif;
     font-size: 3em;
+    background-color: lightgreen;
   }
   .button-container {
     position: relative;
     width: 315px;
     margin: auto;
+    background-color: orange;
   }
+
+  .let-me-in {
+    background-color: lightblue;
+  }
+
+  .take-me-back {
+    background-color: salmon;
+  }
+
   .let-me-in, .take-me-back {
     width: 50%;
     text-align: center;
