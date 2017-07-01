@@ -12,17 +12,17 @@
   .wrapper {
     display: flex;
     height: 100vh;
-    border: 10px solid yellow;
+    // border: 10px solid yellow;
     flex-direction: column;
     justify-content: flex-start;
   }
 
   form {
-    background-color: pink;
-  }
-
-  .form-group {
-    margin-bottom: 0px;
+    // background-color: pink;
+      input {
+        font-family: 'Abel', sans-serif;
+        font-size: .9em;
+      }
   }
 
   .letMeIn{
@@ -33,28 +33,27 @@
     text-align: center;
     font-family: 'Amatic SC', sans-serif;
     font-size: 3em;
-    background-color: lightgreen;
-  }
-
-  .let-me-in {
-    background-color: lightblue;
-  }
-
-  .take-me-back {
-    background-color: salmon;
+    // background-color: lightgreen;
   }
 
   .let-me-in, .take-me-back {
-    width: 155px;
     flex-wrap: wrap;
-    text-align: center;
-    font-family: 'Amatic SC', sans-serif;
-    color: black;
-    font-size: 35px;
     display: inline-block;
+    margin-top: 12px;
   }
   .entry-button {
     background-color: white;
     border-radius: 20px;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 35px;
+    text-align: center;
+    color: black;
     }
+  .entry-button:hover {
+    cursor: pointer;
+  }
+
+  .let-me-in {width: 140px;}
+  .take-me-back {width: 180px;}
+
   }

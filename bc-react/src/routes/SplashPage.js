@@ -12,10 +12,10 @@ class SplashPage extends Component {
           </div>
           <div className='button-container'>
             <div className='login'>
-              <Link className='FontAmatic' to='/login'>Log In</Link>
+              <Link className='link' to='/login'>Log In</Link>
             </div>
             <div className='signup'>
-              <Link className='FontAmatic' to='/signup'>Sign Up</Link>
+              <Link className='link' to='/signup'>Sign Up</Link>
             </div>
             <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
         </div>

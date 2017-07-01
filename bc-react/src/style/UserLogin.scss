@@ -3,13 +3,21 @@
   .wrapper {
     display: flex;
     height: 100vh;
-    border: 10px solid yellow;
+    // border: 10px solid yellow;
     flex-direction: column;
     justify-content: flex-start;
   }
 
+  .header-wrapper {
+    margin-top: 60px;
+  }
+
   form {
-    background-color: pink;
+    // background-color: pink;
+      input {
+        font-family: 'Abel', sans-serif;
+        font-size: .9em;
+      }
   }
 
   .validate {
@@ -26,30 +34,28 @@
     text-align: center;
     font-family: 'Amatic SC', sans-serif;
     font-size: 3em;
-    background-color: lightgreen;
+    // background-color: lightgreen;
   }
 
   .let-me-in, .take-me-back {
-    width: 155px;
     flex-wrap: wrap;
-    text-align: center;
     display: inline-block;
-    font-family: 'Amatic SC', sans-serif;
-    color: black;
-    font-size: 35px;
+    margin-top: 12px;
   }
 
-  .let-me-in {
-    background-color: lightblue;
-  }
-
-  .take-me-back {
-    background-color: salmon;
-  }
+  .let-me-in {width: 140px;}
+  .take-me-back {width: 180px;}
 
   .entry-button {
     background-color: white;
     border-radius: 20px;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 35px;
+    text-align: center;
+    color: black;
+    }
+  .entry-button:hover {
+    cursor: pointer;
   }
 
 }

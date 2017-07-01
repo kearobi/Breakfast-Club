@@ -57,12 +57,10 @@ render(){
   return (
     <div className="login-page">
       <div className="wrapper">
-        <Header />
-      <div className="entry-header">
-        Log In
-      </div>
+        <div className='header-wrapper'><Header /></div>
+          <div className="entry-header">Log In</div>
           <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-            <div className='formGroup'>
+            <div>
               <input
                 placeholder='email address'
                 type='email'
@@ -72,7 +70,7 @@ render(){
                 onChange={this.handleChange.bind(this)}>
               </input>
             </div>
-            <div className='formGroup'>
+            <div>
               <input
                 placeholder='password'
                 type='password'
@@ -82,7 +80,7 @@ render(){
                 onChange={this.handleChange.bind(this)}>
               </input>
               </div>
-                  <div className='formGroup let-me-in'>
+                  <div className='let-me-in'>
                       <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
                   </div>
                   <Link className="take-me-back" to="/">
