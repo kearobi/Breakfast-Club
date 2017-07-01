@@ -22,7 +22,7 @@ class CurrentEvent extends Component {
   checkIfAttending(user_id, guestLists){
     let toReturn = false;
     for (var i = 0; i < guestLists.length; i++){
-      if (user_id == guestLists[i].user_id){
+      if (user_id === guestLists[i].user_id){
         return true;
       }
     }
