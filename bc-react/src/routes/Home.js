@@ -109,11 +109,10 @@ class Home extends Component {
 
   render(){
     return (
-        <div className="home-page">
-          <div className="wrapper">
-            <div id="nav-toggle">&#9776; menu</div>
-            <div className='sidebar-wrapper'><SideBar /></div>
-          <div className='entirepage'>
+        <div className="home-page">{/* //this is the flex container */}
+            <SideBar />{/* //this is a flex item  with a nested flex container */}
+          <div className='entirepage'>{/* //this is a flex item */}
+            <div className='nested'>{/* //this is a nested flex container */}
             <Header />
           <div className="welcome-message">
             <div className='welcome-user'>Hey, {userStore.getUser().firstName}! </div>
@@ -122,8 +121,9 @@ class Home extends Component {
           </div>
           <div className="calendar-div">{this.checkCalendar()}</div>
           {/* <div className=""><MessageBoard /></div> */}
-        </div>
+        {/* </div> */}
         {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}
+      </div>
       </div>
       <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
     </div>

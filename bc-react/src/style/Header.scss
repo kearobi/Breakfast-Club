@@ -5,3 +5,16 @@
   color: fuchsia;
   font-weight: bold;
 }
+
+.mini-sidebar {
+  margin-top: 10px;
+  border: dashed 2px white;
+  text-align: center;
+  display: none;
+  background-color: fuchsia;
+  img {
+    padding-top: 5px;
+    width: 35px;
+    height: 35px;
+  }
+}

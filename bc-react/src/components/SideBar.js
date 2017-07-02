@@ -5,6 +5,9 @@ class SideBar extends Component {
   render() {
     return (
       <div className='sidebar'>
+        {/* sidebar is a flex item of the parent */}
+        <div className='nesting'>
+        {/* nesting is the nested flex box */}
         <a className="item wobble" href="/profile2"> <img src='../Images/user.png' alt='profile'/>
           <div className='caption'>profile</div>
         </a>
@@ -21,6 +24,7 @@ class SideBar extends Component {
         <a className="item wobble" href="/"><img src='../Images/logout.png' alt='log out'/>
           <div className='caption'>log out</div>
         </a>
+        </div>
       </div>
     );
   }
