@@ -14,6 +14,7 @@
 @import url('./UserProfile.css');
 @import url('./SearchBar.css');
 @import url('./Events.css');
+@import url('./Slideshow.css');
 
 .wrapper {
   display: flex;
@@ -25,6 +26,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.reactjs-coverflow_Main {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    overflow: hidden;
 }
 
 .box1 {background-color: red;}

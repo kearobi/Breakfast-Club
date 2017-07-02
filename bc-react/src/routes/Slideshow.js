@@ -1,36 +1,51 @@
 import React, {Component} from 'react';
-import Coverflow from 'react-coverflow';
+import Coverflow from 'reactjs-coverflow';
 import SideBar from '../components/SideBar';
 import Header from '../components/Header';
 
 class Slideshow extends Component {
+
+  prev(e) {
+      e.preventDefault();
+      this.refs.coverflow.previous();
+  }
+
+  next(e) {
+      e.preventDefault();
+      this.refs.coverflow.next();
+  }
+
   render(){
     return (
-      <div className='slideshow-page'>
-        <div className="wrapper">
+      <div className="wrapper">{/* //this is the flex container */}
+          <SideBar />{/* //this is a flex item  with a nested flex container */}
+        <div className='slideshow-page'>{/* //this is a flex item */}
+          <div className='nested'>{/* //this is a nested flex container */}
           <Header />
-          <SideBar />
-        <div className='col-md-12'>
-            <Coverflow
-              width={960}
-              height={480}
-              displayQuantityOfSide={2}
-              navigation={true}
-              enableHeading={false}>
-              <img src='../Images/1.jpg' alt=' ' data-action="../Images/1.jpg"/>
-              <img src='../Images/2.jpg' alt=' ' data-action="../Images/2.jpg"/>
-              <img src='../Images/3.jpg' alt=' ' data-action="../Images/3.jpg"/>
-              <img src='../Images/4.jpg' alt=' ' data-action="../Images/4.jpg"/>
-              <img src='../Images/5.jpg' alt=' ' data-action="../Images/5.jpg"/>
-              <img src='../Images/6.jpg' alt=' ' data-action="../Images/6.jpg"/>
-              <img src='../Images/7.jpg' alt=' ' data-action="../Images/7.jpg"/>
-              <img src='../Images/8.jpg' alt=' ' data-action="../Images/8.jpg"/>
-              <img src='../Images/9.jpg' alt=' ' data-action="../Images/9.jpg"/>
-              <img src='../Images/10.jpg' alt=' ' data-action="../Images/10.jpg"/>
-              <img src='../Images/11.jpg' alt=' ' data-action="../Images/11.jpg"/>
-              <img src='../Images/12.jpg' alt=' ' data-action="../Images/12.jpg"/>
-              <img src='../Images/13.jpg' alt=' ' data-action="../Images/13.jpg"/>
-            </Coverflow>
+            <form>
+              <button className='entry-button wobble' onClick={this.prev.bind(this)} type="button">&#8592;</button>
+                <Coverflow ref="coverflow"
+                style={{width: "1100px", height:"600px"}}
+                margin={(this.state && this.state.margin + "px") || undefined}
+                startPosition={4}
+                enableScroll={true}
+                animationSpeed={0.8}>
+                    <img src='../Images/1.jpg' alt='breakfast club'/>
+                    <img src='../Images/2.jpg' alt='breakfast club'/>
+                    <img src='../Images/3.jpg' alt='breakfast club'/>
+                    <img src='../Images/4.jpg' alt='breakfast club'/>
+                    <img src='../Images/5.jpg' alt='breakfast club'/>
+                    <img src='../Images/6.jpg' alt='breakfast club'/>
+                    <img src='../Images/7.jpg' alt='breakfast club'/>
+                    <img src='../Images/8.jpg' alt='breakfast club'/>
+                    <img src='../Images/9.jpg' alt='breakfast club'/>
+                    <img src='../Images/10.jpg' alt='breakfast club'/>
+                    <img src='../Images/11.jpg' alt='breakfast club'/>
+                    <img src='../Images/12.jpg' alt='breakfast club'/>
+                    <img src='../Images/13.jpg' alt='breakfast club'/>
+                </Coverflow>
+                <button className='entry-button wobble' onClick={this.next.bind(this)} type="button">&#8594;</button>
+            </form>
             </div>
         </div>
       </div>

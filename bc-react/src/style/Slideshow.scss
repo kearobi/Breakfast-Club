@@ -1,0 +1,49 @@
+.slideshow-page {
+  flex: 1;
+  overflow: auto;
+
+  form img {width: 600px;}
+
+  form {
+    display: flex;
+    align-items: center;
+  }
+
+  .entry-button {
+    background-color: transparent;
+    border-radius: 20px;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 35px;
+    text-align: center;
+    color: black;
+    height: 50px;
+    }
+
+  .entry-button:hover {
+    cursor: pointer;
+  }
+
+  .reactjs-coverflow_Main {
+      background-color: transparent;
+      position: relative;
+      padding: 0;
+      overflow: hidden;
+  }
+
+  .reactjs-coverflow_Coverflow {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      -webkit-perspective: 500px;
+      perspective: 500px;
+  }
+
+  .reactjs-coverflow_Element {
+      position: relative;
+      -webkit-box-reflect: below 1px -webkit-linear-gradient(bottom,rgba(0,0,0,.6),rgba(0,0,0,.1) 20%,transparent 30%,transparent);
+      margin: auto 20px;
+      transition: transform 0.7s;
+  }
+}
