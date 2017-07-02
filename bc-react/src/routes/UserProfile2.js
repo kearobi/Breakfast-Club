@@ -87,13 +87,15 @@ class UserProfile2 extends Component {
   render(){
 
     return (
-          <div className='profile-page'>
-            <div className="wrapper">
-              <div className="sidebar-wrapper"><SideBar /></div>
-              <Header />
+          <div className='wrapper'>{/* //this is the flex container */}
+            <SideBar />{/* //this is a flex item  with a nested flex container */}
+            <div className='profile-page'>{/* //this is a flex item */}
+              <div className='nested'>{/* //this is a nested flex container */}
+                <Header />
             <div className='welcome-user'>
               Welcome, {this.state.user.firstName}
             </div>
+            <div className='edit-wrapper'>
             <div className="edit">
               <input
                 size='10'
@@ -101,7 +103,10 @@ class UserProfile2 extends Component {
                 type='text'
                 value={this.state.header}
               />
+            </div>
+            <div className="edit-icon">
               {this.editIcon()}
+            </div>
             </div>
           <table className='profile-table'>
             <tbody>
@@ -164,6 +169,8 @@ class UserProfile2 extends Component {
               </tr>
             </tbody>
           </table>
+          <p className='delete'>delete my account</p>
+        </div>
         </div>
       <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
     </div>

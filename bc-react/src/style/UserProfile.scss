@@ -1,29 +1,15 @@
 .profile-page {
-  border: 1px solid red;
-  .wrapper {
-    display: flex;
-    height: 100vh;
-    border: 10px solid yellow;
-    flex-direction: row;
-  }
-
-  .sidebar-wrapper{
-    display: flex;
-    width: 140px;
-    background-color: fuchsia;
-    justify-content: space-around;
-    flex-direction: column;
-    text-align: center;
-  }
+  flex: 1;
+  overflow: auto;
 
   .welcome-user {
-    background-color: lightblue;
     text-align: center;
     font-family: 'Dancing Script';
     font-size: 52px;
     font-style: italic;
     font-weight: bold;
     margin-top: -8px;
+    display: inline-block;
   }
 
   .editable {
@@ -49,10 +35,16 @@
     overflow: hidden;
   }
 
+  .edit-wrapper {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+  }
+
   .edit input {
-    color: orange;
-    background-color: white;
     border: none;
+    background-color: white;
+    color: orange;
     width: 100%;
     text-align: center;
     font-family: 'Amatic SC', sans-serif;
@@ -86,6 +78,16 @@
         overflow: hidden;
         background-color: white;
       }
+  }
+
+  .delete {
+    padding-top: 10px;
+    color: red;
+  }
+
+  .delete:hover {
+    cursor: pointer;
+    text-decoration: underline;
   }
 
 }

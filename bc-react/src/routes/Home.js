@@ -109,9 +109,9 @@ class Home extends Component {
 
   render(){
     return (
-        <div className="home-page">{/* //this is the flex container */}
+        <div className="wrapper">{/* //this is the flex container */}
             <SideBar />{/* //this is a flex item  with a nested flex container */}
-          <div className='entirepage'>{/* //this is a flex item */}
+          <div className='home-page'>{/* //this is a flex item */}
             <div className='nested'>{/* //this is a nested flex container */}
             <Header />
           <div className="welcome-message">

@@ -1,12 +1,6 @@
-.home-page {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-
-  .entirepage {
+  .home-page {
     flex: 1;
     overflow: auto;
-  }
 
   .nested {
     display: flex;
