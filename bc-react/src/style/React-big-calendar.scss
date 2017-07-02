@@ -17,6 +17,7 @@ button.rbc-input::-moz-focus-inner {
   padding: 0;
 }
 .rbc-calendar {
+  background-color: white;
   box-sizing: border-box;
   height: 100%;
   display: -ms-flexbox;
@@ -340,6 +341,7 @@ button.rbc-input::-moz-focus-inner {
 }
 .rbc-agenda-view table tbody > tr > td + td {
   border-left: 1px solid #DDD;
+  background-color: white;
 }
 .rbc-rtl .rbc-agenda-view table tbody > tr > td + td {
   border-left-width: 0;
@@ -568,4 +570,17 @@ button.rbc-input::-moz-focus-inner {
 .rbc-header {
   background-color: #9675ce;
   color: white;
+}
+
+.rbc-agenda-view table thead > tr > th {
+  padding: 17px 5px;
+  text-align: left;
+  border-bottom: 1px solid #DDD;
+ }
+.rbc-ellipsis, .rbc-event-label, .rbc-row-segment .rbc-event-content, .rbc-show-more {
+  display: block;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

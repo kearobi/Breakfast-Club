@@ -1,34 +1,36 @@
-.home-page {
-  .wrapper {
+  .home-page {
+    flex: 1;
+    overflow: auto;
+
+  .nested {
     display: flex;
-    flex-direction: row;
-    border: 10px solid yellow;
-    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
   }
-    text-align: center;
 
     //sexy toast
-    .giphy-div {
-      width:100%;
-      height:0;
-      padding-bottom:73%;
-      position:relative;
-    }
-    .giphy-embed{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
+    // .giphy-div {
+    //   width:100%;
+    //   height:0;
+    //   padding-bottom:73%;
+    //   position:relative;
+    // }
+    // .giphy-embed{
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 100%;
+    // }
 
     //welcome message
     .welcome-message {
+        color: black;
         text-align: center;
         font-family: 'Abel';
-        border: none;
-        background-color: #def9a3;
-        width: 75%;
-        box-shadow: 0.5px 0.5px 0.5px 0.5px green;
-        font-size: 25px;
+        border-top: solid 1px fuchsia;
+        border-bottom: solid 1px fuchsia;
+        font-size: 30px;
+        padding: 5px;
+        font-weight: bold;
     }
     .welcome-user, .reminder, .upcoming-event {
       display: inline-block;
@@ -38,57 +40,21 @@
       padding-right: 5px;
     }
 
-    /*.container{
-      background-color: gray;
-      margin-left: 250px;
-      margin-right: 30px;
-      width: 100%
-    }*/
-
-
     //calendar
     .calendar-div{
-      background-color: white;
       border: 2px solid lightgray;
       /*border-radius: 20px;*/
       text-align: center;
       /*width: 100%;*/
       height: 500px;
-      padding: 50px;
+      padding: 15px;
+      padding-left: 40px;
+      padding-right: 40px;
       font-family: 'Abel', sans-serif, cursive;
       font-size: 20px;
       margin-top: 30px;
       margin-bottom: 50px;
       margin-left: 0px;
-    }
-    /*.hr-home{
-      width: 80%;
-    }*/
-    /*.col-xs-6{
-      background-color: red;
-    }
-    .col-xs-3{
-      background-color: blue;
-      height: 50px;
-    }
-    .col-xs-1{
-      background-color: purple;
-      height: 50px;
-    }
-    .col-xs-8{
-      background-color: yellow;
-    }*/
-
-    .rbc-agenda-view table thead > tr > th {
-      padding: 17px 5px;
-      text-align: left;
-      border-bottom: 1px solid #DDD;
-     }
-    .rbc-ellipsis, .rbc-event-label, .rbc-row-segment .rbc-event-content, .rbc-show-more {
-      display: block;
-      overflow: hidden;
-      -o-text-overflow: ellipsis;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      background-color: rgb(255,255,255);
     }
 }
