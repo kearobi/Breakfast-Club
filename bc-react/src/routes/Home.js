@@ -111,6 +111,7 @@ class Home extends Component {
     return (
         <div className="home-page">
           <div className="wrapper">
+            <div id="nav-toggle">&#9776; menu</div>
             <div className='sidebar-wrapper'><SideBar /></div>
           <div className='entirepage'>
             <Header />
