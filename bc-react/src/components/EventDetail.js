@@ -13,10 +13,10 @@ class EventDetail extends Component {
 //this handleClick stuff here is a work in progress, feel free to take over!
   handleClick(e){
     if (e.target.value === 'yes'){
-      rsvpYes()
+
     }
     else if (e.target.value === 'no'){
-      rsvpNo()
+
     }
     else {return ""}
   }
