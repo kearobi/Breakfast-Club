@@ -6,7 +6,7 @@ class SideBar extends Component {
     return (
       <div className='sidebar'>
         {/* sidebar is a flex item of the parent */}
-        <div className='nesting'>
+        <div className='nested'>
         {/* nesting is the nested flex box */}
         <a className="item wobble" href="/profile2"> <img src='../Images/user.png' alt='profile'/>
           <div className='caption'>profile</div>

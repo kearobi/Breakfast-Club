@@ -6,6 +6,7 @@ import AdminPlaces from '../components/Admin/AdminPlaces';
 import AdminEvents from '../components/Admin/AdminEvents';
 import adminStore from '../stores/AdminStore';
 import Header from '../components/Header';
+import SideBar from '../components/SideBar';
 
 class AdminPage extends Component {
   constructor(props){
@@ -38,8 +39,6 @@ class AdminPage extends Component {
     adminStore.removeListener('change', this.onAdminUpdate)
   }
 
-
-
   handleUserHover(){
     this.setState({
       userButton: "admin_button_clicked",
@@ -71,33 +70,32 @@ class AdminPage extends Component {
 
   render(){
     return(
-      <div id="admin_container">
-        <div className="wrapper">
-          <Header />
-        <h3>hello there, admin</h3>
-        <br></br>
-        <div id="admin_button_wrapper">
-          <button
-            className={this.state.placeButton}
-            type="button"
-            onMouseOver={this.handlePlaceHover.bind(this)}>
-          manage places</button>
-          <button
-            className={this.state.userButton}
-            type="button"
-            onMouseOver={this.handleUserHover.bind(this)}>
-          manage users</button>
-          <button
-            className={this.state.eventButton}
-            type="button"
-            onMouseOver={this.handleEventHover.bind(this)}>
-            manage events</button>
+      <div className="wrapper">{/* //this is the flex container */}
+          <SideBar />{/* //this is a flex item  with a nested flex container */}
+        <div className='admin-page'>{/* //this is a flex item */}
+          <div className='nested'>{/* //this is a nested flex container */}
+            <Header />
+            <h3>hello there, admin</h3>
+              <div id="admin_button_wrapper">
+                <button
+                  className={this.state.placeButton}
+                  type="button"
+                  onMouseOver={this.handlePlaceHover.bind(this)}>manage places</button>
+                <button
+                  className={this.state.userButton}
+                  type="button"
+                  onMouseOver={this.handleUserHover.bind(this)}>manage users</button>
+                <button
+                  className={this.state.eventButton}
+                  type="button"
+                  onMouseOver={this.handleEventHover.bind(this)}>manage events</button>
+              </div>
+            <br></br><br></br><br></br>
+            {this.pageAdmin()}
+          </div>
         </div>
-        <br></br><br></br><br></br>
-          {this.pageAdmin()}
       </div>
-      </div>
-      );
-    }
+    );
   }
+}
 export default AdminPage;

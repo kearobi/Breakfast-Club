@@ -100,6 +100,8 @@ eventHeader(){
         })
       mappedFilter = filtered.map((event)=>{
         return <AdminTable event={event} key={event.id} eventTable={true} />})
+    }else {
+      return (<div></div>)
     }
 
     return (

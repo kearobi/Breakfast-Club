@@ -2,12 +2,6 @@
     flex: 1;
     overflow: auto;
 
-  .nested {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
     //sexy toast
     // .giphy-div {
     //   width:100%;
@@ -43,9 +37,7 @@
     //calendar
     .calendar-div{
       border: 2px solid lightgray;
-      /*border-radius: 20px;*/
       text-align: center;
-      /*width: 100%;*/
       height: 500px;
       padding: 15px;
       padding-left: 40px;

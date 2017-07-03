@@ -1,7 +1,6 @@
-#admin_container {
-
-  text-align: center;
-  padding: none;
+.admin-page {
+  flex: 1;
+  overflow: auto;
 
   h3 {
     font-family: 'Dancing Script';
@@ -10,6 +9,16 @@
     font-style: italic;
     font-weight: bold;
     margin-top: -8px;
+  }
+
+  p {
+    font-family: 'Dancing Script';
+    text-align: center;
+    font-size: 52px;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: -8px;
+    margin-bottom: -1px;
   }
 
   button {
@@ -24,9 +33,28 @@
 
   button:hover {
     background-color: #def9a3;
+    cursor: pointer;
   }
 
-  // text-align: center;
+form {
+  background-color: rgba(white, 0.5);
+  padding: 10px;
+}
+
+  form input {
+    text-align: center;
+    font-family: 'Abel', sans-serif;
+    font-size: .9em;
+  }
+
+  .submit-button {
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 1.5em;
+  }
+  .submit-button:hover {
+    cursor: pointer;
+  }
+
   #admin_button_wrapper {
     margin: auto;
     display: block;
@@ -62,13 +90,13 @@
       border: none;
   }
 
-  .editable {
+  tr .editable {
     font-style: italic;
     color: fuchsia;
     text-shadow: 0.1px 0.1px black;
   }
 
-  .read-only {
+  tr .read-only {
     font-style: normal;
     color: black;
     text-shadow: none;
@@ -106,7 +134,6 @@
       }
   }
 
-
   .table_icons {
     background-color: white;
     border: none;
@@ -117,7 +144,6 @@
     height: 22px;
     margin-top: -25px;
     margin-left: -20px;
-    border-color: white;
   }
 
   #delete_icon {
@@ -136,36 +162,54 @@
     width: 831px;
   }
 
-  #search_bar_wrapper {
-    font-family: 'Abel';
-    font-size: 20px;
+  .search_bar_wrapper {
     border-color: dimgray;
     text-align: center;
     display: inline-block;
     width: auto;
   }
 
-  #invisible {
+  .search_bar_wrapper div input {
+    font-family: 'Abel';
+    font-size: 20px;
+    text-align: center;
+    padding: none;
+    margin: none;
+  }
+
+  .invisible {
     background-color: white;
     color: white;
     border-color: white;
   }
 
-  .calendar-div {
-    align-items: center;
-    position: relative;
-    margin: auto;
-    width: 60%;
-    background-color: white;
+  .calendar-div{
     border: 2px solid lightgray;
-    /*border-radius: 20px;*/
     text-align: center;
-    /*width: 100%;*/
     height: 500px;
-    padding: 50px;
+    padding: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
     font-family: 'Abel', sans-serif, cursive;
     font-size: 20px;
+    margin-top: 30px;
     margin-bottom: 50px;
+    margin-left: 0px;
+    background-color: rgb(255,255,255);
+  }
+
+  .no-results {
+    text-align: center;
+    font-style: italic;
+    font-family: 'Abel', sans-serif;
+    font-size: 1.5em;
+  }
+
+  #x {
+    background-color: rgba(white, 0.9);
+    color: red;
+    font-weight: bold;
+    font-size: 1.3em;
   }
 
 }
