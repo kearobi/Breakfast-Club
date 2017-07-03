@@ -6,11 +6,24 @@ import React, { Component } from 'react';
 import VoteButton from './VoteButton';
 import RSVPButton from './RSVPButton';
 import EventChoice from './EventChoice'
+import {rsvp} from '../actions';
 
 class EventDetail extends Component {
+//it seems like it would make the most sense to add/remove the user from the guestlist onClick
+//this handleClick stuff here is a work in progress, feel free to take over!
+  handleClick(e){
+    if (e.target.value === 'yes'){
+      rsvpYes()
+    }
+    else if (e.target.value === 'no'){
+      rsvpNo()
+    }
+    else {return ""}
+  }
+
   dateParser(){
-    var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     let temp = this.props.eventData.event.date.split('T')
     let date = temp[0].split('-')
     let dayOfWeek = weekday[new Date(date).getDay()]
@@ -24,14 +37,14 @@ class EventDetail extends Component {
     this.dateParser()
     var mappedUsers;
     if (this.props.eventData.users.length === 0){
-      mappedUsers = <p>No RSVPs yet</p>
+      mappedUsers = <div className='flex-item'>No RSVPs yet</div>
     }
     else {
       mappedUsers = this.props.eventData.users.map(function(user, i){
         return (
-          <div key={i}>
-            <p>{user.firstName + " " + user.lastName}</p>
-            <p>{user.email}</p>
+          <div className='flex-item' key={i}>
+            <div>{user.firstName + " " + user.lastName}</div>
+            <div>{user.email}</div>
           </div>
         )
       })
@@ -40,27 +53,36 @@ class EventDetail extends Component {
 
     return (
       <div className='events-page'>
-        <div>
-          <p className='FontAmatic'>{this.props.eventData.event.date}</p>
-        </div>
-        <div>
-          {(this.props.winner === 1 || this.props.winner === null) && <EventChoice
-            place={this.props.eventData.places[0]}
-            choice={1}
-
-
-            />}
-          {(this.props.winner === 2 || this.props.winner === null) && <EventChoice
-            place={this.props.eventData.places[1]}
-            choice={2}
-            />}
-        {!this.props.voted && <VoteButton choice="1"/>}
-        {!this.props.voted && <VoteButton choice="2"/>}
-        {!this.props.rsvp && this.props.voted && <RSVPButton/>}
-        </div>
-        <div>
-          <h4 className='FontAmatic'>Who's In:</h4>
-          {mappedUsers}
+        <div className='event-date'>{this.props.eventData.event.date}</div>
+          <div>
+              {(this.props.winner === 1 || this.props.winner === null) && <EventChoice
+                place={this.props.eventData.places[0]}
+                choice={1}
+                />}
+              {(this.props.winner === 2 || this.props.winner === null) && <EventChoice
+                place={this.props.eventData.places[1]}
+                choice={2}
+                />}
+            {!this.props.voted && <VoteButton choice="1"/>}
+            {!this.props.voted && <VoteButton choice="2"/>}
+            {!this.props.rsvp && this.props.voted && <RSVPButton/>}
+          </div>
+        <div className='event-details'> {/* this is a flex container */}
+          <div className='flex-container-1'>{/* this is a flex container */}
+            <div className='flex-item-header'>Where:</div>
+            <div className='flex-item-header'>Guest Speaker:</div>
+            <div className='flex-item-header'>RSVP:</div>
+            <div className='flex-item-header'>Who's In:</div>
+          </div>
+          <div className='flex-container-2'>{/* this is a flex container */}
+            <div className='flex-item'>TODO</div>
+            <div className='flex-item'>TODO</div>
+            <form className='flex-item'> TODO
+              <input type="radio" name="rsvp" value="yes" onClick={this.handleClick.bind(this)} /> Yes
+              <input type="radio" name="rsvp" value="no" onClick={this.handleClick.bind(this)} /> No
+            </form>
+            {mappedUsers}
+          </div>
         </div>
       </div>
     );
