@@ -45,9 +45,9 @@ class AdminUsers extends Component {
 
   render(){
     return(
-      <div id="admin_container">
-        <h3 className='center'>Users</h3>
-        <div id="search_bar_wrapper">
+      <div className='admin-page'>
+        <p>Users</p>
+        <div className="search_bar_wrapper">
           <button className="add_button" type="button"
             onClick={this.openModal.bind(this)}>
             + user </button>

@@ -86,7 +86,7 @@ export function countVotes(){
   })
 }
 
-export function rsvp(){
+export function rsvp (){
   let event = eventStore.getCurrentEvent();
   let user = userStore.getUser();
   const params = {
