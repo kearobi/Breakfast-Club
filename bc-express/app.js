@@ -366,9 +366,36 @@ app.post('/rsvp', function(request, response){
 })
 
 app.get('/events', function(request, response){
-  Bevent.findAll().then(function(events){
+  let promises = [];
+  let _events;
+  Bevent.findAll()
+  .then(function(events){
+    _events = events;
+    events.forEach(function(event){
+      if (event.winner == 1){
+        promises.push(Place.findById(event.place_1_id));
+      }
+      else if (event.winner == 2){
+        promises.push(Place.findById(event.place_1_id));
+      }
+      else {
+        promises.push(new Promise(function(resolve, reject){
+          resolve({ name: "undecided" });
+        }));
+      }
+    })
+    return Promise.all(promises);
+  })
+  .then(function(promises){
+    _events.forEach(function(event, i){
+      event.place = promises[i]
+    })
     response.status(200)
-    response.json({status: 'success', events: events})
+    response.json({status: 'success', events: _events})
+  })
+  .catch(function(error){
+    response.status(500)
+    response.json({status: 'error', error: error})
   })
 })
 
