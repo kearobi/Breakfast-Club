@@ -51,13 +51,15 @@ class CurrentEvent extends Component {
 
   render(){
       return (
-        <div className='events-page'>
-          <div className="wrapper">
+        <div className="wrapper">{/* //this is the flex container */}
+            <SideBar />{/* //this is a flex item  with a nested flex container */}
+          <div className='event-page'>{/* //this is a flex item */}
+            <div className='nested'>{/* //this is a nested flex container */}
             <Header />
-          <SideBar />
           <p>{this.state.message}</p>
           <EventDetail voted={this.state.user.voted} rsvp={this.state.rsvp} user={this.state.user} eventData={this.state.event} winner={this.state.event.event.winner} />
-        </div>
+            </div>
+          </div>
         </div>
         );
       }

@@ -1,137 +1,72 @@
 .sidebar {
+  order: -1;
+  text-align: center;
 
-  tr {
-    text-align: center;
+  .nested {
+    background-color: fuchsia;
+    height: 100vh;
+    width: 120px;
+    justify-content: space-around;
   }
 
-  table {
-    height: 100%;
-    position: fixed;
-    background-color: fuchsia;
-    justify-content: flex-start;
+  a {
+    color: white;
+    font-family: 'Amatic SC', sans-serif;
+    text-transform: uppercase;
+    font-size: 2em;
+    text-decoration: none;
   }
 
   img {
     padding-left: 25px;
     padding-right: 25px;
-    width: 80px;
-    height: 80px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-5
-  img:hover .caption {
-    display: block;
+    width: 60px;
+    height: 60px;
   }
 
-.caption {
-  /*border: 1px solid #ccc;*/
-  display: none;
-  font-size: 10px;
-  padding-top: 35px;
-  text-transform: uppercase;
-  margin-top: -30px;
-  margin-left: 0px;
-  font-size: 40px;
-  line-height: 1px;
-  height: 50px;
 }
 
-img:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    height: 100%;
-    width: 3px;
-    background-color: rgba(0, 0, 0, 0);
-    -webkit-transition: width .2s ease-in;
-    -o-transition: width .2s ease-in;
-    transition: width .2s ease-in;
+@media all and (max-height: 524px) {
+
+    .caption {
+      display: none;
+    }
+
+    .item:hover {
+      .caption {
+        display: unset;
+      }
+    }
 }
-@-webkit-keyframes wobble {
-  16.65% {
-    -webkit-transform: translateY(8px);
-    transform: translateY(8px);
+
+@media all and (max-height: 385px) {
+
+    .item:hover {
+      .caption {
+        display: none;
+      }
+    }
+}
+
+@media all and (max-height: 365px) {
+
+  .sidebar .nested {
+    display: none;
   }
-  33.3% {
-    -webkit-transform: translateY(-6px);
-    transform: translateY(-6px);
-  }
-  49.95% {
-    -webkit-transform: translateY(4px);
-    transform: translateY(4px);
-  }
-  66.6% {
-    -webkit-transform: translateY(-2px);
-    transform: translateY(-2px);
-  }
-  83.25% {
-    -webkit-transform: translateY(1px);
-    transform: translateY(1px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
+
+  .mini-sidebar {
+    display: flex;
+    justify-content: space-around;
   }
 }
+@media all and (max-width: 820px) {
 
-.wobble {
-  display: inline-block;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-}
+  .sidebar .nested {
+    display: none;
+  }
 
-.wobble:hover {
-  -webkit-animation-name: wobble;
-  animation-name: wobble;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-timing-function: ease-in-out;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-}
-
-
-#sidebar-wrapper {
-    z-index: 1000;
-    left: 220px;
-    width: 0;
-    height: 100%;
-    margin-left: -220px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: rgba(255,0,255,.6);
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-.sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 220px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.sidebar-nav li {
-    position: relative;
-    line-height: 20px;
-    display: inline-block;
-    width: 100%;
-}
-
-.sidebar-nav li a {
-    display: block;
-    color: #ddd;
-    text-decoration: none;
-    padding: 10px 15px 10px 30px;
-}
+  .mini-sidebar {
+    display: flex;
+    justify-content: space-around;
+  }
 }

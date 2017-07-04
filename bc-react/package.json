@@ -23,7 +23,8 @@
     "react-modal": "^1.7.8",
     "react-router-dom": "^4.1.1",
     "react-scripts": "^1.0.7",
-    "react-transition-group": "^1.1.1"
+    "react-transition-group": "^1.1.1",
+    "reactjs-coverflow": "^1.1.1"
   },
   "scripts": {
     "start-js": "node ./node_modules/react-scripts/bin/react-scripts.js start",

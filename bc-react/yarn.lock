@@ -5365,6 +5365,10 @@ react@^15.4.1, react@^15.5.4:
     object-assign "^4.1.0"
     prop-types "^15.5.7"
 
+reactjs-coverflow@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/reactjs-coverflow/-/reactjs-coverflow-1.1.1.tgz#e2fbb9d9e8f84fe81e950a73d3b44edec4630601"
+
 read-all-stream@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/read-all-stream/-/read-all-stream-3.1.0.tgz#35c3e177f2078ef789ee4bfafa4373074eaef4fa"

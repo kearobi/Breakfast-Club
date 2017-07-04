@@ -43,7 +43,7 @@ class Home extends Component {
     eventStore.on('current event fetched', this.oncurrent)
     eventStore.on('event created',this.oncurrent)
     eventStore.on('events fetched', this.onevents)
-    checkLoginRedir(this.props)
+    checkLoginRedir(this.props, userStore.getUser());
   }
 
   componentWillUnmount(){
@@ -109,28 +109,25 @@ class Home extends Component {
 
   render(){
     return (
-        <div className="home-page">
-          <div className="wrapper">
-            <SideBar />
+        <div className="wrapper">{/* //this is the flex container */}
+            <SideBar />{/* //this is a flex item  with a nested flex container */}
+          <div className='home-page'>{/* //this is a flex item */}
+            <div className='nested'>{/* //this is a nested flex container */}
             <Header />
           <div className="welcome-message">
-            <div className='welcome-user'>Welcome, {userStore.getUser().firstName}! </div>
+            <div className='welcome-user'>Hey, {userStore.getUser().firstName}! </div>
             <div className='reminder'><Reminder /></div>
             <div className='upcoming-event'><Link to='/current-event'>Current Event</Link></div>
           </div>
-          <div className="container-home">
-
-              <div className="calendar-div">
-                {this.checkCalendar()}
-              </div>
-              <div className="">
-                <MessageBoard />
-              </div>
-            </div>
-          </div>
-        <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe>
+          <div className="calendar-div">{this.checkCalendar()}</div>
+          {/* <div className=""><MessageBoard /></div> */}
+        {/* </div> */}
+        {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}
       </div>
-      );
+      </div>
+      <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
+    </div>
+    );
   }
 }
 

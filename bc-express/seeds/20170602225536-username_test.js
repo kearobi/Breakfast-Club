@@ -19,7 +19,8 @@ module.exports = {
         authTokenExpiration: '2017-07-05 22:21:20.620',
         salt: '4d294420-4a3d-11e7-b752-a928b03d6170',
         createdAt: "2017-06-02 14:52:29",
-        updatedAt: "2017-06-02 14:52:29"
+        updatedAt: "2017-06-02 14:52:29",
+        admin: "false"
       },
       {
         id: 2,
@@ -34,7 +35,8 @@ module.exports = {
         authTokenExpiration: '2017-07-05 22:25:00.705 +00:00',
         salt: 'd05807a0-4a3d-11e7-ade9-89fb70fedb01',
         createdAt: "2017-06-02 14:52:29",
-        updatedAt: "2017-06-02 14:52:29"
+        updatedAt: "2017-06-02 14:52:29",
+        admin: "false"
       },
       {
         id: 3,
@@ -49,7 +51,8 @@ module.exports = {
         authTokenExpiration: '2017-07-05 22:21:20.620 +00:00',
         salt: '4d294420-4a3d-11e7-b752-a928b03d6170',
         createdAt: "2017-06-02 14:52:29",
-        updatedAt: "2017-06-02 14:52:29"
+        updatedAt: "2017-06-02 14:52:29",
+        admin: "false"
       },
       {
         id: 4,
@@ -64,7 +67,23 @@ module.exports = {
         authTokenExpiration: '2017-07-05 22:25:00.705',
         salt: 'd05807a0-4a3d-11e7-ade9-89fb70fedb01',
         createdAt: "2017-06-02 14:52:29",
-        updatedAt: "2017-06-02 14:52:29"
+        updatedAt: "2017-06-02 14:52:29",
+        admin: "false"
+      },
+      {
+        id: 5,
+        firstName: "admin",
+        lastName: "admin",
+        email: "breakfastclub.sd@gmail.com",
+        neighborhood: "NA",
+        voted: "false",
+        encryptedPassword: '2e95b7fc77f6c3b7ab9f233cf673acf2b056f974aaad5f160e885d881f7e7e3c1484a98b93141b71a2999e1688ef635b2eb3d18923ad11411b5e47e2a20f4f4c',
+        authToken: "4d2acac0-4a3d-11e7-b752-a928b03d6170",
+        authTokenExpiration: '2017-07-05 22:21:20.620',
+        salt: 'b4c554c0-6054-11e7-b54f-e525e42391ac',
+        createdAt: "2017-07-03 14:52:29",
+        updatedAt: "2017-07-03 14:52:29",
+        admin: "true"
       }
     ])
     .then(function(){
@@ -94,7 +113,8 @@ module.exports = {
         authTokenExpiration: '2017-07-05 22:21:20.620',
         salt: '4d294420-4a3d-11e7-b752-a928b03d6170',
         createdAt: "2017-06-02 14:52:29",
-        updatedAt: "2017-06-02 14:52:29"
+        updatedAt: "2017-06-02 14:52:29",
+        admin: "false"
       },
       {
         id: 2,
@@ -109,7 +129,8 @@ module.exports = {
         authTokenExpiration: '2017-07-05 22:25:00.705 +00:00',
         salt: 'd05807a0-4a3d-11e7-ade9-89fb70fedb01',
         createdAt: "2017-06-02 14:52:29",
-        updatedAt: "2017-06-02 14:52:29"
+        updatedAt: "2017-06-02 14:52:29",
+        admin: "false"
       },
       {
         id: 3,
@@ -124,7 +145,8 @@ module.exports = {
         authTokenExpiration: '2017-07-05 22:21:20.620 +00:00',
         salt: '4d294420-4a3d-11e7-b752-a928b03d6170',
         createdAt: "2017-06-02 14:52:29",
-        updatedAt: "2017-06-02 14:52:29"
+        updatedAt: "2017-06-02 14:52:29",
+        admin: "false"
       },
       {
         id: 4,
@@ -139,7 +161,23 @@ module.exports = {
         authTokenExpiration: '2017-07-05 22:25:00.705',
         salt: 'd05807a0-4a3d-11e7-ade9-89fb70fedb01',
         createdAt: "2017-06-02 14:52:29",
-        updatedAt: "2017-06-02 14:52:29"
+        updatedAt: "2017-06-02 14:52:29",
+        admin: "false"
+      },
+      {
+        id: 5,
+        firstName: "admin",
+        lastName: "admin",
+        email: "breakfastclub.sd@gmail.com",
+        neighborhood: "NA",
+        voted: "false",
+        encryptedPassword: '2e95b7fc77f6c3b7ab9f233cf673acf2b056f974aaad5f160e885d881f7e7e3c1484a98b93141b71a2999e1688ef635b2eb3d18923ad11411b5e47e2a20f4f4c',
+        authToken: "4d2acac0-4a3d-11e7-b752-a928b03d6170",
+        authTokenExpiration: '2017-07-05 22:21:20.620',
+        salt: 'b4c554c0-6054-11e7-b54f-e525e42391ac',
+        createdAt: "2017-07-03 14:52:29",
+        updatedAt: "2017-07-03 14:52:29",
+        admin: "true"
       }
     ])
     .then(function(){

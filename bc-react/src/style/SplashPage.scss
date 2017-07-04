@@ -12,8 +12,9 @@
   }
 
   .button-container {
-    align-self: center;
-    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .link {
@@ -30,7 +31,11 @@
     text-align: center;
     flex-wrap: wrap;
     display: inline-block;
-    font-size: 40px;
+    font-size: 2.9em;
+  }
+
+  .sidebar .nesting {
+    display: none;
   }
 
 }

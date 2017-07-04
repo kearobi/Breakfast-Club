@@ -1,6 +1,4 @@
 import dispatcher from './Dispatcher';
-import userStore from './stores/UserStore';
-import eventStore from './stores/EventStore'
 
 var apiUrl
 if(process.env.NODE_ENV === 'production'){
@@ -86,9 +84,8 @@ export function countVotes(){
   })
 }
 
-export function rsvp(){
-  let event = eventStore.getCurrentEvent();
-  let user = userStore.getUser();
+export function rsvp(user, event){
+
   const params = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
@@ -116,9 +113,7 @@ export function rsvp(){
   })
 }
 
-export function registerVote(choice){
-  let event = eventStore.getCurrentEvent();
-  let user = userStore.getUser();
+export function registerVote(user, event, choice){
   event.choice = choice;
   event.user = user;
   const params = {
@@ -146,9 +141,7 @@ export function registerVote(choice){
   })
 }
 
-export function checkLoginRedir(props){
-  let currentUser = userStore.getUser()
-
+export function checkLoginRedir(props, currentUser){
   if(currentUser === null){
     props.history.push("/login")
     return false
@@ -238,10 +231,18 @@ export function loginUser(attributes){
   fetch(apiUrl + "login", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
-        dispatcher.dispatch({
-          type:'LOGIN',
-          user: body.user,
-        })
+        if (body.user.admin){
+          dispatcher.dispatch({
+            type:'ADMIN-LOGIN',
+            user: body.user,
+          })
+        }
+        else {
+          dispatcher.dispatch({
+            type:'LOGIN',
+            user: body.user,
+          })
+        }
       }).catch(function(error){
         console.log("login failed");
       })
@@ -259,6 +260,7 @@ export function loginUser(attributes){
 }
 
 export function addUser(attributes){
+  attributes.admin = false;
   const params = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
@@ -481,6 +483,7 @@ export function adminDeleteEvent(attributes){
 }
 
   export function adminAddUser(attributes){
+    attributes.admin = false;
     const params = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -533,6 +536,7 @@ export function adminAddEvent(attributes){
   })}
 
   export function adminEditUser(attributes){
+    attributes.admin = false;
     const params = {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},

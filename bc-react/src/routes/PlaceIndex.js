@@ -1,7 +1,8 @@
 //PlaceIndex passes props to PlaceListing
 
 import React, { Component } from 'react';
-import PlaceListing from './PlaceListing'
+import Header from '../components/Header';
+import PlaceListing from '../components/PlaceListing'
 import placeStore from '../stores/PlaceStore'
 // import MessageBoard from '../components/MessageBoard';
 import SideBar from '../components/SideBar';
@@ -37,12 +38,18 @@ class PlaceIndex extends Component {
 
   render(){
     return(
-      <div>
-        <SideBar />
+      <div className="wrapper">{/* //this is the flex container */}
+          <SideBar />{/* //this is a flex item  with a nested flex container */}
+        <div className='places-page'>{/* //this is a flex item */}
+          <div className='nested'>{/* //this is a nested flex container */}
+          <Header />
         <div>
-            <h2 id="place-h2" className="place-header">Place List</h2>
-            <h2 className="place-list">{this.renderPlaces()}</h2>
+            <h2>Place List</h2>
+            <p className="place-list">{this.renderPlaces()}</p>
         </div>
+        </div>
+        </div>
+        <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
       </div>
     )
   }
