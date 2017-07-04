@@ -20,7 +20,7 @@ class UserLogin extends Component {
     userStore.on('admin-login', this.redirectToAdmin.bind(this));
     userStore.on('login-success', this.redirectToHome.bind(this));
     userStore.on('login-fail', this.loginFailed.bind(this));
-    checkLoginRedir(this.props)
+    checkLoginRedir(this.props, userStore.getUser());
   }
 
   redirectToHome(){

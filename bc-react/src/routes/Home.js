@@ -43,7 +43,7 @@ class Home extends Component {
     eventStore.on('current event fetched', this.oncurrent)
     eventStore.on('event created',this.oncurrent)
     eventStore.on('events fetched', this.onevents)
-    checkLoginRedir(this.props)
+    checkLoginRedir(this.props, userStore.getUser());
   }
 
   componentWillUnmount(){

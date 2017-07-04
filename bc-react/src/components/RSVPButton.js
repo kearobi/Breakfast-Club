@@ -5,7 +5,7 @@ import {fetchEvent} from '../actions';
 class RSVPButton extends Component {
   handleClick(){
     document.getElementById("rsvp-button").onclick = '#';
-    rsvp();
+    rsvp(this.props.user, this.props.event);
   }
 
   render() {

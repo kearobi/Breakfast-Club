@@ -63,9 +63,9 @@ class EventDetail extends Component {
                 place={this.props.eventData.places[1]}
                 choice={2}
                 />}
-            {!this.props.voted && <VoteButton choice="1"/>}
-            {!this.props.voted && <VoteButton choice="2"/>}
-            {!this.props.rsvp && this.props.voted && <RSVPButton/>}
+              {!this.props.voted && <VoteButton user={this.props.user} event={this.props.eventData} choice="1"/>}
+              {!this.props.voted && <VoteButton user={this.props.user} event={this.props.eventData} choice="2"/>}
+              {!this.props.rsvp && this.props.voted && <RSVPButton user={this.props.user} event={this.props.eventData}/>}
           </div>
         <div className='event-details'> {/* this is a flex container */}
           <div className='flex-container-1'>{/* this is a flex container */}
