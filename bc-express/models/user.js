@@ -28,6 +28,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false
     },
+    rsvp: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
     encryptedPassword: {
       type: DataTypes.STRING,
       allowNull: false
@@ -57,7 +62,8 @@ module.exports = function(sequelize, DataTypes) {
           neighborhood: this.get('neighborhood'),
           authToken: this.get('authToken'),
           authTokenExpiration: this.get('authTokenExpiration'),
-          voted: this.get('voted')
+          voted: this.get('voted'),
+          rsvp: this.get('rsvp')
         }
       },
       encrypt(value){

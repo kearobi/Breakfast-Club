@@ -341,7 +341,12 @@ app.post('/rsvp', function(request, response){
   })
   .then(function(place){
     _places.push(place);
-    return User.findById(user_id)
+    return User.update({
+        rsvp: true
+      }, {where: {
+        id: user_id
+      }
+    })
   })
   .then(function(user){
     _user = user
@@ -471,7 +476,8 @@ app.post('/create-event', function(request, response){
   .then(function(){
     console.log("line 470")
     return User.update({
-        voted: false
+        voted: false,
+        rsvp: false
     }, {where: {}})
   })
   .then(function(){

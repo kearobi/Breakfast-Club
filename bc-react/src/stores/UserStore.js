@@ -21,6 +21,7 @@ class UserStore extends EventEmitter{
     localStorage.setItem('email', attributes.email);
     localStorage.setItem('neighborhood', attributes.neighborhood);
     localStorage.setItem('voted', attributes.voted)
+    localStorage.setItem('rsvp', attributes.rsvp)
     // localStorage.setItem('id', attributes.id)
     // store user credentials 'authToken, expire and email' locally in user browser.
   }
@@ -37,6 +38,7 @@ class UserStore extends EventEmitter{
           email: localStorage.getItem('email'),
           neighborhood: localStorage.getItem('neighborhood'),
           voted: localStorage.getItem('voted'),
+          rsvp: localStorage.getItem('rsvp'),
           // id: localStorage.getItem('id')
         }
         this.emit('logged-in')
