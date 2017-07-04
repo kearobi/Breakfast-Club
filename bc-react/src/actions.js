@@ -1,6 +1,4 @@
 import dispatcher from './Dispatcher';
-import userStore from './stores/UserStore';
-import eventStore from './stores/EventStore'
 
 var apiUrl
 if(process.env.NODE_ENV === 'production'){
@@ -86,9 +84,7 @@ export function countVotes(){
   })
 }
 
-export function rsvp(){
-  let event = eventStore.getCurrentEvent();
-  let user = userStore.getUser();
+export function rsvp(user, event){
   const params = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
@@ -116,9 +112,7 @@ export function rsvp(){
   })
 }
 
-export function registerVote(choice){
-  let event = eventStore.getCurrentEvent();
-  let user = userStore.getUser();
+export function registerVote(user, event, choice){
   event.choice = choice;
   event.user = user;
   const params = {
@@ -146,9 +140,7 @@ export function registerVote(choice){
   })
 }
 
-export function checkLoginRedir(props){
-  let currentUser = userStore.getUser()
-
+export function checkLoginRedir(props, currentUser){
   if(currentUser === null){
     props.history.push("/login")
     return false
