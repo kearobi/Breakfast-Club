@@ -393,7 +393,6 @@ app.post('/signup', function(request, response){
     response.status(200)
     response.json({status: 'success', user: user})
   }).catch(function(error){
-    console.log("here", error)
     response.status(400)
     console.log('error: ', error)
     response.json({status: 'error', error: error})
@@ -434,10 +433,8 @@ app.post('/create-event', function(request, response){
     }
     _place_id_1 = _places[index1].id;
     _place_id_2 = _places[index2].id;
-    console.log("B")
   }).then( function(){
     let date = moment().hour(8).day(12).minute(0).second(0)
-    console.log("date", date)
     return Bevent.create({
         place_1_id: _place_id_1,
         place_2_id: _place_id_2,
@@ -449,37 +446,29 @@ app.post('/create-event', function(request, response){
     })
   })
   .then(function(event){
-    console.log("C")
-    console.log("place ids: ", _place_id_2, _place_id_1)
     _event = event;
-    console.log("_event:", _event)
     return Place.findOne({
       where:{id: _event.place_1_id}
     })
   })
   .then (function(place){
-    console.log("D")
     _places.push(place);
     return Place.findOne({
       where:{id: _event.place_2_id}
     })
   })
   .then(function(place){
-    console.log("line 459")
     _places.push(place);
   })
   .then(function(){
-    console.log("line 470")
     return User.update({
         voted: false
     }, {where: {}})
   })
   .then(function(){
-    console.log("line 470")
     return User.findById(u_id)
   })
   .then(function(user){
-    console.log("USER id: ", u_id)
     response.status(200)
     response.json({
       event: _event,

@@ -73,6 +73,12 @@ class UserStore extends EventEmitter{
         this.emit('login-success')
         break
       }
+      case("ADMIN-LOGIN"):{
+        this.updateUser(action.user)
+        this.message = "Admin Logged In"
+        this.emit('admin-login')
+        break
+      }
       case("CHECK_LOGIN"):{
         this.setUserFromLocal()
         break

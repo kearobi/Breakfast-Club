@@ -17,6 +17,7 @@ class UserLogin extends Component {
   }
 
   componentWillMount(){
+    userStore.on('admin-login', this.redirectToAdmin.bind(this));
     userStore.on('login-success', this.redirectToHome.bind(this));
     userStore.on('login-fail', this.loginFailed.bind(this));
     checkLoginRedir(this.props)
@@ -24,6 +25,10 @@ class UserLogin extends Component {
 
   redirectToHome(){
     this.props.history.push("/home-initial");
+  }
+
+  redirectToAdmin(){
+    this.props.history.push("/admin");
   }
 
   loginFailed(){
