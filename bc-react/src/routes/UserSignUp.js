@@ -115,7 +115,7 @@ render(){
             errors={this.state.errors.verifyPassword}
             />
               <div className='let-me-in'>
-                  <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
+                <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
               </div>
               <Link className="take-me-back" to="/">
                 <button className='entry-button wobble'>Take Me Back!!</button>

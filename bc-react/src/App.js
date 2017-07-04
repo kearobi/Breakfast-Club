@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from './components/Header'
 import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
@@ -10,9 +9,9 @@ import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import {updatePlaces} from './actions'
 import {checkLogin} from './actions'
-import PlaceIndex from './components/PlaceIndex'
+import PlaceIndex from './routes/PlaceIndex'
 import CurrentEvent from './routes/CurrentEvent'
-import Slideshow from './routes/Slideshow'
+import Photos from './routes/Photos'
 import VotePage from './routes/VotePage'
 import FlexPractice from './components/FlexPractice'
 import './style/App.css';
@@ -56,7 +55,7 @@ class App extends Component {
             <Route exact path='/profile2' component={UserProfile2} />
             <Route exact path='/test-event' component={TestEvent} />
             <Route path='/current-event' component={CurrentEvent} />
-            <Route path='/photos' component={Slideshow} />
+            <Route path='/photos' component={Photos} />
             <Route path='/vote' component={VotePage} />
             <Route path='/flex' component={FlexPractice} />
         </div>

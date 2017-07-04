@@ -3,7 +3,6 @@
   .wrapper {
     display: flex;
     height: 100vh;
-    // border: 10px solid yellow;
     flex-direction: column;
     justify-content: flex-start;
   }
@@ -13,7 +12,6 @@
   }
 
   form {
-    // background-color: pink;
       input {
         font-family: 'Abel', sans-serif;
         font-size: .9em;
@@ -27,7 +25,7 @@
   .validate img {
     padding-top: 20px;
     width: 300px;
-    max-height: 200px;
+    max-height: 188px;
   }
 
   .entry-header {
@@ -56,6 +54,10 @@
     }
   .entry-button:hover {
     cursor: pointer;
+  }
+
+  .sidebar .nesting {
+    display: none;
   }
 
 }

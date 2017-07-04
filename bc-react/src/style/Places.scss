@@ -1,56 +1,69 @@
-#place-h2 {
-  font-family: 'Amatic SC', sans-serif, cursive;
-  font-size: 100px;
-  color: fuchsia;
-  margin-top: -9px;
-  font-weight: bold;
-  text-align: center;
-  margin-left: 220px;
-}
-.image img {
-  width: 270px;
-  height: 200px;
-  padding: 5px;
-  margin-bottom: -20px;
-}
-.image{
-  text-align: center;
-}
-ul {
-  list-style-type: none;
-  width: 395px;
-  box-shadow: 2px 2px 2px 2px;
-  font-family: 'Amatic SC', sans-serif, cursive;
-  font-size: 30px;
-  margin-left: 50px;
-}
-li {
-  width: 375px;
-  margin-left: -30px;
-  margin-top: 5px;
-}
-.list-background{
-  background-color: #eeeeee;
-  border: 2px solid rgba(0, 0, 0, .5);
-}
-.place-header{
-  font-size: 100px;
-}
+.places-page {
+  flex: 1;
+  overflow: auto;
 
-.fields{
-  text-align: left;
-  border: 0.5px solid black;
-  height: 40px;
-  letter-spacing: 1px;
-}
-.list{
-  margin: 30px;
-  /*background-color: red;*/
-  width: 350px;
+  h2 {
+    margin-top: -10px;
+    font-family: 'Dancing Script', sans-serif, cursive;
+    font-size: 60px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+  }
+  .image img {
+    width: 270px;
+    height: 200px;
+    padding: 5px;
+    margin-bottom: -20px;
+    margin-left: -50px;
+  }
+  .image{
+    text-align: center;
+  }
+  ul {
+    list-style-type: none;
+    width: 340px;
+    box-shadow: 2px 2px 2px 2px;
+    font-family: 'Amatic SC', sans-serif, cursive;
+    font-size: 30px;
+    align-items: center;
+    margin-left: 10px;
+  }
+  li {
+    width: 340px;
+    // margin-left: -30px;
+    // margin-top: 5px;
+  }
 
-}
-.place-list{
-  color: gray;
-  text-align: center;
-  margin-left: 220px;
+  .place-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .outside {
+    width: 100vh;
+    flex: 1;
+    align-items: center;
+  }
+
+  .list-background{
+    display: flex;
+    flex-direction: column;
+    background-color: #eeeeee;
+    border: 2px solid rgba(0, 0, 0, .5);
+  }
+
+  .fields{
+    text-align: left;
+    border: 0.5px solid black;
+    height: 40px;
+    letter-spacing: 1px;
+    margin-left: -50px;
+  }
+  .place-list{
+    color: gray;
+    text-align: center;
+    // margin-left: 120px;
+  }
 }

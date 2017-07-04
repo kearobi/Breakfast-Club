@@ -34,74 +34,74 @@ class AdminModal extends Component {
   userFields(){
       return(
         <div>
-        <div className='formGroup'>
-          <input
-            placeholder='first name'
-            type='text'
-            name='firstName'
-            id='firstName'
-            value={this.state.user.firstName}
-            onChange={this.handleChange.bind(this)}>
-          </input>
-        </div>
-        <div className='formGroup'>
-          <input
-            placeholder='last name'
-            type='text'
-            name='lastName'
-            id='lastName'
-            value={this.state.user.lastName}
-            onChange={this.handleChange.bind(this)}>
-          </input>
-        </div>
-        <div className='formGroup'>
-        <input
-          placeholder='email address'
-          type='email'
-          name='email'
-          id='email'
-          value={this.state.user.email}
-          onChange={this.handleChange.bind(this)}>
-        </input>
-        </div>
-        <div className='formGroup'>
-        <input
-          placeholder='neighborhood'
-          type='text'
-          name='neighborhood'
-          id='neighborhood'
-          value={this.state.user.neighborhood}
-          onChange={this.handleChange.bind(this)}>
-        </input>
-        </div>
-        <div className='formGroup'>
-        <input
-          placeholder='password'
-          type='password'
-          name='password'
-          id='password'
-          value={this.state.user.password}
-          onChange={this.handleChange.bind(this)}>
-        </input>
-        </div>
-        <div className='formGroup'>
-        <input
-          placeholder='reenter password'
-          type='password'
-          name='verifyPassword'
-          id='verifyPassword'
-          value={this.state.user.verifyPassword}
-          onChange={this.handleChange.bind(this)}>
-        </input>
-        </div>
-        </div>
+          <div>
+            <input
+              placeholder='first name'
+              type='text'
+              name='firstName'
+              id='firstName'
+              value={this.state.user.firstName}
+              onChange={this.handleChange.bind(this)}>
+            </input>
+          </div>
+          <div>
+            <input
+              placeholder='last name'
+              type='text'
+              name='lastName'
+              id='lastName'
+              value={this.state.user.lastName}
+              onChange={this.handleChange.bind(this)}>
+            </input>
+          </div>
+          <div>
+            <input
+              placeholder='email address'
+              type='email'
+              name='email'
+              id='email'
+              value={this.state.user.email}
+              onChange={this.handleChange.bind(this)}>
+            </input>
+          </div>
+          <div>
+            <input
+              placeholder='neighborhood'
+              type='text'
+              name='neighborhood'
+              id='neighborhood'
+              value={this.state.user.neighborhood}
+              onChange={this.handleChange.bind(this)}>
+            </input>
+            </div>
+            <div>
+              <input
+                placeholder='password'
+                type='password'
+                name='password'
+                id='password'
+                value={this.state.user.password}
+                onChange={this.handleChange.bind(this)}>
+              </input>
+            </div>
+            <div>
+              <input
+                placeholder='reenter password'
+                type='password'
+                name='verifyPassword'
+                id='verifyPassword'
+                value={this.state.user.verifyPassword}
+                onChange={this.handleChange.bind(this)}>
+              </input>
+            </div>
+      </div>
       )
   }
 
   placeFields(){
     return(
     <div>
-    <div className='formGroup'>
+    <div>
       <input
         placeholder='Restaurant'
         type='text'
@@ -111,7 +111,7 @@ class AdminModal extends Component {
         onChange={this.handleChange.bind(this)}>
       </input>
     </div>
-    <div className='formGroup'>
+    <div>
       <input
         placeholder='Yelp Rating'
         type='text'
@@ -121,7 +121,7 @@ class AdminModal extends Component {
         onChange={this.handleChange.bind(this)}>
       </input>
     </div>
-    <div className='formGroup'>
+    <div>
     <input
       placeholder='Category'
       type='text'
@@ -131,7 +131,7 @@ class AdminModal extends Component {
       onChange={this.handleChange.bind(this)}>
     </input>
     </div>
-    <div className='formGroup'>
+    <div>
     <input
       placeholder='Price'
       type='text'
@@ -141,7 +141,7 @@ class AdminModal extends Component {
       onChange={this.handleChange.bind(this)}>
     </input>
     </div>
-    <div className='formGroup'>
+    <div>
     <input
       placeholder='Street Address'
       type='text'
@@ -151,7 +151,7 @@ class AdminModal extends Component {
       onChange={this.handleChange.bind(this)}>
     </input>
     </div>
-    <div className='formGroup'>
+    <div>
     <input
       placeholder='Phone Number'
       type='text'
@@ -166,7 +166,7 @@ class AdminModal extends Component {
     eventFields(){
       return(
       <div>
-      <div className='formGroup'>
+      <div>
         <input
           placeholder='Date'
           type='date'
@@ -176,7 +176,7 @@ class AdminModal extends Component {
           onChange={this.handleChange.bind(this)}>
         </input>
       </div>
-      <div className='formGroup'>
+      <div>
         <input
           placeholder='Restaurant'
           type='text'
@@ -186,7 +186,7 @@ class AdminModal extends Component {
           onChange={this.handleChange.bind(this)}>
         </input>
       </div>
-      <div className='formGroup'>
+      <div>
       <input
         placeholder='Guest of Honor'
         type='text'
@@ -212,8 +212,8 @@ class AdminModal extends Component {
       <div>
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
         {fields}
-          <div className='formGroup align-button'>
-            <input type='submit' value='submission'></input>
+          <div>
+            <input className='submit-button' type='submit' value='submission'></input>
           </div>
         </form>
       </div>
