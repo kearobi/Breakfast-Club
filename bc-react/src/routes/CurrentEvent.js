@@ -14,19 +14,9 @@ class CurrentEvent extends Component {
     this.state= {
       event: eventStore.getCurrentEvent(),
       user: userStore.getUser(),
-      rsvp: this.checkIfAttending(userStore.getUser().id, eventStore.getCurrentEvent().guestLists),
-      message: 'message'
+      rsvp: userStore.getUser().rsvp,
+      message: ''
     }
-  }
-
-  checkIfAttending(user_id, guestLists){
-    let toReturn = false;
-    for (var i = 0; i < guestLists.length; i++){
-      if (user_id === guestLists[i].user_id){
-        return true;
-      }
-    }
-    return toReturn;
   }
 
   componentWillMount(){

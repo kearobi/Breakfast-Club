@@ -28,6 +28,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false
     },
+    rsvp: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
     admin: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -63,6 +68,7 @@ module.exports = function(sequelize, DataTypes) {
           authToken: this.get('authToken'),
           authTokenExpiration: this.get('authTokenExpiration'),
           voted: this.get('voted'),
+          rsvp: this.get('rsvp'),
           admin: this.get('admin')
         }
       },
