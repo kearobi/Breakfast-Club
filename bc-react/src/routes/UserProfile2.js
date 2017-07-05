@@ -23,7 +23,7 @@ class UserProfile2 extends Component {
       title: 'edit',
       header: 'Edit Profile'
     }
-    console.log(this.state.user)
+    console.log("UserProfile2 - constructor - this.state.user: ", this.state.user);
   }
 
   editIcon(){
@@ -64,10 +64,11 @@ class UserProfile2 extends Component {
     this.setState({
       user: user
     })
-    }
+  }
 
   handleSave(){
-    adminEditUser(this.state.user);
+    console.log("UserProfile2 - handleSave - this.state.user: ", this.state.user);
+    updateUser(this.state.user);
   }
 
   // handleChange(e){
