@@ -15,6 +15,7 @@ updateSearch(event){
 userHeader(){
   return (
       <tr>
+        <th className="admin-th">Id</th>
         <th className="admin-th">First Name</th>
         <th className="admin-th">Last Name</th>
         <th className="admin-th">Email Address</th>

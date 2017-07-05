@@ -111,6 +111,9 @@ class AdminTable extends Component {
       return (
         <tr className={this.state.className}>
             <td>
+              {this.state.user.id}
+            </td>
+            <td>
               <input  name='firstName'
                       value={this.state.user.firstName}
                       onChange={this.handleEdit.bind(this)}
