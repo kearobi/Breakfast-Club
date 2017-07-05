@@ -12,7 +12,9 @@ class UserStore extends EventEmitter{
     return this.user
   }
 
+  // Updates the VM after a user action 
   updateUser(attributes){
+    console.log("UserStore - updateUser - attributes: ", attributes);
     this.user = attributes
     localStorage.setItem('authToken', attributes.authToken);
     localStorage.setItem('authTokenExpiration', attributes.authTokenExpiration);
@@ -22,11 +24,12 @@ class UserStore extends EventEmitter{
     localStorage.setItem('neighborhood', attributes.neighborhood);
     localStorage.setItem('voted', attributes.voted)
     localStorage.setItem('rsvp', attributes.rsvp)
-    // localStorage.setItem('id', attributes.id)
+    localStorage.setItem('id', this.user.id)
     // store user credentials 'authToken, expire and email' locally in user browser.
   }
 
   setUserFromLocal(){
+    console.log("UserStore - setUserFromLocal...");
     let token = localStorage.getItem('authToken');
     let expire = new Date(localStorage.getItem('authTokenExpiration'));
       if(token && expire >= new Date()){
@@ -39,9 +42,11 @@ class UserStore extends EventEmitter{
           neighborhood: localStorage.getItem('neighborhood'),
           voted: localStorage.getItem('voted'),
           rsvp: localStorage.getItem('rsvp'),
-          // id: localStorage.getItem('id')
+          id: localStorage.getItem('id')
         }
         this.emit('logged-in')
+
+      console.log("UserStore - setUserFromLocal - this.user: ", this.user);
     }
   }
 
@@ -59,6 +64,12 @@ class UserStore extends EventEmitter{
 
   handleActions(action){
     switch(action.type){
+      case("UPDATE_USER"):{
+        // this.updateUser(action.user)
+        this.message = action.message;
+        this.emit("User Updated")
+        break
+      }
       case("SIGNUP"):{
         this.updateUser(action.user)
         this.message = "User Created"
