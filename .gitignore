@@ -26,3 +26,11 @@ yarn-error.log*
 /bc-express/config/config.json
 node_modules
 bc-react/build/
+
+# Personal Ignore List
+package.json
+package-lock.json
+yarn.lock
+*.sublime-workspace
+*.sublime-project
+*.dump

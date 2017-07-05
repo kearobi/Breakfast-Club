@@ -431,6 +431,38 @@ app.post('/signup', function(request, response){
   })
 })
 
+app.put('/edit/user', function(request, response){
+  console.log("request: ", request);
+  console.log("response: ", response);
+
+  let userParams = request.body.user
+  User.update(userParams, {where: {id: userParams.id}}).then(function(user){
+    response.status(200)
+    response.json({status: 'success', user: user})
+  }).catch(function(error){
+  console.log("error", error)
+    response.status(400)
+    response.json({status: 'error', error: error})
+  })
+})
+
+// ==========================================================
+// Alternate way of configuring routes
+// Tutorial: https://www.codementor.io/olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd
+// app.route('/users')
+//   .get(users.index)       // Shows all users
+//   .put(users.create)      // Creates a new user
+// ;
+
+// app.route('/users/:userId')
+//   .get(users.show)        // Read / View User
+//   .put(users.update)      // Update a user
+//   .delete(users.delete)   // Deletes a user
+// ;
+// ==========================================================
+
+
+
 // app.get('/create-event-test', function(request, response){
 //   Bevent.create({
 //       place_1_id: 1,
