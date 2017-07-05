@@ -7,15 +7,41 @@ if(process.env.NODE_ENV === 'production'){
   apiUrl = "http://localhost:4000/"
 }
 
-export function updateUser(){
-//TODO
-  return 'stuff'
+export function updateUser(attributes){
+  console.log("Actions - updateUser - attributes: ", attributes)
+  // attributes.admin = false;
+  
+  const params = {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({user: attributes})
+  }
+
+  fetch(apiUrl + "edit/user", params)
+    .then(function(response){
+      console.log("Actions - updateUser - fetch - response: ", response);
+
+      if (response.status === 200){
+        console.log("Actions - updateUser - fetch - response.status === 200");
+        dispatcher.dispatch({
+          type: 'UPDATE_USER',
+          data: {
+            message: 'User Updated'
+          }
+        })
+      }
+    }).catch(function(error){
+      console.log("Actions - updateUser - Error: ", error);
+      // adminStore.updateMessage("There was an error: " + error)
+    })
 }
+
+
 export function testCreate(){
   const params = {
     method: 'GET'
   }
-  fetch("http://localhost:4000/create-event-test", params).then(function(response){
+  fetch(apiUrl + "create-event-test", params).then(function(response){
     if(response.status === 200){
       console.log("success")
     }
@@ -45,7 +71,7 @@ export function createNewEvent(id){
       id: id
     })
   }
-  fetch("http://localhost:4000/create-event", params).then(function(response){
+  fetch(apiUrl + "create-event", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
@@ -67,7 +93,7 @@ export function countVotes(){
   const params = {
     method: 'GET'
   }
-  fetch("http://localhost:4000/count-votes", params).then(function(response){
+  fetch(apiUrl + "count-votes", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
@@ -94,7 +120,7 @@ export function rsvp(user, event){
       user_id: user.id
     })
   }
-  fetch("http://localhost:4000/rsvp", params).then(function(response){
+  fetch(apiUrl + "rsvp", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
@@ -121,7 +147,7 @@ export function registerVote(user, event, choice){
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(event)
   }
-  fetch("http://localhost:4000/register-vote", params).then(function(response){
+  fetch(apiUrl + "register-vote", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
@@ -375,7 +401,7 @@ export function adminLoadUsers(){
   const params = {
     method: 'GET',
     headers: {'Content-Type': 'application/json'}}
-  fetch("http://localhost:4000/admin/get/users", params).then(function(response){
+  fetch(apiUrl + "admin/get/users", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
@@ -391,7 +417,7 @@ export function adminLoadPlaces(){
   const params = {
     method: 'GET',
     headers: {'Content-Type': 'application/json'}}
-  fetch("http://localhost:4000/admin/get/places", params).then(function(response){
+  fetch(apiUrl + "admin/get/places", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
@@ -425,7 +451,7 @@ export function adminDeletePlace(attributes){
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({id: attributes})
   }
-  fetch("http://localhost:4000/admin/delete/place", params).then(function(response){
+  fetch(apiUrl + "admin/delete/place", params).then(function(response){
     if (response.status === 200){
       dispatcher.dispatch({
         type: 'ADMIN_DESTROY_PLACE',
@@ -470,7 +496,7 @@ export function adminDeleteEvent(attributes){
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({id: attributes})
   }
-  fetch("http://localhost:4000/admin/delete/event", params).then(function(response){
+  fetch(apiUrl + "admin/delete/event", params).then(function(response){
     if (response.status === 200){
       dispatcher.dispatch({
         type: 'ADMIN_DESTROY_EVENT',
@@ -488,7 +514,7 @@ export function adminDeleteEvent(attributes){
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(attributes)}
-    fetch("http://localhost:4000/admin/add/user", params).then(function(response){
+    fetch(apiUrl + "admin/add/user", params).then(function(response){
       if(response.status === 200){
         response.json().then(function(body){
           // send the user to the store
@@ -506,7 +532,7 @@ export function adminDeleteEvent(attributes){
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(attributes)}
-    fetch("http://localhost:4000/admin/add/place", params).then(function(response){
+    fetch(apiUrl + "admin/add/place", params).then(function(response){
       if(response.status === 200){
         response.json().then(function(body){
           dispatcher.dispatch({
@@ -523,7 +549,7 @@ export function adminAddEvent(attributes){
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(attributes)}
-  fetch("http://localhost:4000/admin/add/event", params).then(function(response){
+  fetch(apiUrl + "admin/add/event", params).then(function(response){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
@@ -542,7 +568,7 @@ export function adminAddEvent(attributes){
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({user: attributes})
     }
-    fetch("http://localhost:4000/admin/edit/user", params).then(function(response){
+    fetch(apiUrl + "admin/edit/user", params).then(function(response){
       if (response.status === 200){
         dispatcher.dispatch({
           type: 'ADMIN_UPDATE_USER',
@@ -560,7 +586,7 @@ export function adminAddEvent(attributes){
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({place: attributes})
     }
-    fetch("http://localhost:4000/admin/edit/place", params).then(function(response){
+    fetch(apiUrl + "admin/edit/place", params).then(function(response){
       if (response.status === 200){
         dispatcher.dispatch({
           type: 'ADMIN_UPDATE_PLACE',
@@ -578,7 +604,7 @@ export function adminAddEvent(attributes){
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({event: attributes})
     }
-    fetch("http://localhost:4000/admin/edit/event", params).then(function(response){
+    fetch(apiUrl + "admin/edit/event", params).then(function(response){
       if (response.status === 200){
         dispatcher.dispatch({
           type: 'ADMIN_UPDATE_EVENT',
