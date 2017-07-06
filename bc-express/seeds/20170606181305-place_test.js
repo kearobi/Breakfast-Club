@@ -17,7 +17,8 @@ module.exports = {
         review_count: 1536,
         price: '$$',
         createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07'
+        updatedAt: '2017-06-02 07:52:29-07',
+        active: "true"
       },
       {
         id: 2,
@@ -33,7 +34,8 @@ module.exports = {
         review_count: 126,
         price: '$$$',
         createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07'
+        updatedAt: '2017-06-02 07:52:29-07',
+        active: "true"
       },
       {
         id: 3,
@@ -49,7 +51,8 @@ module.exports = {
         review_count: 1536,
         price: '$$',
         createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07'
+        updatedAt: '2017-06-02 07:52:29-07',
+        active: "true"
       },
       {
         id: 4,
@@ -65,7 +68,8 @@ module.exports = {
         review_count: 126,
         price: '$$$',
         createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07'
+        updatedAt: '2017-06-02 07:52:29-07',
+        active: "true"
       }
     ])
     .then(function(){
@@ -95,7 +99,8 @@ module.exports = {
         image_url: 'https://s3-media4.fl.yelpcdn.com/bphoto/bi2QeQyCdUmC42BKDisGJw/o.jpg',
         categories: 'American (Traditional)',
         review_count: 1536,
-        price: '$$'
+        price: '$$',
+        active: "true"
       },
       {
         name: 'Bob Republic',
@@ -108,7 +113,8 @@ module.exports = {
         image_url: 'https://s3-media4.fl.yelpcdn.com/bphoto/bi2QeQyCdUmC42BKDisGJw/o.jpg',
         categories: 'Breakfast',
         review_count: 126,
-        price: '$$$'
+        price: '$$$',
+        active: "true"
       },
       {
         id: 3,
@@ -124,7 +130,8 @@ module.exports = {
         review_count: 1536,
         price: '$$',
         createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07'
+        updatedAt: '2017-06-02 07:52:29-07',
+        active: "true"
       },
       {
         id: 4,
@@ -140,7 +147,8 @@ module.exports = {
         review_count: 126,
         price: '$$$',
         createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07'
+        updatedAt: '2017-06-02 07:52:29-07',
+        active: "true"
       }
     ])
     .then(function(){

@@ -38,6 +38,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false
     },
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    },
     encryptedPassword: {
       type: DataTypes.STRING,
       allowNull: false

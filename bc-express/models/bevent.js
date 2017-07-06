@@ -6,7 +6,12 @@ module.exports = function(sequelize, DataTypes) {
     place_2_id: DataTypes.INTEGER,
     vote_status: DataTypes.BOOLEAN,
     winner: DataTypes.INTEGER,
-    place: DataTypes.VIRTUAL
+    place: DataTypes.VIRTUAL,
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    }
   }, {
     classMethods: {
       associate: function(models) {
