@@ -5,13 +5,17 @@ LOCAL INSTALLATION
 Start by cloning and entering the project repo:
 
 git clone https://github.com/kearobi/Breakfast-Club.git
+
 cd Breakfast-Club
 
 Once you've downloaded the project, install dependencies:
 
 cd bc-express
+
 npm install
+
 cd ../bc-react
+
 yarn install
 
 You will need to create a config.json file in the bc-express/config directory, copy the contents of config.example.json into it,
@@ -25,17 +29,20 @@ CREATE DATABASE "bc_development";
 Then navigate to the root of the bc-express directory and run the following sequelize commands:
 
 sequelize db:migrate
+
 sequelize db:seed:all
 
 LAUNCH APPLICATION
 To start the application you will need two terminal sessions. Navigate each to the root directory of the project. Use the first to start the express app:
 
 cd bc-express
+
 nodemon app.js
 
 Use the second terminal session to start the React app:
 
 cd bc-react
+
 yarn start
 
 If you are already have a local bc_development database then login to postgres using the cli and run the following commands:
@@ -47,6 +54,7 @@ DROP TABLE "Messages" CASCADE; DROP TABLE "Users" CASCADE; DROP TABLE "Bevents" 
 Then quit postgres (\q) and run the two sequelize commands in the bc-express directory:
 
 sequelize db:migrate
+
 sequelize db:seed:all
 
 Now you may launch the application
