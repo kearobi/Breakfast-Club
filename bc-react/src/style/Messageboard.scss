@@ -32,6 +32,12 @@
 
 .submit-chat-button:hover {
   cursor: pointer;
+  box-shadow: 1px 1px 1px 1px #505050;
+}
+
+.submit-chat-button:active {
+  box-shadow: 1px 1px 1px 1px #505050;
+transform: translateY(0.5px);
 }
 
 .individual-message {
