@@ -8,7 +8,7 @@ class SideBar extends Component {
         {/* sidebar is a flex item of the parent */}
         <div className='nested'>
         {/* nesting is the nested flex box */}
-        <a className="item wobble" href="/profile2"> <img src='../Images/user.png' alt='profile'/>
+        <a className="item wobble" href="/profile"> <img src='../Images/user.png' alt='profile'/>
           <div className='caption'>profile</div>
         </a>
         <a className="item wobble" href="/home">

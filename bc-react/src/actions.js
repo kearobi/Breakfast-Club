@@ -1,33 +1,24 @@
 import dispatcher from './Dispatcher';
 
-var apiUrl
+let apiUrl;
 if(process.env.NODE_ENV === 'production'){
   apiUrl = "/"
 } else {
   apiUrl = "http://localhost:4000/"
 }
 
-export function updateUser(attributes){
-  console.log("Actions - updateUser - attributes: ", attributes)
-  // attributes.admin = false;
-  
+export function editUser(attributes){
+  console.log ('the attributes being passed into editUser are:', attributes)
   const params = {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({user: attributes})
   }
-
-  fetch(apiUrl + "edit/user", params)
-    .then(function(response){
-      console.log("Actions - updateUser - fetch - response: ", response);
-
+  fetch(apiUrl + "edit/user", params).then(function(response){
       if (response.status === 200){
-        console.log("Actions - updateUser - fetch - response.status === 200");
         dispatcher.dispatch({
-          type: 'UPDATE_USER',
-          data: {
-            message: 'User Updated'
-          }
+          type: 'EDIT_USER',
+          user: attributes
         })
       }
     }).catch(function(error){
