@@ -29,7 +29,7 @@ yarn install
 
 
 
- -You will need to create a config.json file in the bc-express/config directory, copy the contents of config.example.json into it,
+ - You will need to create a config.json file in the bc-express/config directory, copy the contents of config.example.json into it,
 and edit the username and password to match your local postgres account
 
 // CREATE, FORMAT, AND SEED DATABASE
