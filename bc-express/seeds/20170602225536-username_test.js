@@ -20,7 +20,8 @@ module.exports = {
         salt: '4d294420-4a3d-11e7-b752-a928b03d6170',
         createdAt: "2017-06-02 14:52:29",
         updatedAt: "2017-06-02 14:52:29",
-        admin: "false"
+        admin: "false",
+        active: "true"
       },
       {
         id: 2,
@@ -36,7 +37,8 @@ module.exports = {
         salt: 'd05807a0-4a3d-11e7-ade9-89fb70fedb01',
         createdAt: "2017-06-02 14:52:29",
         updatedAt: "2017-06-02 14:52:29",
-        admin: "false"
+        admin: "false",
+        active: "true"
       },
       {
         id: 3,
@@ -52,7 +54,8 @@ module.exports = {
         salt: '4d294420-4a3d-11e7-b752-a928b03d6170',
         createdAt: "2017-06-02 14:52:29",
         updatedAt: "2017-06-02 14:52:29",
-        admin: "false"
+        admin: "false",
+        active: "true"
       },
       {
         id: 4,
@@ -68,7 +71,8 @@ module.exports = {
         salt: 'd05807a0-4a3d-11e7-ade9-89fb70fedb01',
         createdAt: "2017-06-02 14:52:29",
         updatedAt: "2017-06-02 14:52:29",
-        admin: "false"
+        admin: "false",
+        active: "true"
       },
       {
         id: 5,
@@ -83,7 +87,8 @@ module.exports = {
         salt: 'b4c554c0-6054-11e7-b54f-e525e42391ac',
         createdAt: "2017-07-03 14:52:29",
         updatedAt: "2017-07-03 14:52:29",
-        admin: "true"
+        admin: "true",
+        active: "true"
       }
     ])
     .then(function(){
@@ -114,7 +119,8 @@ module.exports = {
         salt: '4d294420-4a3d-11e7-b752-a928b03d6170',
         createdAt: "2017-06-02 14:52:29",
         updatedAt: "2017-06-02 14:52:29",
-        admin: "false"
+        admin: "false",
+        active: "true"
       },
       {
         id: 2,
@@ -130,7 +136,8 @@ module.exports = {
         salt: 'd05807a0-4a3d-11e7-ade9-89fb70fedb01',
         createdAt: "2017-06-02 14:52:29",
         updatedAt: "2017-06-02 14:52:29",
-        admin: "false"
+        admin: "false",
+        active: "true"
       },
       {
         id: 3,
@@ -146,7 +153,8 @@ module.exports = {
         salt: '4d294420-4a3d-11e7-b752-a928b03d6170',
         createdAt: "2017-06-02 14:52:29",
         updatedAt: "2017-06-02 14:52:29",
-        admin: "false"
+        admin: "false",
+        active: "true"
       },
       {
         id: 4,
@@ -162,7 +170,8 @@ module.exports = {
         salt: 'd05807a0-4a3d-11e7-ade9-89fb70fedb01',
         createdAt: "2017-06-02 14:52:29",
         updatedAt: "2017-06-02 14:52:29",
-        admin: "false"
+        admin: "false",
+        active: "true"
       },
       {
         id: 5,
@@ -177,7 +186,8 @@ module.exports = {
         salt: 'b4c554c0-6054-11e7-b54f-e525e42391ac',
         createdAt: "2017-07-03 14:52:29",
         updatedAt: "2017-07-03 14:52:29",
-        admin: "true"
+        admin: "true",
+        active: "true"
       }
     ])
     .then(function(){

@@ -11,7 +11,8 @@ module.exports = {
         vote_status: false,
         winner: 1,
         createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07'
+        updatedAt: '2017-06-02 07:52:29-07',
+        active: "true"
       },
       {
         id: 2,
@@ -21,7 +22,8 @@ module.exports = {
         vote_status: true,
         winner: null,
         createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07'
+        updatedAt: '2017-06-02 07:52:29-07',
+        active: "true"
       }
     ])
     .then(function(){
@@ -39,7 +41,8 @@ module.exports = {
         vote_status: false,
         winner: 1,
         createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07'
+        updatedAt: '2017-06-02 07:52:29-07',
+        active: "true"
       },
       {
         id: 2,
@@ -49,7 +52,8 @@ module.exports = {
         vote_status: false,
         winner: null,
         createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07'
+        updatedAt: '2017-06-02 07:52:29-07',
+        active: "true"
       }
     ])
     .then(function(){

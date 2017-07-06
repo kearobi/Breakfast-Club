@@ -11,7 +11,12 @@ module.exports = function(sequelize, DataTypes) {
     image_url: DataTypes.STRING,
     categories: DataTypes.STRING,
     review_count: DataTypes.INTEGER,
-    price: DataTypes.STRING
+    price: DataTypes.STRING,
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    }
   }, {
     // instanceMethods: {
     //   toJSON(){
