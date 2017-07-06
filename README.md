@@ -2,6 +2,8 @@
 Full-stack project featuring React with FLUX and Express on the back-end, with special appearances by Flux and Postgres, cameos by ES6 and SCSS. @kearobi @rachelruderman @alextickle @Salvara4 @brazilgabe @cekeith. Check it out and come be a guest speaker at Breakfast Club!
 
 LOCAL INSTALLATION
+
+
 Start by cloning and entering the project repo:
 
 git clone https://github.com/kearobi/Breakfast-Club.git
@@ -22,6 +24,8 @@ You will need to create a config.json file in the bc-express/config directory, c
 and edit the username and password to match your local postgres account
 
 CREATE, FORMAT, AND SEED DATABASE
+
+
 Once signed into postgres with the postgres cli (psql -U username), enter the following command:
 
 CREATE DATABASE "bc_development";
@@ -33,6 +37,8 @@ sequelize db:migrate
 sequelize db:seed:all
 
 LAUNCH APPLICATION
+
+
 To start the application you will need two terminal sessions. Navigate each to the root directory of the project. Use the first to start the express app:
 
 cd bc-express
@@ -44,6 +50,9 @@ Use the second terminal session to start the React app:
 cd bc-react
 
 yarn start
+
+REFORMAT AND RESEED DATABASE
+
 
 If you are already have a local bc_development database then login to postgres using the cli and run the following commands:
 
