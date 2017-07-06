@@ -6,6 +6,7 @@ import eventStore from '../stores/EventStore';
 import userStore from '../stores/UserStore';
 import EventDetail from '../components/EventDetail';
 import SideBar from '../components/SideBar';
+import SideBarMini from '../components/SideBarMini';
 import Header from '../components/Header';
 
 class CurrentEvent extends Component {
@@ -53,6 +54,7 @@ class CurrentEvent extends Component {
       return (
         <div className="wrapper">{/* //this is the flex container */}
             <SideBar />{/* //this is a flex item  with a nested flex container */}
+            <SideBarMini />
           <div className='event-page'>{/* //this is a flex item */}
             <div className='nested'>{/* //this is a nested flex container */}
             <Header />

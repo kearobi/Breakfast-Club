@@ -6,7 +6,6 @@ import AdminPlaces from '../components/Admin/AdminPlaces';
 import AdminEvents from '../components/Admin/AdminEvents';
 import adminStore from '../stores/AdminStore';
 import Header from '../components/Header';
-import SideBar from '../components/SideBar';
 
 class AdminPage extends Component {
   constructor(props){
@@ -71,7 +70,6 @@ class AdminPage extends Component {
   render(){
     return(
       <div className="wrapper">{/* //this is the flex container */}
-          <SideBar />{/* //this is a flex item  with a nested flex container */}
         <div className='admin-page'>{/* //this is a flex item */}
           <div className='nested'>{/* //this is a nested flex container */}
             <Header />
