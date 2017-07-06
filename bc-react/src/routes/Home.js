@@ -11,7 +11,6 @@ import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
 import Header from '../components/Header';
-import ToggleDisplay from 'react-toggle-display';
 import MessageBoardToggle from '../components/MessageBoardToggle';
 // import placeStore from '../stores/PlaceStore'
 
@@ -25,8 +24,7 @@ class Home extends Component {
     this.state = {
       user: userStore.getUser(),
       event: eventStore.getCurrentEvent(),
-      events: [],
-      show: false
+      events: []
     }
     this.onlogin = this.handleLogin.bind(this)
     this.onlogout = this.handleLogOut.bind(this)

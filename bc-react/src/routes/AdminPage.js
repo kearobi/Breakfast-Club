@@ -17,8 +17,7 @@ class AdminPage extends Component {
       events: adminStore.adminReturnEvents(),
       userButton: "admin_button",
       placeButton: "admin_button",
-      eventButton: "admin_button",
-      show: false
+      eventButton: "admin_button"
     }
     this.onAdminUpdate = this.adminUpdate.bind(this)
   }
