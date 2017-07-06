@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Coverflow from 'reactjs-coverflow';
 import SideBar from '../components/SideBar';
+import SideBarMini from '../components/SideBarMini';
 import Header from '../components/Header';
 
 class Slideshow extends Component {
@@ -19,6 +20,7 @@ class Slideshow extends Component {
     return (
       <div className="wrapper">{/* //this is the flex container */}
           <SideBar />{/* //this is a flex item  with a nested flex container */}
+          <SideBarMini />
         <div className='slideshow-page'>{/* //this is a flex item */}
           <div className='nested'>{/* //this is a nested flex container */}
           <Header />

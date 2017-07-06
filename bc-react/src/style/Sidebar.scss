@@ -57,6 +57,7 @@
   .mini-sidebar {
     display: flex;
     justify-content: space-around;
+    width: 400px;
   }
 }
 @media all and (max-width: 820px) {
@@ -68,5 +69,6 @@
   .mini-sidebar {
     display: flex;
     justify-content: space-around;
+    width: 400px;
   }
 }

@@ -1,6 +1,7 @@
 //just a mock up for now
 import React, {Component} from 'react';
 import SideBar from '../components/SideBar';
+import SideBarMini from '../components/SideBarMini';
 import {updateUser} from '../actions';
 import userStore from '../stores/UserStore';
 import Header from '../components/Header';
@@ -18,6 +19,7 @@ class VotePage extends Component {
         <div className='vote-page'>
           <div className='wrapper'>
           <SideBar />
+          <SideBarMini />
           <Header />
           <div className='vote-page FontAmatic'>
             <div className='FontAmatic'>

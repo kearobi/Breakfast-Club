@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import MessageBoard from '../components/MessageBoard';
 import SideBar from '../components/SideBar';
+import SideBarMini from '../components/SideBarMini';
 import Reminder from '../components/Reminder';
 import {fetchMessages, fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions';
 import {checkLoginRedir} from '../actions'
@@ -114,7 +115,8 @@ class Home extends Component {
             <SideBar />{/* //this is a flex item  with a nested flex container */}
           <div className='home-page'>{/* //this is a flex item */}
             <div className='nested'>{/* //this is a nested flex container */}
-            <Header />
+              <SideBarMini />
+              <Header />
           <div className="welcome-message">
             <div className='welcome-user'>Hey, {userStore.getUser().firstName}! </div>
             <div className='reminder'><Reminder /></div>

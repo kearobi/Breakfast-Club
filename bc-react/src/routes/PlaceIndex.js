@@ -6,6 +6,7 @@ import PlaceListing from '../components/PlaceListing'
 import placeStore from '../stores/PlaceStore'
 // import MessageBoard from '../components/MessageBoard';
 import SideBar from '../components/SideBar';
+import SideBarMini from '../components/SideBarMini';
 
 class PlaceIndex extends Component {
   constructor(props){
@@ -40,6 +41,7 @@ class PlaceIndex extends Component {
     return(
       <div className="wrapper">{/* //this is the flex container */}
           <SideBar />{/* //this is a flex item  with a nested flex container */}
+          <SideBarMini />
         <div className='places-page'>{/* //this is a flex item */}
           <div className='nested'>{/* //this is a nested flex container */}
           <Header />
