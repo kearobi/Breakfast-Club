@@ -1,4 +1,4 @@
-//PlaceListing gets props from PlaceIndex
+//PlaceListing gets props from Places
 
 import React, { Component } from 'react';
 

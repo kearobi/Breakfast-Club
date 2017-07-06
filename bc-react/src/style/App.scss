@@ -14,7 +14,7 @@
 @import url('./UserProfile.css');
 @import url('./SearchBar.css');
 @import url('./Events.css');
-@import url('./Slideshow.css');
+@import url('./Photos.css');
 
 .wrapper {
   display: flex;
@@ -26,6 +26,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.page-title {
+  text-align: center;
+  font-family: 'Dancing Script', sans-serif;
+  font-size: 4em;
+  font-weight: bold;
 }
 
 .box1 {background-color: red;}

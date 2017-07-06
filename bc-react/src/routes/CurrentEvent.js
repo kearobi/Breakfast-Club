@@ -8,6 +8,7 @@ import EventDetail from '../components/EventDetail';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Header from '../components/Header';
+import MessageBoardToggle from '../components/MessageBoardToggle';
 
 class CurrentEvent extends Component {
   constructor(props){
@@ -54,10 +55,10 @@ class CurrentEvent extends Component {
       return (
         <div className="wrapper">{/* //this is the flex container */}
             <SideBar />{/* //this is a flex item  with a nested flex container */}
-            <SideBarMini />
           <div className='event-page'>{/* //this is a flex item */}
             <div className='nested'>{/* //this is a nested flex container */}
             <Header />
+            <SideBarMini />
           <p>{this.state.message}</p>
           <EventDetail voted={this.state.user.voted} rsvp={this.state.rsvp} user={this.state.user} eventData={this.state.event} winner={this.state.event.event.winner} />
             </div>

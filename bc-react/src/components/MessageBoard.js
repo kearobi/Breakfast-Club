@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import messageStore from '../stores/MessageStore';
 import userStore from '../stores/UserStore';
 import {addMessage} from '../actions';
+import {fetchMessages} from '../actions';
 
 class MessageBoard extends Component {
   constructor(props){
@@ -10,6 +11,7 @@ class MessageBoard extends Component {
       messages: [],
       currentMessage: ''
     }
+    fetchMessages()
     this.onUpdate = this.updateMessages.bind(this)
   }
 
@@ -41,49 +43,46 @@ class MessageBoard extends Component {
     e.preventDefault();
     addMessage({
       content: this.state.currentMessage,
-      author: userStore.getUser().email
+      author: `${userStore.getUser().firstName} ${userStore.getUser().lastName.slice(0, 1)}.`
     });
   }
 
   render() {
-    var mapped = this.state.messages.map(function(message, i){
-      var a = (message.createdAt)
+    let mapped = this.state.messages.map(function(message, i){
+      let a = (message.createdAt)
+      console.log(message.createdAt)
         let b = a.split("T")
         let date = b[0]
           let c = b[1].split(".")
           let time = c[0]
       return (
-        <div key={i}>
-          <p className='sender'>{message.author}</p>
-          <p className='time-stamp'>{date + " " + time}</p>
-          <p className='message-sent'>{message.content}</p>
-          <hr></hr>
+        <div className='individual-message' key={i}>
+          <div className='sender'>{message.author}</div>
+          <div className='time-stamp'>{date + " " + time}</div>
+          <div className='message-content'>{message.content}</div>
         </div>
       )
     })
 
-
     return (
-      <div id="messageBoard">
-        <h1 className='title'>Message Board</h1>
-          <hr></hr>
-        <div>
-          <div className='message-box'>
-            {mapped}
-          </div>
+      <div className='message-board'>
+        <div className='message-box'>
+          {mapped.reverse()}
         </div>
         <div>
-          <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-            <div className='formGroup'>
-              <input className='formGroup submit-field'
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <div>
+              <input className='submit-field'
+                size='28'
                 type='text'
+                placeholder='type a message'
                 name='message'
                 value={this.state.currentMessage}
                 onChange={this.handleChange.bind(this)}>
               </input>
             </div>
-            <div className='formGroup'>
-              <input className="btn btn-primary submit-field-button"
+            <div>
+              <input className='submit-chat-button'
                 type='submit'
                 value='Send'>
               </input>

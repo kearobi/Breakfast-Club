@@ -6,6 +6,7 @@ import AdminPlaces from '../components/Admin/AdminPlaces';
 import AdminEvents from '../components/Admin/AdminEvents';
 import adminStore from '../stores/AdminStore';
 import Header from '../components/Header';
+import MessageBoardToggle from '../components/MessageBoardToggle';
 
 class AdminPage extends Component {
   constructor(props){
@@ -21,6 +22,7 @@ class AdminPage extends Component {
     this.onAdminUpdate = this.adminUpdate.bind(this)
   }
   //the admin store deletes a user, it yells 'ive changed!' to everyone who's listening, and when it does that it calls updateUsers. (we told componentwillmount to issue this whenever there's a change)
+
   adminUpdate(){
     if(this.state.userButton === "admin_button_clicked"){
       this.setState({users: adminStore.adminReturnUsers()})}

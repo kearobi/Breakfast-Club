@@ -8,7 +8,7 @@ import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import {updatePlaces} from './actions'
 import {checkLogin} from './actions'
-import PlaceIndex from './routes/PlaceIndex'
+import Places from './routes/Places'
 import CurrentEvent from './routes/CurrentEvent'
 import Photos from './routes/Photos'
 import VotePage from './routes/VotePage'
@@ -46,7 +46,7 @@ class App extends Component {
             <Route exact path='/' component={SplashPage}/>
             <Route exact path='/signup' component={UserSignUp} />
             <Route exact path='/login' component={UserLogin} />
-            <Route exact path='/places' component={PlaceIndex} />
+            <Route exact path='/places' component={Places} />
             <Route exact path='/admin' component={AdminPage} />
             <Route exact path='/home-initial' render={this.handleInitialHome} />
             <Route exact path='/home' render={this.handleDefaultHome} />

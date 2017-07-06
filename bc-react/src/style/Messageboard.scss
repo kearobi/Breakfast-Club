@@ -1,42 +1,105 @@
-#messageBoard {
-  font-family: 'Amatic SC', cursive;
-  font-size: 25px;
-  padding: 30px;
-  background-color: #eeeeee;
-  border: 2px solid rgba(0, 0, 0, .5);
-  box-shadow: 2px 2px 2px 2px;
-  width: 300px;
-  margin-top: 30px;
-  height: 500px;
+.sticky {
+  z-index: 50;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 30px;
+  border: none;
+  background-color: transparent;
 }
-.message-box{
-  background-color: white;
-  height: 250px;
-  overflow: auto;
-  border: 2px solid rgba(0, 0, 0, .5);
 
+.sticky img {
+  width: 70px;
 }
-.title{
-  font-size: 50px;
+
+.sticky:hover {
+  cursor: pointer;
 }
-.sender{
-  font-size: 20px;
+
+.message-board {
+  margin-bottom: 60px;
+  z-index: 50;
+  right: 0;
+  margin-right: 30px;
+  position: fixed;
+  bottom: 0;
+  background-color: transparent;
+  width: 240px;
+
+.submit-chat-button {
+  background-color: white;
+}
+
+.submit-chat-button:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 1px 1px #505050;
+}
+
+.submit-chat-button:active {
+  box-shadow: 1px 1px 1px 1px #505050;
+transform: translateY(0.5px);
+}
+
+.individual-message {
+  background-color: #f5f5f5;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin: 2px 2px 2px 2px;
+  padding-left: 5px;
+  box-shadow: 0.5px 0.5px 0.5px 0.5px gray;
+}
+
+.message-box{
+  background-color: transparent;
+  height: 260px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: none;
+}
+
+.sender {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 2px;
+  color: gray;
+  font-family: 'Abel', sans-serif;
+  display: inline-block;
+  width: 36%;
+}
+
+.time-stamp{
+  font-size: 13px;
+  font-weight: bold;
+  margin: 2px;
+  color: gray;
+  font-family: 'Abel', sans-serif;
+  display: inline-block;
+  width: 60%;
   text-align: right;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.message-content {
+  font-size: 15px;
+  font-family: 'Abel', sans-serif;
+  margin: 2px;
 }
 .message-sent{
-  text-align: right;
   color: blue;
 }
-.time-stamp{
-  text-align: right;
-  font-size: 20px;
-  margin-top: 20px;
-  width: 200px;
-  margin-left: -300px;
-}
 
-.submit-field-button{
-  width: 50px;
-  margin-top: -65px;
-  margin-left: -80px;
+.submit-chat-button, form input {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-size: 15px;
+  font-family: 'Abel', sans-serif;
+  background-color: #f5f5f5;
+
+  }
 }
