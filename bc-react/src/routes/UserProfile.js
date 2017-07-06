@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import SideBar from '../components/SideBar';
+import SideBarMini from '../components/SideBarMini';
 import userStore from '../stores/UserStore';
 import {editUser} from '../actions';
 // import MyUploader from '../components/PhotoUpload'
 import Header from '../components/Header';
+import MessageBoardToggle from '../components/MessageBoardToggle';
 
 class UserProfile extends Component {
   constructor(props){
@@ -71,6 +73,7 @@ class UserProfile extends Component {
             <div className='profile-page'>{/* //this is a flex item */}
               <div className='nested'>{/* //this is a nested flex container */}
                 <Header />
+                <SideBarMini />
             <div className='welcome-user'>
               Welcome, {this.state.user.firstName}
             </div>
@@ -149,6 +152,7 @@ class UserProfile extends Component {
             </tbody>
           </table>
           <p className='delete'>delete my account</p>
+          <MessageBoardToggle />
         </div>
         </div>
       <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>

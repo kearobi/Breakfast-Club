@@ -1,14 +1,14 @@
-//PlaceIndex passes props to PlaceListing
+//Places passes props to PlaceListing
 
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import PlaceListing from '../components/PlaceListing'
 import placeStore from '../stores/PlaceStore'
-// import MessageBoard from '../components/MessageBoard';
+import MessageBoardToggle from '../components/MessageBoardToggle';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 
-class PlaceIndex extends Component {
+class Places extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -41,13 +41,14 @@ class PlaceIndex extends Component {
     return(
       <div className="wrapper">{/* //this is the flex container */}
           <SideBar />{/* //this is a flex item  with a nested flex container */}
-          <SideBarMini />
         <div className='places-page'>{/* //this is a flex item */}
           <div className='nested'>{/* //this is a nested flex container */}
+          <SideBarMini />
           <Header />
         <div>
             <h2>Place List</h2>
             <p className="place-list">{this.renderPlaces()}</p>
+            <MessageBoardToggle />
         </div>
         </div>
         </div>
@@ -56,4 +57,4 @@ class PlaceIndex extends Component {
     )
   }
 }
-export default PlaceIndex;
+export default Places;

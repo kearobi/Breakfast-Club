@@ -3,6 +3,8 @@ import Coverflow from 'reactjs-coverflow';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Header from '../components/Header';
+import MessageBoardToggle from '../components/MessageBoardToggle';
+
 
 class Slideshow extends Component {
 
@@ -20,10 +22,11 @@ class Slideshow extends Component {
     return (
       <div className="wrapper">{/* //this is the flex container */}
           <SideBar />{/* //this is a flex item  with a nested flex container */}
-          <SideBarMini />
         <div className='slideshow-page'>{/* //this is a flex item */}
           <div className='nested'>{/* //this is a nested flex container */}
           <Header />
+          <SideBarMini />
+          <div className='page-title'>Photos</div>
             <form>
               <button className='entry-button wobble' onClick={this.prev.bind(this)} type="button">&#8592;</button>
                 <Coverflow ref="coverflow"
@@ -48,6 +51,7 @@ class Slideshow extends Component {
                 </Coverflow>
                 <button className='entry-button wobble' onClick={this.next.bind(this)} type="button">&#8594;</button>
             </form>
+            <MessageBoardToggle />
             </div>
         </div>
       </div>
