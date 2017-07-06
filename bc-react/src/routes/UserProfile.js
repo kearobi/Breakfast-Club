@@ -6,6 +6,7 @@ import {editUser} from '../actions';
 // import MyUploader from '../components/PhotoUpload'
 import Header from '../components/Header';
 import MessageBoardToggle from '../components/MessageBoardToggle';
+import { withRouter } from 'react-router';
 
 class UserProfile extends Component {
   constructor(props){
@@ -63,6 +64,18 @@ class UserProfile extends Component {
   handleSave(){
     console.log("GOOD the user about to be saved is", this.state.user);
     editUser(this.state.user);
+  }
+
+  handleDeactivate(e){
+    let target = e.target
+    let user = this.state.user
+    user[target.id] = false
+    this.setState({
+      user: user
+    })
+    editUser(this.state.user);
+    //TODO: CONFIRM PROMPT AND USER LOGOUT
+    window.location.href = '/';
   }
 
   render(){
@@ -151,7 +164,7 @@ class UserProfile extends Component {
               </tr>
             </tbody>
           </table>
-          <p className='delete'>delete my account</p>
+          <p className='delete' onClick={this.handleDeactivate.bind(this)} id='active'>deactivate my account</p>
           <MessageBoardToggle />
         </div>
         </div>
