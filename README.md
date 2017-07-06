@@ -80,7 +80,7 @@ yarn start
 // REFORMAT AND RESEED DATABASE
 ----
 
-- If you are already have a local bc_development database then login to postgres using the cli and run the following commands:
+- If you already have a local bc_development database then login to postgres using the cli and run the following commands:
 
 
 
