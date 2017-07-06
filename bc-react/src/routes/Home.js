@@ -11,6 +11,7 @@ import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
 import Header from '../components/Header';
+import ToggleDisplay from 'react-toggle-display';
 
 // import placeStore from '../stores/PlaceStore'
 
@@ -24,7 +25,8 @@ class Home extends Component {
     this.state = {
       user: userStore.getUser(),
       event: eventStore.getCurrentEvent(),
-      events: []
+      events: [],
+      show: false
     }
     this.onlogin = this.handleLogin.bind(this)
     this.onlogout = this.handleLogOut.bind(this)
@@ -58,6 +60,12 @@ class Home extends Component {
  //  componentWillUpdate(){
  //   checkLoginRedir(this.props)
  // }
+
+   handleToggle() {
+     this.setState({
+       show: !this.state.show
+     });
+   }
 
   handleLogin(){
     console.log("handleLogin called")
@@ -123,7 +131,10 @@ class Home extends Component {
             <div className='upcoming-event'><Link to='/current-event'>Current Event</Link></div>
           </div>
           <div className="calendar-div">{this.checkCalendar()}</div>
-          {/* <div className=""><MessageBoard /></div> */}
+          <div className="sticky" onClick={ () => this.handleToggle() }>sticky</div>
+          <ToggleDisplay show={this.state.show}>
+            <MessageBoard />
+          </ToggleDisplay>
         {/* </div> */}
         {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}
       </div>

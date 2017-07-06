@@ -1,4 +1,16 @@
-#messageBoard {
+.sticky {
+  z-index: 10;
+  background-color: yellow;
+  position: fixed;
+  bottom: 0;
+}
+
+.displayMessageBoard {
+  z-index: 10;
+  right: 0;
+  margin-right: 30px;
+  position: fixed;
+  bottom: 0;
   font-family: 'Amatic SC', cursive;
   font-size: 25px;
   padding: 30px;
@@ -8,7 +20,7 @@
   width: 300px;
   margin-top: 30px;
   height: 500px;
-}
+
 .message-box{
   background-color: white;
   height: 250px;
@@ -39,4 +51,5 @@
   width: 50px;
   margin-top: -65px;
   margin-left: -80px;
+}
 }

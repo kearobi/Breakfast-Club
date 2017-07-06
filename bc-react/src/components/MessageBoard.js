@@ -8,7 +8,8 @@ class MessageBoard extends Component {
     super(props)
     this.state={
       messages: [],
-      currentMessage: ''
+      currentMessage: '',
+      className: 'displayMessageBoard'
     }
     this.onUpdate = this.updateMessages.bind(this)
   }
@@ -62,9 +63,8 @@ class MessageBoard extends Component {
       )
     })
 
-
     return (
-      <div id="messageBoard">
+      <div className={this.state.className}>
         <h1 className='title'>Message Board</h1>
           <hr></hr>
         <div>
@@ -74,15 +74,15 @@ class MessageBoard extends Component {
         </div>
         <div>
           <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-            <div className='formGroup'>
-              <input className='formGroup submit-field'
+            <div>
+              <input className='submit-field'
                 type='text'
                 name='message'
                 value={this.state.currentMessage}
                 onChange={this.handleChange.bind(this)}>
               </input>
             </div>
-            <div className='formGroup'>
+            <div>
               <input className="btn btn-primary submit-field-button"
                 type='submit'
                 value='Send'>
