@@ -4,7 +4,7 @@ Full-stack project featuring React with FLUX and Express on the back-end, with s
 // LOCAL INSTALLATION
 ----
 
-Start by cloning and entering the project repo:
+- Start by cloning and entering the project repo:
 
 
 
@@ -15,7 +15,7 @@ cd Breakfast-Club
 
 
 
-Once you've downloaded the project, install dependencies:
+- Once you've downloaded the project, install dependencies:
 
 
 
@@ -29,14 +29,14 @@ yarn install
 
 
 
-You will need to create a config.json file in the bc-express/config directory, copy the contents of config.example.json into it,
+ -You will need to create a config.json file in the bc-express/config directory, copy the contents of config.example.json into it,
 and edit the username and password to match your local postgres account
 
 // CREATE, FORMAT, AND SEED DATABASE
 ----
 
 
-Once signed into postgres with the postgres cli (psql -U username), enter the following command:
+- Once signed into postgres with the postgres cli (psql -U username), enter the following command:
 
 
 
@@ -44,7 +44,7 @@ CREATE DATABASE "bc_development";
 
 
 
-Then navigate to the root of the bc-express directory and run the following sequelize commands:
+- Then navigate to the root of the bc-express directory and run the following sequelize commands:
 
 
 
@@ -57,7 +57,7 @@ sequelize db:seed:all
 // LAUNCH APPLICATION
 ----
 
-To start the application you will need two terminal sessions. Navigate each to the root directory of the project. Use the first to start the express app:
+- To start the application you will need two terminal sessions. Navigate each to the root directory of the project. Use the first to start the express app:
 
 
 
@@ -67,7 +67,7 @@ nodemon app.js
 
 
 
-Use the second terminal session to start the React app:
+- Use the second terminal session to start the React app:
 
 
 
@@ -80,7 +80,7 @@ yarn start
 // REFORMAT AND RESEED DATABASE
 ----
 
-If you are already have a local bc_development database then login to postgres using the cli and run the following commands:
+- If you are already have a local bc_development database then login to postgres using the cli and run the following commands:
 
 
 
@@ -90,7 +90,7 @@ DROP TABLE "Messages" CASCADE; DROP TABLE "Users" CASCADE; DROP TABLE "Bevents" 
 
 
 
-Then quit postgres (\q) and run the two sequelize commands in the bc-express directory:
+- Then quit postgres (\q) and run the two sequelize commands in the bc-express directory:
 
 
 
@@ -100,4 +100,4 @@ sequelize db:seed:all
 
 
 
-Now you may launch the application
+- Now you may launch the application
