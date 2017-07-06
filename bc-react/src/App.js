@@ -3,7 +3,6 @@ import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
 import UserProfile from './routes/UserProfile';
-import UserProfile2 from './routes/UserProfile2';
 import TestEvent from './routes/TestEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
@@ -52,7 +51,6 @@ class App extends Component {
             <Route exact path='/home-initial' render={this.handleInitialHome} />
             <Route exact path='/home' render={this.handleDefaultHome} />
             <Route exact path='/profile' component={UserProfile} />
-            <Route exact path='/profile2' component={UserProfile2} />
             <Route exact path='/test-event' component={TestEvent} />
             <Route path='/current-event' component={CurrentEvent} />
             <Route path='/photos' component={Photos} />
