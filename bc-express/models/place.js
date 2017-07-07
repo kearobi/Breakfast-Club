@@ -1,6 +1,9 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Place = sequelize.define('Place', {
+    id: DataTypes.INTEGER,
+    //would have to run a migration to add this bottom one
+    yelp_id: DataTypes.INTEGER,
     name: DataTypes.STRING,
     address_street: DataTypes.STRING,
     address_city: DataTypes.STRING,

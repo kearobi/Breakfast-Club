@@ -113,6 +113,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     hooks:{
       // Adds a hook to generate the users token when user is created
+      // Hooks get automatically triggered by things; in this case, beforeCreate. 
       beforeCreate: function(user, options){
         user.setAuthToken()
       }

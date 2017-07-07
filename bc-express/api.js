@@ -33,10 +33,11 @@ rapid.call('YelpAPI', 'getBusinesses', {
         }
         // console.log(vals);
 
-
+//may want to extract this out into a separate method because we'll be using it twice
     var data = []
     for(var i=0;i<vals.length;i++){
       var newObj = Place.build()
+			newObj.yelp_id = vals[i].id,
       newObj.name = vals[i].name,
       newObj.image_url = vals[i].image_url,
       newObj.review_count = vals[i].review_count,
