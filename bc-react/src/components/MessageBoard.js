@@ -51,19 +51,11 @@ class MessageBoard extends Component {
 
   render() {
     let mapped = this.state.messages.map(function(message, i){
-      let a = (message.createdAt)
-      console.log(message.createdAt)
-        let b = a.split("T")
-        let date = b[0]
-          let c = b[1].split(".")
-          let time = c[0]
+      let timeStamp = (message.createdAt)
       return (
         <div className='individual-message' key={i}>
-          <Moment format="MM/DD/YY hh:mm">2017-07-06T22:44:05.526Z</Moment>
-
-          {/* 7/7/17 at 3:54 pm */}
           <div className='sender'>{message.author}</div>
-          <div className='time-stamp'>{date + " " + time}</div>
+          <div className='time-stamp'><Moment format="hh:mm on MM/DD/YY">{timeStamp}</Moment></div>
           <div className='message-content'>{message.content}</div>
         </div>
       )

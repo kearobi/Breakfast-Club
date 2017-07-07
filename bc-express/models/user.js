@@ -74,7 +74,8 @@ module.exports = function(sequelize, DataTypes) {
           authTokenExpiration: this.get('authTokenExpiration'),
           voted: this.get('voted'),
           rsvp: this.get('rsvp'),
-          admin: this.get('admin')
+          admin: this.get('admin'),
+          active: this.get('active')
         }
       },
       encrypt(value){
@@ -113,7 +114,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     hooks:{
       // Adds a hook to generate the users token when user is created
-      // Hooks get automatically triggered by things; in this case, beforeCreate. 
+      // Hooks get automatically triggered by things; in this case, beforeCreate.
       beforeCreate: function(user, options){
         user.setAuthToken()
       }
