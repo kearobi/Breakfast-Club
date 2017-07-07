@@ -55,7 +55,7 @@ class MessageBoard extends Component {
       return (
         <div className='individual-message' key={i}>
           <div className='sender'>{message.author}</div>
-          <div className='time-stamp'><Moment format="hh:mm on MM/DD/YY">{timeStamp}</Moment></div>
+          <div className='time-stamp'><Moment fromNow>{timeStamp}</Moment></div>
           <div className='message-content'>{message.content}</div>
         </div>
       )
@@ -74,6 +74,7 @@ class MessageBoard extends Component {
                 type='text'
                 placeholder='type a message'
                 name='message'
+                autoComplete='off'
                 value={this.state.currentMessage}
                 onChange={this.handleChange.bind(this)}>
               </input>

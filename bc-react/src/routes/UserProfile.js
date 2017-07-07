@@ -113,6 +113,7 @@ class UserProfile extends Component {
                     type='text'
                     name='firstName'
                     id='firstName'
+                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.firstName}
                     onChange={this.handleEdit.bind(this)}>
@@ -127,6 +128,7 @@ class UserProfile extends Component {
                     type='text'
                     name='lastName'
                     id='lastName'
+                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.lastName}
                     onChange={this.handleEdit.bind(this)}>
@@ -142,6 +144,7 @@ class UserProfile extends Component {
                     type='email'
                     name='email'
                     id='email'
+                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.email}
                     onChange={this.handleEdit.bind(this)}>
@@ -156,6 +159,7 @@ class UserProfile extends Component {
                     type='text'
                     name='neighborhood'
                     id='neighborhood'
+                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.neighborhood}
                     onChange={this.handleEdit.bind(this)}>
