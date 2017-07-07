@@ -4,6 +4,15 @@ module.exports = function(sequelize, DataTypes) {
     date: DataTypes.DATE,
     place_1_id: DataTypes.INTEGER,
     place_2_id: DataTypes.INTEGER,
+
+    // This is an example of how we might use the unique Yelp ID of each
+    // business and pull that businesses info on each request as opposed
+    // to saving each places info to the DB.
+    // This would be an alternative to the above lines.
+    // ----------------------------------------
+    // place_1_yelp_id: DataTypes.INTEGER,
+    // place_2_yelp_id: DataTypes.INTEGER,
+    // ----------------------------------------
     vote_status: DataTypes.BOOLEAN,
     winner: DataTypes.INTEGER,
     place: DataTypes.VIRTUAL,
