@@ -15,6 +15,7 @@ import VotePage from './routes/VotePage'
 import FlexPractice from './components/FlexPractice'
 import './style/App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import 'moment-timezone';
 
 //only the most parent component should be responsible for fetching data, aka here?
 

@@ -7,6 +7,7 @@ import VoteButton from './VoteButton';
 import RSVPButton from './RSVPButton';
 import EventChoice from './EventChoice'
 import {rsvp} from '../actions';
+import Moment from 'react-moment';
 
 class EventDetail extends Component {
 //it seems like it would make the most sense to add/remove the user from the guestlist onClick
@@ -50,10 +51,10 @@ class EventDetail extends Component {
       })
     }
 
-
     return (
       <div className='events-page'>
-        <div className='event-date'>{this.props.eventData.event.date}</div>
+        <div className='event-date'>
+          <Moment format='dddd, MMMM DD @ h:mm A'>{this.props.eventData.event.date}</Moment></div>
           <div>
               {(this.props.winner === 1 || this.props.winner === null) && <EventChoice
                 place={this.props.eventData.places[0]}
