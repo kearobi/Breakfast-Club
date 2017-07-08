@@ -31,11 +31,13 @@ placeHeader(){
   return(
       <div className="table-row table-header">
         <div className="table-row-item name">Name</div>
-        <div className="table-row-item yelp">Yelp Rating</div>
-        <div className="table-row-item category">Category</div>
+        <div className="table-row-item yelp">Stars</div>
+        <div className="table-row-item categories">Category</div>
         <div className="table-row-item price">Price</div>
         <div className="table-row-item street">Steet Address</div>
         <div className="table-row-item phone">Phone</div>
+        <div className="table-row-item hidden"></div>
+        <div className="table-row-item hidden"></div>
       </div>
   )}
 
@@ -47,6 +49,8 @@ eventHeader(){
         <div className="table-row-item neighborhood">Neighborhood</div>
         <div className="table-row-item guest">Guest Speaker</div>
         <div className="table-row-item rsvp">RSVP</div>
+        <div className="table-row-item hidden"></div>
+        <div className="table-row-item hidden"></div>
       </div>
   )}
 
@@ -92,9 +96,8 @@ eventHeader(){
       filtered = this.props.events.filter(
         (event) => {
           return (
-            (event.date.indexOf(this.state.searchTerm.toLowerCase()) !== -1)
-            // ||
-            // (event.place.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+            (event.date.indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+            (event.place.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
             // || (event.neighborhood.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             // (event.guest_speaker.indexOf(this.state.searchTerm) !== -1) ||
             // (event.rsvp.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
@@ -107,7 +110,7 @@ eventHeader(){
     }
 
     return (
-      <div>
+      <div className='search-bar-input'>
         <input
           id='search-bar'
           size='72'

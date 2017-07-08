@@ -85,32 +85,6 @@ form {
     background-color: #def9a3;
   }
 
-  .editable {
-    font-style: italic;
-    color: fuchsia;
-    text-shadow: 0.1px 0.1px black;
-  }
-
-  .read-only {
-    font-style: normal;
-    color: black;
-    text-shadow: none;
-  }
-
-  .admin-th, .admin-td {
-    border: 1px solid black;
-    background-color: #eeeeee;
-    border-color: #c1c1c1;
-    border-width: thin;
-    text-align: center;
-    font-family: 'Abel';
-    font-size: 20px;
-    padding-left: 5px;
-    padding-right: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
   .table-row-item {
     border: 1px solid #c1c1c1;
 
@@ -148,7 +122,6 @@ form {
   .search_bar_wrapper div input {
     font-family: 'Abel';
     font-size: 20px;
-    text-align: center;
     padding: none;
     margin: none;
   }
@@ -187,6 +160,10 @@ form {
     flex-flow: column nowrap;
    }
 
+   .table-header {
+     font-weight: bold;
+   }
+
   .table-row{
     display: flex;
     flex-flow: row nowrap;
@@ -211,16 +188,28 @@ form {
     justify-content: center;
   }
 
-    .icon {
-      background-color: white;
-      border: none;
-    }
+  .icon {
+    background-color: white;
+    border: none;
+  }
 
-    .hidden {
-      width: 22px;
-      border-color: white;
-      background-color: white;
-    }
+  .hidden {
+    width: 22px;
+    border-color: white;
+    background-color: white;
+  }
+
+  .editable {
+    font-style: italic;
+    color: fuchsia;
+    text-shadow: 0.1px 0.1px black;
+  }
+
+  .read-only {
+    font-style: normal;
+    color: black;
+    text-shadow: none;
+  }
 
   .id           {width: 40px;}
   .firstName    {width: 90px;}
@@ -228,4 +217,15 @@ form {
   .email        {width: 200px;}
   .neighborhood {width: 130px;}
   .active       {width: 60px;}
+
+  .name         {width: 160px;}
+  .yelp         {width: 40px;}
+  .categories   {width: 170px;}
+  .price        {width: 40px;}
+  .street       {width: 170px;}
+  .phone        {width: 120px;}
+
+  .date         {width: 170px;}
+  .guest        {width: 120px;}
+  .rsvp         {width: 140px;}
 }

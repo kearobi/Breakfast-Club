@@ -154,7 +154,7 @@ class AdminTable extends Component {
     )}else if(this.props.placeTable){
       return (
         <div className={this.state.className}>
-          <div className='table-row-item'>
+          <div className='table-row-item name'>
             <input
               name='name'
               value={this.state.place.name}
@@ -162,7 +162,7 @@ class AdminTable extends Component {
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly}/>
           </div>
-          <div className='table-row-item'>
+          <div className='table-row-item yelp'>
             <input
               name='yelp_rating'
               value={this.state.place.yelp_rating}
@@ -170,14 +170,14 @@ class AdminTable extends Component {
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly} />
           </div>
-          <div className='table-row-item'>
+          <div className='table-row-item categories'>
             <input
               name='categories'
               value={this.state.place.categories}
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly} />
           </div>
-          <div className='table-row-item'>
+          <div className='table-row-item price'>
             <input
               name='price'
               value={this.state.place.price}
@@ -185,14 +185,14 @@ class AdminTable extends Component {
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly} />
           </div>
-          <div className='table-row-item'>
+          <div className='table-row-item street'>
             <input
               name='address_street'
               value={this.state.place.address_street}
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly} />
           </div>
-          <div className='table-row-item'>
+          <div className='table-row-item phone'>
             <input
               name='phone'
               value={this.state.place.phone}
@@ -200,8 +200,8 @@ class AdminTable extends Component {
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly} />
           </div>
-          <div className="icon_td table-row-item">{this.deleteIcon()}</div>
-          <div className="icon_td table-row-item">{this.editIcon()}</div>
+          <div className="icon table-row-item">{this.deleteIcon()}</div>
+          <div className="icon table-row-item">{this.editIcon()}</div>
         </div>
     )}else if(this.props.eventTable){
 
@@ -214,24 +214,24 @@ class AdminTable extends Component {
 
       return(
       <div className={this.state.className}>
-        <div className='table-row-item'>
+        <div className='table-row-item date'>
           <input
             name='date'
             value={`${month} ${day}, ${year}`}
             onChange={this.handleEdit.bind(this)}
             disabled={this.state.readOnly} /></div>
-        <div className='table-row-item'>
+        <div className='table-row-item name'>
           <input
             // name='place'
             // value={this.state.event.place}
             // onChange={this.handleEdit.bind(this)}
             // disabled={this.state.readOnly}
           /></div>
-        <div className='table-row-item'>neighborhood</div>
-        <div className='table-row-item'>guest speaker</div>
-        <div className='table-row-item'>rsvp</div>
-        <div className="icon_td table-row-item">{this.deleteIcon()}</div>
-        <div className="icon_td table-row-item">{this.editIcon()}</div>
+        <div className='table-row-item neighborhood'>neighborhood</div>
+        <div className='table-row-item guest'>guest speaker</div>
+        <div className='table-row-item rsvp'>rsvp</div>
+        <div className="icon table-row-item">{this.deleteIcon()}</div>
+        <div className="icon table-row-item">{this.editIcon()}</div>
       </div>
     )}else{
       return(<div></div>)}

@@ -113,7 +113,7 @@ class AdminModal extends Component {
     </div>
     <div>
       <input
-        placeholder='Yelp Rating'
+        placeholder='Stars'
         type='text'
         name='yelp_rating'
         id='yelp_rating'
