@@ -142,8 +142,8 @@ class AdminTable extends Component {
                       size='15' />
             </td>
             <td>
-              <input  name='encryptedPassword'
-                      value={this.state.user.encryptedPassword}
+              <input  name='active'
+                      value={this.state.user.active}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
                       size='7'/>
@@ -205,7 +205,6 @@ class AdminTable extends Component {
         </tr>
     )}else if(this.props.eventTable){
 
-        let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         let temp = this.state.event.date.split('T')
         let date = temp[0].split('-')

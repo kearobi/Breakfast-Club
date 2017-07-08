@@ -22,7 +22,7 @@ userHeader(){
         <th className="admin-th">Last Name</th>
         <th className="admin-th">Email Address</th>
         <th className="admin-th">Neighborhood</th>
-        <th className="admin-th">Password</th>
+        <th className="admin-th">Active</th>
         <th className="invisible">..........</th>
       </tr>
   )
@@ -68,7 +68,8 @@ eventHeader(){
             (user.firstName.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (user.lastName.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (user.email.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-            (user.neighborhood.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+            (user.neighborhood.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+            (user.active.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
           )
         })
       mappedFilter = filtered.map((user)=>{

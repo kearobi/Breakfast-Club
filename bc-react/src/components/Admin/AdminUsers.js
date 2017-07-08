@@ -42,7 +42,7 @@ class AdminUsers extends Component {
               email: "",
               neighborhood: "",
               password: "",
-              verifyPassword: ""}})}
+              active: ""}})}
 
   render(){
     return(
