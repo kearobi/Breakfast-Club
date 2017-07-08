@@ -6,6 +6,7 @@ import {editUser} from '../actions';
 // import MyUploader from '../components/PhotoUpload'
 import Header from '../components/Header';
 import MessageBoardToggle from '../components/MessageBoardToggle';
+import { withRouter } from 'react-router';
 
 class UserProfile extends Component {
   constructor(props){
@@ -65,6 +66,18 @@ class UserProfile extends Component {
     editUser(this.state.user);
   }
 
+  handleDeactivate(e){
+    let target = e.target
+    let user = this.state.user
+    user[target.id] = false
+    this.setState({
+      user: user
+    })
+    editUser(this.state.user);
+    //TODO: CONFIRM PROMPT AND USER LOGOUT
+    window.location.href = '/';
+  }
+
   render(){
 
     return (
@@ -100,6 +113,7 @@ class UserProfile extends Component {
                     type='text'
                     name='firstName'
                     id='firstName'
+                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.firstName}
                     onChange={this.handleEdit.bind(this)}>
@@ -114,6 +128,7 @@ class UserProfile extends Component {
                     type='text'
                     name='lastName'
                     id='lastName'
+                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.lastName}
                     onChange={this.handleEdit.bind(this)}>
@@ -129,6 +144,7 @@ class UserProfile extends Component {
                     type='email'
                     name='email'
                     id='email'
+                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.email}
                     onChange={this.handleEdit.bind(this)}>
@@ -143,6 +159,7 @@ class UserProfile extends Component {
                     type='text'
                     name='neighborhood'
                     id='neighborhood'
+                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.neighborhood}
                     onChange={this.handleEdit.bind(this)}>
@@ -151,7 +168,7 @@ class UserProfile extends Component {
               </tr>
             </tbody>
           </table>
-          <p className='delete'>delete my account</p>
+          <p className='delete' onClick={this.handleDeactivate.bind(this)} id='active'>deactivate my account</p>
           <MessageBoardToggle />
         </div>
         </div>

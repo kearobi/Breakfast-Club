@@ -3,6 +3,7 @@ import messageStore from '../stores/MessageStore';
 import userStore from '../stores/UserStore';
 import {addMessage} from '../actions';
 import {fetchMessages} from '../actions';
+import Moment from 'react-moment'
 
 class MessageBoard extends Component {
   constructor(props){
@@ -25,7 +26,6 @@ class MessageBoard extends Component {
     messageStore.removeListener('message added', this.onUpdate);
   }
 
-
   updateMessages(){
     this.setState({
       messages: messageStore.getLastFiveMessages()
@@ -47,18 +47,15 @@ class MessageBoard extends Component {
     });
   }
 
+
+
   render() {
     let mapped = this.state.messages.map(function(message, i){
-      let a = (message.createdAt)
-      console.log(message.createdAt)
-        let b = a.split("T")
-        let date = b[0]
-          let c = b[1].split(".")
-          let time = c[0]
+      let timeStamp = (message.createdAt)
       return (
         <div className='individual-message' key={i}>
           <div className='sender'>{message.author}</div>
-          <div className='time-stamp'>{date + " " + time}</div>
+          <div className='time-stamp'><Moment fromNow>{timeStamp}</Moment></div>
           <div className='message-content'>{message.content}</div>
         </div>
       )
@@ -77,6 +74,7 @@ class MessageBoard extends Component {
                 type='text'
                 placeholder='type a message'
                 name='message'
+                autoComplete='off'
                 value={this.state.currentMessage}
                 onChange={this.handleChange.bind(this)}>
               </input>

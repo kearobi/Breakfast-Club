@@ -12,9 +12,9 @@ class AdminPage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      users: adminStore.adminReturnUsers(),
-      places: adminStore.adminReturnPlaces(),
-      events: adminStore.adminReturnEvents(),
+      users: [],
+      places: [],
+      events: [],
       userButton: "admin_button",
       placeButton: "admin_button",
       eventButton: "admin_button"
@@ -67,7 +67,6 @@ class AdminPage extends Component {
     }else if (this.state.eventButton === "admin_button_clicked"){
       return (<AdminEvents events={this.state.events}/>)}
     else {return ""}}
-
 
   render(){
     return(

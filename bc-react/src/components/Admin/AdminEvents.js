@@ -36,14 +36,14 @@ class AdminEvents extends Component {
   componentWillMount(){
     adminStore.on('change', this.adminReturnEvents.bind(this))}
 
-    openModal(){
-      this.setState({className: "openModal"})}
+  openModal(){
+    this.setState({className: "openModal"})}
 
-    closeModal(){
-      this.setState({className: "closeModal"})}
+  closeModal(){
+    this.setState({className: "closeModal"})}
 
-    closeModalOnSubmit(modal){
-      this.setState(modal)}
+  closeModalOnSubmit(modal){
+    this.setState(modal)}
 
   eventParams(){
     return(

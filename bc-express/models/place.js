@@ -1,7 +1,8 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Place = sequelize.define('Place', {
-    // Recommend adding an `id` & `yelp_id` attribute 
+    // would have to run a migration to add this bottom
+    // Recommend adding an `id` & `yelp_id` attribute
     // in the process simplifying the db setup
     // ----------------------------------------
     // id: DataTypes.INTEGER,

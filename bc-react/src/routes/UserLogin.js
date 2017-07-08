@@ -12,7 +12,7 @@ class UserLogin extends Component {
         email: "",
         password: ""
       },
-      message: '../Images/white.PNG'
+      message: ''
     }
   }
 
@@ -50,9 +50,14 @@ class UserLogin extends Component {
     e.preventDefault();
     if (this.state.user.email === "" || this.state.user.password === ""){
       this.setState({
-        message: '../Images/Email-password-verification.PNG'
+        message: 'email address and password required'
       })
     }
+    // else if (!this.state.user.active) {
+    //   this.setState({
+    //     message: 'this account is no longer active'
+    //   })
+    // }
     else {
       loginUser(this.state.user)
     }
@@ -92,9 +97,7 @@ render(){
                     <button className='entry-button wobble'>Take Me Back!!</button>
                   </Link>
             </form>
-            <div className='validate'>
-              <img src={this.state.message} alt='verification'></img>
-            </div>
+            <div className='validate'>{this.state.message}</div>
           <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
         </div></div>
     );

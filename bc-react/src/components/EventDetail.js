@@ -7,6 +7,8 @@ import VoteButton from './VoteButton';
 import RSVPButton from './RSVPButton';
 import EventChoice from './EventChoice'
 import {rsvp} from '../actions';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 class EventDetail extends Component {
 //it seems like it would make the most sense to add/remove the user from the guestlist onClick
@@ -20,21 +22,21 @@ class EventDetail extends Component {
     }
     else {return ""}
   }
-
-  dateParser(){
-    let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    let temp = this.props.eventData.event.date.split('T')
-    let date = temp[0].split('-')
-    let dayOfWeek = weekday[new Date(date).getDay()]
-    let month = months[new Date(date).getMonth()]
-    let day = new Date(date).getDate()
-    let hourTime = new Date(temp).getHours()
-    let minuteTime = new Date(temp).getMinutes()
-    console.log(dayOfWeek, "," , month, "", day, " @ ", hourTime,":", minuteTime)
-  }
+  //
+  // dateParser(){
+  //   let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  //   let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  //   let temp = this.props.eventData.event.date.split('T')
+  //   let date = temp[0].split('-')
+  //   let dayOfWeek = weekday[new Date(date).getDay()]
+  //   let month = months[new Date(date).getMonth()]
+  //   let day = new Date(date).getDate()
+  //   let hourTime = new Date(temp).getHours()
+  //   let minuteTime = new Date(temp).getMinutes()
+  //   console.log(dayOfWeek, "," , month, "", day, " @ ", hourTime,":", minuteTime)
+  // }
   render() {
-    this.dateParser()
+    // this.dateParser()
     var mappedUsers;
     if (this.props.eventData.users.length === 0){
       mappedUsers = <div className='flex-item'>No RSVPs yet</div>
@@ -50,10 +52,13 @@ class EventDetail extends Component {
       })
     }
 
-
     return (
       <div className='events-page'>
-        <div className='event-date'>{this.props.eventData.event.date}</div>
+        <div className='event-date'>
+          <Moment format='dddd, MMMM DD @ h:mm A'>
+            {this.props.eventData.event.date}
+          </Moment>
+        </div>
           <div>
               {(this.props.winner === 1 || this.props.winner === null) && <EventChoice
                 place={this.props.eventData.places[0]}
