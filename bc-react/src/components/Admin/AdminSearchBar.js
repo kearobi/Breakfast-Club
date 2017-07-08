@@ -2,6 +2,8 @@
 //SearchBar passes props to AdminTable
 import React, {Component} from 'react';
 import AdminTable from './AdminTable';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 class SearchBar extends Component {
   constructor(props){
@@ -88,10 +90,11 @@ eventHeader(){
         return <AdminTable place={place} key={place.id} placeTable={true} />})
     } else if (this.props.eventSearchBar){
       header = this.eventHeader()
+      //this is where the date parser should probably happen
       filtered = this.props.events.filter(
         (event) => {
           return (
-            (event.date.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+            (event.date.indexOf(this.state.searchTerm.toLowerCase()) !== -1)
             // ||
             // (event.place.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
             // || (event.neighborhood.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
