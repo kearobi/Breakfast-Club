@@ -2,8 +2,6 @@
 //SearchBar passes props to AdminTable
 import React, {Component} from 'react';
 import AdminTable from './AdminTable';
-import Moment from 'react-moment';
-import 'moment-timezone';
 
 class SearchBar extends Component {
   constructor(props){

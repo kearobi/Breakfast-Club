@@ -24,7 +24,6 @@
     "react-moment": "^0.3.0",
     "react-router-dom": "^4.1.1",
     "react-scripts": "^1.0.7",
-    "react-table": "^6.5.1",
     "react-toggle-display": "^2.2.0",
     "react-transition-group": "^1.1.1",
     "reactjs-coverflow": "^1.1.1"
