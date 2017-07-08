@@ -14,37 +14,39 @@ updateSearch(event){
 
 userHeader(){
   return (
-      <div className="header">
-        <div className="admin-th">ID</div>
-        <div className="admin-th">First Name</div>
-        <div className="admin-th">Last Name</div>
-        <div className="admin-th">Email Address</div>
-        <div className="admin-th">Neighborhood</div>
-        <div className="admin-th">Active</div>
+      <div className="table-row table-header">
+        <div className="table-row-item id">ID</div>
+        <div className="table-row-item firstName">First Name</div>
+        <div className="table-row-item lastName">Last Name</div>
+        <div className="table-row-item email">Email Address</div>
+        <div className="table-row-item neighborhood">Neighborhood</div>
+        <div className="table-row-item active">Active</div>
+        <div className="table-row-item hidden"></div>
+        <div className="table-row-item hidden"></div>
       </div>
   )
 }
 
 placeHeader(){
   return(
-      <div className="header">
-        <div className="admin-th">Name</div>
-        <div className="admin-th">Yelp Rating</div>
-        <div className="admin-th">Category</div>
-        <div className="admin-th">Price</div>
-        <div className="admin-th">Steet Address</div>
-        <div className="admin-th">Phone</div>
+      <div className="table-row table-header">
+        <div className="table-row-item name">Name</div>
+        <div className="table-row-item yelp">Yelp Rating</div>
+        <div className="table-row-item category">Category</div>
+        <div className="table-row-item price">Price</div>
+        <div className="table-row-item street">Steet Address</div>
+        <div className="table-row-item phone">Phone</div>
       </div>
   )}
 
 eventHeader(){
   return(
-      <div className="header">
-        <div className="admin-th">Date</div>
-        <div className="admin-th">Place</div>
-        <div className="admin-th">Neighborhood</div>
-        <div className="admin-th">Guest Speaker</div>
-        <div className="admin-th">RSVP</div>
+      <div className="table-row table-header">
+        <div className="table-row-item date">Date</div>
+        <div className="table-row-item name">Place</div>
+        <div className="table-row-item neighborhood">Neighborhood</div>
+        <div className="table-row-item guest">Guest Speaker</div>
+        <div className="table-row-item rsvp">RSVP</div>
       </div>
   )}
 
@@ -64,7 +66,7 @@ eventHeader(){
             (user.lastName.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (user.email.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (user.neighborhood.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-            (user.active.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+            (user.active.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
           )
         })
       mappedFilter = filtered.map((user)=>{
@@ -115,7 +117,7 @@ eventHeader(){
           onChange={this.updateSearch.bind(this)}
         />
         <br></br><br></br>
-        <div className="admin-table">
+        <div className="table">
             {header}
             {mappedFilter}
         </div>
