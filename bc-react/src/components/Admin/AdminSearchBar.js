@@ -16,41 +16,38 @@ updateSearch(event){
 
 userHeader(){
   return (
-      <tr>
-        <th className="admin-th">Id</th>
-        <th className="admin-th">First Name</th>
-        <th className="admin-th">Last Name</th>
-        <th className="admin-th">Email Address</th>
-        <th className="admin-th">Neighborhood</th>
-        <th className="admin-th">Active</th>
-        <th className="invisible">..........</th>
-      </tr>
+      <div className="header">
+        <div className="admin-th">ID</div>
+        <div className="admin-th">First Name</div>
+        <div className="admin-th">Last Name</div>
+        <div className="admin-th">Email Address</div>
+        <div className="admin-th">Neighborhood</div>
+        <div className="admin-th">Active</div>
+      </div>
   )
 }
 
 placeHeader(){
   return(
-      <tr>
-        <th className="admin-th">Name</th>
-        <th className="admin-th">Yelp Rating</th>
-        <th className="admin-th">Category</th>
-        <th className="admin-th">Price</th>
-        <th className="admin-th">Steet Address</th>
-        <th className="admin-th">Phone</th>
-        <th className="invisible">..........</th>
-      </tr>
+      <div className="header">
+        <div className="admin-th">Name</div>
+        <div className="admin-th">Yelp Rating</div>
+        <div className="admin-th">Category</div>
+        <div className="admin-th">Price</div>
+        <div className="admin-th">Steet Address</div>
+        <div className="admin-th">Phone</div>
+      </div>
   )}
 
 eventHeader(){
   return(
-      <tr>
-        <th className="admin-th">Date</th>
-        <th className="admin-th">Place</th>
-        <th className="admin-th">Neighborhood</th>
-        <th className="admin-th">Guest Speaker</th>
-        <th className="admin-th">RSVP</th>
-        <th className="invisible">..........</th>
-      </tr>
+      <div className="header">
+        <div className="admin-th">Date</div>
+        <div className="admin-th">Place</div>
+        <div className="admin-th">Neighborhood</div>
+        <div className="admin-th">Guest Speaker</div>
+        <div className="admin-th">RSVP</div>
+      </div>
   )}
 
 //the filter is a loop that takes a function (we're just using the fat arrow syntax). The parameter(user) gets filled in with each individual item in the array. If it returns true, then that user gets put in the output set, if it returns false, it gets skipped
@@ -120,12 +117,10 @@ eventHeader(){
           onChange={this.updateSearch.bind(this)}
         />
         <br></br><br></br>
-        <table className="admin-table">
-          <tbody>
+        <div className="admin-table">
             {header}
             {mappedFilter}
-          </tbody>
-        </table>
+        </div>
       </div>
     )}}
 

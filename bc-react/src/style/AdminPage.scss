@@ -103,6 +103,7 @@ form {
   }
 
   .admin-th, .admin-td {
+    flex: 1;
     border: 1px solid black;
     background-color: #eeeeee;
     border-color: #c1c1c1;
@@ -162,6 +163,10 @@ form {
     width: 831px;
   }
 
+  .header {
+    display: flex;
+  }
+
   .search_bar_wrapper {
     border-color: dimgray;
     text-align: center;
@@ -177,10 +182,12 @@ form {
     margin: none;
   }
 
-  .invisible {
-    background-color: white;
-    color: white;
-    border-color: white;
+  .table-data {
+    display: flex;
+  }
+
+  .table-data-item {
+    flex: 1;
   }
 
   .calendar-div{

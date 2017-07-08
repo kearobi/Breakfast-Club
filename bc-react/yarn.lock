@@ -5345,6 +5345,12 @@ react-scripts@^1.0.7:
   optionalDependencies:
     fsevents "1.0.17"
 
+react-table@^6.5.1:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-6.5.1.tgz#f60b80f8d23c5977969561fa56eddcdf33fb9900"
+  dependencies:
+    classnames "^2.2.5"
+
 react-tap-event-plugin@^0.2.1:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/react-tap-event-plugin/-/react-tap-event-plugin-0.2.2.tgz#4f6f257851654f6c2b1c213a1d3ff21b353ae4e1"
