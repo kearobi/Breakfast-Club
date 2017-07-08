@@ -53,11 +53,11 @@ class UserLogin extends Component {
         message: 'email address and password required'
       })
     }
-    else if (!this.state.user.active) {
-      this.setState({
-        message: 'this account is no longer active'
-      })
-    }
+    // else if (!this.state.user.active) {
+    //   this.setState({
+    //     message: 'this account is no longer active'
+    //   })
+    // }
     else {
       loginUser(this.state.user)
     }
