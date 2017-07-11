@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
-import SignUpInput from '../components/SignUpInput'
+import Input from '../components/Input'
 import signUpStore from '../stores/SignUpStore'
 import userStore from '../stores/UserStore'
 import Header from '../components/Header';
@@ -66,7 +66,7 @@ render(){
       </div>
         {this.state.message}
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-          <SignUpInput
+          <Input
             name='firstName'
             type={this.state.type}
             placeholder='first name'
@@ -74,7 +74,7 @@ render(){
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.firstName}
           />
-          <SignUpInput
+          <Input
             placeholder='last name'
             type={this.state.type}
             name='lastName'
@@ -82,7 +82,7 @@ render(){
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.lastName}
             />
-          <SignUpInput
+          <Input
             placeholder='email address'
             type={this.state.type}
             name='email'
@@ -90,7 +90,7 @@ render(){
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.email}
             />
-          <SignUpInput
+          <Input
             placeholder='neighborhood'
             type={this.state.type}
             name='neighborhood'
@@ -98,7 +98,7 @@ render(){
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.neighborhood}
             />
-          <SignUpInput
+          <Input
             placeholder='password'
             type='password'
             name='password'
@@ -106,7 +106,7 @@ render(){
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.password}
             />
-          <SignUpInput
+          <Input
             placeholder='reenter password'
             type='password'
             name='verifyPassword'

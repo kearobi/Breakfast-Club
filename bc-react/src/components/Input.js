@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-export default class SignUpInput extends Component {
+export default class Input extends Component {
   constructor(props){
     super(props)
     this.state={
