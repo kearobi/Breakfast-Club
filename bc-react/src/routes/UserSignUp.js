@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
 import Input from '../components/Input'
-import inputStore from '../stores/InputStore'
+import signUpStore from '../stores/SignUpStore'
 import userStore from '../stores/UserStore'
 import Header from '../components/Header';
 
@@ -12,7 +12,7 @@ class UserSignUp extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: inputStore.getUserFields(),
+      user: signUpStore.getFields(),
       errors: {},
       message: ''
     }
@@ -43,15 +43,15 @@ class UserSignUp extends Component {
   }
 
   validate(){
-    inputStore.validateUser()
-    this.setState({errors: inputStore.getErrors()})
+    signUpStore.validate()
+    this.setState({errors: signUpStore.getErrors()})
   }
 
 
   handleSubmit(e){
     e.preventDefault();
     this.validate()
-    if(Object.keys(inputStore.getErrors()).length < 1 ){
+    if(Object.keys(signUpStore.getErrors()).length < 1 ){
       addUser(this.state.user)
     }
   }
