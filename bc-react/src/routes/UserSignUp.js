@@ -65,7 +65,8 @@ render(){
         Sign Up
       </div>
         {this.state.message}
-        <form className='form' onSubmit={this.handleSubmit.bind(this)}>
+        <form className='form'
+              onSubmit={this.handleSubmit.bind(this)}>
           <Input
             name='firstName'
             type={this.state.type}
