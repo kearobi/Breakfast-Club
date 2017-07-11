@@ -1,4 +1,4 @@
-class SignUpStore {
+class InputStore {
   constructor(){
     this.fields = {
       firstName:'',
@@ -27,7 +27,6 @@ class SignUpStore {
     this.validatePresence('password')
     this.validatePassword('verifyPassword')
     this.validateEmail('email')
-
   }
 
   validatePassword(fieldName){
@@ -56,5 +55,5 @@ class SignUpStore {
 }
 
 
-const store = new SignUpStore()
+const store = new InputStore()
 export default store

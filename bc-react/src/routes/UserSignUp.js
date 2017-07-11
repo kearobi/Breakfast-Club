@@ -1,10 +1,10 @@
-//UserSignUp passes props to SignUpInput
+//UserSignUp passes props to Input component
 
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {addUser} from '../actions';
 import Input from '../components/Input'
-import signUpStore from '../stores/SignUpStore'
+import inputStore from '../stores/InputStore'
 import userStore from '../stores/UserStore'
 import Header from '../components/Header';
 
@@ -12,7 +12,7 @@ class UserSignUp extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: signUpStore.getFields(),
+      user: inputStore.getFields(),
       errors: {},
       message: ''
     }
@@ -43,15 +43,15 @@ class UserSignUp extends Component {
   }
 
   validate(){
-    signUpStore.validate()
-    this.setState({errors: signUpStore.getErrors()})
+    inputStore.validate()
+    this.setState({errors: inputStore.getErrors()})
   }
 
 
   handleSubmit(e){
     e.preventDefault();
     this.validate()
-    if(Object.keys(signUpStore.getErrors()).length < 1 ){
+    if(Object.keys(inputStore.getErrors()).length < 1 ){
       addUser(this.state.user)
     }
   }

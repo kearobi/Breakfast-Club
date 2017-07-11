@@ -1,4 +1,4 @@
-//SignUpInput gets props from UserSignUp
+//Input gets props from UserSignUp
 
 import React, { Component } from 'react';
 
