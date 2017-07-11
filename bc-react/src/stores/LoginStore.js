@@ -8,7 +8,7 @@ class LoginStore extends EventEmitter {
       email:'',
       password:'',
     }
-    this.errors = []
+    this.errors = {}
   }
 
   getFields(){

@@ -1,5 +1,9 @@
-class SignUpStore {
+import {EventEmitter} from 'events'
+import dispatcher from '../Dispatcher'
+
+class SignUpStore extends EventEmitter {
   constructor(){
+    super()
     this.fields = {
       firstName:'',
       lastName:'',
@@ -8,7 +12,7 @@ class SignUpStore {
       password:'',
       verifyPassword: ''
     }
-    this.errors = []
+    this.errors = {}
   }
 
   getFields(){
@@ -51,7 +55,32 @@ class SignUpStore {
   addError(fieldName, message){
     this.errors[fieldName] = message
   }
+
+  updateField(attribute, value){
+    this.fields[attribute] = value
+    this.emit('change')
+  }
+
+  submitRegistration(){
+    this.validate()
+    this.emit('change')
+  }
+
+  handleActions(action){
+    switch(action.type){
+      case("UPDATE_REGISTRATION"):{
+        this.updateField(action.attribute, action.value)
+        break
+      }
+      case("REGISTRATION_SUBMIT"):{
+        this.submitRegistration()
+        break
+      }
+      default:{}
+    }
+  }
 }
 
 const signUpStore = new SignUpStore()
+dispatcher.register(signUpStore.handleActions.bind(signUpStore))
 export default signUpStore

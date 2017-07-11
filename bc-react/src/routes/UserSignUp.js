@@ -7,53 +7,67 @@ import Input from '../components/Input'
 import signUpStore from '../stores/SignUpStore'
 import userStore from '../stores/UserStore'
 import Header from '../components/Header';
+import {updateRegistration, submitRegistration} from '../actions/UserActions'
 
 class UserSignUp extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: signUpStore.getFields(),
+      registration: signUpStore.getFields(),
       errors: {},
-      message: ''
     }
+    this.updateRegistration= this.updateRegistration.bind(this)
   }
 
   componentWillMount(){
-    userStore.on('User Created', this.redirectToHome.bind(this))
-    userStore.on('user create fail', this.loginFailed.bind(this))
+    // userStore.on('User Created', this.redirectToHome.bind(this))
+    // userStore.on('user create fail', this.loginFailed.bind(this))
+    signUpStore.on('change', this.updateRegistration)
   }
 
-  redirectToHome(){
-    this.props.history.push("/Home");
+  // redirectToHome(){
+  //   this.props.history.push("/Home");
+  // }
+  componentWillUnmount(){
+    signUpStore.removeListener('change', this.updateRegistration)
   }
 
-  loginFailed(){
+  updateRegistration(){
     this.setState({
-      message: 'registration failed, credentials invalid'
+      registration: signUpStore.getFields(),
+      errors: signUpStore.getErrors()
     })
   }
+
+  // loginFailed(){
+  //   this.setState({
+  //     message: 'registration failed, credentials invalid'
+  //   })
+  // }
 
   handleChange(e){
     let target = e.target
-    let user = this.state.user
-    user[target.name] = target.value
-    this.setState({
-      user: user
-    })
+    // let user = this.state.user
+    // user[target.name] = target.value
+    // this.setState({
+    //   user: user
+    // })
+    updateRegistration(target.name, target.value)
   }
 
-  validate(){
-    signUpStore.validate()
-    this.setState({errors: signUpStore.getErrors()})
-  }
+  // validate(){
+  //   signUpStore.validate()
+  //   this.setState({errors: signUpStore.getErrors()})
+  // }
 
 
   handleSubmit(e){
     e.preventDefault();
-    this.validate()
-    if(Object.keys(signUpStore.getErrors()).length < 1 ){
-      addUser(this.state.user)
-    }
+    // this.validate()
+    // if(Object.keys(signUpStore.getErrors()).length < 1 ){
+    //   addUser(this.state.user)
+    // }
+    submitRegistration()
   }
 
 render(){
@@ -69,33 +83,29 @@ render(){
               onSubmit={this.handleSubmit.bind(this)}>
           <Input
             name='firstName'
-            type={this.state.type}
             placeholder='first name'
-            value={this.state.user.firstName}
+            value={this.state.registration.firstName}
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.firstName}
           />
           <Input
             placeholder='last name'
-            type={this.state.type}
             name='lastName'
-            value={this.state.user.lastName}
+            value={this.state.registration.lastName}
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.lastName}
             />
           <Input
             placeholder='email address'
-            type={this.state.type}
             name='email'
-            value={this.state.user.email}
+            value={this.state.registration.email}
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.email}
             />
           <Input
             placeholder='neighborhood'
-            type={this.state.type}
             name='neighborhood'
-            value={this.state.user.neighborhood}
+            value={this.state.registration.neighborhood}
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.neighborhood}
             />
@@ -103,7 +113,7 @@ render(){
             placeholder='password'
             type='password'
             name='password'
-            value={this.state.user.password}
+            value={this.state.registration.password}
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.password}
             />
@@ -111,7 +121,7 @@ render(){
             placeholder='reenter password'
             type='password'
             name='verifyPassword'
-            value={this.state.user.verifyPassword}
+            value={this.state.registration.verifyPassword}
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.verifyPassword}
             />
