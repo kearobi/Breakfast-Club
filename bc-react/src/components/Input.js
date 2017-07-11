@@ -12,13 +12,7 @@ export default class Input extends Component {
 
   render(){
     return(
-      <div className="formGroup">
-        <label
-          htmlFor={this.props.name}
-          className='control-label'
-        >
-          {this.props.label}
-        </label>
+      <div>
         <input
           placeholder={this.props.placeholder}
           type={this.props.type}
