@@ -40,7 +40,6 @@ class App extends Component {
 
   render() {
     return (
-      <div>
       <Router>
         <div>
             <Route exact path='/' component={SplashPage}/>
@@ -58,7 +57,6 @@ class App extends Component {
             <Route path='/flex' component={FlexPractice} />
         </div>
       </Router>
-    </div>
     );
   }
 }

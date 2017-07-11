@@ -431,7 +431,7 @@ app.post('/signup', function(request, response){
   })
 })
 
-app.put('/edit/user', function(request, response){
+app.put('/profile', function(request, response){
   console.log("request: ", request);
   console.log("response: ", response);
 
