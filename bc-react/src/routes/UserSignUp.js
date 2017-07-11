@@ -12,7 +12,7 @@ class UserSignUp extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: inputStore.getFields(),
+      user: inputStore.getUserFields(),
       errors: {},
       message: ''
     }
@@ -43,7 +43,7 @@ class UserSignUp extends Component {
   }
 
   validate(){
-    inputStore.validate()
+    inputStore.validateUser()
     this.setState({errors: inputStore.getErrors()})
   }
 
