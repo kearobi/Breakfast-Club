@@ -29,13 +29,15 @@ class SignUpStore extends EventEmitter {
     this.validatePresence('lastName')
     this.validatePresence('neighborhood')
     this.validatePresence('password')
+    this.validatePresence('verifyPassword')
     this.validatePassword('verifyPassword')
     this.validateEmail('email')
+    this.validatePresence('email')
   }
 
   validatePassword(fieldName){
     if(this.fields[fieldName] !== this.fields.password){
-      this.addError(fieldName, 'verify password')
+      this.addError(fieldName, 'try again')
     }
   }
 

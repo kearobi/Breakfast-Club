@@ -21,8 +21,9 @@ class LoginStore extends EventEmitter {
 
   validate(){
     this.errors = {}
-    this.validateEmail('email')
     this.validatePresence('password')
+    this.validateEmail('email')
+    this.validatePresence('email')
   }
 
   validatePresence(fieldName){

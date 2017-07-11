@@ -59,7 +59,7 @@ app.get('/messages', authorization, function (request, response) {
     response.json({message: "success", messages: messages});
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
@@ -68,10 +68,10 @@ app.post('/add-message', authorization, function(request, response){
   let params = request.body
   Message.create(params).then(function(message){
     response.status(200)
-    response.json({status: 'success', message: message});
+    response.json({message: 'success', message: message});
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
@@ -360,7 +360,7 @@ app.post('/rsvp', authorization, function(request, response){
   })
   .catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
@@ -390,11 +390,11 @@ app.get('/events', authorization, function(request, response){
       event.place = promises[i]
     })
     response.status(200)
-    response.json({status: 'success', events: _events})
+    response.json({message: 'success', events: _events})
   })
   .catch(function(error){
     response.status(500)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
@@ -402,7 +402,7 @@ app.get('/events', authorization, function(request, response){
 app.get('/places', authorization, function(request, response){
   Place.findAll().then(function(places){
     response.status(200)
-    response.json({status: 'success', places: places})
+    response.json({message: 'success', places: places})
   })
 })
 
@@ -410,10 +410,10 @@ app.post('/places', authorization, function(request, response){
   let placeParams = request.body.place
   Place.create(placeParams).then(function(place){
     response.status(200)
-    response.json({status: 'success', place: place})
+    response.json({message: 'success', place: place})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
@@ -441,11 +441,10 @@ app.put('/profile', authorization, function(request, response){
   let userParams = request.body.user
   User.update(userParams, {where: {id: userParams.id}}).then(function(user){
     response.status(200)
-    response.json({status: 'success', user: user})
+    response.json({message: 'success', user: user})
   }).catch(function(error){
-  console.log("error", error)
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
@@ -709,47 +708,45 @@ app.post('/login', function(request, response){
 app.get('/admin/get/places', authorization, function(request, response){
   Place.findAll().then(function(places){
     response.status(200)
-    response.json({status: 'success', places: places})
+    response.json({message: 'success', places: places})
   })})
 app.get('/admin/get/users', authorization, function(request, response){
   User.findAll().then(function(users){
     response.status(200)
-    response.json({status: 'success', users: users})
+    response.json({message: 'success', users: users})
   })})
 app.get('/admin/get/events', authorization, function(request, response){
   Bevent.findAll().then(function(events){
     response.status(200)
-    response.json({status: 'success', events: events})
+    response.json({message: 'success', events: events})
   })})
 
 app.post('/admin/add/user', authorization, function(request, response){
   let userParams = request.body.user
-  console.log("userParams: ", userParams)
   User.create(userParams).then(function(user){
     response.status(200)
-    response.json({status: 'success', user: user})
+    response.json({message: 'success', user: user})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
-    console.log("error: ", error)
+    response.json({message: 'error', errors: error.errors})
   })})
 app.post('/admin/add/place', authorization, function(request, response){
   let placeParams = request.body.place
   Place.create(placeParams).then(function(place){
     response.status(200)
-    response.json({status: 'success', place: place})
+    response.json({message: 'success', place: place})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
 app.post('/admin/add/event', authorization, function(request, response){
   let eventParams = request.body.event
   Bevent.create(eventParams).then(function(event){
     response.status(200)
-    response.json({status: 'success', event: event})
+    response.json({message: 'success', event: event})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
 
 //delete is name of HTTP method we're using. the userParams have ID because we're only passing the ID in
@@ -764,11 +761,11 @@ app.delete('/admin/delete/user', authorization, function(request, response){
     User.destroy({where: {id: userParams}}).then(function(user){
       response.status(200)
       //this user:user comes from the then function
-      response.json({status: 'success', user: user})
+      response.json({message: 'success', user: user})
     }).catch(function(error){
       response.status(400)
       console.log("error", error)
-      response.json({status: 'error', error: error})
+      response.json({message: 'error', errors: error.errors})
     })
   })
 })
@@ -777,33 +774,31 @@ app.delete('/admin/delete/place', authorization, function(request, response){
   let placeParams = request.body.id
   Place.destroy({where: {id: placeParams}}).then(function(place){
     repsonse.status(200)
-    response.json({status: 'success', place: place})
+    response.json({message: 'success', place: place})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
 app.delete('/admin/delete/event', authorization, function(request, response){
   let eventParams = request.body.id
   Bevent.destroy({where: {id: eventParams}}).then(function(event){
     repsonse.status(200)
-    response.json({status: 'success', event: event})
+    response.json({message: 'success', event: event})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
 
 //ask rob for help
 app.put('/admin/edit/user', authorization, function(request, response){
   //the body contains the user, and the user contains the properties
-  console.log(request.body)
   let userParams = request.body.user
   User.update(userParams, {where: {id: userParams.id}}).then(function(user){
     response.status(200)
-    response.json({status: 'success', user: user})
+    response.json({message: 'success', user: user})
   }).catch(function(error){
-  console.log("error", error)
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
 app.put('/admin/edit/place', authorization, function(request, response){
   let placeParams = request.body.place
@@ -811,19 +806,19 @@ app.put('/admin/edit/place', authorization, function(request, response){
   console.log("placeParams", placeParams)
   Place.update(placeParams, {where: {id: placeParams.id}}).then(function(place){
     response.status(200)
-    response.json({status: 'success', place: place})
+    response.json({message: 'success', place: place})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
 app.put('/admin/edit/event', authorization, function(request, response){
   let eventParams = request.body.event
   Bevent.update(eventParams, {where: {id: eventParams.id}}).then(function(event){
     response.status(200)
-    response.json({status: 'success', event: user})
+    response.json({message: 'success', event: user})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
 
 app.get('*', function(request, response) {
