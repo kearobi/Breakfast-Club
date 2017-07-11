@@ -8,7 +8,6 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 export function editUser(attributes){
-  console.log ('the attributes being passed into editUser are:', attributes)
   const params = {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},

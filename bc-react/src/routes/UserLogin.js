@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {updateLogin, submitLogin} from '../actions';
+import {updateLogin, submitLogin} from '../actions/UserActions';
 import userStore from '../stores/UserStore';
-import loginStore from '../stores/UserStore';
+import loginStore from '../stores/LoginStore';
 import Header from '../components/Header';
 import Input from '../components/Input';
 
@@ -78,25 +78,17 @@ class UserLogin extends Component {
     submitLogin()
   }
 
-  isValid(){
-    return Object.keys(this.state.errors).length === 0
-  }
-
 render(){
   return (
     <div className="login-page">
       <div className="wrapper">
         <div className='header-wrapper'><Header /></div>
           <div className="entry-header">Log In</div>
-          { !this.isValid() &&
-            <div>Please verify that all fields are filled in below.</div>
-          }
           <form className='form' onSubmit={this.handleSubmit.bind(this)}>
             <Input
               placeholder='email address'
-              type='email'
               name='email'
-              value={this.state.user.email}
+              value={this.state.login.email}
               onChange={this.handleChange.bind(this)}
               errors={this.state.errors.email}
              />
@@ -104,7 +96,7 @@ render(){
               placeholder='password'
               type='password'
               name='password'
-              value={this.state.user.password}
+              value={this.state.login.password}
               onChange={this.handleChange.bind(this)}
               errors={this.state.errors.password}  />
             <div className='let-me-in'>

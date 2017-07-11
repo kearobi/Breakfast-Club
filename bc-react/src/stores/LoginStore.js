@@ -1,5 +1,9 @@
-class LoginStore {
+import {EventEmitter} from 'events'
+import dispatcher from '../Dispatcher'
+
+class LoginStore extends EventEmitter {
   constructor(){
+    super()
     this.fields = {
       email:'',
       password:'',
@@ -37,7 +41,33 @@ class LoginStore {
   addError(fieldName, message){
     this.errors[fieldName] = message
   }
+
+  updateLogin(attribute, value){
+    this.fields[attribute] = value
+    this.emit('change')
+  }
+
+  submitLogin(){
+    this.validate()
+    this.emit('change')
+  }
+
+  handleActions(action){
+    switch(action.type){
+      case("UPDATE_LOGIN"):{
+        this.updateLogin(action.attribute, action.value)
+        break
+      }
+
+      case("LOGIN_SUBMIT"):{
+        this.submitLogin()
+        break
+      }
+      default:{}
+    }
+  }
 }
 
 const loginStore = new LoginStore()
+dispatcher.register(loginStore.handleActions.bind(loginStore))
 export default loginStore
