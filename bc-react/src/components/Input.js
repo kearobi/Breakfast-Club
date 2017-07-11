@@ -1,8 +1,8 @@
-//SignUpInput gets props from UserSignUp
+//Input gets props from UserSignUp
 
 import React, { Component } from 'react';
 
-export default class SignUpInput extends Component {
+export default class Input extends Component {
   constructor(props){
     super(props)
     this.state={
@@ -12,13 +12,7 @@ export default class SignUpInput extends Component {
 
   render(){
     return(
-      <div className="formGroup">
-        <label
-          htmlFor={this.props.name}
-          className='control-label'
-        >
-          {this.props.label}
-        </label>
+      <div>
         <input
           placeholder={this.props.placeholder}
           type={this.props.type}
