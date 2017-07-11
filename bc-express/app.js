@@ -433,7 +433,7 @@ app.post('/signup', function(request, response){
     response.json({message: 'success', user: user})
   }).catch((error)=>{
     response.status(400)
-    response.json({message: 'error', error: error})
+    response.json({message: 'Unable to create user', errors: error.errors})
   })
 })
 
