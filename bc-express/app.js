@@ -419,15 +419,22 @@ app.post('/places', function(request, response){
 })
 
 app.post('/signup', function(request, response){
-  request.body.voted = false
-  let userParams = request.body
-  User.create(userParams).then(function(user){
+  // request.body.voted = false
+  // let userParams = request.body
+  User.create(
+    {
+      firstName: request.body.firstName,
+      lastName: request.body.lastName,
+      email: request.body.email,
+      neighborhood: request.body.neighborhood,
+      password: request.body.password
+    }
+  ).then((user)=>{
     response.status(200)
-    response.json({status: 'success', user: user})
-  }).catch(function(error){
+    response.json({message: 'success', user: user})
+  }).catch((error)=>{
     response.status(400)
-    console.log('error: ', error)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', error: error})
   })
 })
 
