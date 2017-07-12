@@ -40,3 +40,10 @@ export function logout(){
     type: 'LOGOUT'
   })
 }
+
+export function registrationFail(errors){
+  dispatcher.dispatch({
+    type: 'REGISTRATION_FAIL',
+    errors: errors
+  })
+}

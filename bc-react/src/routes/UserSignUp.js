@@ -2,10 +2,8 @@
 
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {addUser} from '../actions';
 import Input from '../components/Input'
 import signUpStore from '../stores/SignUpStore'
-import userStore from '../stores/UserStore'
 import Header from '../components/Header';
 import {updateRegistration, submitRegistration} from '../actions/UserActions'
 

@@ -72,6 +72,13 @@ class SignUpStore extends EventEmitter {
     this.emit('change')
   }
 
+  handleServerErrors(errors){
+    errors.forEach((error) =>{
+      this.errors[error.path] = error.message
+    })
+    this.emit('change')
+  }
+
   handleActions(action){
     switch(action.type){
       case("UPDATE_REGISTRATION"):{
@@ -80,6 +87,10 @@ class SignUpStore extends EventEmitter {
       }
       case("REGISTRATION_SUBMIT"):{
         this.submitRegistration()
+        break
+      }
+      case("REGISTRATION_FAIL"):{
+        this.handleServerErrors(action.errors)
         break
       }
       default:{}
