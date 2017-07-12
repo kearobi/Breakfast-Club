@@ -110,13 +110,13 @@ class Home extends Component {
         <div className="wrapper">{/* //this is the flex container */}
             <SideBar
               isAdmin={this.state.user.admin}
-              // handleLogOut={this.handleLogOut}
+              handleLogOut={this.handleLogOut}
             />{/* //this is a flex item  with a nested flex container */}
           <div className='home-page'>{/* //this is a flex item */}
             <div className='nested'>{/* //this is a nested flex container */}
               <SideBarMini
                 isAdmin={this.state.user.admin}
-                // handleLogOut={this.handleLogOut}
+                handleLogOut={this.handleLogOut}
               />
               <Header />
           <div className="welcome-message">

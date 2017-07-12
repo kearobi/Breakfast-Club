@@ -664,7 +664,7 @@ app.post('/current-event', authorization, function(request, response){
   })
 })
 
-app.post('/login', function(request, response){
+app.put('/login', function(request, response){
   User.findOne({
     where:{email: request.body.email}
   }).then((user)=>{

@@ -13,8 +13,9 @@ import CurrentEvent from './routes/CurrentEvent'
 import Photos from './routes/Photos'
 import VotePage from './routes/VotePage'
 import FlexPractice from './components/FlexPractice'
+import PageNotFound from './routes/PageNotFound'
 import './style/App.css';
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 import userStore from './stores/UserStore'
 //only the most parent component should be responsible for fetching data, aka here?
 
@@ -55,6 +56,7 @@ class App extends Component {
       //https://www.learnacademy.org/days/566 - Current User video
       <Router>
         <div>
+          <Switch>
             <Route  exact path='/'
                     render={()=>(
                     this.state.isLoggedIn ? (<Redirect to='/home' />) : (<SplashPage />) )} />
@@ -86,6 +88,9 @@ class App extends Component {
             <Route exact path='/test-event' component={TestEvent} />
             <Route exact path='/vote' component={VotePage} />
             <Route exact path='/flex' component={FlexPractice} />
+            <Route exact path='/404' component={PageNotFound} />
+            <Redirect to='/404'/>
+          </Switch>
         </div>
       </Router>
     );

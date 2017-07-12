@@ -34,7 +34,7 @@ class UserService {
 
   submitLogin(attributes){
     const params = {
-      method: 'POST',
+      method: 'PUT',
       headers: this.headers,
       body: JSON.stringify(attributes)
     }
