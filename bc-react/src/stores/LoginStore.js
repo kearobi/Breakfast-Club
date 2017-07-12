@@ -16,6 +16,11 @@ class LoginStore extends EventEmitter {
     return this.fields
   }
 
+  clearFields(){
+    this.fields = {}
+    this.emit('change')
+  }
+
   getErrors(){
     return this.errors
   }
@@ -68,13 +73,16 @@ class LoginStore extends EventEmitter {
         this.updateLogin(action.attribute, action.value)
         break
       }
-
       case("LOGIN_SUBMIT"):{
         this.submitLogin()
         break
       }
       case("LOGIN_FAIL"):{
         this.loginFail()
+        break
+      }
+      case("UPDATE_USER"):{
+        this.clearFields()
         break
       }
       default:{}
