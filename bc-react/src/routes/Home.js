@@ -4,7 +4,7 @@ import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Reminder from '../components/Reminder';
 import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions';
-import {checkLoginRedir} from '../actions'
+// import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
 import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';

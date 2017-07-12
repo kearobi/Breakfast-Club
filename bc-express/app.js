@@ -667,18 +667,16 @@ app.post('/current-event', authorization, function(request, response){
 app.post('/login', function(request, response){
   User.findOne({
     where:{email: request.body.email}
-  })
-  // search for User by email
-  .then(function(user){
+  }).then((user)=>{
     if(user && user.verifyPassword(request.body.password)){
       response.status(200)
       response.json({
         message: 'Success!',
-        user: user,
+        user: user
       })
     }else{
       response.status(400)
-      response.json({message: 'Invalid Credentials'})
+      response.json({message: 'invalid username and/or password'})
     }
   })
 })
