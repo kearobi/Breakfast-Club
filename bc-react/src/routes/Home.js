@@ -30,7 +30,6 @@ class Home extends Component {
     // this.onlogout = this.handleLogOut.bind(this)
     this.oncurrent = this.updateCurrentEvent.bind(this)
     this.onevents = this.events.bind(this)
-    console.log("this.props.initial:", this.props.initial)
     if (this.props.initial){
       fetchCurrentEvent()
       fetchEvents();
@@ -117,7 +116,7 @@ class Home extends Component {
             <div className='nested'>{/* //this is a nested flex container */}
               <SideBarMini
                 isAdmin={this.state.user.admin}
-                handleLogOut={this.logout}
+                handleLogOut={this.handleLogOut}
               />
               <Header />
           <div className="welcome-message">
