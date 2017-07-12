@@ -23,7 +23,7 @@ class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      user: userStore.getUser(),
+      user: userStore.getFields(),
       event: eventStore.getCurrentEvent(),
       events: []
     }
@@ -122,7 +122,7 @@ class Home extends Component {
               />
               <Header />
           <div className="welcome-message">
-            <div className='welcome-user'>Hey, {userStore.getUser().firstName}! </div>
+            <div className='welcome-user'>Hey, {this.state.user.firstName}! </div>
             <div className='reminder'><Reminder /></div>
             <div className='upcoming-event'><Link to='/current-event'>Current Event</Link></div>
           </div>

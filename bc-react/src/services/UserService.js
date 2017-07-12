@@ -2,9 +2,31 @@
 import {updateUser} from '../actions/UserActions';
 
 class UserService {
-  submitRegistration(attributes){
+  constructor(){
+    if(process.env.NODE_ENV === 'production'){
+      this.baseUrl = "/"
+    } else {
+      this.baseUrl = "http://localhost:4000/"
+    }
+  }
 
-    updateUser(attributes)
+  submitRegistration(attributes){
+    const params = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(attributes)
+    }
+    fetch(`${this.baseUrl}signup`, params).then((response)=>{
+      if(response.ok){
+        response.json().then((body)=>{
+          console.log(body)
+        })
+      }else{
+        console.log(response)
+        }
+      })
+    setTimeout(()=>{
+      updateUser(attributes)}, 1000)
   }
 }
 

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {updateLogin, submitLogin} from '../actions/UserActions';
-import userStore from '../stores/UserStore';
 import loginStore from '../stores/LoginStore';
 import Header from '../components/Header';
 import Input from '../components/Input';

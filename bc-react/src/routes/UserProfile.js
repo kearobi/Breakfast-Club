@@ -6,7 +6,6 @@ import {editUser} from '../actions';
 // import MyUploader from '../components/PhotoUpload'
 import Header from '../components/Header';
 import MessageBoardToggle from '../components/MessageBoardToggle';
-import { withRouter } from 'react-router';
 import Input from '../components/Input';
 
 class UserProfile extends Component {
@@ -38,14 +37,14 @@ class UserProfile extends Component {
 
   editIcon(){
     return(
-      <img id="edit_icon"
-          src={this.state.editIcon}
-          alt="edit"
-          title={this.state.title}
-          onMouseEnter={this.handleMouseEnter.bind(this)}
-          onMouseLeave={this.handleMouseLeave.bind(this)}
-          onClick={this.handleClick.bind(this)}
-        />
+      <img  id="edit_icon"
+            src={this.state.editIcon}
+            alt="edit"
+            title={this.state.title}
+            onMouseEnter={this.handleMouseEnter.bind(this)}
+            onMouseLeave={this.handleMouseLeave.bind(this)}
+            onClick={this.handleClick.bind(this)}
+          />
         )}
 
   handleMouseEnter(e){
@@ -164,7 +163,6 @@ class UserProfile extends Component {
                   <Input
                     className={this.state.className}
                     name='neighborhood'
-                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.neighborhood}
                     onChange={this.handleEdit.bind(this)} />

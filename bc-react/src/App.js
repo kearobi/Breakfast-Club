@@ -67,7 +67,6 @@ class App extends Component {
             <Route  exact path='/places'
                     render={()=>(
                     this.state.isLoggedIn ? (<Places />) : (<Redirect to='/' />)  )} />
-            <Route exact path='/admin' component={AdminPage} />
             {/* <Route exact path='/home-initial' render={this.handleInitialHome} /> */}
             {/* <Route exact path='/home' render={this.handleDefaultHome} /> */}
             <Route  exact path='/home'
@@ -83,6 +82,7 @@ class App extends Component {
                     render={()=>(
                     this.state.isLoggedIn ? (<Photos />) : (<Redirect to='/' />)  )} />
             {/* //TODO: add admin check to profile page */}
+            <Route exact path='/admin' component={AdminPage} />
             <Route exact path='/test-event' component={TestEvent} />
             <Route exact path='/vote' component={VotePage} />
             <Route exact path='/flex' component={FlexPractice} />
