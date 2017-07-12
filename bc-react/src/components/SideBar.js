@@ -26,7 +26,9 @@ class SideBar extends Component {
         <a className="item wobble" href="/photos"><img src='../Images/camera.png' alt='photos'/>
           <div className='caption'>photos</div>
         </a>
-        <a className="item wobble" href="/" onClick={this.props.handleLogOut}><img src='../Images/logout.png' alt='log out'/>
+        <a className="item wobble" href="/"
+        // onClick={this.props.handleLogOut}
+        ><img src='../Images/logout.png' alt='log out'/>
           <div className='caption'>log out</div>
         </a>
         </div>
