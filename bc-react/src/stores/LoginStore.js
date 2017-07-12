@@ -1,5 +1,6 @@
 import {EventEmitter} from 'events'
 import dispatcher from '../Dispatcher'
+import userService from '../services/UserService'
 
 class LoginStore extends EventEmitter {
   constructor(){
@@ -50,6 +51,14 @@ class LoginStore extends EventEmitter {
 
   submitLogin(){
     this.validate()
+    if(Object.keys(this.errors).length === 0){
+      userService.submitLogin(this.fields)
+    }
+    this.emit('change')
+  }
+
+  loginFail(){
+    this.errors['general'] = 'invalid username/password'
     this.emit('change')
   }
 
@@ -62,6 +71,10 @@ class LoginStore extends EventEmitter {
 
       case("LOGIN_SUBMIT"):{
         this.submitLogin()
+        break
+      }
+      case("LOGIN_FAIL"):{
+        this.loginFail()
         break
       }
       default:{}

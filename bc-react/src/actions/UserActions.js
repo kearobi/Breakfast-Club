@@ -47,3 +47,9 @@ export function registrationFail(errors){
     errors: errors
   })
 }
+
+export function loginFail(){
+  dispatcher.dispatch({
+    type: 'LOGIN_FAIL',
+  })
+}

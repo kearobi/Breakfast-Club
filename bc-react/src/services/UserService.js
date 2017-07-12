@@ -1,5 +1,5 @@
 //this will be fired off from our UserStore when the store is ready to send its information back to the server
-import {updateUser, registrationFail} from '../actions/UserActions';
+import {updateUser, registrationFail, loginFail} from '../actions/UserActions';
 
 let baseUrl;
 if(process.env.NODE_ENV === 'production'){
@@ -10,17 +10,13 @@ if(process.env.NODE_ENV === 'production'){
 
 class UserService {
   constructor(){
-    // if(process.env.NODE_ENV === 'production'){
-    //   this.baseUrl = "/"
-    // } else {
-    //   this.baseUrl = "http://localhost:4000/"
-    // }
+    this.headers = {'Content-Type': 'application/json'}
   }
 
   submitRegistration(attributes){
     const params = {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: this.headers,
       body: JSON.stringify(attributes)
     }
     fetch(`${baseUrl}signup`, params).then((response)=>{
@@ -32,6 +28,23 @@ class UserService {
         response.json().then((body)=>{
           registrationFail(body.errors)
         })
+      }
+    })
+  }
+
+  submitLogin(attributes){
+    const params = {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify(attributes)
+    }
+    fetch(`${baseUrl}login`, params).then((response)=>{
+      if(response.ok){
+        response.json().then((body)=>{
+          updateUser(body.user)
+        })
+      }else{
+        loginFail()
       }
     })
   }
