@@ -64,6 +64,11 @@ class SignUpStore extends EventEmitter {
     this.emit('change')
   }
 
+  clearFields(){
+    this.fields = {}
+    this.emit('change')
+  }
+
   submitRegistration(){
     this.validate()
     if(Object.keys(this.errors).length === 0){
@@ -91,6 +96,10 @@ class SignUpStore extends EventEmitter {
       }
       case("REGISTRATION_FAIL"):{
         this.handleServerErrors(action.errors)
+        break
+      }
+      case("UPDATE_USER"):{
+        this.clearFields()
         break
       }
       default:{}
