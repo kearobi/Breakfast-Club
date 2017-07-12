@@ -27,3 +27,16 @@ export function submitLogin(loginAttributes){
     type: 'LOGIN_SUBMIT'
   })
 }
+
+export function updateUser(attributes){
+  dispatcher.dispatch({
+    type: 'UPDATE_USER',
+    attributes: attributes
+  })
+}
+
+export function logout(){
+  dispatcher.dispatch({
+    type: 'LOGOUT'
+  })
+}

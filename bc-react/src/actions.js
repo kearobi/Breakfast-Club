@@ -157,26 +157,26 @@ export function registerVote(user, event, choice){
   })
 }
 
-export function checkLoginRedir(props, currentUser){
-  if(currentUser === null){
-    props.history.push("/login")
-    return false
-  }else{
-    return true
-  }
-}
-
-export function checkLogin(){
-  dispatcher.dispatch({
-    type: 'CHECK_LOGIN'
-  })
-}
-
-export function userLogout(){
-  dispatcher.dispatch({
-    type: "LOGOUT"
-  })
-}
+// export function checkLoginRedir(props, currentUser){
+//   if(currentUser === null){
+//     props.history.push("/login")
+//     return false
+//   }else{
+//     return true
+//   }
+// }
+//
+// export function checkLogin(){
+//   dispatcher.dispatch({
+//     type: 'CHECK_LOGIN'
+//   })
+// }
+//
+// export function userLogout(){
+//   dispatcher.dispatch({
+//     type: "LOGOUT"
+//   })
+// }
 
 export function fetchEvent(attributes){
   const params = {

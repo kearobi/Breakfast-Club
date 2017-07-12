@@ -8,9 +8,14 @@ class SideBar extends Component {
         {/* sidebar is a flex item of the parent */}
         <div className='nested'>
         {/* nesting is the nested flex box */}
-        <a className="item wobble" href="/profile"> <img src='../Images/user.png' alt='profile'/>
-          <div className='caption'>profile</div>
-        </a>
+        {this.props.isAdmin &&
+          <a className="item wobble" href="/admin"> <img src='../Images/user.png' alt='admin'/>
+            <div className='admin'>admin</div>
+          </a>}
+        {!this.props.isAdmin &&
+          <a className="item wobble" href="/profile"> <img src='../Images/user.png' alt='profile'/>
+            <div className='caption'>profile</div>
+          </a>}
         <a className="item wobble" href="/home">
           <img src='../Images/calendar.png' alt='calendar'/>
           <div className='caption'>calendar</div>
@@ -21,7 +26,7 @@ class SideBar extends Component {
         <a className="item wobble" href="/photos"><img src='../Images/camera.png' alt='photos'/>
           <div className='caption'>photos</div>
         </a>
-        <a className="item wobble" href="/"><img src='../Images/logout.png' alt='log out'/>
+        <a className="item wobble" href="/" onClick={this.props.handleLogOut}><img src='../Images/logout.png' alt='log out'/>
           <div className='caption'>log out</div>
         </a>
         </div>
