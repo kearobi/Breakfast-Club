@@ -7,7 +7,6 @@ import TestEvent from './routes/TestEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import {updatePlaces} from './actions'
-import {checkLogin} from './actions'
 import Places from './routes/Places'
 import CurrentEvent from './routes/CurrentEvent'
 import Photos from './routes/Photos'
