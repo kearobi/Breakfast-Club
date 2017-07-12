@@ -5,7 +5,6 @@ import SideBarMini from '../components/SideBarMini';
 import Header from '../components/Header';
 import MessageBoardToggle from '../components/MessageBoardToggle';
 
-
 class Photos extends Component {
 
   prev(e) {

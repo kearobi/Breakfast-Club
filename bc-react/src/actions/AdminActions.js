@@ -1,6 +1,6 @@
 import dispatcher from '../Dispatcher'
 
-export function adminLoadUsers(){
+export function adminGetUsers(){
   const params = {
     method: 'GET',
     headers: {'Content-Type': 'application/json'}}
@@ -8,7 +8,7 @@ export function adminLoadUsers(){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
-          type: 'ADMIN_LOAD_USERS',
+          type: 'ADMIN_GET_USERS',
           users: body.users
         })
       })}
@@ -16,7 +16,7 @@ export function adminLoadUsers(){
     // adminStore.updateMessage("There was an error: " + error)
   })}
 
-export function adminLoadPlaces(){
+export function adminGetPlaces(){
   const params = {
     method: 'GET',
     headers: {'Content-Type': 'application/json'}}
@@ -24,7 +24,7 @@ export function adminLoadPlaces(){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
-          type: 'ADMIN_LOAD_PLACES',
+          type: 'ADMIN_GET_PLACES',
           places: body.places
         })
       })}
@@ -32,7 +32,7 @@ export function adminLoadPlaces(){
     // adminStore.updateMessage("There was an error: " + error)
   })}
 
-export function adminLoadEvents(){
+export function adminGetEvents(){
   const params = {
     method: 'GET',
     headers: {'Content-Type': 'application/json'}}
@@ -40,7 +40,7 @@ export function adminLoadEvents(){
     if(response.status === 200){
       response.json().then(function(body){
         dispatcher.dispatch({
-          type: 'ADMIN_LOAD_EVENTS',
+          type: 'ADMIN_GET_EVENTS',
           events: body.events
         })
       })}
