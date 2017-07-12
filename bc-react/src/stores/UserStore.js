@@ -13,18 +13,18 @@ class UserStore extends EventEmitter{
 
   // Updates the VM after a user action
   updateUser(attributes){
-    this.user = attributes
+    this.fields = attributes
     // console.log('this is the user info entered into updateUser from editUser: ', this.user)
-    // localStorage.setItem('authToken', this.user.authToken);
-    // localStorage.setItem('authTokenExpiration', this.user.authTokenExpiration);
-    // localStorage.setItem('firstName', this.user.firstName);
-    // localStorage.setItem('lastName', this.user.lastName);
-    // localStorage.setItem('email', this.user.email);
-    // localStorage.setItem('neighborhood', this.user.neighborhood);
-    // localStorage.setItem('voted', this.user.voted);
-    // localStorage.setItem('rsvp', this.user.rsvp);
-    // localStorage.setItem('id', this.user.id);
-    // localStorage.setItem('active', this.user.active);
+    // localStorage.setItem('authToken', this.fields.authToken);
+    // localStorage.setItem('authTokenExpiration', this.fields.authTokenExpiration);
+    // localStorage.setItem('firstName', this.fields.firstName);
+    // localStorage.setItem('lastName', this.fields.lastName);
+    // localStorage.setItem('email', this.fields.email);
+    // localStorage.setItem('neighborhood', this.fields.neighborhood);
+    // localStorage.setItem('voted', this.fields.voted);
+    // localStorage.setItem('rsvp', this.fields.rsvp);
+    // localStorage.setItem('id', this.fields.id);
+    // localStorage.setItem('active', this.fields.active);
     // store user credentials 'authToken, expire and email' locally in user browser.
     this.emit('change')
   }

@@ -72,7 +72,6 @@ export function adminDeletePlace(attributes){
     const params = {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'},
-      //we're turning it back into a JS object instead of just the number 6
       body: JSON.stringify({id: attributes})
     }
     // send state to the backend server. it's /admin according to the API we built
