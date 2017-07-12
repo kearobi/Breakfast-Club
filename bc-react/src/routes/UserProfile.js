@@ -6,30 +6,45 @@ import {editUser} from '../actions';
 // import MyUploader from '../components/PhotoUpload'
 import Header from '../components/Header';
 import MessageBoardToggle from '../components/MessageBoardToggle';
-import { withRouter } from 'react-router';
+import Input from '../components/Input';
 
 class UserProfile extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: userStore.getUser(),
+      user: userStore.getFields(),
       editIcon: '../Images/edit.png',
       readOnly: true,
       title: 'edit',
       header: 'Edit Profile'
     }
+    this.updateUser = this.updateUser.bind(this)
+  }
+//the component is now listening to the store for changes
+  componentWillMount(){
+    userStore.on('change', this.updateUser)
+  }
+
+  componentWillUnount(){
+    userStore.removeListener('change', this.updateUser)
+  }
+
+  updateUser(){
+    this.setState({
+      user: userStore.getFields()
+    })
   }
 
   editIcon(){
     return(
-      <img id="edit_icon"
-          src={this.state.editIcon}
-          alt="edit"
-          title={this.state.title}
-          onMouseEnter={this.handleMouseEnter.bind(this)}
-          onMouseLeave={this.handleMouseLeave.bind(this)}
-          onClick={this.handleClick.bind(this)}
-        />
+      <img  id="edit_icon"
+            src={this.state.editIcon}
+            alt="edit"
+            title={this.state.title}
+            onMouseEnter={this.handleMouseEnter.bind(this)}
+            onMouseLeave={this.handleMouseLeave.bind(this)}
+            onClick={this.handleClick.bind(this)}
+          />
         )}
 
   handleMouseEnter(e){
@@ -79,7 +94,6 @@ class UserProfile extends Component {
   }
 
   render(){
-
     return (
           <div className='wrapper'>{/* //this is the flex container */}
             <SideBar />{/* //this is a flex item  with a nested flex container */}
@@ -108,31 +122,24 @@ class UserProfile extends Component {
               <tr>
                 <td className='field'>First Name:</td>
                 <td>
-                  <input
+                  <Input
                     className={this.state.className}
                     type='text'
                     name='firstName'
-                    id='firstName'
-                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.firstName}
-                    onChange={this.handleEdit.bind(this)}>
-                  </input>
+                    onChange={this.handleEdit.bind(this)} />
                 </td>
               </tr>
               <tr>
                 <td className='field'>Last Name:</td>
                 <td>
-                  <input
+                  <Input
                     className={this.state.className}
-                    type='text'
                     name='lastName'
-                    id='lastName'
-                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.lastName}
-                    onChange={this.handleEdit.bind(this)}>
-                  </input>
+                    onChange={this.handleEdit.bind(this)} />
                 </td>
               </tr>
               <tr>
@@ -143,7 +150,6 @@ class UserProfile extends Component {
                     size='30'
                     type='email'
                     name='email'
-                    id='email'
                     autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.email}
@@ -154,16 +160,12 @@ class UserProfile extends Component {
               <tr>
                 <td className='field'>Neighborhood:</td>
                 <td>
-                  <input
+                  <Input
                     className={this.state.className}
-                    type='text'
                     name='neighborhood'
-                    id='neighborhood'
-                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.neighborhood}
-                    onChange={this.handleEdit.bind(this)}>
-                  </input>
+                    onChange={this.handleEdit.bind(this)} />
                 </td>
               </tr>
             </tbody>

@@ -1,67 +1,80 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {loginUser, checkLoginRedir} from '../actions';
-import userStore from '../stores/UserStore';
+import {updateLogin, submitLogin} from '../actions/UserActions';
+import loginStore from '../stores/LoginStore';
 import Header from '../components/Header';
+import Input from '../components/Input';
 
 class UserLogin extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: {
-        email: "",
-        password: ""
-      },
-      message: ''
+      login: loginStore.getFields(),
+      errors: {}
     }
+    this.updateLogin = this.updateLogin.bind(this)
   }
 
   componentWillMount(){
-    userStore.on('admin-login', this.redirectToAdmin.bind(this));
-    userStore.on('login-success', this.redirectToHome.bind(this));
-    userStore.on('login-fail', this.loginFailed.bind(this));
-    //where does UserLogin receive props from?
-    checkLoginRedir(this.props, userStore.getUser());
+    loginStore.on('change', this.updateLogin)
+    // userStore.on('admin-login', this.redirectToAdmin.bind(this));
+    // userStore.on('login-success', this.redirectToHome.bind(this));
+    // userStore.on('login-fail', this.loginFailed.bind(this));
+    // //where does UserLogin receive props from?
+    // checkLoginRedir(this.props, userStore.getUser());
   }
 
-  redirectToHome(){
-    this.props.history.push("/home-initial");
+  componentWillUnmount(){
+    loginStore.removeListener('change', this.updateLogin)
   }
 
-  redirectToAdmin(){
-    this.props.history.push("/admin");
-  }
-
-  loginFailed(){
+  updateLogin(){
     this.setState({
-      message: '../Images/InvalidCred.PNG'
+      login: loginStore.getFields(),
+      errors: loginStore.getErrors()
     })
   }
+
+  // redirectToHome(){
+  //   this.props.history.push("/home-initial");
+  // }
+  //
+  // redirectToAdmin(){
+  //   this.props.history.push("/admin");
+  // }
+  //
+  // loginFailed(){
+  //   this.setState({
+  //     message: '../Images/InvalidCred.PNG'
+  //   })
+  // }
 
   handleChange(e){
     let target = e.target
-    let user = this.state.user
-    user[target.name] = target.value
-    this.setState({
-      user: user
-    })
+    // let user = this.state.user
+    // user[target.name] = target.value
+    // this.setState({
+    //   user: user
+    // })
+    updateLogin(target.name, target.value)
   }
 
   handleSubmit(e){
     e.preventDefault();
-    if (this.state.user.email === "" || this.state.user.password === ""){
-      this.setState({
-        message: 'email address and password required'
-      })
-    }
+    // if (this.state.user.email === "" || this.state.user.password === ""){
+    //   this.setState({
+    //     message: 'email address and password required'
+    //   })
+    // }
     // else if (!this.state.user.active) {
     //   this.setState({
     //     message: 'this account is no longer active'
     //   })
     // }
-    else {
-      loginUser(this.state.user)
-    }
+    // else {
+    //   loginUser(this.state.user)
+    // }
+    submitLogin()
   }
 
 render(){
@@ -71,36 +84,31 @@ render(){
         <div className='header-wrapper'><Header /></div>
           <div className="entry-header">Log In</div>
           <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-            <div>
-              <input
-                placeholder='email address'
-                type='email'
-                name='email'
-                id='email'
-                value={this.state.user.email}
-                onChange={this.handleChange.bind(this)}>
-              </input>
+            <Input
+              placeholder='email address'
+              name='email'
+              value={this.state.login.email}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.email}
+             />
+            <Input
+              placeholder='password'
+              type='password'
+              name='password'
+              value={this.state.login.password}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.password}  />
+            <div className='let-me-in'>
+                <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
             </div>
-            <div>
-              <input
-                placeholder='password'
-                type='password'
-                name='password'
-                id='password'
-                value={this.state.user.password}
-                onChange={this.handleChange.bind(this)}>
-              </input>
-              </div>
-                  <div className='let-me-in'>
-                      <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
-                  </div>
-                  <Link className="take-me-back" to="/">
-                    <button className='entry-button wobble'>Take Me Back!!</button>
-                  </Link>
+            <Link className="take-me-back" to="/">
+              <button className='entry-button wobble'>Take Me Back!!</button>
+            </Link>
             </form>
             <div className='validate'>{this.state.message}</div>
-          <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
-        </div></div>
+            <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
+        </div>
+      </div>
     );
   }
 }

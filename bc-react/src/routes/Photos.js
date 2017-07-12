@@ -5,8 +5,7 @@ import SideBarMini from '../components/SideBarMini';
 import Header from '../components/Header';
 import MessageBoardToggle from '../components/MessageBoardToggle';
 
-
-class Slideshow extends Component {
+class Photos extends Component {
 
   prev(e) {
       e.preventDefault();
@@ -58,4 +57,4 @@ class Slideshow extends Component {
       );
     }
 }
-export default Slideshow;
+export default Photos;

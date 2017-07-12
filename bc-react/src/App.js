@@ -14,51 +14,80 @@ import Photos from './routes/Photos'
 import VotePage from './routes/VotePage'
 import FlexPractice from './components/FlexPractice'
 import './style/App.css';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
-
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import userStore from './stores/UserStore'
 //only the most parent component should be responsible for fetching data, aka here?
 
 class App extends Component {
   constructor(props){
     super(props)
-    checkLogin()
-    updatePlaces()
+    // updatePlaces()
     this.state = {}
+    this.updateLoginStatus = this.updateLoginStatus.bind(this)
   }
 
-  handleInitialHome(){
-    return (
-      <Home initial="true"/>
-    )
+  componentWillMount(){
+    userStore.on('change', this.updateLoginStatus)
   }
 
-  handleDefaultHome(){
-    return (
-      <Home initial="false"/>
-    )
+  componentWillUnmount(){
+    userStore.removeListener('change', this.updateLoginStatus)
   }
+
+  updateLoginStatus(){
+    this.setState({isLoggedIn: userStore.checkLogin()})
+  }
+  // handleInitialHome(){
+  //   return (
+  //     <Home initial="true"/>
+  //   )
+  // }
+  //
+  // handleDefaultHome(){
+  //   return (
+  //     <Home initial="false"/>
+  //   )
+  // }
 
   render() {
     return (
-      <div>
+      //can refactor to pass props to Sidebar component here and only display if user is logged in
+      //https://www.learnacademy.org/days/566 - Current User video
       <Router>
         <div>
-            <Route exact path='/' component={SplashPage}/>
-            <Route exact path='/signup' component={UserSignUp} />
-            <Route exact path='/login' component={UserLogin} />
-            <Route exact path='/places' component={Places} />
+            <Route  exact path='/'
+                    render={()=>(
+                    this.state.isLoggedIn ? (<Redirect to='/home' />) : (<SplashPage />) )} />
+            <Route  exact path='/signup'
+                    render={()=>(
+                    this.state.isLoggedIn ? (<Redirect to='/home' />) : (<UserSignUp />) )} />
+            <Route  exact path='/login'
+                    render={()=>(
+                    this.state.isLoggedIn ? (<Redirect to='/home' />) : (<UserLogin />)  )} />
+            <Route  exact path='/places'
+                    render={()=>(
+                    this.state.isLoggedIn ? (<Places />) : (<Redirect to='/' />)  )} />
+            {/* <Route exact path='/home-initial' render={this.handleInitialHome} /> */}
+            {/* <Route exact path='/home' render={this.handleDefaultHome} /> */}
+            <Route  exact path='/home'
+                    render={()=>(
+                    this.state.isLoggedIn ? (<Home />) : (<Redirect to='/' />)  )} />
+            <Route  exact path='/profile'
+                    render={()=>(
+                    this.state.isLoggedIn ? (<UserProfile />) : (<Redirect to='/' />)  )} />
+            <Route  exact path='/current-event'
+                    render={()=>(
+                    this.state.isLoggedIn ? (<CurrentEvent />) : (<Redirect to='/' />)  )} />
+            <Route  exact path='/photos'
+                    render={()=>(
+                    this.state.isLoggedIn ? (<Photos />) : (<Redirect to='/' />)  )} />
+            {/* //TODO: add admin check to profile page */}
             <Route exact path='/admin' component={AdminPage} />
-            <Route exact path='/home-initial' render={this.handleInitialHome} />
-            <Route exact path='/home' render={this.handleDefaultHome} />
-            <Route exact path='/profile' component={UserProfile} />
             <Route exact path='/test-event' component={TestEvent} />
-            <Route path='/current-event' component={CurrentEvent} />
-            <Route path='/photos' component={Photos} />
-            <Route path='/vote' component={VotePage} />
-            <Route path='/flex' component={FlexPractice} />
+            <Route exact path='/vote' component={VotePage} />
+            <Route exact path='/flex' component={FlexPractice} />
         </div>
       </Router>
-    </div>
     );
   }
 }

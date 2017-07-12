@@ -1,0 +1,55 @@
+import dispatcher from '../Dispatcher'
+//
+// export function updateRegistration(attribute, value){
+//   dispatcher.dispatch({
+//     type: 'UPDATE_REGISTRATION',
+//     attribute: attribute,
+//     value: value
+//   })
+// }
+//
+// export function submitRegistration(userAttributes){
+//   dispatcher.dispatch({
+//     type: 'REGISTRATION_SUBMIT'
+//   })
+// }
+//
+// export function updateLogin(attribute, value){
+//   dispatcher.dispatch({
+//     type: 'UPDATE_LOGIN',
+//     attribute: attribute,
+//     value: value
+//   })
+// }
+//
+// export function submitLogin(loginAttributes){
+//   dispatcher.dispatch({
+//     type: 'LOGIN_SUBMIT'
+//   })
+// }
+//
+// export function updateUser(attributes){
+//   dispatcher.dispatch({
+//     type: 'UPDATE_USER',
+//     attributes: attributes
+//   })
+// }
+//
+// export function logout(){
+//   dispatcher.dispatch({
+//     type: 'LOGOUT'
+//   })
+// }
+//
+// export function registrationFail(errors){
+//   dispatcher.dispatch({
+//     type: 'REGISTRATION_FAIL',
+//     errors: errors
+//   })
+// }
+//
+// export function loginFail(){
+//   dispatcher.dispatch({
+//     type: 'LOGIN_FAIL',
+//   })
+// }

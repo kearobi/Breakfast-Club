@@ -28,7 +28,6 @@ app.use(cors())
 app.use(express.static(path.resolve(__dirname, '../bc-react/build')));
 app.use(bodyParser.json())
 
-// TODO apply this middleware to all routes
 const authorization = function(request, response, next){
   const token = request.query.authToken || request.body.authToken
   if(token){
@@ -54,30 +53,30 @@ app.get('/', function (request, response) {
 });
 
 // fetches all messages from database
-app.get('/messages', function (request, response) {
+app.get('/messages', authorization, function (request, response) {
   Message.findAll().then(function(messages){
     response.status(200)
     response.json({message: "success", messages: messages});
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
 // adds a message to database and adds the created message to the response
-app.post('/add-message', function(request, response){
+app.post('/add-message', authorization, function(request, response){
   let params = request.body
   Message.create(params).then(function(message){
     response.status(200)
-    response.json({status: 'success', message: message});
+    response.json({message: 'success', message: message});
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
 // returns the id of the winning restaurant for the current event
-app.get('/count-votes', function (request, response) {
+app.get('/count-votes', authorization, function (request, response) {
   let _event;
   let _user;
   let _users = [];
@@ -190,7 +189,7 @@ app.get('/count-votes', function (request, response) {
 });
 
 // creates GuestList object with vote info and updates User vote status
-app.post('/register-vote', function(request, response){
+app.post('/register-vote', authorization, function(request, response){
   let _event;
   let _user;
   let _users = [];
@@ -277,7 +276,7 @@ app.post('/register-vote', function(request, response){
 })
 
 // finds an empty GuestList row and sets the user_id to the current User's id
-app.post('/rsvp', function(request, response){
+app.post('/rsvp', authorization, function(request, response){
   let _event;
   let _user;
   let _users = [];
@@ -361,11 +360,11 @@ app.post('/rsvp', function(request, response){
   })
   .catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
-app.get('/events', function(request, response){
+app.get('/events', authorization, function(request, response){
   let promises = [];
   let _events;
   Bevent.findAll()
@@ -391,58 +390,61 @@ app.get('/events', function(request, response){
       event.place = promises[i]
     })
     response.status(200)
-    response.json({status: 'success', events: _events})
+    response.json({message: 'success', events: _events})
   })
   .catch(function(error){
     response.status(500)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
 
-app.get('/places', function(request, response){
+app.get('/places', authorization, function(request, response){
   Place.findAll().then(function(places){
     response.status(200)
-    response.json({status: 'success', places: places})
+    response.json({message: 'success', places: places})
   })
 })
 
-app.post('/places', function(request, response){
+app.post('/places', authorization, function(request, response){
   let placeParams = request.body.place
   Place.create(placeParams).then(function(place){
     response.status(200)
-    response.json({status: 'success', place: place})
+    response.json({message: 'success', place: place})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
 app.post('/signup', function(request, response){
-  request.body.voted = false
-  let userParams = request.body
-  User.create(userParams).then(function(user){
+  // request.body.voted = false
+  // let userParams = request.body
+  User.create(
+    {
+      firstName: request.body.firstName,
+      lastName: request.body.lastName,
+      email: request.body.email,
+      neighborhood: request.body.neighborhood,
+      password: request.body.password
+    }
+  ).then((user)=>{
     response.status(200)
-    response.json({status: 'success', user: user})
-  }).catch(function(error){
+    response.json({message: 'success', user: user})
+  }).catch((error)=>{
     response.status(400)
-    console.log('error: ', error)
-    response.json({status: 'error', error: error})
+    response.json({message: 'Unable to create user', errors: error.errors})
   })
 })
 
-app.put('/edit/user', function(request, response){
-  console.log("request: ", request);
-  console.log("response: ", response);
-
+app.put('/profile', authorization, function(request, response){
   let userParams = request.body.user
   User.update(userParams, {where: {id: userParams.id}}).then(function(user){
     response.status(200)
-    response.json({status: 'success', user: user})
+    response.json({message: 'success', user: user})
   }).catch(function(error){
-  console.log("error", error)
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })
 })
 
@@ -482,7 +484,7 @@ app.put('/edit/user', function(request, response){
 //   })
 // })
 
-app.post('/create-event', function(request, response){
+app.post('/create-event', authorization, function(request, response){
   let _places;
   let _place_id_1;
   let _place_id_2;
@@ -601,7 +603,7 @@ app.post('/test-event', function(request, response){
   })
 })
 
-app.post('/current-event', function(request, response){
+app.post('/current-event', authorization, function(request, response){
   let _event;
   let _users = [];
   let _places = [];
@@ -665,18 +667,16 @@ app.post('/current-event', function(request, response){
 app.post('/login', function(request, response){
   User.findOne({
     where:{email: request.body.email}
-  })
-  // search for User by email
-  .then(function(user){
+  }).then((user)=>{
     if(user && user.verifyPassword(request.body.password)){
       response.status(200)
       response.json({
         message: 'Success!',
-        user: user,
+        user: user
       })
     }else{
       response.status(400)
-      response.json({message: 'Invalid Credentials'})
+      response.json({message: 'invalid username and/or password'})
     }
   })
 })
@@ -703,50 +703,48 @@ app.post('/login', function(request, response){
 // })
 
 //start Admin endpoints
-app.get('/admin/get/places', function(request, response){
+app.get('/admin/get/places', authorization, function(request, response){
   Place.findAll().then(function(places){
     response.status(200)
-    response.json({status: 'success', places: places})
+    response.json({message: 'success', places: places})
   })})
-app.get('/admin/get/users', function(request, response){
+app.get('/admin/get/users', authorization, function(request, response){
   User.findAll().then(function(users){
     response.status(200)
-    response.json({status: 'success', users: users})
+    response.json({message: 'success', users: users})
   })})
-app.get('/admin/get/events', function(request, response){
+app.get('/admin/get/events', authorization, function(request, response){
   Bevent.findAll().then(function(events){
     response.status(200)
-    response.json({status: 'success', events: events})
+    response.json({message: 'success', events: events})
   })})
 
-app.post('/admin/add/user', function(request, response){
+app.post('/admin/add/user', authorization, function(request, response){
   let userParams = request.body.user
-  console.log("userParams: ", userParams)
   User.create(userParams).then(function(user){
     response.status(200)
-    response.json({status: 'success', user: user})
+    response.json({message: 'success', user: user})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
-    console.log("error: ", error)
+    response.json({message: 'error', errors: error.errors})
   })})
-app.post('/admin/add/place', function(request, response){
+app.post('/admin/add/place', authorization, function(request, response){
   let placeParams = request.body.place
   Place.create(placeParams).then(function(place){
     response.status(200)
-    response.json({status: 'success', place: place})
+    response.json({message: 'success', place: place})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
-app.post('/admin/add/event', function(request, response){
+app.post('/admin/add/event', authorization, function(request, response){
   let eventParams = request.body.event
   Bevent.create(eventParams).then(function(event){
     response.status(200)
-    response.json({status: 'success', event: event})
+    response.json({message: 'success', event: event})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
 
 //delete is name of HTTP method we're using. the userParams have ID because we're only passing the ID in
@@ -754,73 +752,71 @@ app.post('/admin/add/event', function(request, response){
 //this is where the front end connects to the back end. The problem is we had two delete endpoints with the same URL. As we delete a user, we're sending a delete request to the backend and it's saying hey, i'm looking for this url, and on this url i want to perform these actions. However, you have to have a unique URL for every controller if you're trying to do something uniquely to each model
 
 //so now it will destroy all the guest lists and then it will destroy the user
-app.delete('/admin/delete/user', function(request, response){
+app.delete('/admin/delete/user', authorization, function(request, response){
   let userParams = request.body.id
   console.log("userParams:" + userParams)
   GuestList.destroy({where: {user_id:userParams}}).then(function(){
     User.destroy({where: {id: userParams}}).then(function(user){
       response.status(200)
       //this user:user comes from the then function
-      response.json({status: 'success', user: user})
+      response.json({message: 'success', user: user})
     }).catch(function(error){
       response.status(400)
       console.log("error", error)
-      response.json({status: 'error', error: error})
+      response.json({message: 'error', errors: error.errors})
     })
   })
 })
 //swagger lets you see all the endpoints of an API in URL form
-app.delete('/admin/delete/place', function(request, response){
+app.delete('/admin/delete/place', authorization, function(request, response){
   let placeParams = request.body.id
   Place.destroy({where: {id: placeParams}}).then(function(place){
     repsonse.status(200)
-    response.json({status: 'success', place: place})
+    response.json({message: 'success', place: place})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
-app.delete('/admin/delete/event', function(request, response){
+app.delete('/admin/delete/event', authorization, function(request, response){
   let eventParams = request.body.id
   Bevent.destroy({where: {id: eventParams}}).then(function(event){
     repsonse.status(200)
-    response.json({status: 'success', event: event})
+    response.json({message: 'success', event: event})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
 
 //ask rob for help
-app.put('/admin/edit/user', function(request, response){
+app.put('/admin/edit/user', authorization, function(request, response){
   //the body contains the user, and the user contains the properties
-  console.log(request.body)
   let userParams = request.body.user
   User.update(userParams, {where: {id: userParams.id}}).then(function(user){
     response.status(200)
-    response.json({status: 'success', user: user})
+    response.json({message: 'success', user: user})
   }).catch(function(error){
-  console.log("error", error)
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
-app.put('/admin/edit/place', function(request, response){
+app.put('/admin/edit/place', authorization, function(request, response){
   let placeParams = request.body.place
   console.log("request", request)
   console.log("placeParams", placeParams)
   Place.update(placeParams, {where: {id: placeParams.id}}).then(function(place){
     response.status(200)
-    response.json({status: 'success', place: place})
+    response.json({message: 'success', place: place})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
-app.put('/admin/edit/event', function(request, response){
+app.put('/admin/edit/event', authorization, function(request, response){
   let eventParams = request.body.event
   Bevent.update(eventParams, {where: {id: eventParams.id}}).then(function(event){
     response.status(200)
-    response.json({status: 'success', event: user})
+    response.json({message: 'success', event: user})
   }).catch(function(error){
     response.status(400)
-    response.json({status: 'error', error: error})
+    response.json({message: 'error', errors: error.errors})
   })})
 
 app.get('*', function(request, response) {

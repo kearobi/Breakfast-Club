@@ -1,50 +1,57 @@
 import {EventEmitter} from 'events'
 import dispatcher from '../Dispatcher'
 
-//add messages, see CatStore for reference
-
 class AdminStore extends EventEmitter{
   constructor(){
     super()
-      this.users = []
-      this.places = []
-      this.events = []
-      this.message = ""
-      this.newUser = {}
-      this.newPlace = {}
-      this.newEvent = {}
+    this.users = []
+    this.places = []
+    this.events = []
+    this.userFields = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      neighborhood: '',
+      password: '',
+      verifyPassword: ''
+    }
+    this.placeFields = {
+      name: '',
+      yelp_rating: '',
+      categories: '',
+      price: '',
+      address_street: '',
+      phone: ''
+    }
+    this.eventFields = {
+      date: '',
+      guestSpeaker: '',
+      place: ''
+    }
+    this.errors = {}
   }
 
-  adminReturnUsers(){return (this.users)}
-  adminReturnPlaces(){return (this.places)}
-  adminReturnEvents(){return (this.events)}
-  adminReturnMessage(){return (this.message)}
+  adminGetUsers(){return this.users}
+  adminGetPlaces(){return this.places}
+  adminGetEvents(){return this.events}
 
-  adminReturnNewUser(){return (this.newUser)}
-  adminReturnNewPlace(){return (this.newPlace)}
-  adminReturnNewEvent(){return (this.newEvent)}
-  adminReturnNewMessage(){return (this.newMessage)}
-
-  adminLoadUsers(attributes){
+  adminUpdateUsers(attributes){
     this.users = attributes
     this.emit('change')}
-  adminLoadPlaces(attributes){
+  adminUpdatePlaces(attributes){
     this.places = attributes
     this.emit('change')}
-  adminLoadEvents(attributes){
+  adminUpdateEvents(attributes){
     this.events = attributes
     this.emit('change')}
 
-  adminPushNewUser(attributes){
-    this.newUser = attributes
+  adminAddUser(attributes){
     this.users.push(attributes)
     this.emit('change')}
-  adminPushNewPlace(attributes){
-    this.newPlace = attributes
+  adminAddPlace(attributes){
     this.places.push(attributes)
     this.emit('change')}
-  adminPushNewEvent(attributes){
-    this.newEvent = attributes
+  adminAddEvent(attributes){
     this.events.push(attributes)
     this.emit('change')}
 
@@ -61,75 +68,131 @@ class AdminStore extends EventEmitter{
       return (event.id)})
     this.emit('change')}
 
-  updateMessage(newMessage){
-    this.message = newMessage
-    this.emit('message')}
-  //we'll handle the delete here because this is where the users are setState
-
 //we want it to be TRUE if the user.id is NOT the attributes.id. We're saying, once we've deleted the user from the db, to get it out of the store, we'll get all the ones that AREN'T this one
 
-  adminDestroyUser(id){
+  adminDeleteUser(id){
     this.users = this.users.filter((user) => {
       return (user.id !== id)})
-    //emit says hey everybody that's listening, i did a thing! now we have to listen for the emit in the table full of users
     this.emit('change')}
-  adminDestroyPlace(id){
+  adminDeletePlace(id){
     this.places = this.places.filter((place) => {
       return (place.id !== place)})
     this.emit('change')}
-  adminDestroyEvent(id){
+  adminDeleteEvent(id){
     this.events = this.events.filter((event) => {
       return (event.id !== event)})
     this.emit('change')}
 
+  // validateUserFields(){
+  //   this.errors = {}
+  //   this.validatePresence('firstName')
+  //   this.validatePresence('lastName')
+  //   this.validatePresence('neighborhood')
+  //   this.validatePresence('password')
+  //   this.validatePresence('verifyPassword')
+  //   this.validatePassword('verifyPassword')
+  //   this.validateEmail('email')
+  //   this.validatePresence('email')
+  // }
+  //
+  // validatePlaceFields(){
+  //   this.errors = {}
+  //   this.validatePresence('name')
+  //   this.validatePresence('yelp_rating')
+  //   this.validatePresence('categories')
+  //   this.validatePresence('price')
+  //   this.validatePresence('address_street')
+  // }
+  //
+  // validateEventFields(){
+  //   this.errors = {}
+  //   this.validatePresence('date')
+  //   this.validatePresence('guestSpeaker')
+  //   this.validatePresence('place')
+  // }
+  //
+  // validatePassword(fieldName){
+  //   if(this.fields[fieldName] !== this.fields.password){
+  //     this.addError(fieldName, 'try again')
+  //   }
+  // }
+  //
+  // validatePresence(fieldName){
+  //   if(this.fields[fieldName] === ''){
+  //     this.addError(fieldName, 'required field')
+  //   }
+  // }
+
+  updateUserFields(attribute, value){
+    this.userFields[attribute] = value
+    this.emit('change')
+  }
+
+  updatePlaceFields(attribute, value){
+    this.placeFields[attribute] = value
+    this.emit('change')
+  }
+
+  updateEventFields(attribute, value){
+    this.eventFields[attribute] = value
+    this.emit('change')
+  }
+
+  clearFields(){
+    this.userFields = {}
+    this.placeFields = {}
+    this.eventFields = {}
+    this.emit('change')
+  }
+
   handleActions(action){
     switch(action.type){
-      case("ADMIN_LOAD_USERS"):{
-        this.adminLoadUsers(action.users)
+      case("ADMIN_GET_USERS"):{
+        this.adminGetUsers(action.users)
         break
       }
-      case("ADMIN_LOAD_PLACES"):{
-        this.adminLoadPlaces(action.places)
+      case("ADMIN_GET_PLACES"):{
+        this.adminGetPlaces(action.places)
         break
       }
-      case("ADMIN_LOAD_EVENTS"):{
-        this.adminLoadEvents(action.events)
+      case("ADMIN_GET_EVENTS"):{
+        this.adminGetEvents(action.events)
         break
       }
       case("ADMIN_CREATE_USER"):{
-        this.adminPushNewUser(action.user)
+        this.adminAddUser(action.user)
         break
       }
       case("ADMIN_CREATE_PLACE"):{
-        this.adminPushNewPlace(action.place)
+        this.adminAddPlace(action.place)
         break
       }
       case("ADMIN_CREATE_EVENT"):{
-        this.adminPushNewEvent(action.event)
+        this.adminAddEvent(action.event)
         break
       }
       //this is linked to DESTROY_USER in actions.js
       case("ADMIN_DESTROY_USER"):{
-        this.adminDestroyUser(action.id)
+        this.adminDeleteUser(action.id)
         break
       }
       case("ADMIN_DESTROY_PLACE"):{
-        this.adminDestroyPlace(action.id)
+        this.adminDeletePlace(action.id)
         break
       }
       case("ADMIN_DESTROY_EVENT"):{
-        this.adminDestroyEvent(action.id)
+        this.adminDeleteEvent(action.id)
         break
       }
-      case("ADMIN_UPDATE_USER"):{
+      case("ADMIN_EDIT_USER"):{
         this.admiEditUser(action.user)
         break
       }
-      case("ADMIN_UPDATE_PLACE"):{
+      case("ADMIN_EDIT_PLACE"):{
         this.admiEditPlace(action.place)
         break
       }
-      case("ADMIN_UPDATE_EVENT"):{
+      case("ADMIN_EDIT_EVENT"):{
         this.admiEditEvent(action.event)
         break
       }
@@ -138,7 +201,7 @@ class AdminStore extends EventEmitter{
   }
 }
 
-const astore = new AdminStore()
-dispatcher.register(astore.handleActions.bind(astore))
-window.astore = astore
-export default astore
+const adminStore = new AdminStore()
+dispatcher.register(adminStore.handleActions.bind(adminStore))
+window.adminStore = adminStore
+export default adminStore
