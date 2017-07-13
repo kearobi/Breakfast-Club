@@ -10,7 +10,7 @@ class MessageBoardDetail extends Component {
     super(props)
     //the initial state is set to the message store
     this.state={
-      message: messageStoreDetail.getFields(),
+      message: messageStoreDetail.getFields()
     }
     this.updateMessageDetail = this.updateMessageDetail.bind(this)
   }
@@ -33,9 +33,11 @@ class MessageBoardDetail extends Component {
 
   render() {
       return (
+        <div className='individual-message'>
           <div className='content'>
             {this.state.message.content}
           </div>
+        </div>
     );
   }
 }

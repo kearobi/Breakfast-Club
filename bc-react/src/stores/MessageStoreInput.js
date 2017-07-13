@@ -4,7 +4,7 @@ import messageService from '../services/MessageService'
 
 class MessageStoreInput extends EventEmitter{
   constructor(){
-    super();
+    super()
     this.fields = {
       content: '',
       // author: '',
@@ -59,8 +59,10 @@ class MessageStoreInput extends EventEmitter{
   }
 
   clearFields(){
+    debugger
     this.fields = {}
     this.emit('change')
+    console.log(this.fields)
   }
 
   submitMessageInput(){
@@ -95,6 +97,7 @@ class MessageStoreInput extends EventEmitter{
         break
       }
       case("UPDATE_MESSAGE_DETAIL"):{
+
         this.clearFields()
         break
       }

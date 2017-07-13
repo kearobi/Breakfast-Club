@@ -421,6 +421,10 @@ app.post('/places', authorization, function(request, response){
   })
 })
 
+app.get('/user', authorization, function(request, response){
+  response.json({user: request.currentUser})
+})
+
 app.post('/signup', function(request, response){
   // request.body.voted = false
   // let userParams = request.body

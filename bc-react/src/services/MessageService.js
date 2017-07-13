@@ -24,6 +24,7 @@ class MessageService {
       if(response.ok){
         response.json().then((body)=>{
           //this is the message we get back in postman
+          //here we handle it back on the server
           updateMessageDetail(body.message)
         })
       }else{
@@ -53,12 +54,13 @@ class MessageService {
         })
       }else{
         response.json().then((body)=>{
-          //might have to change this one
+          //might have to change MessageFail. Can console log in the meantime
           messageFail(body.errors)
         })
       }
     })
   }
+
 }
 
 const messageService = new MessageService;

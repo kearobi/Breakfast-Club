@@ -26,6 +26,12 @@
   background-color: transparent;
   width: 240px;
 
+  form {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+}
 .submit-chat-button {
   background-color: white;
 }
@@ -79,12 +85,6 @@ transform: translateY(0.5px);
   text-align: right;
 }
 
-form {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-}
-
 .message-content {
   font-size: 15px;
   font-family: 'Abel', sans-serif;
@@ -104,6 +104,4 @@ form {
 .submit-field {
   padding-left: 3px;
   padding-right: 3px;
-}
-
 }

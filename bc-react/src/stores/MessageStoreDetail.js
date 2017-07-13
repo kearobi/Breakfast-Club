@@ -28,6 +28,11 @@ class MessageStoreDetail extends EventEmitter{
     this.emit('change')
   }
 
+  // fetchMessages(attributes){
+  //   this.fields = attributes
+  //   this.emit('change')
+  // }
+
   handleActions(action){
     switch(action.type){
       //this is really creating a message
@@ -35,6 +40,10 @@ class MessageStoreDetail extends EventEmitter{
         this.updateMessageDetail(action.attributes)
         break
       }
+      // case("FETCH_MESSAGES"):{
+      //   this.fetchMessages(action.attributes)
+      //   break
+      // }
       default:{}
     }
   }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import messageStoreInput from '../stores/MessageStoreInput';
-import messageStoreDetail from '../stores/MessageStoreDetail';
 import userStore from '../stores/UserStore';
 import Moment from 'react-moment'
 import {updateMessageInput, submitMessageInput} from '../actions/MessageActions'

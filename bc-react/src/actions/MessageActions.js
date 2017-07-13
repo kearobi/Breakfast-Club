@@ -19,7 +19,7 @@ export function updateMessageDetail(attributes){
   dispatcher.dispatch({
     type: 'UPDATE_MESSAGE_DETAIL',
     //the attributes will be just the attributes that were passed
-    attributes: attributes,
+    attributes: attributes
   })
 }
 
