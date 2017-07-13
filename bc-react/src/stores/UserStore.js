@@ -7,6 +7,8 @@ class UserStore extends EventEmitter{
     this.fields = {}
   }
 
+//we can tell a user is logged in if the authToken is set in the store
+
   getFields(){
     return this.fields
   }
@@ -66,6 +68,10 @@ class UserStore extends EventEmitter{
 
   checkLogin(){
     return this.fields.authToken !== null
+  }
+
+  checkAdmin(){
+    return this.fields.admin === true
   }
 
   clearAuthToken(){

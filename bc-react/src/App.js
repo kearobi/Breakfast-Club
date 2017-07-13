@@ -52,6 +52,7 @@ class App extends Component {
   render() {
     return (
       //can refactor to pass props to Sidebar component here and only display if user is logged in
+      //TODO: make sidebar dumb component by passing props down from here
       //https://www.learnacademy.org/days/566 - Current User video
       <Router>
         <div>

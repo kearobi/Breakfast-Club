@@ -35,15 +35,15 @@ class MessageService {
     // })
 
     setTimeout(()=> {
-      updateMessageDetail({
-        content: 'hello breakfast club'
+      //the service is then updating the message detail. eventually, we want it to return
+      updateMessageDetail(attributes
         //here he said, "and our users are going to get their AuthTokens back, so we'll add that -- a fake one for now" min 6:40
-      })
+      )
     }, 1000)
   }
 
 }
 
 const messageService = new MessageService;
-window.messageService = messageService
+window.messageService = messageService;
 export default messageService;

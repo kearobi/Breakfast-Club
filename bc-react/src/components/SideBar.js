@@ -1,19 +1,38 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import userStore from '../stores/UserStore'
 
 class SideBar extends Component {
+  constructor(props){
+    super(props)
+    this.state={}
+    this.updateAdminStatus = this.updateAdminStatus.bind(this)
+  }
+
+  componentWillMount(){
+    userStore.on('change', this.updateAdminStatus)
+  }
+
+  componentWillUnmount(){
+    userStore.removeListener('change', this.updateAdminStatus)
+  }
+
+  updateAdminStatus(){
+    this.setState({isAdmin: userStore.checkAdmin()})
+  }
+
   render() {
     return (
       <div className='sidebar'>
         {/* sidebar is a flex item of the parent */}
         <div className='nested'>
         {/* nesting is the nested flex box */}
-          {this.props.isAdmin &&
+          {this.state.isAdmin &&
             <Link to="/admin" className="item wobble"> <img src='../Images/user.png' alt='admin'/>
               <div className='admin'>admin</div>
             </Link>
             }
-          {!this.props.isAdmin &&
+          {!this.state.isAdmin &&
             <Link to="/profile" className="item wobble"> <img src='../Images/user.png' alt='profile'/>
               <div className='caption'>profile</div>
             </Link>}

@@ -65,9 +65,11 @@ class MessageStoreInput extends EventEmitter{
 
   submitMessageInput(){
     this.validate()
+    //here we want to submitMessageInput to the service if there are no errors during client-side validation
     if(Object.keys(this.errors).length === 0){
       messageService.submitMessageInput(this.fields)
     }
+    //either way we want to emit change so that the state of our application is updated if there are validation errors there
     this.emit('change')
   }
 
@@ -85,7 +87,7 @@ class MessageStoreInput extends EventEmitter{
         break
       }
       case("SUBMIT_MESSAGE_INPUT"):{
-        this.updateMessageInput(action.attribute, action.value)
+        this.submitMessageInput(action.attribute, action.value)
         break
       }
       case("MESSAGE_FAIL"):{

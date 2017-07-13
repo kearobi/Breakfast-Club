@@ -1,4 +1,4 @@
-//Input gets props from UserSignUp
+//Input gets props from UserSignUp, MessageBoardInput, UserLogIn
 
 import React, { Component } from 'react';
 
@@ -15,7 +15,9 @@ export default class Input extends Component {
 
   render(){
     return(
-      <div className={this.state.className}>
+      <div
+        className={this.state.className}
+        >
         <input
           type={this.state.type}
           size={this.state.size}

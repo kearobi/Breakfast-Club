@@ -52,7 +52,6 @@ class MessageBoardInput extends Component {
           <form onSubmit={this.handleSubmit.bind(this)}>
               <Input
                 size='28'
-                type='text'
                 placeholder='type a message'
                 name='content'
                 autoComplete='off'
