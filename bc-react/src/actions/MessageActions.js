@@ -29,3 +29,10 @@ export function messageFail(errors){
     errors: errors
   })
 }
+
+export function fetchMessages(attributes){
+  dispatcher.dispatch({
+    type: 'FETCH_MESSAGES',
+    messages: attributes
+  })
+}
