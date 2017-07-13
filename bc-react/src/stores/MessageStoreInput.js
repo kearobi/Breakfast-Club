@@ -84,7 +84,7 @@ class MessageStoreInput extends EventEmitter{
         this.updateField(action.attribute, action.value)
         break
       }
-      case("MESSAGE_SUBMIT"):{
+      case("SUBMIT_MESSAGE_INPUT"):{
         this.updateMessageInput(action.attribute, action.value)
         break
       }
@@ -92,7 +92,7 @@ class MessageStoreInput extends EventEmitter{
         this.handleServerErrors(action.errors)
         break
       }
-      case("UPDATE_MESSAGE"):{
+      case("UPDATE_MESSAGE_DETAIL"):{
         this.clearFields()
         break
       }

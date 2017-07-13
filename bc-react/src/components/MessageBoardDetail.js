@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import messageStoreInput from '../stores/MessageStoreInput';
 import messageStoreDetail from '../stores/MessageStoreDetail';
-import userStore from '../stores/UserStore';
 import Moment from 'react-moment'
 import Input from '../components/Input'
-import {updateMessageInput, submitMessage} from '../actions/MessageActions'
+import {updateMessageInput, submitMessageInput} from '../actions/MessageActions'
 
 class MessageBoardDetail extends Component {
   constructor(props){
     super(props)
+    //the initial state is set to the message store
     this.state={
       message: messageStoreDetail.getFields(),
     }
     this.updateMessageDetail = this.updateMessageDetail.bind(this)
   }
 
+//listening for changes to the message store
   componentWillMount(){
     messageStoreDetail.on('change', this.updateMessageDetail);
   }
@@ -23,9 +24,10 @@ class MessageBoardDetail extends Component {
     messageStoreDetail.removeListener('change', this.updateMessageDetail);
   }
 
+//Matt says this is us "registering" with the store, so that any time there's a change in the store, our state is updated
   updateMessageDetail(){
     this.setState({
-      message: messageStoreDetail.getFields(),
+      message: messageStoreDetail.getFields()
     })
   }
 

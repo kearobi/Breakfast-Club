@@ -8,18 +8,18 @@ export function updateMessageInput(attribute, value){
   })
 }
 
-export function submitMessage(messageAttributes){
+export function submitMessageInput(messageAttributes){
   dispatcher.dispatch({
-    type: 'MESSAGE_SUBMIT'
+    type: 'SUBMIT_MESSAGE_INPUT'
   })
 }
 
 //How could this be renamed for clarity? ie. updateMessageStore? (not sure if that's accurate)
-export function updateMessage(attribute, value){
+export function updateMessageDetail(attributes){
   dispatcher.dispatch({
-    type: 'UPDATE_MESSAGE',
-    attribute: attribute,
-    value: value
+    type: 'UPDATE_MESSAGE_DETAIL',
+    //the attributes will be just the attributes that were passed
+    attributes: attributes,
   })
 }
 

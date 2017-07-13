@@ -3,7 +3,7 @@ import dispatcher from '../Dispatcher';
 
 class MessageStoreDetail extends EventEmitter{
   constructor(){
-    super();
+    super()
     this.fields = {}
   }
 
@@ -30,7 +30,8 @@ class MessageStoreDetail extends EventEmitter{
 
   handleActions(action){
     switch(action.type){
-      case("UPDATE_MESSAGE"):{
+      //this is really creating a message
+      case("UPDATE_MESSAGE_DETAIL"):{
         this.updateMessageDetail(action.attributes)
         break
       }

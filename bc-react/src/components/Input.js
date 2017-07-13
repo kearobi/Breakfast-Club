@@ -6,7 +6,9 @@ export default class Input extends Component {
   constructor(props){
     super(props)
     this.state={
-      type: this.props.type || 'text'
+      type: this.props.type || 'text',
+      size: this.props.size || '20',
+      autoComplete: this.props.autoComplete || 'on'
     }
   }
 
@@ -14,9 +16,11 @@ export default class Input extends Component {
     return(
       <div>
         <input
-          placeholder={this.props.placeholder}
-          type={this.props.type}
+          type={this.state.type}
+          size={this.state.size}
+          autoComplete={this.state.autoComplete}
           name={this.props.name}
+          placeholder={this.props.placeholder}
           value={this.props.value}
           onChange={this.props.onChange}
         />

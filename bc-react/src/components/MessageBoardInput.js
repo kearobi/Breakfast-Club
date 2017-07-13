@@ -3,9 +3,9 @@ import messageStoreInput from '../stores/MessageStoreInput';
 import messageStoreDetail from '../stores/MessageStoreDetail';
 import userStore from '../stores/UserStore';
 import Moment from 'react-moment'
-import {updateMessageInput, submitMessage} from '../actions/MessageActions'
+import {updateMessageInput, submitMessageInput} from '../actions/MessageActions'
 import MessageBoardDetail from './MessageBoardDetail'
-
+import Input from './Input'
 
 class MessageBoardInput extends Component {
   constructor(props){
@@ -39,7 +39,7 @@ class MessageBoardInput extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    submitMessage()
+    submitMessageInput()
   }
 
   render() {
@@ -50,8 +50,7 @@ class MessageBoardInput extends Component {
         </div>
         <div>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <div>
-              <input className='submit-field'
+              <Input className='submit-field'
                 size='28'
                 type='text'
                 placeholder='type a message'
@@ -60,8 +59,7 @@ class MessageBoardInput extends Component {
                 value={this.state.messageInput.content}
                 onChange={this.handleChange.bind(this)}
                 >
-              </input>
-              </div>
+              </Input>
             <div>
               <input className='submit-chat-button'
                 type='submit'
