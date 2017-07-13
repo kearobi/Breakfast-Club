@@ -72,7 +72,10 @@ class App extends Component {
             {/* <Route exact path='/home' render={this.handleDefaultHome} /> */}
             <Route  exact path='/home'
                     render={()=>(
-                    this.state.isLoggedIn ? (<Home />) : (<Redirect to='/' />)  )} />
+                    // this.state.isLoggedIn ? (
+                      <Home />
+                    // ) : (<Redirect to='/' />)
+                    )} />
             <Route  exact path='/profile'
                     render={()=>(
                     this.state.isLoggedIn ? (<UserProfile />) : (<Redirect to='/' />)  )} />

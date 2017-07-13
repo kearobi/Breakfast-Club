@@ -53,7 +53,7 @@ app.get('/', function (request, response) {
 });
 
 // fetches all messages from database
-app.get('/messages', authorization, function (request, response) {
+app.get('/messages', function (request, response) {
   Message.findAll().then(function(messages){
     response.status(200)
     response.json({message: "success", messages: messages});
@@ -64,7 +64,7 @@ app.get('/messages', authorization, function (request, response) {
 })
 
 // adds a message to database and adds the created message to the response
-app.post('/add-message', authorization, function(request, response){
+app.post('/add-message', function(request, response){
   let params = request.body
   Message.create(params).then(function(message){
     response.status(200)

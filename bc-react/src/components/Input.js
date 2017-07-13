@@ -14,7 +14,6 @@ export default class Input extends Component {
     return(
       <div>
         <input
-          autoComplete='off'
           placeholder={this.props.placeholder}
           type={this.props.type}
           name={this.props.name}

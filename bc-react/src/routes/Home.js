@@ -120,7 +120,7 @@ class Home extends Component {
               />
               <Header />
           <div className="welcome-message">
-            <div className='welcome-user'>Hey, {this.state.user.firstName}! </div>
+            <div className='welcome-user'>Hey, {this.state.user.firstName}!</div>
             <div className='reminder'><Reminder /></div>
             <div className='upcoming-event'><Link to='/current-event'>Current Event</Link></div>
           </div>
