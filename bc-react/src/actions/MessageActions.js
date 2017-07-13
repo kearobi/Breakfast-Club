@@ -1,8 +1,8 @@
 import dispatcher from '../Dispatcher'
 
-export function updateMessages(attribute, value){
+export function updateMessageInput(attribute, value){
   dispatcher.dispatch({
-    type: 'UPDATE_MESSAGES',
+    type: 'UPDATE_MESSAGE_INPUT',
     attribute: attribute,
     value: value
   })
@@ -14,16 +14,18 @@ export function submitMessage(messageAttributes){
   })
 }
 
-export function updateUser(attributes){
+//How could this be renamed for clarity? ie. updateMessageStore? (not sure if that's accurate)
+export function updateMessage(attribute, value){
   dispatcher.dispatch({
-    type: 'UPDATE_USER',
-    attributes: attributes
+    type: 'UPDATE_MESSAGE',
+    attribute: attribute,
+    value: value
   })
 }
 
 export function messageFail(errors){
   dispatcher.dispatch({
-    type: 'REGISTRATION_FAIL',
+    type: 'MESSAGE_FAIL',
     errors: errors
   })
 }

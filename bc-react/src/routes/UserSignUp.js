@@ -61,10 +61,6 @@ class UserSignUp extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    // this.validate()
-    // if(Object.keys(signUpStore.getErrors()).length < 1 ){
-    //   addUser(this.state.user)
-    // }
     submitRegistration()
   }
 

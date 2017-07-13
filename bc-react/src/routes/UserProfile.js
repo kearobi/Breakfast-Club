@@ -25,7 +25,7 @@ class UserProfile extends Component {
     userStore.on('change', this.updateUser)
   }
 
-  componentWillUnount(){
+  componentWillUnmount(){
     userStore.removeListener('change', this.updateUser)
   }
 

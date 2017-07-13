@@ -1,5 +1,5 @@
 //this will be fired off from our UserStore when the store is ready to send its information back to the server
-import {updateMessage} from '../actions/MessageActions';
+import {updateMessage, messageFail} from '../actions/MessageActions';
 
 let baseUrl;
 if(process.env.NODE_ENV === 'production'){
@@ -13,7 +13,7 @@ class MessageService {
     this.headers = {'Content-Type': 'application/json'}
   }
 
-  submitMessage(attributes){
+  submitMessageInput(attributes){
     const params = {
       method: 'POST',
       headers: this.headers,
@@ -22,10 +22,14 @@ class MessageService {
     fetch(`${baseUrl}messages`, params).then((response)=>{
       if(response.ok){
         response.json().then((body)=>{
-          updateMessages(body.message)
+          updateMessage(body.message)
+        })
+      }else{
+        response.json().then((body)=>{
+          messageFail(body.errors)
         })
       }
-    }
+    })
   }
 
 }

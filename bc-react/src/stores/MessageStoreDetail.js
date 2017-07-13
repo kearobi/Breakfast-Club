@@ -1,14 +1,10 @@
 import {EventEmitter} from 'events';
 import dispatcher from '../Dispatcher';
 
-class MessageStore2 extends EventEmitter{
+class MessageStoreDetail extends EventEmitter{
   constructor(){
     super();
-    this.fields = {
-      message: '',
-      author: '',
-      content: ''
-    }
+    this.fields = {}
   }
 
   // getLastFiveMessages(){
@@ -27,22 +23,22 @@ class MessageStore2 extends EventEmitter{
     return this.fields
   }
 
-  updateMessages(attributes){
+  updateMessageDetail(attributes){
     this.fields = attributes
     this.emit('change')
   }
 
   handleActions(action){
     switch(action.type){
-      case("ADD-MESSAGE"):{
-        this.updateMessages(action.attributes)
+      case("UPDATE_MESSAGE"):{
+        this.updateMessageDetail(action.attributes)
         break
       }
       default:{}
     }
   }
 }
-const messageStore = new MessageStore2();
-dispatcher.register(messageStore.handleActions.bind(messageStore));
-window.messageStore = messageStore;
-export default messageStore;
+const messageStoreDetail = new MessageStoreDetail();
+dispatcher.register(messageStoreDetail.handleActions.bind(messageStoreDetail));
+window.messageStoreDetail = messageStoreDetail;
+export default messageStoreDetail;

@@ -64,9 +64,13 @@ app.get('/messages', function (request, response) {
 })
 
 // adds a message to database and adds the created message to the response
-app.post('/add-message', function(request, response){
-  let params = request.body
-  Message.create(params).then(function(message){
+app.post('/messages', function(request, response){
+  Message.create(
+    {
+      content: request.body.content,
+      author: request.body.author
+    }
+  ).then(function(message){
     response.status(200)
     response.json({message: 'success', message: message});
   }).catch(function(error){
