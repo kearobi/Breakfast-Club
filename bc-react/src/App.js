@@ -58,16 +58,25 @@ class App extends Component {
           <Switch>
             <Route  exact path='/'
                     render={()=>(
-                    this.state.isLoggedIn ? (<Redirect to='/home' />) : (<SplashPage />) )} />
+                    // this.state.isLoggedIn ? (<Redirect to='/home' />) : (
+                      <SplashPage />
+                    // )
+                    )} />
             <Route  exact path='/signup'
                     render={()=>(
-                    this.state.isLoggedIn ? (<Redirect to='/home' />) : (<UserSignUp />) )} />
+                    // this.state.isLoggedIn ? (<Redirect to='/home' />) : (
+                      <UserSignUp />
+                    // )
+                  )} />
             <Route  exact path='/login'
                     render={()=>(
                     this.state.isLoggedIn ? (<Redirect to='/home' />) : (<UserLogin />)  )} />
             <Route  exact path='/places'
                     render={()=>(
-                    this.state.isLoggedIn ? (<Places />) : (<Redirect to='/' />)  )} />
+                    // this.state.isLoggedIn ? (
+                      <Places />
+                    // ) : (<Redirect to='/' />)
+                  )} />
             {/* <Route exact path='/home-initial' render={this.handleInitialHome} /> */}
             {/* <Route exact path='/home' render={this.handleDefaultHome} /> */}
             <Route  exact path='/home'
@@ -78,13 +87,22 @@ class App extends Component {
                     )} />
             <Route  exact path='/profile'
                     render={()=>(
-                    this.state.isLoggedIn ? (<UserProfile />) : (<Redirect to='/' />)  )} />
+                    // this.state.isLoggedIn ? (
+                      <UserProfile />
+                    // ) : (<Redirect to='/' />)
+                  )} />
             <Route  exact path='/current-event'
                     render={()=>(
-                    this.state.isLoggedIn ? (<CurrentEvent />) : (<Redirect to='/' />)  )} />
+                    // this.state.isLoggedIn ? (
+                      <CurrentEvent />
+                    // ) : (<Redirect to='/' />)
+                  )} />
             <Route  exact path='/photos'
                     render={()=>(
-                    this.state.isLoggedIn ? (<Photos />) : (<Redirect to='/' />)  )} />
+                    // this.state.isLoggedIn ? (
+                      <Photos />
+                    // ) : (<Redirect to='/' />)
+                   )} />
             {/* //TODO: add admin check to profile page */}
             <Route exact path='/admin' component={AdminPage} />
             <Route exact path='/test-event' component={TestEvent} />
