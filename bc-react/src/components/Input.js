@@ -8,13 +8,14 @@ export default class Input extends Component {
     this.state={
       type: this.props.type || 'text',
       size: this.props.size || '20',
-      autoComplete: this.props.autoComplete || 'on'
+      autoComplete: this.props.autoComplete || 'on',
+      className: this.props.className || ''
     }
   }
 
   render(){
     return(
-      <div>
+      <div className={this.state.className}>
         <input
           type={this.state.type}
           size={this.state.size}

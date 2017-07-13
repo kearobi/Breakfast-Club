@@ -50,12 +50,13 @@ class MessageBoardInput extends Component {
         </div>
         <div>
           <form onSubmit={this.handleSubmit.bind(this)}>
-              <Input className='submit-field'
+              <Input
                 size='28'
                 type='text'
                 placeholder='type a message'
                 name='content'
                 autoComplete='off'
+                className='submit-field'
                 value={this.state.messageInput.content}
                 onChange={this.handleChange.bind(this)}
                 >
