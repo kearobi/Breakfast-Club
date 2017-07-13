@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import userStore from '../stores/UserStore'
+import {logout} from '../actions/UserActions';
 
 class SideBar extends Component {
   constructor(props){
@@ -19,6 +20,11 @@ class SideBar extends Component {
 
   updateAdminStatus(){
     this.setState({isAdmin: userStore.checkAdmin()})
+  }
+
+
+  handleLogOut(){
+    logout()
   }
 
   render() {
@@ -47,7 +53,7 @@ class SideBar extends Component {
             <div className='caption'>photos</div>
           </Link>
           <div className="item wobble"
-          onClick={this.props.handleLogOut}
+          onClick={this.handleLogOut}
           ><img src='../Images/logout.png' alt='log out'/>
             <div className='caption'>log out</div>
           </div>

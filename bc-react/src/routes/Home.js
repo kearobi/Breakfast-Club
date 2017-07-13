@@ -12,7 +12,6 @@ import moment from 'moment';
 import Header from '../components/Header';
 import MessageBoardToggle from '../components/MessageBoardToggle';
 // import placeStore from '../stores/PlaceStore'
-import {logout} from '../actions/UserActions';
 
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
@@ -64,10 +63,6 @@ class Home extends Component {
   //   })
   // }
 
-  handleLogOut(){
-    logout()
-  }
-
   updateCurrentEvent(){
     checkIfVotingOver(eventStore.getCurrentEvent())
     checkEventOver(eventStore.getCurrentEvent(), this.state.user.id)
@@ -108,16 +103,10 @@ class Home extends Component {
   render(){
     return (
         <div className="wrapper">{/* //this is the flex container */}
-            <SideBar
-              isAdmin={this.state.user.admin}
-              handleLogOut={this.handleLogOut}
-            />{/* //this is a flex item  with a nested flex container */}
+            <SideBar/>{/* //this is a flex item  with a nested flex container */}
           <div className='home-page'>{/* //this is a flex item */}
             <div className='nested'>{/* //this is a nested flex container */}
-              <SideBarMini
-                isAdmin={this.state.user.admin}
-                handleLogOut={this.handleLogOut}
-              />
+              <SideBarMini/>
               <Header />
           <div className="welcome-message">
             <div className='welcome-user'>Hey, {this.state.user.firstName}!</div>
