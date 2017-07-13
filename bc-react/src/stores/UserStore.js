@@ -70,10 +70,6 @@ class UserStore extends EventEmitter{
     return this.fields.authToken !== null
   }
 
-  checkAdmin(){
-    return this.fields.admin === true
-  }
-
   clearAuthToken(){
     this.fields.authToken = null
     this.emit('change')

@@ -6,22 +6,25 @@ import {logout} from '../actions/UserActions';
 class SideBar extends Component {
   constructor(props){
     super(props)
-    this.state={}
-    this.updateAdminStatus = this.updateAdminStatus.bind(this)
+    this.state={
+      user: userStore.getFields()
+    }
+    this.updateUser = this.updateUser.bind(this)
   }
 
   componentWillMount(){
-    userStore.on('change', this.updateAdminStatus)
+    userStore.on('change', this.updateUser)
   }
 
   componentWillUnmount(){
-    userStore.removeListener('change', this.updateAdminStatus)
+    userStore.removeListener('change', this.updateUser)
   }
 
-  updateAdminStatus(){
-    this.setState({isAdmin: userStore.checkAdmin()})
+  updateUser(){
+    this.setState({
+      user: userStore.getFields()
+    })
   }
-
 
   handleLogOut(){
     logout()
@@ -33,12 +36,12 @@ class SideBar extends Component {
         {/* sidebar is a flex item of the parent */}
         <div className='nested'>
         {/* nesting is the nested flex box */}
-          {this.state.isAdmin &&
+          {this.state.user.admin &&
             <Link to="/admin" className="item wobble"> <img src='../Images/user.png' alt='admin'/>
               <div className='admin'>admin</div>
             </Link>
             }
-          {!this.state.isAdmin &&
+          {!this.state.user.admin &&
             <Link to="/profile" className="item wobble"> <img src='../Images/user.png' alt='profile'/>
               <div className='caption'>profile</div>
             </Link>}
