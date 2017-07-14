@@ -30,9 +30,9 @@ export function messageFail(errors){
   })
 }
 
-export function fetchMessages(attributes){
+export function updateMessages(attributes){
   dispatcher.dispatch({
-    type: 'FETCH_MESSAGES',
-    messages: attributes
+    type: 'UPDATE_MESSAGES',
+    attributes: attributes
   })
 }

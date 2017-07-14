@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events'
-import dispatcher from '../Dispatcher'
+import dispatcher from './Dispatcher'
 
 //add messages, see CatStore for reference
 

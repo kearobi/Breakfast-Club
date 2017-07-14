@@ -1,7 +1,7 @@
 //this will be fired off from our UserStore when the store is ready to send its information back to the server
 //we need to create a service so we can call out to our server and create new messages
 //this service has asyncronous actions, so when it handles changes it gets back from the server, it calls actions as well
-import {updateMessageDetail, messageFail, fetchMessages} from '../actions/MessageActions';
+import {updateMessageDetail, messageFail, updateMessages} from '../actions/MessageActions';
 
 let baseUrl;
 if(process.env.NODE_ENV === 'production'){
@@ -50,12 +50,16 @@ class MessageService {
     fetch(`${baseUrl}messages`, params).then((response)=>{
       if(response.ok){
         response.json().then((body)=>{
-          fetchMessages(body.messages)
+          updateMessages(body.messages)
+          // dispatcher.dispatch({
+          //   type: 'UPDATE_MESSAGES',
+          //   attributes: body.messages
+          // })
         })
       }else{
         response.json().then((body)=>{
-          //might have to change MessageFail. Can console log in the meantime
-          messageFail(body.errors)
+          //might have to change to MessageFail. Can console log in the meantime
+          console.log(body.errors)
         })
       }
     })

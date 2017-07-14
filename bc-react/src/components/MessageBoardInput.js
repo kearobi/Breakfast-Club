@@ -14,10 +14,13 @@ class MessageBoardInput extends Component {
       errors: {}
     }
     this.updateMessageInput = this.updateMessageInput.bind(this)
+    //action in previous examples
+    //look into this, constructor could always be initial while component will mount is only first time
   }
 
   componentWillMount(){
     messageStoreInput.on('change', this.updateMessageInput);
+    //put action here
   }
 
   componentWillUnmount(){

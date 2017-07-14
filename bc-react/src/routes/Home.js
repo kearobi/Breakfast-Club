@@ -27,6 +27,7 @@ class Home extends Component {
     }
     // this.onlogin = this.handleLogin.bind(this)
     // this.onlogout = this.handleLogOut.bind(this)
+    this.updateUser = this.updateUser.bind(this)
     this.oncurrent = this.updateCurrentEvent.bind(this)
     this.onevents = this.events.bind(this)
     if (this.props.initial){
@@ -38,6 +39,8 @@ class Home extends Component {
   componentWillMount(){
     // userStore.on('logged-in', this.onlogin)
     // userStore.on('logged-out', this.onlogout)
+    userStore.on('change', this.updateUser)
+
     eventStore.on('current event fetched', this.oncurrent)
     eventStore.on('event created',this.oncurrent)
     eventStore.on('events fetched', this.onevents)
@@ -45,11 +48,18 @@ class Home extends Component {
   }
 
   componentWillUnmount(){
+    userStore.removeListener('change', this.updateUser)
     // userStore.removeListener('logged-in', this.onlogin)
     // userStore.removeListener('logged-out', this.onlogout)
     eventStore.removeListener('current event fetched', this.oncurrent)
     eventStore.removeListener('event created',this.oncurrent)
     eventStore.removeListener('events fetched', this.onevents)
+  }
+
+  updateUser(){
+    this.setState({
+      user: userStore.getFields()
+    })
   }
 
  //  componentWillUpdate(){

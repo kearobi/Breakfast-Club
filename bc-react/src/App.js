@@ -6,8 +6,10 @@ import UserProfile from './routes/UserProfile';
 import TestEvent from './routes/TestEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
+import AdminTest from './components/Admin_Dry/AdminPage';
 import {updatePlaces} from './actions'
 import Places from './routes/Places'
+import Messages from './components/Messages'
 import CurrentEvent from './routes/CurrentEvent'
 import Photos from './routes/Photos'
 import VotePage from './routes/VotePage'
@@ -109,6 +111,8 @@ class App extends Component {
             <Route exact path='/test-event' component={TestEvent} />
             <Route exact path='/vote' component={VotePage} />
             <Route exact path='/flex' component={FlexPractice} />
+            <Route exact path='/messages' component={Messages} />
+            <Route exact path='/adminTest' component={AdminTest} />
             <Route exact path='/404' component={PageNotFound} />
             <Redirect to='/404'/>
           </Switch>
