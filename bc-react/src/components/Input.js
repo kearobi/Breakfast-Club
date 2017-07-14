@@ -9,7 +9,8 @@ export default class Input extends Component {
       type: this.props.type || 'text',
       size: this.props.size || '20',
       autoComplete: this.props.autoComplete || 'on',
-      className: this.props.className || ''
+      className: this.props.className || '',
+      disabled: this.props.disabled || ''
     }
   }
 
@@ -21,6 +22,7 @@ export default class Input extends Component {
         <input
           type={this.state.type}
           size={this.state.size}
+          disabled={this.state.disabled}
           autoComplete={this.state.autoComplete}
           name={this.props.name}
           placeholder={this.props.placeholder}
