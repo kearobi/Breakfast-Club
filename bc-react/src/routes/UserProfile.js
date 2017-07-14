@@ -13,7 +13,7 @@ class UserProfile extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: userStore.getFields(),
+      user: userStore.getUser(),
       editIcon: '../Images/edit.png',
       readOnly: true,
       title: 'edit',
@@ -32,7 +32,7 @@ class UserProfile extends Component {
 
   updateUser(){
     this.setState({
-      user: userStore.getFields()
+      user: userStore.getUser()
     })
   }
 

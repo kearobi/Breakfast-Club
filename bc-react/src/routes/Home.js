@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Reminder from '../components/Reminder';
-import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions';
+import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions/EventActions';
 // import {checkLoginRedir} from '../actions'
 import BigCalendar from 'react-big-calendar';
 import userStore from '../stores/UserStore';
@@ -21,7 +21,7 @@ class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      user: userStore.getFields(),
+      user: userStore.getUser(),
       event: eventStore.getCurrentEvent(),
       events: []
     }
@@ -58,7 +58,7 @@ class Home extends Component {
 
   updateUser(){
     this.setState({
-      user: userStore.getFields()
+      user: userStore.getUser()
     })
   }
 

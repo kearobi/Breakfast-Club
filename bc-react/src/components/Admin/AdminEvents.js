@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-import {fetchCurrentEvent} from '../../actions'
+import {fetchCurrentEvent} from '../../actions/EventActions'
 import SearchBar from './AdminSearchBar';
 import AdminModal from './AdminModal';
 import AdminTable from './AdminTable';

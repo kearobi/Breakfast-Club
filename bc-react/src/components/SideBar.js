@@ -7,7 +7,7 @@ class SideBar extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: userStore.getFields()
+      user: userStore.getUser()
     }
     this.updateUser = this.updateUser.bind(this)
   }
@@ -22,7 +22,7 @@ class SideBar extends Component {
 
   updateUser(){
     this.setState({
-      user: userStore.getFields()
+      user: userStore.getUser()
     })
   }
 

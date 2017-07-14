@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {registerVote} from '../actions';
+import {registerVote} from '../actions/EventActions';
 
 class VoteButton extends Component {
   handleClick(){

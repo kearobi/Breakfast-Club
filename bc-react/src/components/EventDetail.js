@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import VoteButton from './VoteButton';
 import RSVPButton from './RSVPButton';
 import EventChoice from './EventChoice'
-import {rsvp} from '../actions';
+import {rsvp} from '../actions/EventActions';
 import Moment from 'react-moment';
 import 'moment-timezone';
 

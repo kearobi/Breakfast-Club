@@ -12,7 +12,7 @@ import Places from './routes/Places'
 import Messages from './components/Messages'
 import CurrentEvent from './routes/CurrentEvent'
 import Photos from './routes/Photos'
-import VotePage from './routes/VotePage'
+import VotePage from './routes/VotePageMockUp'
 import FlexPractice from './components/FlexPractice'
 import PageNotFound from './routes/PageNotFound'
 import './style/App.css';

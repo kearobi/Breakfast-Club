@@ -2,12 +2,12 @@
 //AdminTable does not pass props
 
 import React, { Component } from 'react';
-// import {adminDeleteUser} from '../../actions';
-// import {adminDeletePlace} from '../../actions';
-// import {adminDeleteEvent} from '../../actions';
-// import {adminEditUser, adminLoadUsers} from '../../actions';
-// import {adminEditPlace, adminLoadPlaces} from '../../actions';
-// import {adminEditEvent, adminLoadEvents} from '../../actions';
+import {adminDeleteUser} from '../../actions/AdminActions';
+import {adminDeletePlace} from '../../actions/AdminActions';
+import {adminDeleteEvent} from '../../actions/AdminActions';
+import {adminEditUser, adminLoadUsers} from '../../actions/AdminActions';
+import {adminEditPlace, adminLoadPlaces} from '../../actions/AdminActions';
+import {adminEditEvent, adminLoadEvents} from '../../actions/AdminActions';
 
 //need to get starting state and update the state accordingly
 

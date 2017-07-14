@@ -4,18 +4,18 @@ import dispatcher from '../Dispatcher';
 class UserStore extends EventEmitter{
   constructor(){
     super()
-    this.fields = {}
+    this.user = {}
   }
 
 //we can tell a user is logged in if the authToken is set in the store
 
-  getFields(){
-    return this.fields
+  getUser(){
+    return this.user
   }
 
   // Updates the VM after a user action
   updateUser(attributes){
-    this.fields = attributes
+    this.user = attributes
     // localStorage.setItem('authToken', attributes.authToken);
     // localStorage.setItem('authTokenExpiration', attributes.authTokenExpiration);
     // localStorage.setItem('firstName', attributes.firstName);
@@ -67,11 +67,11 @@ class UserStore extends EventEmitter{
   //
 
   checkLogin(){
-    return this.fields.authToken !== null
+    return this.user.authToken !== null
   }
 
   clearAuthToken(){
-    this.fields.authToken = null
+    this.user.authToken = null
     this.emit('change')
   }
 
@@ -81,16 +81,8 @@ class UserStore extends EventEmitter{
         this.updateUser(action.user)
         break
       }
-      // case("UPDATE_USER"):{
-      //   // this.updateUser(action.user)
-      //   this.message = action.message;
-      //   this.emit("User Updated")
-      //   break
-      // }
       case("UPDATE_USER"):{
         this.updateUser(action.attributes)
-        // this.message = "User Created"
-        // this.emit("User Created")
         break
       }
       // case("VOTE-REGISTERED"):{
@@ -101,12 +93,6 @@ class UserStore extends EventEmitter{
       //   this.updateUser(action.user)
       //   this.message = "User Logged In"
       //   this.emit('login-success')
-      //   break
-      // }
-      // case("ADMIN-LOGIN"):{
-      //   this.updateUser(action.user)
-      //   this.message = "Admin Logged In"
-      //   this.emit('admin-login')
       //   break
       // }
       // case("CHECK_LOGIN"):{
