@@ -1,7 +1,7 @@
 import {EventEmitter} from 'events'
 import dispatcher from '../Dispatcher'
 import userService from '../services/UserService'
-
+import {processRegistration} from '../actions/UserActions'
 class SignUpStore extends EventEmitter {
   constructor(){
     super()
@@ -65,14 +65,21 @@ class SignUpStore extends EventEmitter {
   }
 
   clearFields(){
-    this.fields = {}
+    this.fields = {
+      firstName:'',
+      lastName:'',
+      email:'',
+      neighborhood: '',
+      password:'',
+      verifyPassword: ''
+    }
     this.emit('change')
   }
 
   submitRegistration(){
     this.validate()
     if(Object.keys(this.errors).length === 0){
-      userService.submitRegistration(this.fields)
+      processRegistration(this.fields)
     }
     this.emit('change')
   }

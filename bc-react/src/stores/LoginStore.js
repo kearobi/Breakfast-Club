@@ -1,6 +1,6 @@
 import {EventEmitter} from 'events'
 import dispatcher from '../Dispatcher'
-import userService from '../services/UserService'
+import {processLogin} from '../actions/UserActions'
 
 class LoginStore extends EventEmitter {
   constructor(){
@@ -17,7 +17,10 @@ class LoginStore extends EventEmitter {
   }
 
   clearFields(){
-    this.fields = {}
+    this.fields = {
+      email:'',
+      password:'',
+    }
     this.emit('change')
   }
 
@@ -57,7 +60,7 @@ class LoginStore extends EventEmitter {
   submitLogin(){
     this.validate()
     if(Object.keys(this.errors).length === 0){
-      userService.submitLogin(this.fields)
+      processLogin(this.fields)
     }
     this.emit('change')
   }
