@@ -6,6 +6,7 @@ import PlaceListing from '../components/PlaceListing'
 import placeStore from '../stores/PlaceStore'
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
+import {fetchPlaces} from '../actions/PlaceActions'
 
 class Places extends Component {
   constructor(props){
@@ -13,16 +14,22 @@ class Places extends Component {
     this.state = {
       places: placeStore.getPlaces()
     }
+    this.updatePlaces = this.updatePlaces.bind(this)
+    fetchPlaces()
+  }
+
+  componentWillMount(){
+    placeStore.on('change', this.updatePlaces)
+  }
+
+  componentWillUnmount(){
+    placeStore.removeListener('change', this.updatePlaces)
   }
 
   updatePlaces(){
     this.setState({
       places: placeStore.getPlaces()
     })
-  }
-
-  componentWillMount(){
-    placeStore.on('change', this.updatePlaces.bind(this))
   }
 
   renderPlaces(){

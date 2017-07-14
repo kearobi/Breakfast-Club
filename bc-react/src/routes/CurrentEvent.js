@@ -8,7 +8,6 @@ import EventDetail from '../components/EventDetail';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Header from '../components/Header';
-import MessageBoardToggle from '../components/MessageBoardToggle';
 
 class CurrentEvent extends Component {
   constructor(props){

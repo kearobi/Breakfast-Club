@@ -8,7 +8,7 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 
-export function updatePlaces(){
+export function fetchPlaces(){
   const params = {
     method: 'GET',
   }
@@ -16,7 +16,7 @@ export function updatePlaces(){
     if(response.ok){
       response.json().then(function(body){
         dispatcher.dispatch({
-          type: 'UPDATE_PLACES',
+          type: 'FETCH_PLACES',
           places: body.places
         })
       })
