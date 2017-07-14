@@ -1,6 +1,5 @@
 import {EventEmitter} from 'events'
 import dispatcher from '../Dispatcher'
-import userService from '../services/UserService'
 import {processRegistration} from '../actions/UserActions'
 class SignUpStore extends EventEmitter {
   constructor(){

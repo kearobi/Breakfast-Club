@@ -1,6 +1,6 @@
 import {EventEmitter} from 'events';
 import dispatcher from '../Dispatcher';
-import messageService from '../services/MessageService'
+import {processMessage} from '../actions/MessageActions'
 
 class MessageStoreInput extends EventEmitter{
   constructor(){
@@ -59,17 +59,20 @@ class MessageStoreInput extends EventEmitter{
   }
 
   clearFields(){
-    debugger
-    this.fields = {}
+    this.fields = {
+      content: '',
+      // author: '',
+      // createdAt: ''
+    }
     this.emit('change')
-    console.log(this.fields)
   }
 
-  submitMessageInput(){
+  sendMessage(){
     this.validate()
     //here we want to submitMessageInput to the service if there are no errors during client-side validation
     if(Object.keys(this.errors).length === 0){
-      messageService.submitMessageInput(this.fields)
+      processMessage(this.fields)
+      this.clearFields()
     }
     //either way we want to emit change so that the state of our application is updated if there are validation errors there
     this.emit('change')
@@ -88,8 +91,8 @@ class MessageStoreInput extends EventEmitter{
         this.updateField(action.attribute, action.value)
         break
       }
-      case("SUBMIT_MESSAGE_INPUT"):{
-        this.submitMessageInput(action.attribute, action.value)
+      case("SEND_MESSAGE"):{
+        this.sendMessage(action.attribute, action.value)
         break
       }
       case("MESSAGE_FAIL"):{
@@ -97,8 +100,7 @@ class MessageStoreInput extends EventEmitter{
         break
       }
       case("UPDATE_MESSAGE_DETAIL"):{
-
-        this.clearFields()
+        // this.clearFields()
         break
       }
       default:{}

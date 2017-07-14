@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import messageStoreInput from '../stores/MessageStoreInput';
 import userStore from '../stores/UserStore';
 import Moment from 'react-moment'
-import {updateMessageInput, submitMessageInput} from '../actions/MessageActions'
+import {updateMessageInput, sendMessage} from '../actions/MessageActions'
 import MessageBoardDetail from './MessageBoardDetail'
 import Input from './Input'
 
@@ -41,7 +41,7 @@ class MessageBoardInput extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    submitMessageInput()
+    sendMessage()
   }
 
   render() {
