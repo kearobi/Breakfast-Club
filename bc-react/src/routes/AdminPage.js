@@ -6,7 +6,6 @@ import AdminPlaces from '../components/Admin/AdminPlaces';
 import AdminEvents from '../components/Admin/AdminEvents';
 import adminStore from '../stores/AdminStore';
 import Header from '../components/Header';
-import MessageBoardToggle from '../components/MessageBoardToggle';
 
 class AdminPage extends Component {
   constructor(props){

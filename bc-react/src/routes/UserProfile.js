@@ -5,7 +5,6 @@ import userStore from '../stores/UserStore';
 import {editUser} from '../actions/UserActions';
 // import MyUploader from '../components/PhotoUpload'
 import Header from '../components/Header';
-import MessageBoardToggle from '../components/MessageBoardToggle';
 import Input from '../components/Input';
 import {logout} from '../actions/UserActions';
 
@@ -169,7 +168,6 @@ class UserProfile extends Component {
             </tbody>
           </table>
           <p className='delete' onClick={this.handleDeactivate.bind(this)} id='active'>deactivate my account</p>
-          <MessageBoardToggle />
         </div>
         </div>
       <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>

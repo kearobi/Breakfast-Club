@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import PlaceListing from '../components/PlaceListing'
 import placeStore from '../stores/PlaceStore'
-import MessageBoardToggle from '../components/MessageBoardToggle';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 
@@ -48,7 +47,6 @@ class Places extends Component {
         <div>
             <h2>Place List</h2>
             <p className="place-list">{this.renderPlaces()}</p>
-            <MessageBoardToggle />
         </div>
         </div>
         </div>

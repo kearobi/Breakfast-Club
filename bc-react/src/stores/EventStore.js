@@ -25,6 +25,7 @@ class EventStore extends EventEmitter{
     switch(action.type){
       case("FETCH-EVENTS"):{
         this.events = action.events;
+        debugger
         this.emit('events fetched');
         break;
       }

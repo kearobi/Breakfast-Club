@@ -10,7 +10,6 @@ import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
 import Header from '../components/Header';
-import MessageBoardToggle from '../components/MessageBoardToggle';
 // import placeStore from '../stores/PlaceStore'
 
 BigCalendar.setLocalizer(
@@ -30,10 +29,10 @@ class Home extends Component {
     this.updateUser = this.updateUser.bind(this)
     this.oncurrent = this.updateCurrentEvent.bind(this)
     this.onevents = this.events.bind(this)
-    if (this.props.initial){
+    // if (this.props.initial){
       fetchCurrentEvent()
       fetchEvents();
-    }
+    // }
   }
 
   componentWillMount(){
@@ -124,7 +123,6 @@ class Home extends Component {
             <div className='upcoming-event'><Link to='/current-event'>Current Event</Link></div>
           </div>
           <div className="calendar-div">{this.checkCalendar()}</div>
-          <MessageBoardToggle />
         {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}
       </div>
       </div>

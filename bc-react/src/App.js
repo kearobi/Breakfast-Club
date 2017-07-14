@@ -6,6 +6,7 @@ import UserProfile from './routes/UserProfile';
 import TestEvent from './routes/TestEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
+import MessageBoardToggle from './components/MessageBoardToggle';
 import AdminTest from './components/Admin_Dry/AdminPage';
 import {updatePlaces} from './actions'
 import Places from './routes/Places'
@@ -57,6 +58,7 @@ class App extends Component {
       //https://www.learnacademy.org/days/566 - Current User video
       <Router>
         <div>
+          {this.state.isLoggedIn && <MessageBoardToggle />}
           <Switch>
             <Route  exact path='/'
                     render={()=>(

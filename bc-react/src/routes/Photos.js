@@ -3,7 +3,6 @@ import Coverflow from 'reactjs-coverflow';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Header from '../components/Header';
-import MessageBoardToggle from '../components/MessageBoardToggle';
 
 class Photos extends Component {
 
@@ -50,7 +49,6 @@ class Photos extends Component {
                 </Coverflow>
                 <button className='entry-button wobble' onClick={this.next.bind(this)} type="button">&#8594;</button>
             </form>
-            <MessageBoardToggle />
             </div>
         </div>
       </div>
