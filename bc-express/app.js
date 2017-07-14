@@ -80,7 +80,7 @@ app.post('/messages', function(request, response){
 })
 
 // returns the id of the winning restaurant for the current event
-app.get('/count-votes', authorization, function (request, response) {
+app.get('/count-votes', function (request, response) {
   let _event;
   let _user;
   let _users = [];
@@ -193,7 +193,7 @@ app.get('/count-votes', authorization, function (request, response) {
 });
 
 // creates GuestList object with vote info and updates User vote status
-app.post('/register-vote', authorization, function(request, response){
+app.post('/register-vote', function(request, response){
   let _event;
   let _user;
   let _users = [];
@@ -280,7 +280,7 @@ app.post('/register-vote', authorization, function(request, response){
 })
 
 // finds an empty GuestList row and sets the user_id to the current User's id
-app.post('/rsvp', authorization, function(request, response){
+app.post('/rsvp', function(request, response){
   let _event;
   let _user;
   let _users = [];
@@ -368,7 +368,7 @@ app.post('/rsvp', authorization, function(request, response){
   })
 })
 
-app.get('/events', authorization, function(request, response){
+app.get('/events', function(request, response){
   let promises = [];
   let _events;
   Bevent.findAll()
@@ -403,14 +403,14 @@ app.get('/events', authorization, function(request, response){
 })
 
 
-app.get('/places', authorization, function(request, response){
+app.get('/places', function(request, response){
   Place.findAll().then(function(places){
     response.status(200)
     response.json({message: 'success', places: places})
   })
 })
 
-app.post('/places', authorization, function(request, response){
+app.post('/places', function(request, response){
   let placeParams = request.body.place
   Place.create(placeParams).then(function(place){
     response.status(200)
@@ -421,7 +421,7 @@ app.post('/places', authorization, function(request, response){
   })
 })
 
-app.get('/user', authorization, function(request, response){
+app.get('/user', function(request, response){
   response.json({user: request.currentUser})
 })
 
@@ -492,7 +492,7 @@ app.put('/profile', function(request, response){
 //   })
 // })
 
-app.post('/create-event', authorization, function(request, response){
+app.post('/create-event', function(request, response){
   let _places;
   let _place_id_1;
   let _place_id_2;
@@ -611,7 +611,7 @@ app.post('/test-event', function(request, response){
   })
 })
 
-app.post('/current-event', authorization, function(request, response){
+app.post('/current-event', function(request, response){
   let _event;
   let _users = [];
   let _places = [];
@@ -711,23 +711,23 @@ app.put('/login', function(request, response){
 // })
 
 //start Admin endpoints
-app.get('/admin/get/places', authorization, function(request, response){
+app.get('/admin/get/places', function(request, response){
   Place.findAll().then(function(places){
     response.status(200)
     response.json({message: 'success', places: places})
   })})
-app.get('/admin/get/users', authorization, function(request, response){
+app.get('/admin/get/users', function(request, response){
   User.findAll().then(function(users){
     response.status(200)
     response.json({message: 'success', users: users})
   })})
-app.get('/admin/get/events', authorization, function(request, response){
+app.get('/admin/get/events', function(request, response){
   Bevent.findAll().then(function(events){
     response.status(200)
     response.json({message: 'success', events: events})
   })})
 
-app.post('/admin/add/user', authorization, function(request, response){
+app.post('/admin/add/user', function(request, response){
   let userParams = request.body.user
   User.create(userParams).then(function(user){
     response.status(200)
@@ -736,7 +736,7 @@ app.post('/admin/add/user', authorization, function(request, response){
     response.status(400)
     response.json({message: 'error', errors: error.errors})
   })})
-app.post('/admin/add/place', authorization, function(request, response){
+app.post('/admin/add/place', function(request, response){
   let placeParams = request.body.place
   Place.create(placeParams).then(function(place){
     response.status(200)
@@ -745,7 +745,7 @@ app.post('/admin/add/place', authorization, function(request, response){
     response.status(400)
     response.json({message: 'error', errors: error.errors})
   })})
-app.post('/admin/add/event', authorization, function(request, response){
+app.post('/admin/add/event', function(request, response){
   let eventParams = request.body.event
   Bevent.create(eventParams).then(function(event){
     response.status(200)
@@ -760,7 +760,7 @@ app.post('/admin/add/event', authorization, function(request, response){
 //this is where the front end connects to the back end. The problem is we had two delete endpoints with the same URL. As we delete a user, we're sending a delete request to the backend and it's saying hey, i'm looking for this url, and on this url i want to perform these actions. However, you have to have a unique URL for every controller if you're trying to do something uniquely to each model
 
 //so now it will destroy all the guest lists and then it will destroy the user
-app.delete('/admin/delete/user', authorization, function(request, response){
+app.delete('/admin/delete/user', function(request, response){
   let userParams = request.body.id
   console.log("userParams:" + userParams)
   GuestList.destroy({where: {user_id:userParams}}).then(function(){
@@ -776,7 +776,7 @@ app.delete('/admin/delete/user', authorization, function(request, response){
   })
 })
 //swagger lets you see all the endpoints of an API in URL form
-app.delete('/admin/delete/place', authorization, function(request, response){
+app.delete('/admin/delete/place', function(request, response){
   let placeParams = request.body.id
   Place.destroy({where: {id: placeParams}}).then(function(place){
     repsonse.status(200)
@@ -785,7 +785,7 @@ app.delete('/admin/delete/place', authorization, function(request, response){
     response.status(400)
     response.json({message: 'error', errors: error.errors})
   })})
-app.delete('/admin/delete/event', authorization, function(request, response){
+app.delete('/admin/delete/event', function(request, response){
   let eventParams = request.body.id
   Bevent.destroy({where: {id: eventParams}}).then(function(event){
     repsonse.status(200)
@@ -796,7 +796,7 @@ app.delete('/admin/delete/event', authorization, function(request, response){
   })})
 
 //ask rob for help
-app.put('/admin/edit/user', authorization, function(request, response){
+app.put('/admin/edit/user', function(request, response){
   //the body contains the user, and the user contains the properties
   let userParams = request.body.user
   User.update(userParams, {where: {id: userParams.id}}).then(function(user){
@@ -806,7 +806,7 @@ app.put('/admin/edit/user', authorization, function(request, response){
     response.status(400)
     response.json({message: 'error', errors: error.errors})
   })})
-app.put('/admin/edit/place', authorization, function(request, response){
+app.put('/admin/edit/place', function(request, response){
   let placeParams = request.body.place
   console.log("request", request)
   console.log("placeParams", placeParams)
@@ -817,7 +817,7 @@ app.put('/admin/edit/place', authorization, function(request, response){
     response.status(400)
     response.json({message: 'error', errors: error.errors})
   })})
-app.put('/admin/edit/event', authorization, function(request, response){
+app.put('/admin/edit/event', function(request, response){
   let eventParams = request.body.event
   Bevent.update(eventParams, {where: {id: eventParams.id}}).then(function(event){
     response.status(200)
