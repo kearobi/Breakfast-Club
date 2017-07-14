@@ -445,7 +445,7 @@ app.post('/signup', function(request, response){
   })
 })
 
-app.put('/profile', authorization, function(request, response){
+app.put('/profile', function(request, response){
   let userParams = request.body.user
   User.update(userParams, {where: {id: userParams.id}}).then(function(user){
     response.status(200)

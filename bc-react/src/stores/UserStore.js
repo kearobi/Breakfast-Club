@@ -77,10 +77,10 @@ class UserStore extends EventEmitter{
 
   handleActions(action){
     switch(action.type){
-      // case("EDIT_USER"):{
-      //   this.updateUser(action.user)
-      //   break
-      // }
+      case("EDIT_USER"):{
+        this.updateUser(action.user)
+        break
+      }
       // case("UPDATE_USER"):{
       //   // this.updateUser(action.user)
       //   this.message = action.message;

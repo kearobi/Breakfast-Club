@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import userStore from '../stores/UserStore';
-import {editUser} from '../actions';
+import {editUser} from '../actions/UserActions';
 // import MyUploader from '../components/PhotoUpload'
 import Header from '../components/Header';
 import MessageBoardToggle from '../components/MessageBoardToggle';
 import Input from '../components/Input';
+import {logout} from '../actions/UserActions';
 
 class UserProfile extends Component {
   constructor(props){
@@ -70,14 +71,12 @@ class UserProfile extends Component {
     let target = e.target
     let user = this.state.user
     user[target.name] = target.value
-    console.log('GOOD the edited user is: ', user)
     this.setState({
       user: user
     })
   }
 
   handleSave(){
-    console.log("GOOD the user about to be saved is", this.state.user);
     editUser(this.state.user);
   }
 
@@ -89,8 +88,8 @@ class UserProfile extends Component {
       user: user
     })
     editUser(this.state.user);
-    //TODO: CONFIRM PROMPT AND USER LOGOUT
-    window.location.href = '/';
+    //TODO: CONFIRM PROMPT TO DEACTIVATE ACCOUNT
+    logout()
   }
 
   render(){
@@ -106,10 +105,9 @@ class UserProfile extends Component {
             </div>
             <div className='edit-wrapper'>
             <div className="edit">
-              <input
+              <Input
                 size='10'
                 disabled='true'
-                type='text'
                 value={this.state.header}
               />
             </div>
@@ -122,10 +120,10 @@ class UserProfile extends Component {
               <tr>
                 <td className='field'>First Name:</td>
                 <td>
-                  <Input
+                  <input
                     className={this.state.className}
-                    type='text'
                     name='firstName'
+                    type='text'
                     disabled={this.state.readOnly}
                     value={this.state.user.firstName}
                     onChange={this.handleEdit.bind(this)} />
@@ -134,9 +132,10 @@ class UserProfile extends Component {
               <tr>
                 <td className='field'>Last Name:</td>
                 <td>
-                  <Input
+                  <input
                     className={this.state.className}
                     name='lastName'
+                    type='text'
                     disabled={this.state.readOnly}
                     value={this.state.user.lastName}
                     onChange={this.handleEdit.bind(this)} />
@@ -150,17 +149,16 @@ class UserProfile extends Component {
                     size='30'
                     type='email'
                     name='email'
-                    autoComplete='off'
                     disabled={this.state.readOnly}
                     value={this.state.user.email}
-                    onChange={this.handleEdit.bind(this)}>
-                  </input>
+                    onChange={this.handleEdit.bind(this)} />
                 </td>
               </tr>
               <tr>
                 <td className='field'>Neighborhood:</td>
                 <td>
-                  <Input
+                  <input
+                    type='text'
                     className={this.state.className}
                     name='neighborhood'
                     disabled={this.state.readOnly}

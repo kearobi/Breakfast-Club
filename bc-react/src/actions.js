@@ -6,25 +6,25 @@ if(process.env.NODE_ENV === 'production'){
 } else {
   apiUrl = "http://localhost:4000/"
 }
-
-export function editUser(attributes){
-  const params = {
-    method: 'PUT',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({user: attributes})
-  }
-  fetch(apiUrl + "edit/user", params).then(function(response){
-      if (response.status === 200){
-        dispatcher.dispatch({
-          type: 'EDIT_USER',
-          user: attributes
-        })
-      }
-    }).catch(function(error){
-      console.log("Actions - updateUser - Error: ", error);
-      // adminStore.updateMessage("There was an error: " + error)
-    })
-}
+//
+// export function editUser(attributes){
+//   const params = {
+//     method: 'PUT',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify({user: attributes})
+//   }
+//   fetch(apiUrl + "edit/user", params).then(function(response){
+//       if (response.status === 200){
+//         dispatcher.dispatch({
+//           type: 'EDIT_USER',
+//           user: attributes
+//         })
+//       }
+//     }).catch(function(error){
+//       console.log("Actions - updateUser - Error: ", error);
+//       // adminStore.updateMessage("There was an error: " + error)
+//     })
+// }
 
 
 export function testCreate(){

@@ -1,10 +1,10 @@
 import dispatcher from '../Dispatcher'
 
-let baseUrl;
+let apiUrl;
 if(process.env.NODE_ENV === 'production'){
-  baseUrl = "/"
+  apiUrl = "/"
 } else {
-  baseUrl = "http://localhost:4000/"
+  apiUrl = "http://localhost:4000/"
 }
 
 export function updateRegistration(attribute, value){
@@ -41,7 +41,7 @@ export function processLogin(attributes){
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(attributes)
   }
-  fetch(`${baseUrl}login`, params).then((response)=>{
+  fetch(`${apiUrl}login`, params).then((response)=>{
     if(response.ok){
       response.json().then((body)=>{
         // updateUser(body.user)
@@ -91,7 +91,7 @@ export function processRegistration(attributes){
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(attributes)
     }
-    fetch(`${baseUrl}signup`, params).then((response)=>{
+    fetch(`${apiUrl}signup`, params).then((response)=>{
       if(response.ok){
         response.json().then((body)=>{
           // updateUser(body.user)
@@ -111,3 +111,22 @@ export function processRegistration(attributes){
       }
     })
   }
+
+export function editUser(attributes){
+  const params = {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({user: attributes})
+  }
+  fetch(`${apiUrl}profile`, params).then(function(response){
+      if(response.ok){
+        dispatcher.dispatch({
+          type: 'EDIT_USER',
+          user: attributes
+        })
+      }
+    }).catch(function(error){
+      console.log("Actions - updateUser - Error: ", error);
+      // TODO
+    })
+}
