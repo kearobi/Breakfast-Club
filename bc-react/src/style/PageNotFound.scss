@@ -1,0 +1,42 @@
+.MIA {
+  font-size: 100px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+  height: 100vh;
+
+.go-home {
+  display: inline-block;
+  margin-top: 12px;
+}
+
+img { width: 700px;
+      margin-left: 60px;
+      margin-bottom: -70px;}
+
+.go-home {
+  background-color: white;
+  border-radius: 20px;
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 35px;
+  text-align: center;
+  color: black;
+  }
+.go-home:hover {
+  cursor: pointer;
+}
+  .color:hover {
+    background-color: fuchsia;
+    color: white;
+  }
+}
+
+
+
+@media all and (max-width: 1048px) {
+
+  .MIA {
+    flex-direction: column;
+  }
+}
