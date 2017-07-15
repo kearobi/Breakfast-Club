@@ -72,6 +72,12 @@ export function logout(){
   })
 }
 
+export function setUserFromLocal(){
+  dispatcher.dispatch({
+    type: 'LOCAL_STORAGE'
+  })
+}
+
 // export function registrationFail(errors){
 //   dispatcher.dispatch({
 //     type: 'REGISTRATION_FAIL',

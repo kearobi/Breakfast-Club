@@ -23,7 +23,6 @@ import userStore from './stores/UserStore'
 class App extends Component {
   constructor(props){
     super(props)
-    // updatePlaces()
     this.state = {}
     this.updateLoginStatus = this.updateLoginStatus.bind(this)
   }
@@ -39,17 +38,18 @@ class App extends Component {
   updateLoginStatus(){
     this.setState({isLoggedIn: userStore.checkLogin()})
   }
-  // handleInitialHome(){
-  //   return (
-  //     <Home initial="true"/>
-  //   )
-  // }
-  //
-  // handleDefaultHome(){
-  //   return (
-  //     <Home initial="false"/>
-  //   )
-  // }
+
+  handleInitialHome(){
+    return (
+      <Home initial="true"/>
+    )
+  }
+
+  handleDefaultHome(){
+    return (
+      <Home initial="false"/>
+    )
+  }
 
   render() {
     return (
@@ -81,14 +81,13 @@ class App extends Component {
                       <Places />
                     // ) : (<Redirect to='/' />)
                   )} />
-            {/* <Route exact path='/home-initial' render={this.handleInitialHome} /> */}
-            {/* <Route exact path='/home' render={this.handleDefaultHome} /> */}
+            <Route exact path='/home-initial' render={this.handleInitialHome} />
             <Route  exact path='/home'
-                    render={()=>(
-                    // this.state.isLoggedIn ? (
-                      <Home />
-                    // ) : (<Redirect to='/' />)
-                    )} />
+                    render=
+                    // {()=>(this.state.isLoggedIn ? (
+                      {this.handleDefaultHome}
+                    // ) : (<Redirect to='/' />) )}
+                  />
             <Route  exact path='/profile'
                     render={()=>(
                     // this.state.isLoggedIn ? (
