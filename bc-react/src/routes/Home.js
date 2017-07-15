@@ -4,7 +4,7 @@ import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Reminder from '../components/Reminder';
 import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions/EventActions';
-// import {checkLoginRedir} from '../actions'
+import {checkLoginRedir} from '../actions/UserActions'
 import BigCalendar from 'react-big-calendar';
 import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
@@ -24,32 +24,28 @@ class Home extends Component {
       event: eventStore.getCurrentEvent(),
       events: []
     }
-    // this.onlogin = this.handleLogin.bind(this)
-    // this.onlogout = this.handleLogOut.bind(this)
+    this.onlogin = this.handleLogin.bind(this)
     this.updateUser = this.updateUser.bind(this)
     this.oncurrent = this.updateCurrentEvent.bind(this)
     this.onevents = this.events.bind(this)
-    // if (this.props.initial){
+    if (this.props.initial){
       fetchCurrentEvent()
       fetchEvents();
-    // }
+    }
   }
 
   componentWillMount(){
-    // userStore.on('logged-in', this.onlogin)
-    // userStore.on('logged-out', this.onlogout)
+    userStore.on('logged-in', this.onlogin)
     userStore.on('change', this.updateUser)
-
     eventStore.on('current event fetched', this.oncurrent)
     eventStore.on('event created',this.oncurrent)
     eventStore.on('events fetched', this.onevents)
-    // checkLoginRedir(this.props, userStore.getUser());
+    checkLoginRedir(this.props, userStore.getUser());
   }
 
   componentWillUnmount(){
     userStore.removeListener('change', this.updateUser)
-    // userStore.removeListener('logged-in', this.onlogin)
-    // userStore.removeListener('logged-out', this.onlogout)
+    userStore.removeListener('logged-in', this.onlogin)
     eventStore.removeListener('current event fetched', this.oncurrent)
     eventStore.removeListener('event created',this.oncurrent)
     eventStore.removeListener('events fetched', this.onevents)
@@ -65,12 +61,12 @@ class Home extends Component {
  //   checkLoginRedir(this.props)
  // }
 
-  // handleLogin(){
-  //   console.log("handleLogin called")
-  //   this.setState({
-  //     user: userStore.getUser(),
-  //   })
-  // }
+  handleLogin(){
+    console.log("handleLogin called")
+    this.setState({
+      user: userStore.getUser(),
+    })
+  }
 
   updateCurrentEvent(){
     checkIfVotingOver(eventStore.getCurrentEvent())

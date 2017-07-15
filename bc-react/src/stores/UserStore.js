@@ -15,25 +15,9 @@ class UserStore extends EventEmitter{
   }
 
   updateUser(attributes){
-    // this.user = attributes
-    // store user credentials 'authToken, expire and email' locally in user browser.
+    this.user = attributes
 
-    let newAttributes = {
-      authToken: localStorage.setItem('authToken', attributes.authToken),
-      authTokenExpiration: expire,
-      firstName: window.localStorage.getItem('firstName'),
-      lastName: window.localStorage.getItem('lastName'),
-      email: window.localStorage.getItem('email'),
-      neighborhood: window.localStorage.getItem('neighborhood'),
-      voted: window.localStorage.getItem('voted'),
-      rsvp: window.localStorage.getItem('rsvp'),
-      id: window.localStorage.getItem('id'),
-    }
-
-
-    this.sendUser(){
-
-    }
+    this.fields = attributes
     localStorage.setItem('authToken', attributes.authToken);
     localStorage.setItem('authTokenExpiration', attributes.authTokenExpiration);
     localStorage.setItem('firstName', attributes.firstName);
@@ -43,51 +27,37 @@ class UserStore extends EventEmitter{
     localStorage.setItem('voted', attributes.voted);
     localStorage.setItem('rsvp', attributes.rsvp);
     localStorage.setItem('id', attributes.id);
-    this.setUserFromLocal()
-    localStorage.setItem('authToken', this.user.authToken);
-    localStorage.setItem('authTokenExpiration', this.user.authTokenExpiration);
-    localStorage.setItem('firstName', this.user.firstName);
-    localStorage.setItem('lastName', this.user.lastName);
-    localStorage.setItem('email', this.user.email);
-    localStorage.setItem('neighborhood', this.user.neighborhood);
-    localStorage.setItem('voted', this.user.voted);
-    localStorage.setItem('rsvp', this.user.rsvp);
-    localStorage.setItem('id', this.user.id);
+    localStorage.setItem('active', attributes.active);
+    localStorage.setItem('admin', attributes.admin);
+    // store user credentials 'authToken, expire and email' locally in user browser.
     this.emit('change')
   }
 
   setUserFromLocal(){
-    console.log("UserStore - setUserFromLocal...");
-    let token = window.localStorage.getItem("authToken");
-    let expire = new Date(window.localStorage.getItem('authTokenExpiration'));
-      if(token && expire >= new Date()){
-        this.user ={
-          authToken: token,
-          authTokenExpiration: expire,
-          firstName: window.localStorage.getItem('firstName'),
-          lastName: window.localStorage.getItem('lastName'),
-          email: window.localStorage.getItem('email'),
-          neighborhood: window.localStorage.getItem('neighborhood'),
-          voted: window.localStorage.getItem('voted'),
-          rsvp: window.localStorage.getItem('rsvp'),
-          id: window.localStorage.getItem('id'),
-        }
-        this.emit('change')
-        }
+  console.log("UserStore - setUserFromLocal...");
+  let token = localStorage.getItem('authToken');
+  let expire = new Date(localStorage.getItem('authTokenExpiration'));
+    if(token && expire >= new Date()){
+      this.user ={
+        authToken: token,
+        authTokenExpiration: expire,
+        firstName: localStorage.getItem('firstName'),
+        lastName: localStorage.getItem('lastName'),
+        email: localStorage.getItem('email'),
+        neighborhood: localStorage.getItem('neighborhood'),
+        voted: localStorage.getItem('voted'),
+        rsvp: localStorage.getItem('rsvp'),
+        id: localStorage.getItem('id'),
+        active: localStorage.getItem('active')
+      }
+      this.emit('logged-in')
 
-      console.log("UserStore - setUserFromLocal - this.user: ", this.user);
+    console.log("UserStore - setUserFromLocal - this.user: ", this.user);
   }
+}
 
   checkLogin(){
-    if(localStorage.getItem('authToken') !== null){
-      return true
-    }
-    // if(this.user.authToken !== null){
-    //   console.log(localStorage.getItem('authToken'))
-    //   return true
-    else{
-      return false
-    }
+    return this.fields.authToken !== null
   }
 
   clearUserData(){
@@ -100,6 +70,7 @@ class UserStore extends EventEmitter{
     localStorage.removeItem('voted')
     localStorage.removeItem('admin')
     localStorage.removeItem('rsvp')
+    localStorage.removeItem('active')
 
     this.user.authToken = null
     this.emit('change')

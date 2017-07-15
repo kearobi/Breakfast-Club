@@ -59,13 +59,6 @@ export function processLogin(attributes){
   })
 }
 
-// export function updateUser(attributes){
-//   dispatcher.dispatch({
-//     type: 'UPDATE_USER',
-//     attributes: attributes
-//   })
-// }
-
 export function logout(){
   dispatcher.dispatch({
     type: 'LOGOUT'
@@ -77,19 +70,6 @@ export function setUserFromLocal(){
     type: 'LOCAL_STORAGE'
   })
 }
-
-// export function registrationFail(errors){
-//   dispatcher.dispatch({
-//     type: 'REGISTRATION_FAIL',
-//     errors: errors
-//   })
-// }
-
-// export function loginFail(){
-//   dispatcher.dispatch({
-//     type: 'LOGIN_FAIL',
-//   })
-// }
 
 export function processRegistration(attributes){
     const params = {
@@ -108,7 +88,6 @@ export function processRegistration(attributes){
         })
       }else{
         response.json().then((body)=>{
-          // registrationFail(body.errors)
           dispatcher.dispatch({
             type: 'REGISTRATION_FAIL',
             errors: body.errors
@@ -135,4 +114,19 @@ export function editUser(attributes){
       console.log("Actions - updateUser - Error: ", error);
       // TODO
     })
+}
+
+export function checkLoginRedir(props, currentUser){
+  if(currentUser === null){
+    props.history.push("/login")
+    return false
+  }else{
+    return true
+  }
+}
+
+export function checkLogin(){
+  dispatcher.dispatch({
+    type: 'CHECK_LOGIN'
+  })
 }

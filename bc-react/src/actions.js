@@ -156,14 +156,14 @@
 // //   })
 // // }
 //
-// // export function checkLoginRedir(props, currentUser){
-// //   if(currentUser === null){
-// //     props.history.push("/login")
-// //     return false
-// //   }else{
-// //     return true
-// //   }
-// // }
+export function checkLoginRedir(props, currentUser){
+  if(currentUser === null){
+    props.history.push("/login")
+    return false
+  }else{
+    return true
+  }
+}
 // //
 // // export function fetchEvent(attributes){
 // //   const params = {
