@@ -53,7 +53,7 @@ class Places extends Component {
           <Header />
         <div>
             <h2>Place List</h2>
-            <p className="place-list">{this.renderPlaces()}</p>
+            <div className="place-list">{this.renderPlaces()}</div>
         </div>
         </div>
         </div>
