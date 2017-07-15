@@ -8,7 +8,7 @@ import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import MessageBoardToggle from './components/MessageBoardToggle';
 import AdminTest from './components/Admin_Dry/AdminPage';
-import {updatePlaces} from './actions'
+import {checkLogin} from './actions/UserActions'
 import Places from './routes/Places'
 import CurrentEvent from './routes/CurrentEvent'
 import Photos from './routes/Photos'
@@ -23,6 +23,8 @@ import userStore from './stores/UserStore'
 class App extends Component {
   constructor(props){
     super(props)
+    checkLogin()
+    // updatePlaces()
     this.state = {}
     this.updateLoginStatus = this.updateLoginStatus.bind(this)
   }

@@ -17,7 +17,6 @@ class UserStore extends EventEmitter{
   updateUser(attributes){
     this.user = attributes
 
-    this.fields = attributes
     localStorage.setItem('authToken', attributes.authToken);
     localStorage.setItem('authTokenExpiration', attributes.authTokenExpiration);
     localStorage.setItem('firstName', attributes.firstName);
@@ -57,7 +56,8 @@ class UserStore extends EventEmitter{
 }
 
   checkLogin(){
-    return this.fields.authToken !== null
+    if (this.user.authToken !== null)
+      return true
   }
 
   clearUserData(){
@@ -90,13 +90,6 @@ class UserStore extends EventEmitter{
         this.updateUser(action.data.user);
         break;
       }
-      // we have a login store now
-      // case("LOGIN"):{
-      //   this.updateUser(action.user)
-      //   this.message = "User Logged In"
-      //   this.emit('login-success')
-      //   break
-      // }
       case("CHECK_LOGIN"):{
         this.setUserFromLocal()
         break
@@ -112,10 +105,6 @@ class UserStore extends EventEmitter{
       case("EVENT-CREATED"):{
         this.updateUser(action.data.user)
         this.emit('voted set to false')
-        break
-      }
-      case("LOCAL_STORAGE"):{
-        this.setUserFromLocal()
         break
       }
 
