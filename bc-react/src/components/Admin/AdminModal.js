@@ -1,9 +1,9 @@
 //AdminModal gets props from AdminUsers, AdminPlaces, AdminEvents
 //AdminModal does not pass props
 import React, { Component } from 'react';
-// import {adminAddUser} from '../../actions';
-// import {adminAddEvent} from '../../actions';
-// import {adminAddPlace} from '../../actions';
+import {adminAddUser} from '../../actions';
+import {adminAddEvent} from '../../actions';
+import {adminAddPlace} from '../../actions';
 
 // goal: make this component generic. Make a single modal that covers both cases and gets anything that's the same from props. for exmaple, there would be prop.startingState and you would put your place in the starting state
 
@@ -24,10 +24,10 @@ class AdminModal extends Component {
 // addUser and updateUsers are asynchronous because they're in the store
   handleSubmit(e){
     e.preventDefault();
-    // if(this.props.userForm){adminAddUser(this.state)}
-    // else if (this.props.placeForm){adminAddPlace(this.state)}
-    // else if (this.props.eventForm){adminAddEvent(this.state)}
-    // else {<div></div>}
+    if(this.props.userForm){adminAddUser(this.state)}
+    else if (this.props.placeForm){adminAddPlace(this.state)}
+    else if (this.props.eventForm){adminAddEvent(this.state)}
+    else {<div></div>}
     this.props.closeModal({className: "closeModal"});
 }
 

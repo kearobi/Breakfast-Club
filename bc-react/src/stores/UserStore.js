@@ -13,7 +13,6 @@ class UserStore extends EventEmitter{
     return this.user
   }
 
-  // Updates the VM after a user action
   updateUser(attributes){
     this.user = attributes
     // localStorage.setItem('authToken', attributes.authToken);

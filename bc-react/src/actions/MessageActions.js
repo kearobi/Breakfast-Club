@@ -47,9 +47,8 @@ export function fetchMessages(){
           type: "FETCH-MESSAGES",
           messages: messages
         })
-      }
-      else {
+      } else {
         console.log("failure!", body)
       }
     })
-}
+  }

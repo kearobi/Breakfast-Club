@@ -24,9 +24,9 @@ class AdminTable extends Component {
       title: 'edit',
       className: 'read-only table-row'
     }
-    // adminLoadUsers()
-    // adminLoadPlaces()
-    // adminLoadEvents()
+    adminLoadUsers()
+    adminLoadPlaces()
+    adminLoadEvents()
   }
 
   handleMouseEnter(e){
@@ -50,10 +50,10 @@ class AdminTable extends Component {
     else if(this.state.editIcon === '../Images/save.png'){
         this.setState({editIcon: '../Images/edit.png', readOnly: true, title: 'edit', className: 'read-only table-row'})
         this.handleSave()}
-    // else if(this.state.deleteIcon === '../Images/hover-delete.png'){
-      // if(this.props.userTable){adminDeleteUser(this.state.user.id)}
-      // else if(this.props.placeTable){adminDeletePlace(this.state.place.id)}
-      // else if(this.props.eventTable){adminDeleteEvent(this.state.event.id)}}
+    else if(this.state.deleteIcon === '../Images/hover-delete.png'){
+      if(this.props.userTable){adminDeleteUser(this.state.user.id)}
+      else if(this.props.placeTable){adminDeletePlace(this.state.place.id)}
+      else if(this.props.eventTable){adminDeleteEvent(this.state.event.id)}}
       else {return ""}
     }
 
@@ -80,12 +80,12 @@ class AdminTable extends Component {
     }
 
   handleSave(){
-    // if(this.props.userTable){
-    //   adminEditUser(this.state.user)}
-    // else if(this.props.placeTable){
-    //   adminEditPlace(this.state.place)}
-    // else if(this.props.eventTable){
-    //   adminEditEvent(this.state.event)}
+    if(this.props.userTable){
+      adminEditUser(this.state.user)}
+    else if(this.props.placeTable){
+      adminEditPlace(this.state.place)}
+    else if(this.props.eventTable){
+      adminEditEvent(this.state.event)}
     }
 
   deleteIcon(){
