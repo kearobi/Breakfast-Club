@@ -33,7 +33,6 @@ class UserStore extends EventEmitter{
   }
 
   setUserFromLocal(){
-  console.log("UserStore - setUserFromLocal...");
   let token = localStorage.getItem('authToken');
   let expire = new Date(localStorage.getItem('authTokenExpiration'));
     if(token != undefined
@@ -47,15 +46,15 @@ class UserStore extends EventEmitter{
         lastName: localStorage.getItem('lastName'),
         email: localStorage.getItem('email'),
         neighborhood: localStorage.getItem('neighborhood'),
-        voted: localStorage.getItem('voted'),
-        rsvp: localStorage.getItem('rsvp'),
-        id: localStorage.getItem('id'),
-        active: localStorage.getItem('active'),
-        admin: localStorage.getItem('admin')
+        voted: JSON.parse(localStorage.getItem('voted')),
+        rsvp: JSON.parse(localStorage.getItem('rsvp')),
+        id: JSON.parse(localStorage.getItem('id')),
+        active: JSON.parse(localStorage.getItem('active')),
+        admin: JSON.parse(localStorage.getItem('admin'))
       }
       this.emit('logged-in')
 
-    console.log("UserStore - setUserFromLocal - this.user: ", this.user);
+    console.log("setUserFromLocal", this.user);
   }
 }
 
