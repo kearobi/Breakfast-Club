@@ -50,7 +50,8 @@ class UserStore extends EventEmitter{
         voted: localStorage.getItem('voted'),
         rsvp: localStorage.getItem('rsvp'),
         id: localStorage.getItem('id'),
-        active: localStorage.getItem('active')
+        active: localStorage.getItem('active'),
+        admin: localStorage.getItem('admin')
       }
       this.emit('logged-in')
 
