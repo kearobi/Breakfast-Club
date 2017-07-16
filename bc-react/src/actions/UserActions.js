@@ -116,15 +116,6 @@ export function editUser(attributes){
     })
 }
 
-export function checkLoginRedir(props, currentUser){
-  if(currentUser === null){
-    props.history.push("/login")
-    return false
-  }else{
-    return true
-  }
-}
-
 export function checkLogin(){
   dispatcher.dispatch({
     type: 'CHECK_LOGIN'
