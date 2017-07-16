@@ -37,7 +37,7 @@ class SideBar extends Component {
         <div className='nested'>
         {/* nesting is the nested flex box */}
           {this.state.user.email === "breakfastclub.sd@gmail.com" &&
-            <Link to="/admin" className="item wobble"> <img src='../Images/user.png' alt='admin'/>
+            <Link to="/admin" className="item wobble"> <img src='../Images/admin.png' alt='admin'/>
               <div className='admin'>admin</div>
             </Link>
             }
