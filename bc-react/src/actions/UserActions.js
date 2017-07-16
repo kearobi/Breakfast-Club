@@ -51,7 +51,6 @@ export function processLogin(attributes){
         })
       })
     }else{
-      // loginFail()
       dispatcher.dispatch({
         type: 'LOGIN_FAIL',
       })
@@ -62,12 +61,6 @@ export function processLogin(attributes){
 export function logout(){
   dispatcher.dispatch({
     type: 'LOGOUT'
-  })
-}
-
-export function setUserFromLocal(){
-  dispatcher.dispatch({
-    type: 'LOCAL_STORAGE'
   })
 }
 
@@ -116,8 +109,8 @@ export function editUser(attributes){
     })
 }
 
-export function checkLogin(){
+export function setUserFromLocal(){
   dispatcher.dispatch({
-    type: 'CHECK_LOGIN'
+    type: 'LOCAL_STORAGE'
   })
 }
