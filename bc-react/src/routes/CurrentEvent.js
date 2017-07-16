@@ -59,7 +59,7 @@ class CurrentEvent extends Component {
             <Header />
             <SideBarMini />
           <p>{this.state.message}</p>
-          <EventDetail voted={this.state.user.voted} rsvp={this.state.rsvp} user={this.state.user} eventData={this.state.event} winner={this.state.event.event.winner} />
+          <EventDetail voted={this.state.user.voted} rsvp={this.state.rsvp} user={this.state.user} eventData={this.state.event} winner={this.state.event.winner} />
             </div>
           </div>
         </div>
