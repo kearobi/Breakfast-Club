@@ -7,33 +7,34 @@ import {editUser} from '../actions/UserActions';
 import Header from '../components/Header';
 import Input from '../components/Input';
 import {logout} from '../actions/UserActions';
+import AdminKey from '../components/Admin/AdminKey';
 
 class UserProfile extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: userStore.getUser(),
+      user: this.props.user,
       editIcon: '../Images/edit.png',
       readOnly: true,
       title: 'edit',
       header: 'Edit Profile'
     }
-    this.updateUser = this.updateUser.bind(this)
+    // this.updateUser = this.updateUser.bind(this)
   }
-//the component is now listening to the store for changes
-  componentWillMount(){
-    userStore.on('change', this.updateUser)
-  }
-
-  componentWillUnmount(){
-    userStore.removeListener('change', this.updateUser)
-  }
-
-  updateUser(){
-    this.setState({
-      user: userStore.getUser()
-    })
-  }
+// //the component is now listening to the store for changes
+//   componentWillMount(){
+//     userStore.on('change', this.updateUser)
+//   }
+//
+//   componentWillUnmount(){
+//     userStore.removeListener('change', this.updateUser)
+//   }
+//
+//   updateUser(){
+//     this.setState({
+//       user: userStore.getUser()
+//     })
+//   }
 
   editIcon(){
     return(
@@ -92,6 +93,9 @@ class UserProfile extends Component {
   }
 
   render(){
+
+    // let isAdmin={this.state.user.admin}
+
     return (
           <div className='wrapper'>{/* //this is the flex container */}
             <SideBar />{/* //this is a flex item  with a nested flex container */}
@@ -171,6 +175,7 @@ class UserProfile extends Component {
         </div>
         </div>
       <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
+      {/* {isAdmin && <AdminKey />} */}
     </div>
       );
     }
