@@ -15,10 +15,10 @@ const radius    = '2000'; //Meters???
 // • Pass `yelp_id` in when getting a single business
 
 // rapid.call('YelpAPI', 'getBusiness/' + yelp_id, {
- 
+
 // }).on('success', (payload) => {
 //  // ...return the single business
-//  // TODO: Inspect the `payload` response for the "business" date 
+//  // TODO: Inspect the `payload` response for the "business" date
 //  return buildPlace(payload.something);
 // })
 
@@ -58,11 +58,7 @@ rapid.call('YelpAPI', 'getBusinesses', {
     var data = []
     for(var i=0;i<vals.length;i++){
       var newObj = Place.build()
-<<<<<<< HEAD
 			newObj.yelp_id = vals[i].id,
-=======
-      newObj.yelpId = vals[i].id,
->>>>>>> master
       newObj.name = vals[i].name,
       newObj.image_url = vals[i].image_url,
       newObj.review_count = vals[i].review_count,

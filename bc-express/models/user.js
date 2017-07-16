@@ -66,10 +66,15 @@ module.exports = function(sequelize, DataTypes) {
     instanceMethods:{
       toJSON(){
         return {
+          id: this.get('id'),
           firstName: this.get('firstName'),
           lastName: this.get('lastName'),
           email: this.get('email'),
           neighborhood: this.get('neighborhood'),
+          voted: this.get('voted'),
+          rsvp: this.get('rsvp'),
+          admin: this.get('admin'),
+          active: this.get('active'),
           authToken: this.get('authToken'),
           authTokenExpiration: this.get('authTokenExpiration')
         }

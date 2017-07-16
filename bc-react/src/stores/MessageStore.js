@@ -19,7 +19,6 @@ class MessageStore extends EventEmitter{
     else {
       return this.messages.reverse();
     }
-
   }
 
   handleActions(action){

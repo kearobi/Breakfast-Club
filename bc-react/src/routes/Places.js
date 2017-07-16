@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import PlaceListing from '../components/PlaceListing'
 import placeStore from '../stores/PlaceStore'
-import MessageBoardToggle from '../components/MessageBoardToggle';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
+import {fetchPlaces} from '../actions/PlaceActions'
 
 class Places extends Component {
   constructor(props){
@@ -14,16 +14,22 @@ class Places extends Component {
     this.state = {
       places: placeStore.getPlaces()
     }
+    this.updatePlaces = this.updatePlaces.bind(this)
+    fetchPlaces()
+  }
+
+  componentWillMount(){
+    placeStore.on('change', this.updatePlaces)
+  }
+
+  componentWillUnmount(){
+    placeStore.removeListener('change', this.updatePlaces)
   }
 
   updatePlaces(){
     this.setState({
       places: placeStore.getPlaces()
     })
-  }
-
-  componentWillMount(){
-    placeStore.on('change', this.updatePlaces.bind(this))
   }
 
   renderPlaces(){
@@ -47,8 +53,7 @@ class Places extends Component {
           <Header />
         <div>
             <h2>Place List</h2>
-            <p className="place-list">{this.renderPlaces()}</p>
-            <MessageBoardToggle />
+            <div className="place-list">{this.renderPlaces()}</div>
         </div>
         </div>
         </div>

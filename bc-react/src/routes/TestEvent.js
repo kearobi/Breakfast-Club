@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchEvent} from '../actions';
+import {fetchEvent} from '../actions/EventActions';
 import eventStore from '../stores/EventStore';
 import EventDetail from '../components/EventDetail';
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import messageStore from '../stores/MessageStore';
 import userStore from '../stores/UserStore';
-import {addMessage} from '../actions';
-import {fetchMessages} from '../actions';
+import {addMessage} from '../actions/MessageActions';
+import {fetchMessages} from '../actions/MessageActions';
 import Moment from 'react-moment'
 
 class MessageBoard extends Component {
@@ -45,6 +45,9 @@ class MessageBoard extends Component {
       content: this.state.currentMessage,
       author: `${userStore.getUser().firstName} ${userStore.getUser().lastName.slice(0, 1)}.`
     });
+    this.setState({
+      currentMessage: ''
+    })
   }
 
 

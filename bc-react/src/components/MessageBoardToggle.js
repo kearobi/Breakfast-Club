@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MessageBoard from '../components/MessageBoard';
+import MessageBoard from './MessageBoard';
 import ToggleDisplay from 'react-toggle-display';
 
 class MessageBoardToggle extends Component {

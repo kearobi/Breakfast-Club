@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {rsvp} from '../actions';
-import {fetchEvent} from '../actions';
+import {rsvp} from '../actions/EventActions';
+import {fetchEvent} from '../actions/EventActions';
 
 class RSVPButton extends Component {
   handleClick(){

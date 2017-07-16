@@ -1,11 +1,10 @@
 //AdminPage fetches the data and passes props to AdminUsers, AdminPlaces, AdminEvents
 
 import React, {Component} from 'react';
-import AdminUsers from '../components/Admin/AdminUsers';
-import AdminPlaces from '../components/Admin/AdminPlaces';
-import AdminEvents from '../components/Admin/AdminEvents';
-import adminStore from '../stores/AdminStore';
-import Header from '../components/Header';
+import AdminUsers from './AdminUsers';
+import AdminPlaces from './AdminPlaces';
+import AdminEvents from './AdminEvents';
+import adminStore from './AdminStore';
 
 class AdminPage extends Component {
   constructor(props){
@@ -72,7 +71,6 @@ class AdminPage extends Component {
       <div className="wrapper">{/* //this is the flex container */}
         <div className='admin-page'>{/* //this is a flex item */}
           <div className='nested'>{/* //this is a nested flex container */}
-            <Header />
             <h3>hello there, admin</h3>
               <div id="admin_button_wrapper">
                 <button

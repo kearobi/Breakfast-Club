@@ -12,14 +12,13 @@
   .wrapper {
     display: flex;
     height: 100vh;
-    // border: 10px solid yellow;
     flex-direction: column;
     justify-content: flex-start;
   }
 
   form {
-    // background-color: pink;
       input {
+        text-align: center;
         font-family: 'Abel', sans-serif;
         font-size: .9em;
       }
