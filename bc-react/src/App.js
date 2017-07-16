@@ -8,7 +8,7 @@ import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import MessageBoardToggle from './components/MessageBoardToggle';
 import AdminTest from './components/Admin_Dry/AdminPage';
-import {checkLogin} from './actions/UserActions'
+import {setUserFromLocal} from './actions/UserActions'
 import Places from './routes/Places'
 import CurrentEvent from './routes/CurrentEvent'
 import Photos from './routes/Photos'
@@ -25,7 +25,7 @@ import {fetchMessages} from './actions/MessageActions';
 class App extends Component {
   constructor(props){
     super(props)
-    checkLogin()
+    setUserFromLocal()
     this.state = {
       user: userStore.getUser()
     }
@@ -56,7 +56,7 @@ class App extends Component {
       loggedIn = true
     }
 
-    console.log(loggedIn)
+    console.log("loggedIn: ", loggedIn)
     return (
       //can refactor to pass props to Sidebar component here and only display if user is logged in
       //TODO: make sidebar dumb component by passing props down from here
