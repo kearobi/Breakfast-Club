@@ -12,7 +12,7 @@ class AdminKey extends Component {
   render(){
     return (
           <Link to='/admin' className="admin-key">
-            <img src='../Images/admin-key.png' title='admin' alt='admin page'/>
+            <img src='../Images/admin-key.png' alt='admin page'/>
             <div className='admin-caption'> admin key </div>
           </Link>
     );
