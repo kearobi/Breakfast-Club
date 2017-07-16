@@ -50,7 +50,6 @@ class App extends Component {
 
     let loggedIn = this.state.user.authToken
     let isAdmin = this.state.user.admin
-    console.log("admin status", isAdmin)
 
     return (
       //can refactor to pass props to Sidebar component here and only display if user is logged in
@@ -60,10 +59,6 @@ class App extends Component {
         <div>
           {loggedIn && <MessageBoardToggle />}
           <Switch>
-            <Route  exact path='/admin'
-                    render={()=>(
-                    isAdmin ? (<AdminPage />) : (<Redirect to='/home' />)
-                    )} />
             <Route  exact path='/'
                     render={()=>(loggedIn ? (<Redirect to='/home' />) : (<SplashPage />)
                     )} />
@@ -93,10 +88,10 @@ class App extends Component {
                     loggedIn ? (<Photos />) : (<Redirect to='/' />)
                     )} />
             {/* //TODO: add admin check to profile page */}
-            {/* <Route  exact path='/admin'
+            <Route  exact path='/admin'
                     render={()=>(
-                    isAdmin ? (<AdminPage />) : (<Redirect to='/' />)
-                    )} /> */}
+                    isAdmin ? (<AdminPage />) : (<Redirect to='/404' />)
+                    )} />
             {/* <Route exact path='/admin' component={AdminPage} /> */}
             <Route exact path='/test-event' component={TestEvent} />
             <Route exact path='/vote' component={VotePage} />
