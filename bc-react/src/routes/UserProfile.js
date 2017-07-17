@@ -78,7 +78,7 @@ class UserProfile extends Component {
 
   render(){
 
-    let isAdmin = this.state.user.admin
+    let isAdmin = (this.state.user.admin && this.state.user.email !== "breakfastclub.sd@gmail.com")
 
     return (
           <div className='wrapper'>{/* //this is the flex container */}
