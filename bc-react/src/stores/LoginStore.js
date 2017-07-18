@@ -66,7 +66,7 @@ class LoginStore extends EventEmitter {
   }
 
   loginFail(){
-    this.errors['general'] = 'invalid username/password'
+    this.errors['general'] = 'invalid email and/or password'
     this.emit('change')
   }
 
