@@ -65,11 +65,11 @@ class Reminder extends Component {
   }
 
   updateMessage(){
-    this.setState({
-      greeting: `Hey ${this.props.user.firstName}! `
-    })
     let currentEvent = eventStore.getCurrentEvent();
-    let user = userStore.getUser();
+    let user = this.props.user;
+    this.setState({
+      greeting: `Hey ${user.firstName}! `
+    })
 
     let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -102,14 +102,16 @@ class Reminder extends Component {
         if (this.checkIfAttending(user.id, currentEvent.guestLists)){
           this.setState({
             event: eventStore.getCurrentEvent(),
-            message1: "Not all votes are in, check back later for final details",
-            link: 'event'
+            greeting: `Hey ${user.firstName}, thanks for voting!`,
+            message1: "",
+            link: '',
+            message2: "All will be revealed at high noon on Thursday"
           })
         }
         else {
           this.setState({
             event: eventStore.getCurrentEvent(),
-            message1: "Are you in or are you in?",
+            message1: "Are you in or are you in? ",
             link: 'RSVP'
           })
         }
@@ -117,7 +119,7 @@ class Reminder extends Component {
       else {
         this.setState({
           event: eventStore.getCurrentEvent(),
-          greeting: `Hey, ${this.props.user.firstName}! This ${dayOfWeek} at ${hourTime}:${minuteTime}0 AM`,
+          greeting: `Hey, ${user.firstName}! This ${dayOfWeek} at ${hourTime}:${minuteTime}0 AM`,
           message1: `${currentEvent.places[0].name} or ${currentEvent.places[1].name}? `,
           link: "Cast your vote!",
           message2: ""
