@@ -3,15 +3,18 @@
 import React, { Component } from 'react';
 import eventStore from '../stores/EventStore';
 import userStore from '../stores/UserStore';
-
+import {Link} from 'react-router-dom'
 class Reminder extends Component {
   constructor(props){
     super(props)
     this.state = {
-      message: 'Reminder',
+      greeting: '',
+      message1: '',
+      link: '',
+      message2: '',
       event: {},
       userUpdated: false,
-      eventUpdated: true
+      eventUpdated: true,
     }
     this.onUpdateMessage = this.updateMessage.bind(this)
     this.onUpdateUser = this.updateUser.bind(this)
@@ -60,19 +63,24 @@ class Reminder extends Component {
   }
 
   updateMessage(){
+    this.setState({
+      greeting: `Hey ${this.props.user.firstName}! `
+    })
     let currentEvent = eventStore.getCurrentEvent();
     let user = userStore.getUser();
     if (!currentEvent.event.vote_status){
       if (this.checkIfAttending(user.id, currentEvent.guestLists)){
         this.setState({
           event: currentEvent,
-          message: `See you on ${currentEvent.event.date} at ${currentEvent.event.winner === 1 ? currentEvent.places[0].name : currentEvent.places[1].name}!`
+          message1: `See you on `,
+          link: `${currentEvent.event.date}`,
+          message2: ` at ${currentEvent.event.winner === 1 ? currentEvent.places[0].name : currentEvent.places[1].name}!`
         })
       }
       else {
         this.setState({
           event: eventStore.getCurrentEvent(),
-          message: "No breakfast for you this week!"
+          message1: "No breakfast for you this week!"
         })
       }
     }
@@ -81,20 +89,24 @@ class Reminder extends Component {
         if (this.checkIfAttending(user.id, currentEvent.guestLists)){
           this.setState({
             event: eventStore.getCurrentEvent(),
-            message: "Not all votes are in, check back later for final details"
+            message1: "Not all votes are in, check back later for final details",
+            link: 'event'
           })
         }
         else {
           this.setState({
             event: eventStore.getCurrentEvent(),
-            message: "Are you in or are you in?"
+            message1: "Are you in or are you in?",
+            link: 'RSVP'
           })
         }
       }
       else {
         this.setState({
           event: eventStore.getCurrentEvent(),
-          message: "Cast your vote!"
+          message1: "Cast your ",
+          link: "VOTE",
+          message2: "!"
         })
       }
     }
@@ -102,7 +114,12 @@ class Reminder extends Component {
 
   render() {
     return (
-      <div> {this.state.message} </div>
+      <div>
+        {this.state.greeting}
+        {this.state.message1}
+        <Link to='/current-event'> {this.state.link} </Link>
+        {this.state.message2}
+      </div>
     );
   }
 }
