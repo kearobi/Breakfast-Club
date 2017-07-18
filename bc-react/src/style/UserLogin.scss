@@ -5,6 +5,7 @@
     height: 100vh;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
   }
 
   .header-wrapper {
@@ -21,6 +22,10 @@
 
   .validate {
     text-align: center;
+    font-size: 17px;
+    color: #e22020;
+    margin-top: 10px;
+    width: 200px;
   }
 
   .validate img {

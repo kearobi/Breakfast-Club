@@ -17,11 +17,6 @@ class UserLogin extends Component {
 
   componentWillMount(){
     loginStore.on('change', this.updateLogin)
-    // userStore.on('admin-login', this.redirectToAdmin.bind(this));
-    // userStore.on('login-success', this.redirectToHome.bind(this));
-    // userStore.on('login-fail', this.loginFailed.bind(this));
-    // //where does UserLogin receive props from?
-    // checkLoginRedir(this.props, userStore.getUser());
   }
 
   componentWillUnmount(){
@@ -35,45 +30,13 @@ class UserLogin extends Component {
     })
   }
 
-  // redirectToHome(){
-  //   this.props.history.push("/home-initial");
-  // }
-  //
-  // redirectToAdmin(){
-  //   this.props.history.push("/admin");
-  // }
-  //
-  // loginFailed(){
-  //   this.setState({
-  //     message: '../Images/InvalidCred.PNG'
-  //   })
-  // }
-
   handleChange(e){
     let target = e.target
-    // let user = this.state.user
-    // user[target.name] = target.value
-    // this.setState({
-    //   user: user
-    // })
     updateLogin(target.name, target.value)
   }
 
   handleSubmit(e){
     e.preventDefault();
-    // if (this.state.user.email === "" || this.state.user.password === ""){
-    //   this.setState({
-    //     message: 'email address and password required'
-    //   })
-    // }
-    // else if (!this.state.user.active) {
-    //   this.setState({
-    //     message: 'this account is no longer active'
-    //   })
-    // }
-    // else {
-    //   loginUser(this.state.user)
-    // }
     submitLogin()
   }
 
@@ -105,7 +68,7 @@ render(){
               <button className='entry-button wobble'>Take Me Back!!</button>
             </Link>
             </form>
-            <div className='validate'>{this.state.message}</div>
+            <div className='validate'>{this.state.errors.general || this.state.errors.inactive}</div>
             <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
         </div>
       </div>

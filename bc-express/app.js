@@ -684,31 +684,10 @@ app.put('/login', function(request, response){
       })
     }else{
       response.status(400)
-      response.json({message: 'invalid username and/or password'})
+      response.json({message: 'error', errors: error.errors})
     }
   })
 })
-
-// TODO
-// app.post('/logout', function(request, response){
-//   if (user) =
-//   User.findOne({
-//     where:{email: request.body.email}
-//   })
-//   // search for User by email
-//   .then(function(user){
-//     if(user && user.verifyPassword(request.body.password)){
-//       response.status(200)
-//       response.json({
-//         message: 'Success!',
-//         user: user,
-//       })
-//     }else{
-//       response.status(400)
-//       response.json({message: 'Invalid Credentials'})
-//     }
-//   })
-// })
 
 //start Admin endpoints
 app.get('/admin/get/places', function(request, response){

@@ -66,7 +66,12 @@ class LoginStore extends EventEmitter {
   }
 
   loginFail(){
-    this.errors['general'] = 'invalid username/password'
+    this.errors['general'] = 'invalid email and/or password'
+    this.emit('change')
+  }
+
+  inactiveUser(){
+    this.errors['inactive'] = 'holla at breakfastclub.sd@gmail.com to reactivate this account'
     this.emit('change')
   }
 
@@ -82,6 +87,10 @@ class LoginStore extends EventEmitter {
       }
       case("LOGIN_FAIL"):{
         this.loginFail()
+        break
+      }
+      case("INACTIVE_USER"):{
+        this.inactiveUser()
         break
       }
       case("UPDATE_USER"):{
