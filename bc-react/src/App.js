@@ -90,7 +90,7 @@ class App extends Component {
             {/* //TODO: add admin check to profile page */}
             <Route  exact path='/admin'
                     render={()=>(
-                    isAdmin ? (<AdminPage />) : (<Redirect to='/404' />)
+                    isAdmin && loggedIn ? (<AdminPage />) : (<Redirect to='/' />)
                     )} />
             {/* <Route exact path='/admin' component={AdminPage} /> */}
             <Route exact path='/test-event' component={TestEvent} />
