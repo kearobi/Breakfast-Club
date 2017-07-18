@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import eventStore from '../stores/EventStore';
 import userStore from '../stores/UserStore';
 import {Link} from 'react-router-dom'
+import Moment from 'react-moment'
+
 class Reminder extends Component {
   constructor(props){
     super(props)
@@ -68,12 +70,23 @@ class Reminder extends Component {
     })
     let currentEvent = eventStore.getCurrentEvent();
     let user = userStore.getUser();
+
+    let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let temp = currentEvent.event.date.split('T')
+    let date = temp[0].split('-')
+    let dayOfWeek = weekday[new Date(date).getDay()]
+    let month = months[new Date(date).getMonth()]
+    let day = new Date(date).getDate()
+    let hourTime = new Date(temp).getHours()
+    let minuteTime = new Date(temp).getMinutes()
+
     if (!currentEvent.event.vote_status){
       if (this.checkIfAttending(user.id, currentEvent.guestLists)){
         this.setState({
           event: currentEvent,
           message1: `See you on `,
-          link: `${currentEvent.event.date}`,
+          link: `${dayOfWeek}`,
           message2: ` at ${currentEvent.event.winner === 1 ? currentEvent.places[0].name : currentEvent.places[1].name}!`
         })
       }
@@ -104,7 +117,7 @@ class Reminder extends Component {
       else {
         this.setState({
           event: eventStore.getCurrentEvent(),
-          message1: "Cast your ",
+          message1: `This ${dayOfWeek} at ${hourTime}:${minuteTime} - ${currentEvent.places[0].name} or ${currentEvent.places[1].name}? Cast your `,
           link: "VOTE",
           message2: "!"
         })
@@ -117,7 +130,7 @@ class Reminder extends Component {
       <div>
         {this.state.greeting}
         {this.state.message1}
-        <Link to='/current-event'> {this.state.link} </Link>
+        <Link to='/current-event'>{this.state.link}</Link>
         {this.state.message2}
       </div>
     );
