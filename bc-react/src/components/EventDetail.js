@@ -80,7 +80,7 @@ class EventDetail extends Component {
           </div>
           <div className='flex-container-2'>{/* this is a flex container */}
             <div className='flex-item'>{this.props.winner || `Still voting...`}</div>
-            <div className='flex-item'>TODO</div>
+            <div className='flex-item'>{this.props.speaker || `Nobody lined up yet...`}</div>
             <form className='flex-item'> TODO
               <input type="radio" name="rsvp" value="yes" onClick={this.handleClick.bind(this)} /> Yes
               <input type="radio" name="rsvp" value="no" onClick={this.handleClick.bind(this)} /> No
