@@ -44,10 +44,15 @@ export function processLogin(attributes){
   fetch(`${apiUrl}login`, params).then((response)=>{
     if(response.ok){
       response.json().then((body)=>{
+        if(body.user.active){
         dispatcher.dispatch({
           type: 'UPDATE_USER',
           attributes: body.user
-        })
+        })}else{
+          dispatcher.dispatch({
+            type: 'INACTIVE_USER'
+          })
+        }
       })
     }else{
       dispatcher.dispatch({

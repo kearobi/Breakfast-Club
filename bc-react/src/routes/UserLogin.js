@@ -68,7 +68,7 @@ render(){
               <button className='entry-button wobble'>Take Me Back!!</button>
             </Link>
             </form>
-            <div className='validate'>{this.state.errors.general}</div>
+            <div className='validate'>{this.state.errors.general || this.state.errors.inactive}</div>
             <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
         </div>
       </div>
