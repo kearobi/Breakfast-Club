@@ -44,10 +44,9 @@ class EventDetail extends Component {
     else {
       mappedUsers = this.props.eventData.users.map(function(user, i){
         return (
-          <div className='flex-item' key={i}>
-            <div>{user.firstName + " " + user.lastName}</div>
-            <div>{user.email}</div>
-          </div>
+          <span className='flex-item' key={i}>
+            {user.firstName} {user.lastName.slice(0, 1)}.
+          </span>
         )
       })
     }
@@ -80,7 +79,7 @@ class EventDetail extends Component {
             <div className='flex-item-header'>Who's In:</div>
           </div>
           <div className='flex-container-2'>{/* this is a flex container */}
-            <div className='flex-item'>TODO</div>
+            <div className='flex-item'>{this.props.winner || `Still voting...`}</div>
             <div className='flex-item'>TODO</div>
             <form className='flex-item'> TODO
               <input type="radio" name="rsvp" value="yes" onClick={this.handleClick.bind(this)} /> Yes
