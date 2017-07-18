@@ -107,7 +107,7 @@ class Reminder extends Component {
             event: currentEvent,
             greeting: `Hey ${user.firstName}, you're on the guest list!`,
             message1: 'The ',
-            link: 'location',
+            link: 'details',
             //TODO: fix hardcorded "Thursday at 12 pm"
             message2: " will be revealed this Thursday at 12 pm"
           })
