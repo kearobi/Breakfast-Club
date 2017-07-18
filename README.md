@@ -100,4 +100,10 @@ sequelize db:seed:all
 
 
 
+// CLEAR YOUR LOCAL STORAGE
+----
+- If you already had a local bc_development database and just dropped/repopulated your tables, make sure to also clear your browser's local storage as folows:
+
+From your browser console, go to Application -> Local Storage -> http://localhost:3000 and delete all
+
 - Now you may launch the application
