@@ -87,13 +87,16 @@ class Reminder extends Component {
           event: currentEvent,
           message1: `See you on `,
           link: `${dayOfWeek}`,
+          //TODO: add time of event
           message2: ` at ${currentEvent.event.winner === 1 ? currentEvent.places[0].name : currentEvent.places[1].name}!`
         })
       }
       else {
         this.setState({
-          event: eventStore.getCurrentEvent(),
-          message1: "No breakfast for you this week!"
+          event: currentEvent,
+          message1: "No breakfast for you this week!",
+          link: '',
+          message2: ''
         })
       }
     }
@@ -101,24 +104,27 @@ class Reminder extends Component {
       if (user.voted){
         if (this.checkIfAttending(user.id, currentEvent.guestLists)){
           this.setState({
-            event: eventStore.getCurrentEvent(),
-            greeting: `Hey ${user.firstName}, thanks for voting!`,
-            message1: "",
-            link: '',
-            message2: "All will be revealed at high noon on Thursday"
+            event: currentEvent,
+            greeting: `Hey ${user.firstName}, you're on the guest list!`,
+            message1: 'The ',
+            link: 'location',
+            //TODO: fix hardcorded "Thursday at 12 pm"
+            message2: " will be revealed this Thursday at 12 pm"
           })
         }
         else {
           this.setState({
-            event: eventStore.getCurrentEvent(),
+            event: currentEvent,
             message1: "Are you in or are you in? ",
-            link: 'RSVP'
+            link: 'RSVP',
+            message2: ''
           })
         }
       }
       else {
         this.setState({
-          event: eventStore.getCurrentEvent(),
+          event: currentEvent,
+          //TODO: fix hardcorded "0 AM"
           greeting: `Hey, ${user.firstName}! This ${dayOfWeek} at ${hourTime}:${minuteTime}0 AM`,
           message1: `${currentEvent.places[0].name} or ${currentEvent.places[1].name}? `,
           link: "Cast your vote!",
