@@ -37,19 +37,6 @@ class UserLogin extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    // if (this.state.user.email === "" || this.state.user.password === ""){
-    //   this.setState({
-    //     message: 'email address and password required'
-    //   })
-    // }
-    // else if (!this.state.user.active) {
-    //   this.setState({
-    //     message: 'this account is no longer active'
-    //   })
-    // }
-    // else {
-    //   loginUser(this.state.user)
-    // }
     submitLogin()
   }
 
@@ -81,7 +68,7 @@ render(){
               <button className='entry-button wobble'>Take Me Back!!</button>
             </Link>
             </form>
-            <div className='validate'>{this.state.errors.general}</div>
+            <div className='validate'>{this.state.errors.general || this.state.errors.inactive}</div>
             <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
         </div>
       </div>

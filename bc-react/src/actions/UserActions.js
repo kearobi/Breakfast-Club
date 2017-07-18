@@ -44,11 +44,15 @@ export function processLogin(attributes){
   fetch(`${apiUrl}login`, params).then((response)=>{
     if(response.ok){
       response.json().then((body)=>{
-        // updateUser(body.user)
+        if(body.user.active){
         dispatcher.dispatch({
           type: 'UPDATE_USER',
           attributes: body.user
-        })
+        })}else{
+          dispatcher.dispatch({
+            type: 'INACTIVE_USER'
+          })
+        }
       })
     }else{
       dispatcher.dispatch({
@@ -73,7 +77,6 @@ export function processRegistration(attributes){
     fetch(`${apiUrl}signup`, params).then((response)=>{
       if(response.ok){
         response.json().then((body)=>{
-          // updateUser(body.user)
           dispatcher.dispatch({
             type: 'UPDATE_USER',
             attributes: body.user
