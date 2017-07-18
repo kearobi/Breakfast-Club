@@ -684,7 +684,7 @@ app.put('/login', function(request, response){
       })
     }else{
       response.status(400)
-      response.json({message: 'invalid username and/or password'})
+      response.json({message: 'invalid email and/or password'})
     }
   })
 })
