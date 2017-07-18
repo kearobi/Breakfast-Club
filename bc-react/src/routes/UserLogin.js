@@ -37,19 +37,6 @@ class UserLogin extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    // if (this.state.user.email === "" || this.state.user.password === ""){
-    //   this.setState({
-    //     message: 'email address and password required'
-    //   })
-    // }
-    // else if (!this.state.user.active) {
-    //   this.setState({
-    //     message: 'this account is no longer active'
-    //   })
-    // }
-    // else {
-    //   loginUser(this.state.user)
-    // }
     submitLogin()
   }
 

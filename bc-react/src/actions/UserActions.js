@@ -44,7 +44,6 @@ export function processLogin(attributes){
   fetch(`${apiUrl}login`, params).then((response)=>{
     if(response.ok){
       response.json().then((body)=>{
-        // updateUser(body.user)
         dispatcher.dispatch({
           type: 'UPDATE_USER',
           attributes: body.user
@@ -73,7 +72,6 @@ export function processRegistration(attributes){
     fetch(`${apiUrl}signup`, params).then((response)=>{
       if(response.ok){
         response.json().then((body)=>{
-          // updateUser(body.user)
           dispatcher.dispatch({
             type: 'UPDATE_USER',
             attributes: body.user
