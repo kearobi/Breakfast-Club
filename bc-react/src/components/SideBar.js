@@ -36,12 +36,12 @@ class SideBar extends Component {
         {/* sidebar is a flex item of the parent */}
         <div className='nested'>
         {/* nesting is the nested flex box */}
-          {this.state.user.admin &&
-            <Link to="/admin" className="item wobble"> <img src='../Images/user.png' alt='admin'/>
+          {this.state.user.email === "breakfastclub.sd@gmail.com" &&
+            <Link to="/admin" className="item wobble"> <img src='../Images/admin.png' alt='admin'/>
               <div className='admin'>admin</div>
             </Link>
             }
-          {!this.state.user.admin &&
+          {this.state.user.email !== "breakfastclub.sd@gmail.com" &&
             <Link to="/profile" className="item wobble"> <img src='../Images/user.png' alt='profile'/>
               <div className='caption'>profile</div>
             </Link>}

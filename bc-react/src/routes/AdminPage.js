@@ -4,6 +4,8 @@ import React, {Component} from 'react';
 import AdminUsers from '../components/Admin/AdminUsers';
 import AdminPlaces from '../components/Admin/AdminPlaces';
 import AdminEvents from '../components/Admin/AdminEvents';
+import SideBar from '../components/SideBar';
+import SideBarMini from '../components/SideBarMini';
 import adminStore from '../stores/AdminStore';
 import Header from '../components/Header';
 
@@ -70,8 +72,10 @@ class AdminPage extends Component {
   render(){
     return(
       <div className="wrapper">{/* //this is the flex container */}
+        <SideBar/>
         <div className='admin-page'>{/* //this is a flex item */}
           <div className='nested'>{/* //this is a nested flex container */}
+            <SideBarMini/>
             <Header />
             <h3>hello there, admin</h3>
               <div id="admin_button_wrapper">

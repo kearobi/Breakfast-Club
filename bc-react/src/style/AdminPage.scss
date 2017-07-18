@@ -1,3 +1,27 @@
+.admin-key {
+    z-index: 50;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-right: 40px;
+    margin-top: 30px;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Dancing Script', sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    color: black;
+      img {
+        width: 50px;
+      }
+}
+
+.admin-key:hover {
+  text-decoration: underline;
+}
+
 .admin-page {
   flex: 1;
   overflow: auto;

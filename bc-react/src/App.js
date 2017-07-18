@@ -48,15 +48,9 @@ class App extends Component {
 
   render() {
 
-    let loggedIn
-    console.log('authToken:', this.state.user.authToken)
-    if(this.state.user.authToken == undefined){
-      loggedIn = false
-    } else {
-      loggedIn = true
-    }
+    let loggedIn = this.state.user.authToken
+    let isAdmin = this.state.user.admin
 
-    console.log("loggedIn: ", loggedIn)
     return (
       //can refactor to pass props to Sidebar component here and only display if user is logged in
       //TODO: make sidebar dumb component by passing props down from here
@@ -83,7 +77,7 @@ class App extends Component {
                     )} />
             <Route  exact path='/profile'
                     render={()=>(
-                    loggedIn ? (<UserProfile />) : (<Redirect to='/' />)
+                    loggedIn ? (<UserProfile user={this.state.user}/>) : (<Redirect to='/' />)
                     )} />
             <Route  exact path='/current-event'
                     render={()=>(
@@ -94,7 +88,11 @@ class App extends Component {
                     loggedIn ? (<Photos />) : (<Redirect to='/' />)
                     )} />
             {/* //TODO: add admin check to profile page */}
-            <Route exact path='/admin' component={AdminPage} />
+            <Route  exact path='/admin'
+                    render={()=>(
+                    isAdmin ? (<AdminPage />) : (<Redirect to='/404' />)
+                    )} />
+            {/* <Route exact path='/admin' component={AdminPage} /> */}
             <Route exact path='/test-event' component={TestEvent} />
             <Route exact path='/vote' component={VotePage} />
             <Route exact path='/adminTest' component={AdminTest} />
