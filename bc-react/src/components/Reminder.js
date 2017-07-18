@@ -117,9 +117,10 @@ class Reminder extends Component {
       else {
         this.setState({
           event: eventStore.getCurrentEvent(),
-          message1: `This ${dayOfWeek} at ${hourTime}:${minuteTime} - ${currentEvent.places[0].name} or ${currentEvent.places[1].name}? Cast your `,
-          link: "VOTE",
-          message2: "!"
+          greeting: `Hey, ${this.props.user.firstName}! This ${dayOfWeek} at ${hourTime}:${minuteTime}0 AM`,
+          message1: `${currentEvent.places[0].name} or ${currentEvent.places[1].name}? `,
+          link: "Cast your vote!",
+          message2: ""
         })
       }
     }
@@ -129,6 +130,7 @@ class Reminder extends Component {
     return (
       <div>
         {this.state.greeting}
+        <br />
         {this.state.message1}
         <Link to='/current-event'>{this.state.link}</Link>
         {this.state.message2}
