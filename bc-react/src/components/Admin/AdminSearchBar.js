@@ -35,6 +35,7 @@ placeHeader(){
         <div className="table-row-item price">Price</div>
         <div className="table-row-item street">Steet Address</div>
         <div className="table-row-item phone">Phone</div>
+        <div className="table-row-item active">Active</div>
         <div className="table-row-item hidden"></div>
         <div className="table-row-item hidden"></div>
       </div>
@@ -45,9 +46,9 @@ eventHeader(){
       <div className="table-row table-header">
         <div className="table-row-item date">Date</div>
         <div className="table-row-item name">Place</div>
-        <div className="table-row-item neighborhood">Neighborhood</div>
-        <div className="table-row-item guest">Guest Speaker</div>
+        <div className="table-row-item speaker">Guest Speaker</div>
         <div className="table-row-item rsvp">RSVP</div>
+        <div className="table-row-item active">Upcoming</div>
         <div className="table-row-item hidden"></div>
         <div className="table-row-item hidden"></div>
       </div>
@@ -84,7 +85,8 @@ eventHeader(){
             (place.categories.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (place.price.indexOf(this.state.searchTerm) !== -1) ||
             (place.address_street.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-            (place.phone.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+            (place.phone.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+            (place.active.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
           )
         })
       mappedFilter = filtered.map((place)=>{
@@ -96,8 +98,10 @@ eventHeader(){
         (event) => {
           return (
             (event.date.indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-            (event.place.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
-            // || (event.neighborhood.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+            (event.place.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+            (event.active.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+            (event.speaker.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+            // ||
             // (event.guest_speaker.indexOf(this.state.searchTerm) !== -1) ||
             // (event.rsvp.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
           )

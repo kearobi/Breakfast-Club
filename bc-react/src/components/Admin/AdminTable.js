@@ -193,6 +193,13 @@ class AdminTable extends Component {
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly} />
           </div>
+          <div className='table-row-item active'>
+            <input  name='active'
+                    value={this.state.place.active}
+                    onChange={this.handleEdit.bind(this)}
+                    disabled={this.state.readOnly}
+                    size='7'/>
+          </div>
           <div className="icon table-row-item">{this.deleteIcon()}</div>
           <div className="icon table-row-item">{this.editIcon()}</div>
         </div>
@@ -220,9 +227,21 @@ class AdminTable extends Component {
             // onChange={this.handleEdit.bind(this)}
             // disabled={this.state.readOnly}
           /></div>
-        <div className='table-row-item neighborhood'>neighborhood</div>
-        <div className='table-row-item guest'>guest speaker</div>
+        <div className='table-row-item speaker'>
+          <input  name='speaker'
+                  value={this.state.event.speaker}
+                  onChange={this.handleEdit.bind(this)}
+                  disabled={this.state.readOnly}
+                  size='7'/>
+        </div>
         <div className='table-row-item rsvp'>rsvp</div>
+        <div className='table-row-item active'>
+          <input  name='active'
+                  value={this.state.event.active}
+                  onChange={this.handleEdit.bind(this)}
+                  disabled={this.state.readOnly}
+                  size='7'/>
+        </div>
         <div className="icon table-row-item">{this.deleteIcon()}</div>
         <div className="icon table-row-item">{this.editIcon()}</div>
       </div>
