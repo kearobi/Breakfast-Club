@@ -20,7 +20,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
-    }
+    },
+    speaker: DataTypes.STRING,
   }, {
     classMethods: {
       associate: function(models) {

@@ -25,7 +25,7 @@ module.exports = {
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
         active: "true",
-        speaker: null
+        speaker: undefined
       }
     ])
     .then(function(){
@@ -57,7 +57,7 @@ module.exports = {
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
         active: "true",
-        speaker: null
+        speaker: undefined
       }
     ])
     .then(function(){

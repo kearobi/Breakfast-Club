@@ -9,7 +9,7 @@ module.exports = {
         {
           type: Sequelize.STRING,
           allowNull: true,
-          defaultValue: null
+          defaultValue: undefined
         }
       ),
     ];
