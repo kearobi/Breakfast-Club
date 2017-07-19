@@ -119,7 +119,6 @@ export function adminDeleteEvent(attributes){
 }
 
   export function adminAddUser(attributes){
-    attributes.admin = false;
     const params = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
