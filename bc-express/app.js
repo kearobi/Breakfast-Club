@@ -352,7 +352,9 @@ app.get('/events', function(request, response){
 
 
 app.get('/places', function(request, response){
-  Place.findAll().then(function(places){
+  Place.findAll({
+    where: {active: true}
+  }).then(function(places){
     response.status(200)
     response.json({message: 'success', places: places})
   })

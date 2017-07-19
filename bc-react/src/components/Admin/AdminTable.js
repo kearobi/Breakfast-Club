@@ -214,27 +214,20 @@ class AdminTable extends Component {
         </div>
     )}else if(this.props.eventTable){
 
-        let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-        let temp = this.state.event.date.split('T')
-        let date = temp[0].split('-')
-        let month = months[new Date(date).getMonth()]
-        let day = new Date(date).getDate()
-        let year = new Date(temp).getFullYear()
-
       return(
       <div className={this.state.className}>
         <div className='table-row-item date'>
           <input
             name='date'
-            value={`${month} ${day}, ${year}`}
+            value={this.state.event.date}
             onChange={this.handleEdit.bind(this)}
             disabled={this.state.readOnly} /></div>
         <div className='table-row-item name'>
           <input
-            // name='winner'
-            // value={this.state.event.winner}
-            // onChange={this.handleEdit.bind(this)}
-            // disabled={this.state.readOnly}
+            name='winner'
+            value={this.state.event.winner}
+            onChange={this.handleEdit.bind(this)}
+            disabled={this.state.readOnly}
           /></div>
         <div className='table-row-item speaker'>
           <input  name='speaker'
