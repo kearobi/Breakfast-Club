@@ -71,9 +71,10 @@ class UserProfile extends Component {
     this.setState({
       user: user
     })
+    if (window.confirm('You really wanna leave us?')){
     editUser(this.state.user);
-    //TODO: CONFIRM PROMPT TO DEACTIVATE ACCOUNT
     logout()
+    }
   }
 
   render(){

@@ -5,7 +5,7 @@ var cors = require('cors')
 var Place = require('./models').Place
 var Bevent = require('./models').Bevent
 var GuestList = require('./models').GuestList
-// var payload = require('./api').payload
+var payload = require('./api').payload
 var User = require('./models').User
 var Message = require('./models').Message
 var moment = require('moment');
@@ -90,10 +90,15 @@ app.get('/count-votes', function (request, response) {
 	let count_1 = 0;
 	let count_2 = 0;
   let winner;
+  //instead of then then then then, perhaps could do join statement that gets all of it. ie.
+    // Bevent.includes(GuestList).where(order: {date, DESC}, Guestlist: {event_id: event_id})
+    // and thsi would give you a table with them already mashed together
+    // Bevent.last THIS MIGHT JSUT BE RAILS
 	return Bevent.findOne({
 			limit: 1,
 			order: [['date', 'DESC']]
 	})
+  //
 	.then(function(event){
 		event_id = event.id;
 		return GuestList.findAll({
@@ -367,6 +372,8 @@ app.post('/rsvp', function(request, response){
     response.json({message: 'error', errors: error.errors})
   })
 })
+
+//to fetch historic events, could do "where event active status = false"
 
 app.get('/events', function(request, response){
   let promises = [];

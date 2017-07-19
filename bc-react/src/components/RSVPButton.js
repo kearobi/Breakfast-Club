@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {editUser} from '../actions/UserActions';
+import {rsvp} from '../actions/EventActions';
 
 class RSVPButton extends Component {
   constructor(props){
@@ -13,11 +14,13 @@ class RSVPButton extends Component {
   handleClick(e){
     let target = e.target
     let user = this.state.user
+    let event = this.state.event
     user[target.name] = JSON.parse(target.value)
     this.setState({
       user: user
     })
     editUser(user)
+    rsvp(user, event)
   }
 
   render() {
