@@ -172,7 +172,6 @@ export function adminAddEvent(attributes){
   })}
 
   export function adminEditUser(attributes){
-    attributes.admin = false;
     const params = {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},

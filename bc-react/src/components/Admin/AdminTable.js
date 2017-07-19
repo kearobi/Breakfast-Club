@@ -64,8 +64,8 @@ class AdminTable extends Component {
     let event = this.state.event
       if(this.props.userTable){
         user[target.name] = target.value
-        debugger
-        this.setState({user: user})  }
+        this.setState({user: user})
+        console.log('after edit', this.state.user)}
       else if(this.props.placeTable){
         place[target.name] = target.value
         this.setState({place: place})  }
@@ -76,7 +76,8 @@ class AdminTable extends Component {
 
   handleSave(){
     if(this.props.userTable){
-      adminEditUser(this.state.user)}
+      adminEditUser(this.state.user)
+      console.log('after save', this.state.user)}
     else if(this.props.placeTable){
       adminEditPlace(this.state.place)}
     else if(this.props.eventTable){
