@@ -7,7 +7,6 @@ import {fetchCurrentEvent} from '../../actions/EventActions'
 import SearchBar from './AdminSearchBar';
 import AdminModal from './AdminModal';
 import AdminTable from './AdminTable';
-import adminStore from '../../stores/AdminStore';
 
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
@@ -16,9 +15,7 @@ class AdminEvents extends Component {
     super(props)
     this.state = {events: this.props.events,
                   className: "closeModal"}
-
-  fetchCurrentEvent()
-  }
+    }
 
   events(){
     return [
@@ -29,12 +26,6 @@ class AdminEvents extends Component {
       }
     ]
   }
-
-  adminReturnEvents(){
-    this.setState({events: this.props.events})}
-
-  componentWillMount(){
-    adminStore.on('change', this.adminReturnEvents.bind(this))}
 
   openModal(){
     this.setState({className: "openModal"})}

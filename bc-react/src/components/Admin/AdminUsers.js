@@ -17,13 +17,6 @@ class AdminUsers extends Component {
                   className: "closeModal"}
   }
 
-    adminReturnUsers(){
-      this.setState({users: this.props.users})}
-
-    componentWillMount(){
-      adminStore.on('change',
-      this.adminReturnUsers.bind(this)) }
-
     openModal(){
       this.setState({className: "openModal"})}
 
