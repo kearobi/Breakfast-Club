@@ -13,15 +13,15 @@ import 'moment-timezone';
 class EventDetail extends Component {
 //it seems like it would make the most sense to add/remove the user from the guestlist onClick
 //this handleClick stuff here is a work in progress, feel free to take over!
-  handleClick(e){
-    if (e.target.value === 'yes'){
-      rsvp(this.props.user, this.props.eventData)
-    }
+  // handleClick(e){
+  //   if (e.target.value === 'yes'){
+  //     rsvp(this.props.user, this.props.eventData)
+  //   }
     // else if (e.target.value === 'no'){
     //   //TODO
     // }
     // else {return ""}
-  }
+  // }
   //
   // dateParser(){
   //   let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -34,7 +34,7 @@ class EventDetail extends Component {
   //   let hourTime = new Date(temp).getHours()
   //   let minuteTime = new Date(temp).getMinutes()
   //   console.log(dayOfWeek, "," , month, "", day, " @ ", hourTime,":", minuteTime)
-  // }
+
   render() {
     // this.dateParser()
     var mappedUsers;
@@ -85,11 +85,8 @@ class EventDetail extends Component {
           <div className='flex-container-2'>{/* this is a flex container */}
             <div className='flex-item'>{this.props.winner || `Still voting...`}</div>
             <div className='flex-item'>{this.props.speaker || `Nobody lined up yet...`}</div>
-              {!this.props.rsvp && this.props.voted &&
-                <form className='flex-item'>
-                  <input type="radio" name="rsvp" value="yes" onClick={this.handleClick.bind(this)} /> Yes
-                  <input type="radio" name="rsvp" value="no" onClick={this.handleClick.bind(this)} /> No
-                </form>
+              {this.props.voted &&
+                <RSVPButton user={this.props.user} event={this.props.eventData}/>
               }
             <div classname='RSVP'>
             {mappedUsers}

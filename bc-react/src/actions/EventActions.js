@@ -79,34 +79,34 @@ export function countVotes(){
     }
   })
 }
-
-export function rsvp(user, event){
-  const params = {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      event_id: event.event.id,
-      user_id: user.id
-    })
-  }
-  fetch(`${apiUrl}rsvp`, params).then(function(response){
-    if(response.ok){
-      response.json().then(function(body){
-        dispatcher.dispatch({
-          type: 'RSVP',
-          data: {
-            event: body.event,
-            users: body.users,
-            places: body.places,
-            guestLists: body.guestLists
-          }
-        })
-      })
-    }
-  }).catch(function(error){
-    console.log("There was an error: " + error)
-  })
-}
+//
+// export function rsvp(user, event){
+//   const params = {
+//     method: 'POST',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify({
+//       event_id: event.event.id,
+//       user_id: user.id
+//     })
+//   }
+//   fetch(`${apiUrl}rsvp`, params).then(function(response){
+//     if(response.ok){
+//       response.json().then(function(body){
+//         dispatcher.dispatch({
+//           type: 'RSVP',
+//           data: {
+//             event: body.event,
+//             users: body.users,
+//             places: body.places,
+//             guestLists: body.guestLists
+//           }
+//         })
+//       })
+//     }
+//   }).catch(function(error){
+//     console.log("There was an error: " + error)
+//   })
+// }
 
 export function registerVote(user, event, choice){
   event.choice = choice;
