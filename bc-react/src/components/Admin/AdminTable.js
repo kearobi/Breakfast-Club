@@ -24,9 +24,6 @@ class AdminTable extends Component {
       title: 'edit',
       className: 'read-only table-row'
     }
-    adminLoadUsers()
-    adminLoadPlaces()
-    adminLoadEvents()
   }
 
   handleMouseEnter(e){
@@ -59,7 +56,7 @@ class AdminTable extends Component {
       }
     }
   }
-    
+
 
       // let response = confirm("Wait really?")
       //could also pass this.props.user, but we added id so we're only handing it the data it needs to get the job done
