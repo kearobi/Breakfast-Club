@@ -15,7 +15,6 @@ updateSearch(event){
 userHeader(){
   return (
       <div className="table-row table-header">
-        <div className="table-row-item id">ID</div>
         <div className="table-row-item firstName">First Name</div>
         <div className="table-row-item lastName">Last Name</div>
         <div className="table-row-item email">Email Address</div>

@@ -2,12 +2,8 @@
 //AdminTable does not pass props
 
 import React, { Component } from 'react';
-import {adminDeleteUser} from '../../actions/AdminActions';
-import {adminDeletePlace} from '../../actions/AdminActions';
-import {adminDeleteEvent} from '../../actions/AdminActions';
-import {adminEditUser, adminLoadUsers} from '../../actions/AdminActions';
-import {adminEditPlace, adminLoadPlaces} from '../../actions/AdminActions';
-import {adminEditEvent, adminLoadEvents} from '../../actions/AdminActions';
+import {adminDeleteUser, adminDeletePlace, adminDeleteEvent,
+adminEditUser, adminEditPlace, adminEditEvent} from '../../actions/AdminActions';
 
 //need to get starting state and update the state accordingly
 
@@ -57,10 +53,7 @@ class AdminTable extends Component {
     }
   }
 
-
-      // let response = confirm("Wait really?")
       //could also pass this.props.user, but we added id so we're only handing it the data it needs to get the job done
-    // }
 
       //there are two ways to read/set property of the object. 1. dot notation (user.firstName) 2. square bracket notation (user["firstName"]). if you're looking for a variable substitution, best to use the square bracket
 
@@ -113,9 +106,6 @@ class AdminTable extends Component {
     if(this.props.userTable){
       return (
         <div className={this.state.className}>
-            <div className='table-row-item id'>
-              {this.state.user.id}
-            </div>
             <div className='table-row-item firstName'>
               <input  name='firstName'
                       value={this.state.user.firstName}
@@ -225,8 +215,8 @@ class AdminTable extends Component {
             disabled={this.state.readOnly} /></div>
         <div className='table-row-item name'>
           <input
-            // name='place'
-            // value={this.state.event.place}
+            // name='winner'
+            // value={this.state.event.winner}
             // onChange={this.handleEdit.bind(this)}
             // disabled={this.state.readOnly}
           /></div>
