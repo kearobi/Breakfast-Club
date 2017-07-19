@@ -1,3 +1,28 @@
+form {
+  border: 2px solid #4CAF50;
+  width: 200px;
+}
+.rsvp {
+  button {
+    text-align: center;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 45px;
+    border: none;
+    width: 100px;
+  }
+  button:hover {
+    cursor: pointer;
+  }
+  .no {
+    background-color: white;
+    color: black;
+  }
+  .yes {
+    background-color: #4CAF50;
+    color: white;
+  }
+}
+
 .event-page {
   flex: 1;
   overflow: auto;
