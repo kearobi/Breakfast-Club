@@ -50,16 +50,6 @@ class EventDetail extends Component {
         )
       })
     }
-    //
-    // let RSVPbutton;
-    // if(!this.props.rsvp && this.props.voted){
-    //   return(
-    //     <div>
-    //     <input type="radio" name="rsvp" value="yes" onClick={this.handleClick.bind(this)} /> Yes
-    //     <input type="radio" name="rsvp" value="no" onClick={this.handleClick.bind(this)} /> No
-    //   </div>
-    //   )
-    // }
 
     return (
       <div className='events-page'>
@@ -77,6 +67,7 @@ class EventDetail extends Component {
                 place={this.props.eventData.places[1]}
                 choice={2}
                 />}
+              {/* //put vote page mockup here// */}
               {!this.props.voted && <VoteButton user={this.props.user} event={this.props.eventData} choice="1"/>}
               {!this.props.voted && <VoteButton user={this.props.user} event={this.props.eventData} choice="2"/>}
               {/* {!this.props.rsvp && this.props.voted && <RSVPButton user={this.props.user} event={this.props.eventData}/>} */}
