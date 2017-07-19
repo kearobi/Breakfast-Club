@@ -1,6 +1,14 @@
-form {
+.rsvp-button {
+  form {
   border: 2px solid #4CAF50;
   width: 200px;
+  display: inline-block;
+}
+  img {
+    width: 80px;
+    display: inline-block;
+    margin-left: 40px;
+  }
 }
 .rsvp {
   button {

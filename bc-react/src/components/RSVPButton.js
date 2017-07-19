@@ -26,19 +26,25 @@ class RSVPButton extends Component {
   render() {
     let yes
     let no
+    let image;
     if(this.state.user.rsvp){
       yes='rsvp yes'
       no='rsvp no'
+      image= './Images/rsvp-yes.png'
     } else{
       no='rsvp yes'
       yes='rsvp no'
+      image= './Images/rsvp-no.png'
     }
 
     return (
-      <form className = {yes}>
-        <button className={yes} type="button" name="rsvp" value={true} onClick={this.handleClick.bind(this)}>Yes </button>
-        <button className={no} type="button" name="rsvp" value={false} onClick={this.handleClick.bind(this)}>No </button>
-      </form>
+      <div className='rsvp-button'>
+        <form className = {yes}>
+          <button className={yes} type="button" name="rsvp" value={true} onClick={this.handleClick.bind(this)}>Yes </button>
+          <button className={no} type="button" name="rsvp" value={false} onClick={this.handleClick.bind(this)}>No </button>
+        </form>
+        <img src={image} alt='breakfast' />
+      </div>
     );
   }
 }
