@@ -125,7 +125,7 @@ class AdminTable extends Component {
                       value={this.state.user.email}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
-                      size='20'/>
+                      size='23'/>
             </div>
             <div className='table-row-item neighborhood'>
               <input  name='neighborhood'
@@ -133,6 +133,13 @@ class AdminTable extends Component {
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
                       size='15' />
+            </div>
+            <div className='table-row-item admin'>
+              <input  name='admin'
+                      value={this.state.user.admin}
+                      onChange={this.handleEdit.bind(this)}
+                      disabled={this.state.readOnly}
+                      size='7'/>
             </div>
             <div className='table-row-item active'>
               <input  name='active'

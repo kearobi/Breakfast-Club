@@ -34,7 +34,9 @@ class AdminUsers extends Component {
               email: "",
               neighborhood: "",
               password: "",
-              active: ""}})}
+              active: "",
+              admin: ""
+            }})}
 
   render(){
     return(

@@ -19,6 +19,7 @@ userHeader(){
         <div className="table-row-item lastName">Last Name</div>
         <div className="table-row-item email">Email Address</div>
         <div className="table-row-item neighborhood">Neighborhood</div>
+        <div className="table-row-item admin">Admin</div>
         <div className="table-row-item active">Active</div>
         <div className="table-row-item hidden"></div>
         <div className="table-row-item hidden"></div>
@@ -70,6 +71,7 @@ eventHeader(){
             (user.lastName.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (user.email.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (user.neighborhood.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+            (user.admin.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (user.active.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
           )
         })
