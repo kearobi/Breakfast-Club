@@ -15,12 +15,12 @@ class EventDetail extends Component {
 //this handleClick stuff here is a work in progress, feel free to take over!
   handleClick(e){
     if (e.target.value === 'yes'){
-
+      rsvp(this.props.user, this.props.eventData)
     }
-    else if (e.target.value === 'no'){
-
-    }
-    else {return ""}
+    // else if (e.target.value === 'no'){
+    //   //TODO
+    // }
+    // else {return ""}
   }
   //
   // dateParser(){
@@ -44,12 +44,22 @@ class EventDetail extends Component {
     else {
       mappedUsers = this.props.eventData.users.map(function(user, i){
         return (
-          <span className='flex-item' key={i}>
-            {user.firstName} {user.lastName.slice(0, 1)}.
-          </span>
+          <div className='RSVP-item' key={i}>
+            {user.firstName} {user.lastName.slice(0, 1)}.,
+          </div>
         )
       })
     }
+    //
+    // let RSVPbutton;
+    // if(!this.props.rsvp && this.props.voted){
+    //   return(
+    //     <div>
+    //     <input type="radio" name="rsvp" value="yes" onClick={this.handleClick.bind(this)} /> Yes
+    //     <input type="radio" name="rsvp" value="no" onClick={this.handleClick.bind(this)} /> No
+    //   </div>
+    //   )
+    // }
 
     return (
       <div className='events-page'>
@@ -69,23 +79,29 @@ class EventDetail extends Component {
                 />}
               {!this.props.voted && <VoteButton user={this.props.user} event={this.props.eventData} choice="1"/>}
               {!this.props.voted && <VoteButton user={this.props.user} event={this.props.eventData} choice="2"/>}
-              {!this.props.rsvp && this.props.voted && <RSVPButton user={this.props.user} event={this.props.eventData}/>}
+              {/* {!this.props.rsvp && this.props.voted && <RSVPButton user={this.props.user} event={this.props.eventData}/>} */}
           </div>
         <div className='event-details'> {/* this is a flex container */}
           <div className='flex-container-1'>{/* this is a flex container */}
             <div className='flex-item-header'>Where:</div>
             <div className='flex-item-header'>Guest Speaker:</div>
-            <div className='flex-item-header'>RSVP:</div>
+            {!this.props.rsvp && this.props.voted &&
+              <div className='flex-item-header'>RSVP:</div>
+            }
             <div className='flex-item-header'>Who's In:</div>
           </div>
           <div className='flex-container-2'>{/* this is a flex container */}
             <div className='flex-item'>{this.props.winner || `Still voting...`}</div>
             <div className='flex-item'>{this.props.speaker || `Nobody lined up yet...`}</div>
-            <form className='flex-item'> TODO
-              <input type="radio" name="rsvp" value="yes" onClick={this.handleClick.bind(this)} /> Yes
-              <input type="radio" name="rsvp" value="no" onClick={this.handleClick.bind(this)} /> No
-            </form>
+              {!this.props.rsvp && this.props.voted &&
+                <form className='flex-item'>
+                  <input type="radio" name="rsvp" value="yes" onClick={this.handleClick.bind(this)} /> Yes
+                  <input type="radio" name="rsvp" value="no" onClick={this.handleClick.bind(this)} /> No
+                </form>
+              }
+            <div classname='RSVP'>
             {mappedUsers}
+            </div>
           </div>
         </div>
       </div>
