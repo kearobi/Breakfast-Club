@@ -44,7 +44,7 @@ class AdminTable extends Component {
         this.setState({editIcon: '../Images/edit.png', readOnly: true, title: 'edit', className: 'read-only table-row'})
         this.handleSave()}
     else if(this.state.deleteIcon === '../Images/hover-delete.png'){
-      if (window.confirm('Hold up! Deleting will also delete any linked places, events or users. Maybe you want to deactivate instead Click OK to delete?')){
+      if (window.confirm("Hold up! Deleting will also delete any linked places, events or users. Consider deactivating instead. Click 'OK' to delete, 'Cancel' to cancel")){
         if(this.props.userTable){adminDeleteUser(this.state.user.id)}
         else if(this.props.placeTable){adminDeletePlace(this.state.place.id)}
         else if(this.props.eventTable){adminDeleteEvent(this.state.event.id)}
@@ -64,6 +64,7 @@ class AdminTable extends Component {
     let event = this.state.event
       if(this.props.userTable){
         user[target.name] = target.value
+        debugger
         this.setState({user: user})  }
       else if(this.props.placeTable){
         place[target.name] = target.value
