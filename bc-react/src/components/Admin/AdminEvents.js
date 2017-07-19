@@ -1,21 +1,76 @@
+//AdminEvents gets props from AdminPage and passes props to AdminTable, SearchBar, AdminModal
+
 import React, {Component} from 'react';
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
+import {fetchCurrentEvent} from '../../actions/EventActions'
+import SearchBar from './AdminSearchBar';
+import AdminModal from './AdminModal';
+import AdminTable from './AdminTable';
+import adminStore from '../../stores/AdminStore';
 
-//const api
-//only the most parent component should be responsible for fetching data
-
-//now in our Admin page we have users, and we want to put that into our Search Bar so it can use those props
+BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
 class AdminEvents extends Component {
   constructor(props){
     super(props)
-    this.state = {}
+    this.state = {events: this.props.events,
+                  className: "closeModal"}
+
+  fetchCurrentEvent()
   }
+
+  events(){
+    return [
+      {
+      'title': 'Long Event',
+      'start': new Date(2015, 3, 7),
+      'end': new Date(2015, 3, 10)
+      }
+    ]
+  }
+
+  adminReturnEvents(){
+    this.setState({events: this.props.events})}
+
+  componentWillMount(){
+    adminStore.on('change', this.adminReturnEvents.bind(this))}
+
+  openModal(){
+    this.setState({className: "openModal"})}
+
+  closeModal(){
+    this.setState({className: "closeModal"})}
+
+  closeModalOnSubmit(modal){
+    this.setState(modal)}
+
+  eventParams(){
+    return(
+      { event: {
+              date: "",
+      }})}
 
   render(){
     return(
-      <div id="admin_container">
-        <h3 className='center'>Events</h3>
+      <div className='admin-page'>
+        <p>Events</p>
+          <div className="search_bar_wrapper">
+            <button className="add_button" type="button"
+            onClick={this.openModal.bind(this)}>
+            + event </button>
+            <SearchBar events={this.props.events} eventSearchBar={true}/>
+          </div>
+          <br></br><br></br>
+          <AdminTable eventList={true} />
+          <div className={this.state.className}>
+            <span id='x' onClick={this.closeModal.bind(this)}>&times;</span>
+              <AdminModal eventForm={true} startingState={this.eventParams()}  closeModal={this.closeModalOnSubmit.bind(this)}/>
+          </div>
+        <div className="calendar-div admin-calendar">
+        <BigCalendar events={this.events()}/>
       </div>
+    </div>
       );
     }
   }

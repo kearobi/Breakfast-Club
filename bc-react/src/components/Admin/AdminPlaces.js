@@ -1,9 +1,12 @@
+//AdminPlaces gets props from AdminPage and passes props to AdminTable, SearchBar, AdminModal
+
 import React, {Component} from 'react';
-import AdminPlaceIndex from './AdminPlaceIndex';
-import AdminPlaceSearchBar from './AdminPlaceSearchBar';
-import PlaceStore from '../../stores/PlaceStore';
-import AdminPlaceModal from './AdminPlaceModal';
-// import AdminPlaceModal from '../components/AdminPlaceModal';
+import SearchBar from './AdminSearchBar';
+import AdminModal from './AdminModal';
+import AdminTable from './AdminTable';
+import adminStore from '../../stores/AdminStore';
+
+//once you make the component generic, you move the parts that are different out to the parent and pass them in as props
 //const api
 //only the most parent component should be responsible for fetching data
 
@@ -12,41 +15,53 @@ import AdminPlaceModal from './AdminPlaceModal';
 class AdminPlaces extends Component {
   constructor(props){
     super(props)
-    this.state = {places: PlaceStore.getPlaces(),
-                  displayModal: false}
+    this.state = {places: this.props.places,
+                  className: "closeModal"}
   }
-  updatePlaces(){
-    this.setState({
-      places: PlaceStore.getPlaces() })}
+  adminReturnPlaces(){
+    this.setState({places: this.props.places})}
 
   componentWillMount(){
-    PlaceStore.on('change', this.updatePlaces.bind(this)) }
+    adminStore.on('change', this.adminReturnPlaces.bind(this)) }
 
-  showPlaceList(){
-    value: this.state.value }
+  openModal(){
+    this.setState({className: "openModal"})}
 
-  displayModal(){
-    this.setState({displayModal: true})}
+  closeModal(){
+    this.setState({className: "closeModal"})}
 
-  modalAdmin(){
-    if(this.state.displayModal === true){
-    return (<AdminPlaceModal />)
-    } else { return ("") }}
+  closeModalOnSubmit(modal){
+    this.setState(modal)}
+
+  placeParams(){
+    return(
+      { place: {
+          name: "",
+          yelp_rating: "",
+          categories: "",
+          price: "",
+          address_street: "",
+          phone: ""
+      }})
+  }
 
   render(){
     return(
-      <div id="admin_container">
-        <h3 className='center'>Places</h3>
-        <div id="search_bar_wrapper">
+      <div className='admin-page'>
+        <p>Places</p>
+        <div className="search_bar_wrapper">
           <button className="add_button" type="button"
-            onClick={this.displayModal.bind(this)}>
+            onClick={this.openModal.bind(this)}>
             + place </button>
           {/* now SearchBar has access to places */}
-          <AdminPlaceSearchBar places={this.state.places}/>
+          <SearchBar places={this.props.places} placeSearchBar={true}/>
         </div>
           <br></br><br></br>
-          <AdminPlaceIndex />
-          {this.modalAdmin()}
+          <AdminTable placeList={true}/>
+          <div className={this.state.className}>
+            <span id='x' onClick={this.closeModal.bind(this)}>&times;</span>
+              <AdminModal placeForm={true} startingState={this.placeParams()}  closeModal={this.closeModalOnSubmit.bind(this)}/>
+          </div>
       </div>
       );
     }

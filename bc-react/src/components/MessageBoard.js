@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import messageStore from '../stores/MessageStore';
 import userStore from '../stores/UserStore';
-import {addMessage} from '../actions';
+import {addMessage} from '../actions/MessageActions';
+import {fetchMessages} from '../actions/MessageActions';
+import Moment from 'react-moment'
 
 class MessageBoard extends Component {
   constructor(props){
@@ -10,15 +12,21 @@ class MessageBoard extends Component {
       messages: [],
       currentMessage: ''
     }
+    fetchMessages()
+    this.onUpdate = this.updateMessages.bind(this)
   }
 
   componentWillMount(){
-    messageStore.on('messages fetched', this.updateMessages.bind(this));
-    messageStore.on('message added', this.updateMessages.bind(this));
+    messageStore.on('messages fetched', this.onUpdate);
+    messageStore.on('message added', this.onUpdate);
+  }
+
+  componentWillUnmount(){
+    messageStore.removeListener('messages fetched', this.onUpdate);
+    messageStore.removeListener('message added', this.onUpdate);
   }
 
   updateMessages(){
-    console.log("updateMessages called")
     this.setState({
       messages: messageStore.getLastFiveMessages()
     })
@@ -35,53 +43,53 @@ class MessageBoard extends Component {
     e.preventDefault();
     addMessage({
       content: this.state.currentMessage,
-      author: userStore.getUser().email
+      author: `${userStore.getUser().firstName} ${userStore.getUser().lastName.slice(0, 1)}.`
     });
+    this.setState({
+      currentMessage: ''
+    })
   }
 
+
+
   render() {
-    var mapped = this.state.messages.map(function(message, i){
-      var a = (message.createdAt)
-        let b = a.split("T")
-        let date = b[0]
-          let c = b[1].split(".")
-          let time = c[0]
+    let mapped = this.state.messages.map(function(message, i){
+      let timeStamp = (message.createdAt)
       return (
-        <div key={i}>
-          <p className='sender'>{message.author}</p>
-          <p className='time-stamp'>{date + " " + time}</p>
-          <p className='message-sent'>{message.content}</p>
-          <hr></hr>
+        <div className='individual-message' key={i}>
+          <div className='sender'>{message.author}</div>
+          <div className='time-stamp'><Moment fromNow>{timeStamp}</Moment></div>
+          <div className='message-content'>{message.content}</div>
         </div>
       )
     })
 
-
     return (
-      <div id="messageBoard">
-        <h1 className='title'>Message Board</h1>
-          <hr></hr>
-        <div>
-          <div className='message-box'>
-            {mapped}
-          </div>
+      <div className='message-board'>
+        <div className='message-box'>
+          {mapped.reverse()}
         </div>
-        <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-          <div className='formGroup'>
-            <input className='col-xs-8 formGroup submit-field'
-              type='text'
-              name='message'
-              value={this.state.currentMessage}
-              onChange={this.handleChange.bind(this)}>
-            </input>
-          </div>
-          <div className='formGroup'>
-            <input className="col-xs-4 btn btn-primary submit-field"
-              type='submit'
-              value='Send'>
-            </input>
-          </div>
-        </form>
+        <div>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <div>
+              <input className='submit-field'
+                size='28'
+                type='text'
+                placeholder='type a message'
+                name='message'
+                autoComplete='off'
+                value={this.state.currentMessage}
+                onChange={this.handleChange.bind(this)}>
+              </input>
+            </div>
+            <div>
+              <input className='submit-chat-button'
+                type='submit'
+                value='Send'>
+              </input>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

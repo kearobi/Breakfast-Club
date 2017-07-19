@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {fetchEvent} from '../actions';
+import {fetchEvent} from '../actions/EventActions';
 import eventStore from '../stores/EventStore';
 import EventDetail from '../components/EventDetail';
 

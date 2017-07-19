@@ -1,0 +1,69 @@
+.login-page {
+
+  .wrapper {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .header-wrapper {
+    margin-top: 60px;
+  }
+
+  form {
+      input {
+        text-align: center;
+        font-family: 'Abel', sans-serif;
+        font-size: .9em;
+      }
+  }
+
+  .validate {
+    text-align: center;
+    font-size: 17px;
+    color: #e22020;
+    margin-top: 10px;
+    width: 200px;
+  }
+
+  .validate img {
+    padding-top: 20px;
+    width: 300px;
+    max-height: 188px;
+  }
+
+  .entry-header {
+    text-align: center;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 3em;
+    // background-color: lightgreen;
+  }
+
+  .let-me-in, .take-me-back {
+    flex-wrap: wrap;
+    display: inline-block;
+    margin-top: 12px;
+  }
+
+  .let-me-in {width: 140px;}
+  .take-me-back {width: 180px;}
+
+  .entry-button {
+    background-color: white;
+    border-radius: 20px;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 35px;
+    text-align: center;
+    color: black;
+    }
+  .entry-button:hover {
+    cursor: pointer;
+  }
+
+  .sidebar .nesting {
+    display: none;
+  }
+
+}

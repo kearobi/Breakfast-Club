@@ -1,98 +1,102 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import Header from '../components/Header';
-import MessageBoard from '../components/MessageBoard';
-import userStore from '../stores/UserStore';
 import SideBar from '../components/SideBar';
-import {fetchMessages} from '../actions';
-import {checkLoginRedir} from '../actions'
+import SideBarMini from '../components/SideBarMini';
+import Reminder from '../components/Reminder';
+import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions/EventActions';
 import BigCalendar from 'react-big-calendar';
-import {fetchCurrentEvent} from '../actions'
+import userStore from '../stores/UserStore';
+import eventStore from '../stores/EventStore';
 import moment from 'moment';
+import Header from '../components/Header';
+
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 );
 
 class Home extends Component {
   constructor(props){
-  super(props)
-  this.state = {
-    user: userStore.getUser(),
+    super(props)
+    this.state = {
+      user: this.props.user,
+      event: eventStore.getCurrentEvent(),
+      events: []
     }
-    fetchMessages();
-    fetchCurrentEvent()
+    this.oncurrent = this.updateCurrentEvent.bind(this)
+    this.onevents = this.events.bind(this)
+      fetchCurrentEvent()
+      fetchEvents();
   }
 
   componentWillMount(){
-    userStore.on('logged-in',this.handleLogin.bind(this))
-    userStore.on('logged-out', this.handleLogOut.bind(this))
-    checkLoginRedir(this.props)
-
+    eventStore.on('current event fetched', this.oncurrent)
+    eventStore.on('event created',this.oncurrent)
+    eventStore.on('events fetched', this.onevents)
   }
 
- //  componentWillUpdate(){
- //   checkLoginRedir(this.props)
- // }
+  componentWillUnmount(){
+    eventStore.removeListener('current event fetched', this.oncurrent)
+    eventStore.removeListener('event created',this.oncurrent)
+    eventStore.removeListener('events fetched', this.onevents)
+  }
 
-  handleLogin(){
-  this.setState({
-    user: userStore.getUser()
-  })
-}
-
-handleLogOut(){
-this.setState({
-  user: userStore.getUser()
-})
-}
-
-
-
+  updateCurrentEvent(){
+    checkIfVotingOver(eventStore.getCurrentEvent())
+    checkEventOver(eventStore.getCurrentEvent(), this.state.user.id)
+    this.setState({
+      event: eventStore.getCurrentEvent()
+    })
+  }
 
   events(){
-    return [
-      {
-      'title': 'Long Event',
-      'start': new Date(2015, 3, 7),
-      'end': new Date(2015, 3, 10)
+    let bevents = eventStore.getAllEvents()
+    let newEvents = bevents.map(function(bevent){
+      let start = moment(bevent.date).toDate()
+      let end = moment(bevent.date).add(1, 'hours').toDate()
+      let placeName = bevent.place.name
+      return {
+        'title': placeName,
+        'start': start,
+        'end': end
       }
-    ]
+    })
+    this.setState({
+      events: newEvents
+    })
   }
-//{userStore.getUser.firstName()}
+
+  checkCalendar(){
+    if(this.state.events.length > 0){
+      return(
+      <BigCalendar
+        events={this.state.events}
+      />
+    )
+  }else{
+    return(<div>Loading...</div>)
+    }
+  }
+
   render(){
     return (
-      <div>
-      <SideBar />
-      <div className="home-page">
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-3"></div>
-
-            <div className="col-xs-6">
-              <h1>Welcome, {userStore.getUser().firstName}</h1>
-              <Link to='current-event'>Current Event</Link>
-            </div>
-            <div className="col-xs-3"></div>
+        <div className="wrapper">{/* //this is the flex container */}
+            <SideBar/>{/* //this is a flex item  with a nested flex container */}
+          <div className='home-page'>{/* //this is a flex item */}
+            <div className='nested'>{/* //this is a nested flex container */}
+              <SideBarMini/>
+              <Header />
+          <div className="welcome-message">
+            <div className='welcome-user'>Hey, {this.state.user.firstName}!</div>
+            <div className='reminder'><Reminder /></div>
+            <div className='upcoming-event'><Link to='/current-event'>Current Event</Link></div>
           </div>
-
-          <hr className="hr-home"></hr>
-
-          <div className="row">
-            <div className="col-xs-1"></div>
-
-            <div className="calendar-div col-xs-7">
-              <BigCalendar
-                events={this.events()}
-              />
-            </div>
-            <div className="col-xs-4">
-              <MessageBoard />
-            </div>
-          </div>
-        </div>
+          <div className="calendar-div">{this.checkCalendar()}</div>
+        {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}
       </div>
       </div>
-      );
+      <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
+    </div>
+    );
   }
 }
 

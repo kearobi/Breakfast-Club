@@ -1,0 +1,55 @@
+.event-page {
+  flex: 1;
+  overflow: auto;
+
+  .event-date {
+    border-top: fuchsia 2px solid;
+    border-bottom: fuchsia 2px solid;
+    font-family: 'Amatic SC', sans-serif;
+    text-align: center;
+    font-size: 2.7em;
+  }
+
+  form {
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 1.1em;
+  }
+
+  .event-details {
+    display: flex;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 2.5em;
+    width: 400px;
+  }
+
+  .flex-container-1, .flex-container-2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flex-item-header {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  h4 {
+    text-decoration: underline;
+  }
+
+  .place-img {
+    width: 300px;
+  }
+
+  tbody {
+    display: inline-block;
+    margin: 10px;
+  }
+
+  .place-name {
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    color: black;
+    margin-top: 30px;
+  }
+}

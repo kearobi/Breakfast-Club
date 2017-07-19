@@ -1,5 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+*.css
+
 # dependencies
 /bc-react/node_modules
 /bc-express/node_modules
@@ -24,3 +26,11 @@ yarn-error.log*
 /bc-express/config/config.json
 node_modules
 bc-react/build/
+
+# Personal Ignore List
+package.json
+package-lock.json
+yarn.lock
+*.sublime-workspace
+*.sublime-project
+*.dump

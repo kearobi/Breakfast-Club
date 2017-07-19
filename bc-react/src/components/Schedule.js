@@ -1,6 +1,7 @@
+//not sure what this is
 import React, { Component } from 'react';
 import eventStore from '../stores/EventStore';
-import {addEvent} from '../actions';
+import {addEvent} from '../actions/EventActions';
 
 class Schedule extends Component {
   constructor(props){

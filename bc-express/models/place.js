@@ -1,6 +1,13 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Place = sequelize.define('Place', {
+    // would have to run a migration to add this bottom
+    // Recommend adding an `id` & `yelp_id` attribute
+    // in the process simplifying the db setup
+    // ----------------------------------------
+    // id: DataTypes.INTEGER,
+    // yelp_id: DataTypes.INTEGER,
+    // ----------------------------------------
     name: DataTypes.STRING,
     address_street: DataTypes.STRING,
     address_city: DataTypes.STRING,
@@ -11,7 +18,12 @@ module.exports = function(sequelize, DataTypes) {
     image_url: DataTypes.STRING,
     categories: DataTypes.STRING,
     review_count: DataTypes.INTEGER,
-    price: DataTypes.STRING
+    price: DataTypes.STRING,
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    }
   }, {
     // instanceMethods: {
     //   toJSON(){

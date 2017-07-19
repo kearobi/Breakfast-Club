@@ -1,0 +1,255 @@
+.admin-key {
+    z-index: 50;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-right: 40px;
+    margin-top: 30px;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Dancing Script', sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    color: black;
+      img {
+        width: 50px;
+      }
+}
+
+.admin-key:hover {
+  text-decoration: underline;
+}
+
+.admin-page {
+  flex: 1;
+  overflow: auto;
+
+  h3 {
+    font-family: 'Dancing Script';
+    text-align: center;
+    font-size: 52px;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: -8px;
+  }
+
+  p {
+    font-family: 'Dancing Script';
+    text-align: center;
+    font-size: 52px;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: -8px;
+    margin-bottom: -1px;
+  }
+
+  button {
+    border-width: thin;
+    font-family: 'Abel';
+    font-size: 20px;
+    border-color: #c1c1c1;
+    text-align: center;
+    text-decoration: none;
+    background-color: #eeeeee;
+  }
+
+  button:hover {
+    background-color: #def9a3;
+    cursor: pointer;
+  }
+
+form {
+  background-color: rgba(white, 0.5);
+  padding: 10px;
+}
+
+  form input {
+    text-align: center;
+    font-family: 'Abel', sans-serif;
+    font-size: .9em;
+  }
+
+  .submit-button {
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 1.5em;
+  }
+  .submit-button:hover {
+    cursor: pointer;
+  }
+
+  #admin_button_wrapper {
+    margin: auto;
+    display: block;
+    text-align: center;
+  }
+
+  .admin_button_clicked {
+    background-color: #def9a3;
+    margin-right: 3px;
+    width: 225px;
+  }
+
+  .admin_button {
+    text-decoration: none;
+    margin-right: 3px;
+    width: 225px;
+  }
+
+  .add_button {
+    display: inline-block;
+    padding-left: 22px;
+    padding-right: 22px;
+    margin-left: 3px;
+    float: left;
+  }
+
+  .add_button:hover {
+    background-color: #def9a3;
+  }
+
+  .table-row-item {
+    border: 1px solid #c1c1c1;
+
+      input {
+        border: none;
+        background-color: transparent;
+        border: none;
+        margin: 0;
+        text-align: center;
+      }
+  }
+
+  #edit_icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  #delete_icon {
+    padding-left: 5px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .icon:hover {
+    cursor: pointer;
+  }
+
+  .search_bar_wrapper {
+    border-color: dimgray;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+  }
+
+  .search_bar_wrapper div input {
+    font-family: 'Abel';
+    font-size: 20px;
+    padding: none;
+    margin: none;
+  }
+
+  .calendar-div{
+    border: 2px solid lightgray;
+    text-align: center;
+    height: 500px;
+    padding: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-family: 'Abel', sans-serif, cursive;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    margin-left: 0px;
+    background-color: rgb(255,255,255);
+  }
+
+  .no-results {
+    text-align: center;
+    font-style: italic;
+    font-family: 'Abel', sans-serif;
+    font-size: 1.5em;
+  }
+
+  #x {
+    background-color: rgba(white, 0.9);
+    color: red;
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+
+  .table {
+    display: flex;
+    flex-flow: column nowrap;
+   }
+
+   .table-header {
+     font-weight: bold;
+   }
+
+  .table-row{
+    display: flex;
+    flex-flow: row nowrap;
+    font-family: 'Abel';
+    font-size: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .table-row-item {
+    display: flex;
+    flex-flow: row nowrap;
+    word-break: break-word;
+    background-color: #eeeeee;
+    padding-left: 5px;
+    padding-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon {
+    background-color: white;
+    border: none;
+  }
+
+  .hidden {
+    width: 22px;
+    border-color: white;
+    background-color: white;
+  }
+
+  .editable {
+    font-style: italic;
+    color: fuchsia;
+    text-shadow: 0.1px 0.1px black;
+  }
+
+  .read-only {
+    font-style: normal;
+    color: black;
+    text-shadow: none;
+  }
+
+  .id           {width: 40px;}
+  .firstName    {width: 90px;}
+  .lastName     {width: 100px;}
+  .email        {width: 200px;}
+  .neighborhood {width: 130px;}
+  .active       {width: 60px;}
+
+  .name         {width: 160px;}
+  .yelp         {width: 40px;}
+  .categories   {width: 170px;}
+  .price        {width: 40px;}
+  .street       {width: 170px;}
+  .phone        {width: 120px;}
+
+  .date         {width: 170px;}
+  .guest        {width: 120px;}
+  .rsvp         {width: 140px;}
+}

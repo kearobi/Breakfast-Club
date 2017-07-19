@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate:{
         isEmail: true  // <-- Code level validations
       }
@@ -22,6 +23,26 @@ module.exports = function(sequelize, DataTypes) {
     neighborhood: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    voted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    rsvp: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    admin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     },
     encryptedPassword: {
       type: DataTypes.STRING,
@@ -50,6 +71,10 @@ module.exports = function(sequelize, DataTypes) {
           lastName: this.get('lastName'),
           email: this.get('email'),
           neighborhood: this.get('neighborhood'),
+          voted: this.get('voted'),
+          rsvp: this.get('rsvp'),
+          admin: this.get('admin'),
+          active: this.get('active'),
           authToken: this.get('authToken'),
           authTokenExpiration: this.get('authTokenExpiration')
         }
@@ -90,6 +115,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     hooks:{
       // Adds a hook to generate the users token when user is created
+      // Hooks get automatically triggered by things; in this case, beforeCreate.
       beforeCreate: function(user, options){
         user.setAuthToken()
       }

@@ -1,13 +1,12 @@
+//PlaceListing gets props from Places
+
 import React, { Component } from 'react';
 
 class PlaceListing extends Component {
   render(){
     return(
-      <div className="outside">
-
-        <div className="list col-xs-3">
-          <ul>
-
+      <div className="outside">{/* this is a flex container */}
+          <ul className="list-background">{/* this is a flex container */}
             <li className="image">
               <img src={this.props.place.image_url} ></img>
             </li>
@@ -23,7 +22,7 @@ class PlaceListing extends Component {
             </li>
 
             <li className="fields">
-              HOW GOOD: {this.props.place.yelp_rating}
+              DELICIOUSNESS: {this.props.place.yelp_rating}
             </li>
 
             <li className="fields">
@@ -40,18 +39,16 @@ class PlaceListing extends Component {
 
             <li className="fields">
               {this.props.place.address_city} ,
-              {this.props.place.address_state} ,
+              {this.props.place.address_state}
               {this.props.place.address_zip}
             </li>
 
             <li className="fields">
-              TELE: {this.props.place.phone}
+              TEL: {this.props.place.phone}
             </li>
             <hr></hr>
           </ul>
         </div>
-
-      </div>
     )
   }
 }

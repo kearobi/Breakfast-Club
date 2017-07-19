@@ -55,7 +55,7 @@ class PlaceStore extends EventEmitter{
 
   handleActions(action){
     switch(action.type){
-      case("UPDATE_PLACES"):{
+      case("FETCH_PLACES"):{
         this.updatePlaces(action.places)
         break
       }

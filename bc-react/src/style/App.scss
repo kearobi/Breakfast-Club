@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+@import url('https://fonts.googleapis.com/css?family=Abel');
+@import url('./Messageboard.css');
+@import url('./AdminPage.css');
+@import url('./Header.css');
+@import url('./React-big-calendar.css');
+@import url('./Home.css');
+@import url('./Places.css');
+@import url('./Modal.css');
+@import url('./Sidebar.css');
+@import url('./SplashPage.css');
+@import url('./UserLogin.css');
+@import url('./UserSignup.css');
+@import url('./UserProfile.css');
+@import url('./SearchBar.css');
+@import url('./Events.css');
+@import url('./Photos.css');
+@import url('./PageNotFound.css');
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.nested {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-title {
+  text-align: center;
+  font-family: 'Dancing Script', sans-serif;
+  font-size: 4em;
+  font-weight: bold;
+}
+
+.box1 {background-color: red;}
+.box2 {background-color: orange;}
+.box3 {background-color: yellow;}
+.box4 {background-color: green;}
+.box5 {background-color: blue;}
+
+//this code removes the blue outline on links and buttons
+input:focus, button:focus {
+    outline:none !important;
+}
+//fruit border at bottom of splash, login, signup pages
+.fruit-border {
+  position: fixed;
+  bottom:0;
+  right:0;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+//general font
+.FontAmatic {
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 40px;
+  text-align: center;
+  color: black;
+  margin-top: 30px;
+}
+
+//general styling for forms
+form {
+  text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-size: 1.35em;
+}
+
+/* this code center-aligns the placeholder text in our forms for multiple browser/verisons */
+::-webkit-input-placeholder {text-align: center;}
+:-moz-placeholder {/* older Firefox*/text-align: center;}
+::-moz-placeholder { /* Firefox 19+ */ text-align: center;}
+:-ms-input-placeholder {text-align: center;}
+
+
+//this code makes sure that autofilled fields have a white background (default is yellow)
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+
+//button styling for admin and current event pages
+.align-button {
+  text-align: center;
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 35px;
+  color: black;
+}
+
+//wobble effect used on login, sign up, sidebar components
+@-webkit-keyframes wobble {
+  16.65% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  33.3% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+  49.95% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+  66.6% {
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+  83.25% {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.wobble {
+  display: inline-block;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.wobble:hover {
+  -webkit-animation-name: wobble;
+  animation-name: wobble;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}

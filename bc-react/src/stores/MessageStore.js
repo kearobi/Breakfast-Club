@@ -14,12 +14,11 @@ class MessageStore extends EventEmitter{
       for (var i = this.messages.length - 1; i > this.messages.length - 16; i--){
         messageArray.push(this.messages[i]);
       }
-      return messageArray.reverse();
+      return messageArray;
     }
     else {
-      return this.messages.reverse();
+      return this.messages;
     }
-
   }
 
   handleActions(action){

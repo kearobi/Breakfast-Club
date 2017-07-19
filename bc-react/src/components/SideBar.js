@@ -1,108 +1,66 @@
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import React, { Component } from 'react';
-import Img from 'react-image'
-import '../style/Sidebar.css';
-import {userLogout} from '../actions'
+import {Link} from 'react-router-dom';
+import userStore from '../stores/UserStore'
+import {logout} from '../actions/UserActions';
 
 class SideBar extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      isClosed: false
-      // true will make it collapse into a hamburger icon
+    this.state={
+      user: userStore.getUser()
     }
+    this.updateUser = this.updateUser.bind(this)
   }
-//set staet for sidebar
 
-handleBurgerClick(e){
-  if(this.state.isClosed){
+  componentWillMount(){
+    userStore.on('change', this.updateUser)
+  }
+
+  componentWillUnmount(){
+    userStore.removeListener('change', this.updateUser)
+  }
+
+  updateUser(){
     this.setState({
-      isClosed: false
-    })
-  } else {
-    this.setState({
-      isClosed: true
+      user: userStore.getUser()
     })
   }
-}
-//if isClosed(false) on click will open if in original state isClosed(true)
 
-triggerClass(){
-  if(this.state.isClosed){
-    return "hamburger is-closed"
-  } else {
-    return "hamburger is-open"
+  handleLogOut(){
+    logout()
   }
-}
-//if isclosed(true) css style "hamburger is-closed" will be used and if isClosed(false) css style "hamburger is-opened".
-
-overlayStyle() {
-  if(this.state.isClosed) {
-    return {display: 'none'}
-  } else {
-    return {display: 'none'}
-    // if block it will block use of the back page.. if none back page is usable
-  }
-}
-//if isclosed(true) css style display will be set to "none" if isClosed(false) css style will display "block".
-
-wrapperClass(){
-  if(this.state.isClosed){
-    return ""
-  } else {
-    return "toggled"
-  }
-}
-//if isclosed(true) css style will be set to default isClosed ("") if isClosed(false) css style will be set to taggled ("toggled").
-
-handleLogout(){
-  userLogout()
-}
 
   render() {
-
     return (
-      <div id="wrapper" className={this.wrapperClass()}>
-        <div className="overlay" style={this.overlayStyle()}></div>
-        <nav className="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-          <ul className="nav sidebar-nav">
-              <a className="side-bar-text-top" href="/home">Home</a>
-            <div className="side-bar-image-div">
-              <li>
-                <a href="#" className="login"> <img className='wobble side-bar-image profile top-image' src='../Images/user (1).png'/></a>
-              </li>
-              <p className="image-text-1">User Info</p>
-            </div>
-            <div className="side-bar-image-div">
-              <li>
-                <a href="#"><img className="wobble side-bar-image" src='../Images/calendar (2).png'/></a>
-              </li>
-              <p className="image-text-2">Events</p>
-            </div>
-            <div className="side-bar-image-div">
-              <li onClick={this.handleLogout}>
-                <a href='/'><img className="wobble side-bar-image" src='../Images/logout.png'/></a>
-              </li>
-              <p className="image-text-3">Log Out</p>
-            </div>
-            <div className="side-bar-bottom">
-              <div>
-                <a className="side-bar-text-bottom" href="#">Team</a>
-              </div>
-              <div>
-                <a className="side-bar-text-bottom" href="#">Contact</a>
-              </div>
-            </div>
-          </ul>
-        </nav>
-
-        <div id="page-content-wrapper">
-          <button type="button" className={this.triggerClass()} data-toggle="offcanvas" onClick={this.handleBurgerClick.bind(this)}>
-            <span className="hamb-top"></span>
-            <span className="hamb-middle"></span>
-            <span className="hamb-bottom"></span>
-          </button>
-        </div>
+      <div className='sidebar'>
+        {/* sidebar is a flex item of the parent */}
+        <div className='nested'>
+        {/* nesting is the nested flex box */}
+          {this.state.user.email === "breakfastclub.sd@gmail.com" &&
+            <Link to="/admin" className="item wobble"> <img src='../Images/admin.png' alt='admin'/>
+              <div className='admin'>admin</div>
+            </Link>
+            }
+          {this.state.user.email !== "breakfastclub.sd@gmail.com" &&
+            <Link to="/profile" className="item wobble"> <img src='../Images/user.png' alt='profile'/>
+              <div className='caption'>profile</div>
+            </Link>}
+          <Link to="/home" className="item wobble">
+            <img src='../Images/calendar.png' alt='calendar'/>
+            <div className='caption'>calendar</div>
+          </Link>
+          <Link to="/places" className="item wobble"><img src='../Images/places.png' alt='places'/>
+            <div className='caption'>places</div>
+          </Link>
+          <Link to="/photos" className="item wobble"><img src='../Images/camera.png' alt='photos'/>
+            <div className='caption'>photos</div>
+          </Link>
+          <div className="item wobble"
+          onClick={this.handleLogOut}
+          ><img src='../Images/logout.png' alt='log out'/>
+            <div className='caption'>log out</div>
+          </div>
+          </div>
       </div>
     );
   }

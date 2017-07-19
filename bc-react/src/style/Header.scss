@@ -1,0 +1,21 @@
+.header {
+  text-align: center;
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 7.5em;
+  color: fuchsia;
+  font-weight: bold;
+}
+
+.mini-sidebar {
+  order: -1;
+  margin-top: 10px;
+  border: dashed 2px white;
+  text-align: center;
+  display: none;
+  background-color: fuchsia;
+  img {
+    padding-top: 5px;
+    width: 35px;
+    height: 35px;
+  }
+}

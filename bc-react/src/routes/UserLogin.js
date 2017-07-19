@@ -1,123 +1,77 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {updateLogin, submitLogin} from '../actions/UserActions';
+import loginStore from '../stores/LoginStore';
 import Header from '../components/Header';
-import {loginUser, checkLoginRedir} from '../actions';
-import userStore from '../stores/UserStore';
+import Input from '../components/Input';
 
 class UserLogin extends Component {
   constructor(props){
     super(props)
     this.state={
-      user: {
-        email: "",
-        password: ""
-      },
-      message: ''
+      login: loginStore.getFields(),
+      errors: {}
     }
-    console.log(this.state)
+    this.updateLogin = this.updateLogin.bind(this)
   }
 
   componentWillMount(){
-    userStore.on('login-success', this.redirectToHome.bind(this));
-    userStore.on('login-fail', this.loginFailed.bind(this));
-    checkLoginRedir(this.props)
+    loginStore.on('change', this.updateLogin)
   }
 
-  redirectToHome(){
-    this.props.history.push("/home");
+  componentWillUnmount(){
+    loginStore.removeListener('change', this.updateLogin)
   }
 
-  loginFailed(){
+  updateLogin(){
     this.setState({
-      message: 'Login failed, credentials invalid'
+      login: loginStore.getFields(),
+      errors: loginStore.getErrors()
     })
   }
 
   handleChange(e){
     let target = e.target
-    let user = this.state.user
-    user[target.name] = target.value
-    this.setState({
-      user: user
-    })
+    updateLogin(target.name, target.value)
   }
 
   handleSubmit(e){
     e.preventDefault();
-    if (this.state.user.email === "" || this.state.user.password === ""){
-      this.setState({
-        message: "Email and password required"
-      })
-    }
-    else {
-      loginUser(this.state.user)
-    }
+    submitLogin()
   }
 
 render(){
   return (
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-4">
+    <div className="login-page">
+      <div className="wrapper">
+        <div className='header-wrapper'><Header /></div>
+          <div className="entry-header">Log In</div>
+          <form className='form' onSubmit={this.handleSubmit.bind(this)}>
+            <Input
+              placeholder='email address'
+              name='email'
+              value={this.state.login.email}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.email}
+             />
+            <Input
+              placeholder='password'
+              type='password'
+              name='password'
+              value={this.state.login.password}
+              onChange={this.handleChange.bind(this)}
+              errors={this.state.errors.password}  />
+            <div className='let-me-in'>
+                <input className="entry-button wobble" type='submit' value='Let Me In!!'></input>
             </div>
-            <div className="col-sm-4 FontAmatic">
-              Log In
-            </div>
-            <div className="col-sm-4">
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-3">
-            </div>
-            <div className="col-sm-6">
-              <form className='form' onSubmit={this.handleSubmit.bind(this)}>
-                <div className='formGroup'>
-                  <input
-                    placeholder='email address'
-                    type='email'
-                    name='email'
-                    id='email'
-                    value={this.state.user.email}
-                    onChange={this.handleChange.bind(this)}>
-                  </input>
-                </div>
-                <div className='formGroup'>
-                  <input
-                    placeholder='password'
-                    type='password'
-                    name='password'
-                    id='password'
-                    value={this.state.user.password}
-                    onChange={this.handleChange.bind(this)}>
-                  </input>
-                </div>
-                <div className='formGroup align-button'>
-                  <input className='let-me-in' type='submit' value='Let Me In!!'></input>
-                </div>
-              </form>
-            </div>
-            <div className="col-sm-3">
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-4">
-            </div>
-            <div className="col-sm-4 center">
-              <Link to="/">
-              <div className="align-button">
-                <input
-                  className='take-me-back'
-                  type='button'
-                  value='Take Me Back!!'>
-                </input>
-              </div>
-              </Link>
-              <div className="alert alert-warning"><strong>{this.state.message}</strong></div>
-            </div>
-            <div className="col-sm-4">
-            </div>
-          </div>
+            <Link className="take-me-back" to="/">
+              <button className='entry-button wobble'>Take Me Back!!</button>
+            </Link>
+            </form>
+            <div className='validate'>{this.state.errors.general || this.state.errors.inactive}</div>
+            <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
         </div>
+      </div>
     );
   }
 }
