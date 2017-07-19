@@ -88,7 +88,7 @@ class EventDetail extends Component {
               {this.props.voted &&
                 <RSVPButton user={this.props.user} event={this.props.eventData}/>
               }
-            <div classname='RSVP'>
+            <div className='RSVP'>
             {mappedUsers}
             </div>
           </div>

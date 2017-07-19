@@ -285,89 +285,30 @@ app.post('/register-vote', function(request, response){
 })
 
 // finds an empty GuestList row and sets the user_id to the current User's id
-app.post('/rsvp', function(request, response){
-  let _event;
-  let _user;
-  let _users = [];
-  let _places = [];
-  let _guestLists;
-  let event_id = request.body.event_id;
-  let user_id = request.body.user_id;
-  return GuestList.findOne({
-    where: {
-              user_id: null,
-              event_id: event_id
-            }
-  })
-  .then(function(guestList){
-    let id = guestList.id;
-    return GuestList.update({
-        user_id: user_id
-      }, {where: {
-        id: id
-      }
-    })
-  })
-  .then(function(){
-    return Bevent.findOne({
-        limit: 1,
-        order: [['date', 'DESC']]
-    })
-  })
-  .then(function(event){
-    _event = event;
-    return event.getGuestLists();
-  })
-  // for each GuestList save the corresponding User in _users
-  .then(function(lists){
-    _guestLists = lists;
-    listPromises = [];
-    for (var i = 0; i < lists.length; i++){
-      listPromises.push(User.findOne({
-        where:{id: lists[i].user_id}
-      }))
+app.put('/rsvp', function(request, response){
+  let eventID = request.body.event.id;
+  let userID = request.body.user.id;
+  let userRSVP = request.body.user.rsvp;
+  //update RSVP to true or false
+  User.update(
+    {rsvp: userRSVP},
+    {where: {id: userID}
+  }).then(function(){
+    if(userRSVP){
+      GuestList.update(
+        {user_id: userID},
+        {where: {event_id: eventID, user_id: null}
+      })
+    }else{
+      GuestList.update(
+        {user_id: null},
+        {where: {event_id: eventID, user_id: userID}
+      })
     }
-    return Promise.all(listPromises);
-  })
-  // find the first restaurant option
-  .then(function(users){
-    for (var i = 0; i < users.length; i++){
-      if (users[i] != null){
-        _users.push(users[i]);
-      }
-    }
-    return Place.findOne({
-      where:{id: _event.place_1_id}
-    })
-  })
-  // find the second restaurant option
-  .then (function(place){
-    _places.push(place);
-    return Place.findOne({
-      where:{id: _event.place_2_id}
-    })
-  })
-  .then(function(place){
-    _places.push(place);
-    return User.update({
-        rsvp: true
-      }, {where: {
-        id: user_id
-      }
-    })
-  })
-  .then(function(user){
-    _user = user
+  }).then(function(user){
     response.status(200)
-    response.json({
-      event: _event,
-      guestLists: _guestLists,
-      places: _places,
-      users: _users,
-      user: _user
-    })
-  })
-  .catch(function(error){
+    response.json({message: 'success', user: user})
+  }).catch(function(error){
     response.status(400)
     response.json({message: 'error', errors: error.errors})
   })
@@ -433,8 +374,6 @@ app.get('/user', function(request, response){
 })
 
 app.post('/signup', function(request, response){
-  // request.body.voted = false
-  // let userParams = request.body
   User.create(
     {
       firstName: request.body.firstName,

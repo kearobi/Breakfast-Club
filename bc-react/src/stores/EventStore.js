@@ -38,11 +38,6 @@ class EventStore extends EventEmitter{
         this.emit('votes counted');
         break;
       }
-      case("RSVP"):{
-        this.currentEvent = action.data;
-        this.emit('rsvp');
-        break;
-      }
       case("EVENT-TEST"):{
         this.testEvent = action.data;
         this.emit('event fetched');

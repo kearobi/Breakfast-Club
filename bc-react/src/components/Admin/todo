@@ -37,3 +37,17 @@ by default, everything is flex-direction: row
           it's not about the size of the items; it's about the size of the extra space
           the default flex-shrink is 1; when there's not enough room, just evenly divide amongst yourselves
           flex: first you say the grow, then the shrink, then the basis
+
+//currently, a user can only RSVP if they have already voted. we can change this later
+
+when a user RSVPs:
+
+if(rsvp){
+    update user table that RSVP is true
+    create new entry in guestlist where eventId matches and user is null
+}else{
+  if (user ID is in the guestList){
+    update user table that RSVP is false
+    delete entry in guestlist with their userId and eventId
+  }
+}

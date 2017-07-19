@@ -110,7 +110,10 @@ class UserStore extends EventEmitter{
         this.emit('voted set to false')
         break
       }
-
+      case("RSVP"):{
+        this.updateUser(action.user)
+        break
+      }
       default:{}
     }
   }
