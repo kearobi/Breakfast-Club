@@ -52,16 +52,6 @@ class Reminder extends Component {
     }
   }
 
-  checkIfAttending(user_id, guestLists){
-    let toReturn = false;
-    for (var i = 0; i < guestLists.length; i++){
-      if (user_id === guestLists[i].user_id){
-        return true;
-      }
-    }
-    return toReturn;
-  }
-
   updateMessage(){
     let currentEvent = eventStore.getCurrentEvent();
     let user = this.props.user;
@@ -100,7 +90,7 @@ class Reminder extends Component {
     }
     else {
       if (user.voted){
-        if (this.checkIfAttending(user.id, currentEvent.guestLists)){
+        if (this.props.user.rsvp){
           this.setState({
             event: currentEvent,
             greeting: `Hey ${user.firstName}, you're on the guest list!`,

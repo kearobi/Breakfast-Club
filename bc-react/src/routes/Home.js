@@ -85,7 +85,7 @@ class Home extends Component {
               <SideBarMini/>
               <Header />
           <div className="welcome-message">
-            <div className='reminder'><Reminder user={this.state.user}/></div>
+            <div className='reminder'><Reminder user={this.state.user} event={this.state.event}/></div>
           </div>
           <div className="calendar-div">{this.checkCalendar()}</div>
         {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}
