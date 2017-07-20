@@ -18,22 +18,20 @@ class Reminder extends Component {
       userUpdated: false,
       eventUpdated: true,
     }
-    this.onUpdateMessage = this.updateMessage.bind(this)
-    this.onUpdateUser = this.updateUser.bind(this)
-    this.onUpdateEvent = this.updateEvent.bind(this)
+    this.updateMessage = this.updateMessage.bind(this)
+    this.updateUser = this.updateUser.bind(this)
+    this.updateEvent = this.updateEvent.bind(this)
   }
   componentWillMount(){
-    eventStore.on('current event fetched', this.onUpdateMessage);
-    eventStore.on('votes counted', this.onUpdateMessage);
-    userStore.on('voted set to false', this.onUpdateUser);
-    eventStore.on('new event created', this.onUpdateEvent);
+    eventStore.on('change', this.updateMessage);
+    userStore.on('change', this.updateUser);
+    eventStore.on('change', this.updateEvent);
   }
 
   componentWillUnmount(){
-    eventStore.removeListener('current event fetched', this.onUpdateMessage);
-    eventStore.removeListener('votes counted', this.onUpdateMessage);
-    userStore.removeListener('voted set to false', this.onUpdateUser);
-    eventStore.removeListener('new event created', this.onUpdateEvent);
+    eventStore.removeListener('change', this.updateMessage);
+    userStore.removeListener('change', this.updateUser);
+    eventStore.removeListener('change', this.updateEvent);
   }
 
   updateUser(){

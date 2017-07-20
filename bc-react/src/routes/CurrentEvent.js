@@ -20,9 +20,6 @@ class CurrentEvent extends Component {
       message: ''
     }
     this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
-    this.voteRegistered = this.voteRegistered.bind(this)
-    this.rsvpRegistered = this.rsvpRegistered.bind(this)
-    this.votesCounted = this.votesCounted.bind(this)
     this.updateUser = this.updateUser.bind(this)
       fetchCurrentEvent()
       setEventsFromLocal()
@@ -31,17 +28,11 @@ class CurrentEvent extends Component {
   componentWillMount(){
     userStore.on('change', this.updateUser)
     eventStore.on('change', this.updateCurrentEvent)
-    eventStore.on('vote registered', this.voteRegistered);
-    eventStore.on('rsvp', this.rsvpRegistered);
-    eventStore.on('votes counted', this.votesCounted);
   }
 
   componentWillUnmount(){
     userStore.removeListener('change', this.updateUser)
     eventStore.removeListener('change', this.updateCurrentEvent)
-    eventStore.removeListener('vote registered', this.updateCurrentEvent)
-    eventStore.removeListener('rsvp',this.rsvpRegistered)
-    eventStore.removeListener('votes counted', this.votesCounted)
   }
 
   updateUser(){
@@ -50,31 +41,9 @@ class CurrentEvent extends Component {
     })
   }
 
-  voteRegistered(){
-    this.setState({
-      event: eventStore.getCurrentEvent(),
-      user: userStore.getUser(),
-      message: "Vote Registered",
-    })
-  }
-
-  votesCounted(){
-    this.setState({
-      event: eventStore.getCurrentEvent()
-    })
-  }
-
   updateCurrentEvent(){
     this.setState({
       event: eventStore.getCurrentEvent()
-    })
-  }
-
-  rsvpRegistered(){
-    this.setState({
-      event: eventStore.getCurrentEvent(),
-      user: userStore.getUser(),
-      message: "RSVP'd",
     })
   }
 

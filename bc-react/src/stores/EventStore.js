@@ -44,19 +44,19 @@ class EventStore extends EventEmitter{
     switch(action.type){
       case("FETCH-EVENTS"):{
         this.updateEvents(action.events);
-        this.emit('events fetched');
+        this.emit('change');
         break;
       }
       case("VOTE-REGISTERED"):{
         // this.currentEvent = action.data;
         this.updateCurrentEvent(action.data)
-        this.emit('vote registered');
+        this.emit('change');
         break;
       }
       case("VOTES-COUNTED"):{
         // this.currentEvent = action.data;
         this.updateCurrentEvent(action.data)
-        this.emit('votes counted');
+        this.emit('change');
         break;
       }
       // case("EVENT-TEST"):{
@@ -72,13 +72,13 @@ class EventStore extends EventEmitter{
       case("CURRENT-EVENT"):{
         // this.currentEvent = action.data;
         this.updateCurrentEvent(action.data)
-        this.emit('current event fetched');
+        this.emit('change');
         break;
       }
       case("EVENT-CREATED"):{
         // this.currentEvent = action.data;
         this.updateCurrentEvent(action.data)
-        this.emit('new event created');
+        this.emit('change');
         // this.emit('current event fetched');
         break;
       }

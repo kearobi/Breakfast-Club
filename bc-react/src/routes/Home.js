@@ -31,17 +31,11 @@ class Home extends Component {
 
   componentWillMount(){
     eventStore.on('change', this.updateCurrentEvent)
-    eventStore.on('current event fetched', this.updateCurrentEvent)
-    eventStore.on('event created',this.updateCurrentEvent)
-    eventStore.on('events fetched', this.updateEvents)
     eventStore.on('change', this.updateEvents)
   }
 
   componentWillUnmount(){
-    eventStore.on('change', this.updateCurrentEvent)
-    eventStore.removeListener('current event fetched', this.updateCurrentEvent)
-    eventStore.removeListener('event created',this.updateCurrentEvent)
-    eventStore.removeListener('events fetched', this.updateEvents)
+    eventStore.removeListener('change', this.updateCurrentEvent)
     eventStore.removeListener('change', this.updateEvents)
   }
 
