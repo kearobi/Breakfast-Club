@@ -7,6 +7,25 @@ if(process.env.NODE_ENV === 'production'){
   apiUrl = "http://localhost:4000/"
 }
 
+
+export function fetchRachel(){
+  const params = {
+    method: 'GET'
+  }
+  fetch(`${apiUrl}rachel`, params).then(function(response){
+    if(response.ok){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'RACHEL',
+          combo: body.combo
+        })
+      })
+    }
+  })
+}
+
+
+
 export function updateRegistration(attribute, value){
   dispatcher.dispatch({
     type: 'UPDATE_REGISTRATION',

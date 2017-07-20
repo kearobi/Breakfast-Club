@@ -51,3 +51,20 @@ if(rsvp){
     delete entry in guestlist with their userId and eventId
   }
 }
+
+
+when an event is fetched and place 1/place 2/winner are by ID
+Bevent.findOne({
+  order: [['date', 'DESC']]
+  limit: 1,
+  include: [{
+    required : false,
+    model: Places
+  }]
+})
+.then(function(combo) {
+  res.json(combo: combo)
+});
+
+
+the event_id of Guestlists should be the foreign key to Bevents id (primary key)

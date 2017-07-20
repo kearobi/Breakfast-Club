@@ -46,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         Place.hasMany(models.Bevent, {
           foreignKey: 'place_1_id',
-          as: 'events_1'
+          as: 'events_1',
         })
         Place.hasMany(models.Bevent, {
           foreignKey: 'place_2_id',

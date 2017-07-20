@@ -559,6 +559,40 @@ app.post('/test-event', function(request, response){
   })
 })
 
+//this fetches the first and last name of any users attending event_id1
+//TODO: make it the current event
+//a user has many guestlists. start with guestlist and include user
+app.get('/rachel', function(req, res){
+  GuestList.findAll({
+    where: {event_id: 1},
+    attributes: ['vote'],
+    include: [{
+      required : false,
+      model: User, as: 'guestlist',
+      attributes: ['firstName', 'lastName'],
+    }]
+  })
+  .then(function(fullGL){
+    res.json({fullGL: fullGL})
+  })
+})
+
+//a place has many events
+app.get('/rachel2', function(req, res){
+  Bevent.findAll({
+    where: {id: 2},
+    attributes: ['date', 'place_1_id', 'place_2_id', 'vote_status', 'winner'],
+    include: [{
+      required : false,
+      model: Place,
+      attributes: ['name', 'address_street', 'address_city', 'address_state', 'address_zip', 'phone', 'yelp_rating', 'image_url', 'categories', 'review_count', 'price'],
+    }]
+  })
+  .then(function(fullEvent){
+    res.json({fullEvent: fullEvent})
+  })
+})
+
 app.post('/current-event', function(request, response){
   let _event;
   let _users = [];

@@ -6,9 +6,19 @@ class UserStore extends EventEmitter{
     super()
     this.user = {}
     this.message = ""
+    this.rachel = ""
   }
 
 //we can tell a user is logged in if the authToken is set in the store
+
+  getRachel(){
+    return this.rachel
+  }
+
+  updateRachel(combo){
+    this.rachel = combo
+    this.emit('change')
+  }
 
   getUser(){
     return this.user
@@ -112,6 +122,10 @@ class UserStore extends EventEmitter{
       }
       case("RSVP"):{
         this.updateUser(action.user)
+        break
+      }
+      case("RACHEL"):{
+        this.updateRachel(action.combo)
         break
       }
       default:{}

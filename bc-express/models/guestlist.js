@@ -11,6 +11,7 @@ module.exports = function(sequelize, DataTypes) {
           foreignKey: 'event_id'
         })
         GuestList.belongsTo(models.User, {
+          as: 'guestlist',
           foreignKey: 'user_id'
         })
       }

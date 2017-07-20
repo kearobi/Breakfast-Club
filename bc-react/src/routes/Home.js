@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Reminder from '../components/Reminder';
+import {fetchRachel} from '../actions/UserActions';
 import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions/EventActions';
 import BigCalendar from 'react-big-calendar';
 import userStore from '../stores/UserStore';
@@ -20,24 +21,33 @@ class Home extends Component {
     this.state = {
       user: this.props.user,
       event: eventStore.getCurrentEvent(),
-      events: []
+      events: [],
+      rachel: userStore.getRachel()
     }
+    this.updateRachel = this.updateRachel.bind(this)
     this.oncurrent = this.updateCurrentEvent.bind(this)
     this.onevents = this.events.bind(this)
+      fetchRachel()
       fetchCurrentEvent()
       fetchEvents();
   }
 
   componentWillMount(){
+    userStore.on('change', this.updateRachel)
     eventStore.on('current event fetched', this.oncurrent)
     eventStore.on('event created',this.oncurrent)
     eventStore.on('events fetched', this.onevents)
   }
 
   componentWillUnmount(){
+    userStore.removeListener('change', this.updateRachel)
     eventStore.removeListener('current event fetched', this.oncurrent)
     eventStore.removeListener('event created',this.oncurrent)
     eventStore.removeListener('events fetched', this.onevents)
+  }
+
+  updateRachel(){
+    this.setState({rachel: userStore.getRachel()})
   }
 
   updateCurrentEvent(){
