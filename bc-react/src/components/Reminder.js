@@ -14,46 +14,21 @@ class Reminder extends Component {
       message1: '',
       link: '',
       message2: '',
-      event: {},
-      userUpdated: false,
-      eventUpdated: true,
     }
     this.updateMessage = this.updateMessage.bind(this)
-    this.updateUser = this.updateUser.bind(this)
-    this.updateEvent = this.updateEvent.bind(this)
   }
   componentWillMount(){
     eventStore.on('change', this.updateMessage);
-    userStore.on('change', this.updateUser);
-    eventStore.on('change', this.updateEvent);
+    userStore.on('change', this.updateMessage);
   }
 
   componentWillUnmount(){
     eventStore.removeListener('change', this.updateMessage);
-    userStore.removeListener('change', this.updateUser);
-    eventStore.removeListener('change', this.updateEvent);
-  }
-
-  updateUser(){
-    this.setState({
-      userUpdated: true
-    })
-    if (this.state.eventUpdated){
-      this.updateMessage()
-    }
-  }
-
-  updateEvent(){
-    this.setState({
-      eventUpdated: true
-    })
-    if (this.state.userUpdated){
-      this.updateMessage()
-    }
+    userStore.removeListener('change', this.updateMessage);
   }
 
   updateMessage(){
-    let currentEvent = eventStore.getCurrentEvent();
+    let currentEvent = this.props.event;
     let user = this.props.user;
     this.setState({
       greeting: `Hey ${user.firstName}! `
@@ -72,7 +47,6 @@ class Reminder extends Component {
     if (!currentEvent.event.vote_status){
       if (this.props.user.rsvp){
         this.setState({
-          event: currentEvent,
           message1: `See you on `,
           link: `${dayOfWeek}`,
           //TODO: add time of event
@@ -81,7 +55,6 @@ class Reminder extends Component {
       }
       else {
         this.setState({
-          event: currentEvent,
           message1: "No breakfast for you this week!",
           link: '',
           message2: ''
@@ -92,7 +65,6 @@ class Reminder extends Component {
       if (user.voted){
         if (this.props.user.rsvp){
           this.setState({
-            event: currentEvent,
             greeting: `Hey ${user.firstName}, you're on the guest list!`,
             message1: 'The ',
             link: 'details',
@@ -102,7 +74,6 @@ class Reminder extends Component {
         }
         else {
           this.setState({
-            event: currentEvent,
             message1: "Are you in or are you in? ",
             link: 'RSVP',
             message2: ''
@@ -111,7 +82,6 @@ class Reminder extends Component {
       }
       else {
         this.setState({
-          event: currentEvent,
           //TODO: fix hardcorded "0 AM"
           greeting: `Hey, ${user.firstName}! This ${dayOfWeek} at ${hourTime}:${minuteTime}0 AM`,
           message1: `${currentEvent.places[0].name} or ${currentEvent.places[1].name}? `,
