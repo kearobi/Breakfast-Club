@@ -45,7 +45,7 @@ class Reminder extends Component {
     let minuteTime = new Date(temp).getMinutes()
 
     if (!currentEvent.event.vote_status){
-      if (this.props.user.rsvp){
+      if (user.rsvp){
         this.setState({
           message1: `See you on `,
           link: `${dayOfWeek}`,
@@ -63,7 +63,7 @@ class Reminder extends Component {
     }
     else {
       if (user.voted){
-        if (this.props.user.rsvp){
+        if (user.rsvp){
           this.setState({
             greeting: `Hey ${user.firstName}, you're on the guest list!`,
             message1: 'The ',
