@@ -55,9 +55,9 @@ class Reminder extends Component {
       }
       else {
         this.setState({
-          message1: "No breakfast for you this week!",
-          link: '',
-          message2: ''
+          message1: "No ",
+          link: 'breakfast',
+          message2: ' for you this week!'
         })
       }
     }
