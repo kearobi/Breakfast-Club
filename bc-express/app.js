@@ -90,13 +90,8 @@ app.get('/count-votes', function (request, response) {
 	let count_1 = 0;
 	let count_2 = 0;
   let winner;
-  //instead of then then then then, perhaps could do join statement that gets all of it. ie.
-    // Bevent.includes(GuestList).where(order: {date, DESC}, Guestlist: {event_id: event_id})
-    // and thsi would give you a table with them already mashed together
-    // Bevent.last THIS MIGHT JSUT BE RAILS
 	return Bevent.findOne({
-			limit: 1,
-			order: [['date', 'DESC']]
+		order: [['date', 'DESC']]
 	})
   //
 	.then(function(event){
@@ -140,7 +135,6 @@ app.get('/count-votes', function (request, response) {
   })
   .then(function(){
     return Bevent.findOne({
-        limit: 1,
         order: [['date', 'DESC']]
     })
   })
@@ -590,6 +584,25 @@ app.get('/rachel2', function(req, res){
   })
   .then(function(fullEvent){
     res.json({fullEvent: fullEvent})
+  })
+})
+//
+// app.get('/rachel3', function(req, res){
+//   Bevent.includes(GuestList).where(order: {date, DESC}, Bevent: {id: 1})
+//   .then(function(fullEvent){
+//     res.json({fullEvent: fullEvent})
+//   })
+// })
+
+app.get('/rachel4', function(req, res){
+  Message.findAll({
+    attributes: ['createdAt', 'content', 'user_id'],
+    include: [{
+      model: User,
+    }]
+  })
+  .then(function(fullMessage){
+    res.json({fullMessage: fullMessage})
   })
 })
 

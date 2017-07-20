@@ -4,6 +4,7 @@
 import React, {Component} from 'react';
 import eventStore from '../stores/EventStore';
 import userStore from '../stores/UserStore';
+import guestStore from '../stores/GuestStore';
 import EventDetail from '../components/EventDetail';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
@@ -16,7 +17,8 @@ class CurrentEvent extends Component {
       event: eventStore.getCurrentEvent(),
       user: userStore.getUser(),
       rsvp: userStore.getUser().rsvp,
-      message: ''
+      message: '',
+      guestlists: guestStore.getGuestlists()
     }
   }
 

@@ -25,6 +25,7 @@ class EventDetail extends Component {
   //   console.log(dayOfWeek, "," , month, "", day, " @ ", hourTime,":", minuteTime)
 
   render() {
+    console.log('eventdata', this.props.eventData)
     var mappedUsers;
     if (this.props.eventData.users.length === 0){
       mappedUsers = <div className='flex-item'>No RSVPs yet</div>

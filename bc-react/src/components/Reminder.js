@@ -24,14 +24,12 @@ class Reminder extends Component {
   }
   componentWillMount(){
     eventStore.on('current event fetched', this.onUpdateMessage);
-    eventStore.on('votes counted', this.onUpdateMessage);
     userStore.on('voted set to false', this.onUpdateUser);
     eventStore.on('new event created', this.onUpdateEvent);
   }
 
   componentWillUnmount(){
     eventStore.removeListener('current event fetched', this.onUpdateMessage);
-    eventStore.removeListener('votes counted', this.onUpdateMessage);
     userStore.removeListener('voted set to false', this.onUpdateUser);
     eventStore.removeListener('new event created', this.onUpdateEvent);
   }

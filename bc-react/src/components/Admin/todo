@@ -44,11 +44,11 @@ when a user RSVPs:
 
 if(rsvp){
     update user table that RSVP is true
-    create new entry in guestlist where eventId matches and user is null
+    update guestlist where eventId matches and user is null
 }else{
   if (user ID is in the guestList){
     update user table that RSVP is false
-    delete entry in guestlist with their userId and eventId
+    update entry in guestlist with their userId and eventId
   }
 }
 
@@ -56,7 +56,6 @@ if(rsvp){
 when an event is fetched and place 1/place 2/winner are by ID
 Bevent.findOne({
   order: [['date', 'DESC']]
-  limit: 1,
   include: [{
     required : false,
     model: Places
@@ -67,4 +66,17 @@ Bevent.findOne({
 });
 
 
-the event_id of Guestlists should be the foreign key to Bevents id (primary key)
+//ideally
+when a user votes
+ PUT user.voted = true
+ POST guestlist -- userID = null, vote = 1 or 2
+
+when a user RSVPs
+  PUT user.rsvp = true/false
+  PUT guestlist -- userID = userID/null
+
+when votes are counted
+  findAll guestlists where vote = 1
+  findall guestLists where vote = 2
+  winner = whichever has more findAll results
+  PUT guestlist winner
