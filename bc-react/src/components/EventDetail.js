@@ -11,6 +11,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 import eventStore from '../stores/EventStore';
 import userStore from '../stores/UserStore';
+import {fetchCurrentEvent, setEventsFromLocal} from '../actions/EventActions';
 
 class EventDetail extends Component {
   constructor(props){
@@ -21,6 +22,7 @@ class EventDetail extends Component {
     }
     this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
     this.updateUser = this.updateUser.bind(this)
+      setEventsFromLocal()
   }
 
   updateCurrentEvent(){
@@ -28,7 +30,6 @@ class EventDetail extends Component {
       event: eventStore.getCurrentEvent()
     })
   }
-
 
   updateUser(){
     this.setState({

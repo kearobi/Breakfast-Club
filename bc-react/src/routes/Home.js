@@ -18,33 +18,19 @@ class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      user: this.props.user,
-      event: eventStore.getCurrentEvent(),
       events: []
     }
-    this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
     this.updateEvents = this.updateEvents.bind(this)
-      fetchCurrentEvent()
+      // fetchCurrentEvent()
       fetchEvents();
-      setEventsFromLocal()
   }
 
   componentWillMount(){
-    eventStore.on('change', this.updateCurrentEvent)
     eventStore.on('change', this.updateEvents)
   }
 
   componentWillUnmount(){
-    eventStore.removeListener('change', this.updateCurrentEvent)
     eventStore.removeListener('change', this.updateEvents)
-  }
-
-  updateCurrentEvent(){
-    checkIfVotingOver(eventStore.getCurrentEvent())
-    checkEventOver(eventStore.getCurrentEvent(), this.state.user.id)
-    this.setState({
-      event: eventStore.getCurrentEvent()
-    })
   }
 
   updateEvents(){
@@ -85,7 +71,7 @@ class Home extends Component {
               <SideBarMini/>
               <Header />
           <div className="welcome-message">
-            <div className='reminder'><Reminder user={this.state.user} event={this.state.event}/></div>
+            <div className='reminder'><Reminder user={this.props.user} event={this.props.event}/></div>
           </div>
           <div className="calendar-div">{this.checkCalendar()}</div>
         {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}

@@ -3,6 +3,9 @@ import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
 import UserProfile from './routes/UserProfile';
+import moment from 'moment';
+import {setEventsFromLocal} from './actions/EventActions';
+import eventStore from './stores/EventStore';
 import TestEvent from './routes/TestEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
@@ -26,23 +29,36 @@ class App extends Component {
   constructor(props){
     super(props)
     setUserFromLocal()
+    setEventsFromLocal()
     this.state = {
-      user: userStore.getUser()
+      user: userStore.getUser(),
+      event: eventStore.getCurrentEvent(),
     }
     this.updateUser = this.updateUser.bind(this)
+    this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
   }
 
   componentWillMount(){
     userStore.on('change', this.updateUser)
+    eventStore.on('change', this.updateCurrentEvent)
   }
 
   componentWillUnmount(){
     userStore.removeListener('change', this.updateUser)
+    eventStore.removeListener('change', this.updateCurrentEvent)
   }
 
   updateUser(){
     this.setState({
       user: userStore.getUser()
+    })
+  }
+
+  updateCurrentEvent(){
+    checkIfVotingOver(this.state.event)
+    checkEventOver(this.state.event, this.state.user.id)
+    this.setState({
+      event: eventStore.getCurrentEvent()
     })
   }
 
@@ -73,7 +89,10 @@ class App extends Component {
                     )} />
             <Route  exact path='/home'
                     render=
-                    {()=>(loggedIn ? (<Home user={this.state.user} />) : (<Redirect to='/' />)
+                    {()=>(loggedIn ? (<Home user={this.state.user}
+                    event={this.state.event}
+                    events={this.state.events}
+                  />) : (<Redirect to='/' />)
                     )} />
             <Route  exact path='/profile'
                     render={()=>(
