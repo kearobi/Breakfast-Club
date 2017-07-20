@@ -31,7 +31,6 @@ class CurrentEvent extends Component {
       event: eventStore.getCurrentEvent(),
       user: userStore.getUser(),
       message: "Vote Registered",
-      rsvp: false
     })
   }
 
@@ -46,7 +45,6 @@ class CurrentEvent extends Component {
       event: eventStore.getCurrentEvent(),
       user: userStore.getUser(),
       message: "RSVP'd",
-      rsvp: true
     })
   }
 
@@ -59,7 +57,13 @@ class CurrentEvent extends Component {
             <Header />
             <SideBarMini />
           <p>{this.state.message}</p>
-          <EventDetail voted={this.state.user.voted} rsvp={this.state.rsvp} user={this.state.user} eventData={this.state.event} winner={this.state.event.winner} />
+          <EventDetail
+            voted={this.state.user.voted}
+            rsvp={this.state.user.rsvp}
+            user={this.state.user}
+            eventData={this.state.event}
+            winner={this.state.event.winner}
+          />
             </div>
           </div>
         </div>

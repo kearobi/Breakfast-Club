@@ -11,18 +11,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 
 class EventDetail extends Component {
-//it seems like it would make the most sense to add/remove the user from the guestlist onClick
-//this handleClick stuff here is a work in progress, feel free to take over!
-  // handleClick(e){
-  //   if (e.target.value === 'yes'){
-  //     rsvp(this.props.user, this.props.eventData)
-  //   }
-    // else if (e.target.value === 'no'){
-    //   //TODO
-    // }
-    // else {return ""}
-  // }
-  //
+
   // dateParser(){
   //   let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   //   let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -36,7 +25,6 @@ class EventDetail extends Component {
   //   console.log(dayOfWeek, "," , month, "", day, " @ ", hourTime,":", minuteTime)
 
   render() {
-    // this.dateParser()
     var mappedUsers;
     if (this.props.eventData.users.length === 0){
       mappedUsers = <div className='flex-item'>No RSVPs yet</div>
@@ -77,17 +65,13 @@ class EventDetail extends Component {
           <div className='flex-container-1'>{/* this is a flex container */}
             <div className='flex-item-header'>Where:</div>
             <div className='flex-item-header'>Guest Speaker:</div>
-            {!this.props.rsvp && this.props.voted &&
               <div className='flex-item-header'>RSVP:</div>
-            }
             <div className='flex-item-header'>Who's In:</div>
           </div>
           <div className='flex-container-2'>{/* this is a flex container */}
             <div className='flex-item'>{this.props.winner || `Still voting...`}</div>
             <div className='flex-item'>{this.props.speaker || `Nobody lined up yet...`}</div>
-              {this.props.voted &&
                 <RSVPButton user={this.props.user} event={this.props.eventData}/>
-              }
             <div className='RSVP'>
             {mappedUsers}
             </div>

@@ -99,6 +99,7 @@ class App extends Component {
             <Route exact path='/404' component={PageNotFound} />
             <Redirect to='/404'/>
           </Switch>
+          <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
         </div>
       </Router>
     );
