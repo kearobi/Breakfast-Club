@@ -14,36 +14,11 @@ class CurrentEvent extends Component {
   constructor(props){
     super(props)
     this.state= {
-      event: eventStore.getCurrentEvent(),
-      user: userStore.getUser(),
-      message: ''
+      event: this.props.event,
+      user: this.props.user,
+      message: '',
+      guestlist: this.props.guestlist
     }
-    this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
-    this.updateUser = this.updateUser.bind(this)
-      fetchCurrentEvent()
-      setEventsFromLocal()
-  }
-
-  componentWillMount(){
-    userStore.on('change', this.updateUser)
-    eventStore.on('change', this.updateCurrentEvent)
-  }
-
-  componentWillUnmount(){
-    userStore.removeListener('change', this.updateUser)
-    eventStore.removeListener('change', this.updateCurrentEvent)
-  }
-
-  updateUser(){
-    this.setState({
-      user: userStore.getUser()
-    })
-  }
-
-  updateCurrentEvent(){
-    this.setState({
-      event: eventStore.getCurrentEvent()
-    })
   }
 
   render(){
@@ -55,7 +30,7 @@ class CurrentEvent extends Component {
             <Header />
             <SideBarMini />
           <p>{this.state.message}</p>
-          <EventDetail />
+          <EventDetail event={this.props.event} user={this.props.user} guestlist={this.props.guestlist}/>
             </div>
           </div>
         </div>

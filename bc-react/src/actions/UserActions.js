@@ -117,3 +117,27 @@ export function setUserFromLocal(){
     type: 'LOCAL_STORAGE'
   })
 }
+
+export function fetchGuestlist(){
+  let success;
+  const params = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+      }
+  fetch(`${apiUrl}guestlist`, params)
+    .then((response)=>{
+      success = response.ok
+      return response.json()
+    })
+    .then((body)=>{
+      if (success){
+        let guestlist = body.guestlist
+        dispatcher.dispatch({
+          type: "FETCH-GUESTLIST",
+          guestlist: guestlist
+        })
+      } else {
+        console.log("failure!", body)
+      }
+    })
+  }

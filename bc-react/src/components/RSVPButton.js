@@ -19,8 +19,7 @@ class RSVPButton extends Component {
     this.setState({
       user: user
     })
-    // editUser(user)
-    rsvp(user, event)
+    editUser(user)
   }
 
   render() {

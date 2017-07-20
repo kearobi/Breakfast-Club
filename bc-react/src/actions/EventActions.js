@@ -87,25 +87,62 @@ export function countVotes(){
 }
 
 export function rsvp(user, event){
+  let id
+
+  if(user.rsvp){
+    id = user.id
+  } else {
+    id = null
+  }
+
   const params = {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      event: event.event,
-      user: user
+      event_id: event.event.id,
+      user_id: id,
+      rsvp: user.rsvp
     })
   }
   fetch(`${apiUrl}rsvp`, params).then(function(response){
     if(response.ok){
+      response.json().then(function(body){
         dispatcher.dispatch({
           type: 'RSVP',
-          user: user
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
+        })
       })
     }
   }).catch(function(error){
     console.log("There was an error: " + error)
   })
 }
+
+// export function rsvp(user, event){
+//   const params = {
+//     method: 'PUT',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify({
+//       event: event.event,
+//       user: user
+//     })
+//   }
+//   fetch(`${apiUrl}rsvp`, params).then(function(response){
+//     if(response.ok){
+//         dispatcher.dispatch({
+//           type: 'RSVP',
+//           user: user
+//       })
+//     }
+//   }).catch(function(error){
+//     console.log("There was an error: " + error)
+//   })
+// }
 
 export function registerVote(user, event, choice){
   event.choice = choice;

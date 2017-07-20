@@ -285,36 +285,136 @@ app.post('/register-vote', function(request, response){
 })
 
 // finds an empty GuestList row and sets the user_id to the current User's id
+// app.put('/rsvp', function(request, response){
+//   let eventID = request.body.event.id;
+//   let userID = request.body.user.id;
+//   let userRSVP = request.body.user.rsvp;
+//   //update RSVP to true or false
+//   User.update(
+//     {rsvp: userRSVP},
+//     {where: {id: userID}
+//   }).then(function(){
+//     if(userRSVP){
+//       GuestList.update(
+//         {user_id: userID},
+//         {where: {event_id: eventID, user_id: null}
+//       })
+//     }else{
+//       GuestList.update(
+//         {user_id: null},
+//         {where: {event_id: eventID, user_id: userID}
+//       })
+//     }
+//   }).then(function(user){
+//     response.status(200)
+//     response.json({message: 'success', user: user})
+//   }).catch(function(error){
+//     response.status(400)
+//     response.json({message: 'error', errors: error.errors})
+//   })
+// })
+// creates GuestList object with vote info and updates User vote status
 app.put('/rsvp', function(request, response){
-  let eventID = request.body.event.id;
-  let userID = request.body.user.id;
-  let userRSVP = request.body.user.rsvp;
-  //update RSVP to true or false
-  User.update(
-    {rsvp: userRSVP},
-    {where: {id: userID}
-  }).then(function(){
-    if(userRSVP){
-      GuestList.update(
-        {user_id: userID},
-        {where: {event_id: eventID, user_id: null}
+  let _event;
+  let _user;
+  let _users = [];
+  let _places = [];
+  let _guestLists;
+  let event_id = request.body.event_id;
+  let user_id = request.body.user_id
+  let rsvp = request.body.rsvp;
+  let params = {
+    event_id: event_id,
+    user_id: user_id
+  }
+  // update GuestList depending on rsvp
+  return GuestList.update(params)
+  .then(function(){
+    // set User rsvp column to true or false
+    return User.update({
+        rsvp: rsvp
+      }, {where: {
+        id: id
+      }
+    })
+  })
+  .then(function(){
+    return Bevent.findOne({
+        limit: 1,
+        order: [['date', 'DESC']]
+    })
+  })
+  .then(function(event){
+    _event = event;
+    return event.getGuestLists();
+  })
+  // for each GuestList save the corresponding User in _users
+  .then(function(lists){
+    _guestLists = lists;
+    listPromises = [];
+    if(rsvp){
+    for (var i = 0; i < lists.length; i++){
+      listPromises.push(User.findOne({
+        where:{id: lists[i].user_id}
+      }))
+    }
+  }
+  //TODO: IF RSVP FALSE LATER
+    return Promise.all(listPromises);
+  })
+  // find the first restaurant option
+  .then(function(users){
+    for (var i = 0; i < users.length; i++){
+      if (users[i] != null){
+        _users.push(users[i]);
+      }
+    }
+    return Place.findOne({
+      where:{id: _event.place_1_id}
+    })
+  })
+  // find the second restaurant option
+  .then (function(place){
+    _places.push(place);
+    return Place.findOne({
+      where:{id: _event.place_2_id}
+    })
+  })
+  .then(function(place){
+    _places.push(place);
+    return User.findById(user_id)
+  })
+  .then(function(user){
+    _user = user;
+    if(_event){
+      response.status(200)
+      response.json({
+        event: _event,
+        guestLists: _guestLists,
+        places: _places,
+        users: _users,
+        user: _user
       })
     }else{
-      GuestList.update(
-        {user_id: null},
-        {where: {event_id: eventID, user_id: userID}
-      })
+      response.status(400)
+      console.log('no data found')
     }
-  }).then(function(user){
+  })
+})
+
+//to fetch historic events, could do "where event active status = false"
+
+app.get('/guestlist', function (request, response) {
+  User.findAll({
+    where: {rsvp: true}
+  }).then(function(guestlist){
     response.status(200)
-    response.json({message: 'success', user: user})
+    response.json({message: "success", guestlist: guestlist});
   }).catch(function(error){
     response.status(400)
     response.json({message: 'error', errors: error.errors})
   })
 })
-
-//to fetch historic events, could do "where event active status = false"
 
 app.get('/events', function(request, response){
   let promises = [];

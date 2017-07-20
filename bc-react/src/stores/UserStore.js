@@ -6,12 +6,17 @@ class UserStore extends EventEmitter{
     super()
     this.user = {}
     this.message = ""
+    this.guestlist = []
   }
 
 //we can tell a user is logged in if the authToken is set in the store
 
   getUser(){
     return this.user
+  }
+
+  getGuestlist(){
+    return this.guestlist
   }
 
   updateUser(attributes){
@@ -76,7 +81,8 @@ class UserStore extends EventEmitter{
     localStorage.removeItem('rsvp')
     localStorage.removeItem('active')
     localStorage.removeItem('currentEvent')
-
+    localStorage.removeItem('events')
+    
     this.user.authToken = null
     this.emit('change')
   }
@@ -114,6 +120,11 @@ class UserStore extends EventEmitter{
       }
       case("RSVP"):{
         this.updateUser(action.user)
+        break
+      }
+      case("FETCH-GUESTLIST"):{
+        this.guestlist = action.guestlist;
+        this.emit('change')
         break
       }
       default:{}

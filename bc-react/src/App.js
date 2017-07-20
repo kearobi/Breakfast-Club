@@ -11,7 +11,7 @@ import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import MessageBoardToggle from './components/MessageBoardToggle';
 import AdminTest from './components/Admin_Dry/AdminPage';
-import {setUserFromLocal} from './actions/UserActions'
+import {setUserFromLocal, fetchGuestlist} from './actions/UserActions'
 import Places from './routes/Places'
 import CurrentEvent from './routes/CurrentEvent'
 import Photos from './routes/Photos'
@@ -28,11 +28,14 @@ import {fetchMessages} from './actions/MessageActions';
 class App extends Component {
   constructor(props){
     super(props)
+    fetchCurrentEvent()
+    fetchGuestlist()
     setUserFromLocal()
     setEventsFromLocal()
     this.state = {
       user: userStore.getUser(),
       event: eventStore.getCurrentEvent(),
+      guestlist: userStore.getGuestlist()
     }
     this.updateUser = this.updateUser.bind(this)
     this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
@@ -50,16 +53,17 @@ class App extends Component {
 
   updateUser(){
     this.setState({
-      user: userStore.getUser()
+      user: userStore.getUser(),
+      guestlist: userStore.getGuestlist()
     })
   }
 
   updateCurrentEvent(){
-    checkIfVotingOver(this.state.event)
-    checkEventOver(this.state.event, this.state.user.id)
     this.setState({
       event: eventStore.getCurrentEvent()
     })
+    checkIfVotingOver(this.state.event)
+    checkEventOver(this.state.event, this.state.user.id)
   }
 
   render() {
@@ -100,7 +104,7 @@ class App extends Component {
                     )} />
             <Route  exact path='/current-event'
                     render={()=>(
-                    loggedIn ? (<CurrentEvent />) : (<Redirect to='/' />)
+                    loggedIn ? (<CurrentEvent user={this.state.user} event={this.state.event} guestlist={this.state.guestlist}/>) : (<Redirect to='/' />)
                     )} />
             <Route  exact path='/photos'
                     render={()=>(
