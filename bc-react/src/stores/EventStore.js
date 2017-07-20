@@ -20,12 +20,12 @@ class EventStore extends EventEmitter{
   updateCurrentEvent(attributes){
     this.currentEvent = attributes
     let stringify = JSON.stringify(this.currentEvent)
+    console.log('current event', this.currentEvent)
     console.log('stringify', stringify)
     localStorage.setItem('currentEvent', stringify)
   }
 
   setCurrentEventFromLocal(){
-    debugger
     let parsed = JSON.parse( localStorage.getItem('currentEvent'))
     console.log('parsed', parsed)
     this.currentEvent = parsed

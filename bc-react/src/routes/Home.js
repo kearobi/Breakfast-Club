@@ -22,22 +22,24 @@ class Home extends Component {
       event: eventStore.getCurrentEvent(),
       events: []
     }
-    this.oncurrent = this.updateCurrentEvent.bind(this)
+    this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
     this.onevents = this.events.bind(this)
       fetchCurrentEvent()
-      fetchEvents();
       setCurrentEventFromLocal()
+      fetchEvents();
   }
 
   componentWillMount(){
-    eventStore.on('current event fetched', this.oncurrent)
-    eventStore.on('event created',this.oncurrent)
+    eventStore.on('change', this.updateCurrentEvent)
+    eventStore.on('current event fetched', this.updateCurrentEvent)
+    eventStore.on('event created',this.updateCurrentEvent)
     eventStore.on('events fetched', this.onevents)
   }
 
   componentWillUnmount(){
-    eventStore.removeListener('current event fetched', this.oncurrent)
-    eventStore.removeListener('event created',this.oncurrent)
+    eventStore.on('change', this.updateCurrentEvent)
+    eventStore.removeListener('current event fetched', this.updateCurrentEvent)
+    eventStore.removeListener('event created',this.updateCurrentEvent)
     eventStore.removeListener('events fetched', this.onevents)
   }
 
