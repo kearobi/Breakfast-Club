@@ -16,7 +16,6 @@ class CurrentEvent extends Component {
     this.state= {
       event: eventStore.getCurrentEvent(),
       user: userStore.getUser(),
-      rsvp: userStore.getUser().rsvp,
       message: ''
     }
     this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
