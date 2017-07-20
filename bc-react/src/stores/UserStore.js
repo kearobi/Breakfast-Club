@@ -63,9 +63,10 @@ class UserStore extends EventEmitter{
       return true
   }
 
-  clearUserData(){
+  clearData(){
     localStorage.removeItem('authToken');
     localStorage.removeItem('authTokenExpiration');
+    localStorage.removeItem('id')
     localStorage.removeItem('firstName');
     localStorage.removeItem('lastName');
     localStorage.removeItem('email');
@@ -74,6 +75,7 @@ class UserStore extends EventEmitter{
     localStorage.removeItem('admin')
     localStorage.removeItem('rsvp')
     localStorage.removeItem('active')
+    localStorage.removeItem('currentEvent')
 
     this.user.authToken = null
     this.emit('change')
@@ -102,7 +104,7 @@ class UserStore extends EventEmitter{
         break
       }
       case("LOGOUT"):{
-        this.clearUserData()
+        this.clearData()
         break
       }
       case("EVENT-CREATED"):{
