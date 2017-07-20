@@ -38,8 +38,7 @@ class EventStore extends EventEmitter{
   handleActions(action){
     switch(action.type){
       case("FETCH-EVENTS"):{
-        // this.events = action.events;
-        this.updateCurrentEvent(action.data)
+        this.events = action.events;
         this.emit('events fetched');
         break;
       }
