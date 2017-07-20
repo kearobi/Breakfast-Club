@@ -55,10 +55,7 @@ class CurrentEvent extends Component {
             <Header />
             <SideBarMini />
           <p>{this.state.message}</p>
-          <EventDetail
-            user={this.state.user}
-            eventData={this.state.event}
-          />
+          <EventDetail />
             </div>
           </div>
         </div>
