@@ -54,6 +54,39 @@ export function submitLogin(loginAttributes){
   })
 }
 
+export function rachelRSVP(){
+  dispatcher.dispatch({
+    type: 'RACHEL_RSVP'
+  })
+}
+
+export function rachelVote(eventID, choice, userID){
+  const params = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({eventID, choice, userID})
+  }
+  console.log("parmas body", params.body)
+  fetch(`${apiUrl}rachel-vote`, params).then((response)=>{
+    if(response.ok){
+      response.json().then((body)=>{
+        console.log('rachelVote response body', body)
+          dispatcher.dispatch({
+          type: 'RACHEL_VOTE'
+          })
+      })
+    }else{
+      console.log('rachelVote failed')
+    }
+  })
+}
+
+export function rachelCountVote(){
+  dispatcher.dispatch({
+    type: 'RACHEL_COUNT_VOTE'
+  })
+}
+
 export function processLogin(attributes){
   const params = {
     method: 'PUT',

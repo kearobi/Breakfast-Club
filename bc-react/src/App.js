@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
+import HomeRachel from './routes/HomeRachel';
 import UserLogin from './routes/UserLogin';
 import UserProfile from './routes/UserProfile';
 import TestEvent from './routes/TestEvent';
@@ -96,6 +97,7 @@ class App extends Component {
             <Route exact path='/test-event' component={TestEvent} />
             <Route exact path='/vote' component={VotePage} />
             <Route exact path='/adminTest' component={AdminTest} />
+            <Route exact path='/homerachel' component={HomeRachel} />
             <Route exact path='/404' component={PageNotFound} />
             <Redirect to='/404'/>
           </Switch>

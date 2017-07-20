@@ -7,6 +7,7 @@ class EventStore extends EventEmitter{
     this.testEvent = {};
     this.events = [];
     this.currentEvent = {};
+    this.event = {}
   }
 
   getTestEvent(){
@@ -19,6 +20,15 @@ class EventStore extends EventEmitter{
 
   getAllEvents(){
     return this.events;
+  }
+
+  getEvent(){
+    return this.event
+  }
+
+  updateEvent(attributes){
+    this.event = attributes
+    this.emit('change')
   }
 
   handleActions(action){
@@ -52,6 +62,10 @@ class EventStore extends EventEmitter{
         this.currentEvent = action.data;
         this.emit('new event created');
         // this.emit('current event fetched');
+        break;
+      }
+      case("RACHEL-UPDATE-EVENT"):{
+        this.updateEvent(action.event)
         break;
       }
       default:{}

@@ -18,6 +18,22 @@ export function testCreate(){
   })
 }
 
+export function fetchEvent(){
+  const params = {
+    method: 'GET'
+  }
+  fetch(`${apiUrl}rachel-event`, params).then(function(response){
+    if(response.ok){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+        type: 'RACHEL-UPDATE-EVENT',
+        event: body.event
+        })
+      })
+    }
+  })
+}
+
 export function checkIfVotingOver(event){
   if (new Date(event.event.date) - Date.now() < 86400000) {
     countVotes()
@@ -128,36 +144,36 @@ export function registerVote(user, event, choice){
     console.log("There was an error: " + error)
   })
 }
-
-export function fetchEvent(attributes){
-  const params = {
-    method: "POST",
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(attributes)
-  }
-  fetch(`${apiUrl}test-event`, params).then(function(response){
-    if(response.ok){
-      response.json().then(function(body){
-        dispatcher.dispatch({
-          type:'EVENT-TEST',
-          data: {
-            event: body.event,
-            users: body.users,
-            places: body.places,
-            guestLists: body.guestLists
-          }
-        })
-      }).catch(function(error){
-        console.log("fetch event failed");
-      })
-    }
-    else {
-      console.log("fail, response status not 200")
-    }
-  }).catch(function(){
-    console.log("fail, catch clause")
-  })
-}
+//
+// export function fetchEvent(attributes){
+//   const params = {
+//     method: "POST",
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify(attributes)
+//   }
+//   fetch(`${apiUrl}test-event`, params).then(function(response){
+//     if(response.ok){
+//       response.json().then(function(body){
+//         dispatcher.dispatch({
+//           type:'EVENT-TEST',
+//           data: {
+//             event: body.event,
+//             users: body.users,
+//             places: body.places,
+//             guestLists: body.guestLists
+//           }
+//         })
+//       }).catch(function(error){
+//         console.log("fetch event failed");
+//       })
+//     }
+//     else {
+//       console.log("fail, response status not 200")
+//     }
+//   }).catch(function(){
+//     console.log("fail, catch clause")
+//   })
+// }
 
 export function fetchCurrentEvent(){
   const params = {

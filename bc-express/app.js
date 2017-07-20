@@ -278,6 +278,185 @@ app.post('/register-vote', function(request, response){
   })
 })
 
+app.get('/rachel-event', function(request, response){
+  Bevent.findOne({
+    order: [['date', 'DESC']]
+  }).then(function(event){
+    response.status(200)
+    response.json({message: 'success', event: event})
+  })})
+
+app.post('/rachel-vote', function(request, response){
+  // create GuestList without user id
+  GuestList.create({
+    event_id: request.body.eventID,
+    user_id: null,
+    vote: request.body.choice
+  })
+  // set User voted column to true
+  .then(function(){
+    User.update(
+      {voted: true},
+      {where: {id: request.body.userID}
+    })
+  })
+  .then(function(body){
+    response.status(200)
+    response.json({message: 'success', attributes: body})
+    //I want to include the event, guestlist and user in the response
+  }).catch(function(error){
+    response.status(400)
+    response.json({message: 'error', errors: error.errors})
+  })
+})
+
+app.put('/rachel-rsvp', function(request, response){
+  let eventID = request.body.event.id;
+  let userID = request.body.user.id;
+  let userRSVP = request.body.user.rsvp;
+  //update RSVP to true or false
+  User.update(
+    {rsvp: userRSVP},
+    {where: {id: userID}
+  }).then(function(){
+    if(userRSVP){
+      GuestList.update(
+        {user_id: userID},
+        {where: {event_id: eventID, user_id: null}
+      })
+    }else{
+      GuestList.update(
+        {user_id: null},
+        {where: {event_id: eventID, user_id: userID}
+      })
+    }
+  }).then(function(){
+    response.status(200)
+    response.json({message: 'success'})
+  }).catch(function(error){
+    response.status(400)
+    response.json({message: 'error', errors: error.errors})
+  })
+})
+
+app.put('/rachel-count-votes', function(request, response){
+  //find all guestlists belonging to this event
+  GuestList.findAll({
+		where:{event_id: request.body.event.id}
+	 })
+   //tally the votes
+	.then(function(lists){
+    let place1 = 0;
+    let place2 = 0;
+    let winner;
+		for (let i = 0; i < lists.length; i++){
+			if (lists[i].vote == '1'){ place1++ }
+			else if (lists[i].vote == '2'){ place2++ }
+		}
+		if(place1 > place2){ winner = 1 }
+    else{ winner = 2 }
+  //update Bevent with the winner
+    Bevent.update({
+      winner: winner,
+      vote_status: false},{
+      where: {id: request.body.event.id}
+    })
+  }).then(function(){
+    response.status(200)
+    response.json({message: 'success'})
+  }).catch(function(error){
+    response.status(400)
+    response.json({message: 'error', errors: error.errors})
+  })
+})
+
+// creates GuestList object with vote info and updates User vote status
+app.post('/register-vote', function(request, response){
+  let _event;
+  let _user;
+  let _users = [];
+  let _places = [];
+  let _guestLists;
+  let event_id = request.body.event.id;
+  let user_id = request.body.user.id;
+  let choice = request.body.choice;
+  let params = {
+    event_id: event_id,
+    user_id: null,
+    vote: choice
+  }
+  // create GuestList without user id
+  return GuestList.create(params)
+  .then(function(){
+    // set User voted column to true
+    return User.update({
+        voted: true
+      }, {where: {
+        id: user_id
+      }
+    })
+  })
+  .then(function(){
+    return Bevent.findOne({
+        limit: 1,
+        order: [['date', 'DESC']]
+    })
+  })
+  .then(function(event){
+    _event = event;
+    return event.getGuestLists();
+  })
+  // for each GuestList save the corresponding User in _users
+  .then(function(lists){
+    _guestLists = lists;
+    listPromises = [];
+    for (var i = 0; i < lists.length; i++){
+      listPromises.push(User.findOne({
+        where:{id: lists[i].user_id}
+      }))
+    }
+    return Promise.all(listPromises);
+  })
+  // find the first restaurant option
+  .then(function(users){
+    for (var i = 0; i < users.length; i++){
+      if (users[i] != null){
+        _users.push(users[i]);
+      }
+    }
+    return Place.findOne({
+      where:{id: _event.place_1_id}
+    })
+  })
+  // find the second restaurant option
+  .then (function(place){
+    _places.push(place);
+    return Place.findOne({
+      where:{id: _event.place_2_id}
+    })
+  })
+  .then(function(place){
+    _places.push(place);
+    return User.findById(user_id)
+  })
+  .then(function(user){
+    _user = user;
+    if(_event){
+      response.status(200)
+      response.json({
+        event: _event,
+        guestLists: _guestLists,
+        places: _places,
+        users: _users,
+        user: _user
+      })
+    }else{
+      response.status(400)
+      console.log('no data found')
+    }
+  })
+})
+
 // finds an empty GuestList row and sets the user_id to the current User's id
 app.put('/rsvp', function(request, response){
   let eventID = request.body.event.id;

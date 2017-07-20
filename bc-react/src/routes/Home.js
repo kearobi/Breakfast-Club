@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Reminder from '../components/Reminder';
-import {fetchRachel} from '../actions/UserActions';
+import {fetchRachel, rachelVote} from '../actions/UserActions';
 import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions/EventActions';
 import BigCalendar from 'react-big-calendar';
 import userStore from '../stores/UserStore';
@@ -22,7 +22,10 @@ class Home extends Component {
       user: this.props.user,
       event: eventStore.getCurrentEvent(),
       events: [],
-      rachel: userStore.getRachel()
+      rachel: userStore.getRachel(),
+      choice: 1,
+      even: 1,
+      usr: 1
     }
     this.updateRachel = this.updateRachel.bind(this)
     this.oncurrent = this.updateCurrentEvent.bind(this)
@@ -54,11 +57,12 @@ class Home extends Component {
     checkIfVotingOver(eventStore.getCurrentEvent())
     checkEventOver(eventStore.getCurrentEvent(), this.state.user.id)
     this.setState({
-      event: eventStore.getCurrentEvent()
+      currentEvent: eventStore.getCurrentEvent()
     })
   }
 
   events(){
+    rachelVote(this.state.even, this.state.choice, this.state.usr)
     let bevents = eventStore.getAllEvents()
     let newEvents = bevents.map(function(bevent){
       let start = moment(bevent.date).toDate()

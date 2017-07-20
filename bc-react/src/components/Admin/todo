@@ -20,12 +20,6 @@ add hidden class forlayout stuff
 
 if somethings not working right and its a reserved tag, try doing it with a div
 
-css tricks a guide to flexbox
-the way it's lined out, it's all in rows. to get columns, it's turned 90 degrees. to space out columns is not ideal, can get around it by
-making a column and putting rows in columns
-by default, everything is flex-direction: row
-
-
           {/* //when something's at medium size, the width of the column will be 4, when it's small size it's 3. There's also xs */}
 
           //align self to override alignitems for specific item in flex
@@ -79,4 +73,4 @@ when votes are counted
   findAll guestlists where vote = 1
   findall guestLists where vote = 2
   winner = whichever has more findAll results
-  PUT guestlist winner
+  PUT event winner
