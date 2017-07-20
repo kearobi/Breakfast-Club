@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Reminder from '../components/Reminder';
-import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver, setCurrentEventFromLocal} from '../actions/EventActions';
+import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver, setEventsFromLocal} from '../actions/EventActions';
 import BigCalendar from 'react-big-calendar';
 import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
@@ -23,24 +23,27 @@ class Home extends Component {
       events: []
     }
     this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
-    this.onevents = this.events.bind(this)
+    this.updateEvents = this.updateEvents.bind(this)
       fetchCurrentEvent()
-      setCurrentEventFromLocal()
       fetchEvents();
+      setEventsFromLocal()
   }
 
   componentWillMount(){
     eventStore.on('change', this.updateCurrentEvent)
     eventStore.on('current event fetched', this.updateCurrentEvent)
     eventStore.on('event created',this.updateCurrentEvent)
-    eventStore.on('events fetched', this.onevents)
+    eventStore.on('events fetched', this.updateEvents)
+    eventStore.on('change', this.updateEvents)
   }
 
   componentWillUnmount(){
     eventStore.on('change', this.updateCurrentEvent)
     eventStore.removeListener('current event fetched', this.updateCurrentEvent)
     eventStore.removeListener('event created',this.updateCurrentEvent)
-    eventStore.removeListener('events fetched', this.onevents)
+    eventStore.removeListener('events fetched', this.updateEvents)
+    eventStore.removeListener('change', this.updateEvents)
+
   }
 
   updateCurrentEvent(){
@@ -51,7 +54,7 @@ class Home extends Component {
     })
   }
 
-  events(){
+  updateEvents(){
     let bevents = eventStore.getAllEvents()
     let newEvents = bevents.map(function(bevent){
       let start = moment(bevent.date).toDate()

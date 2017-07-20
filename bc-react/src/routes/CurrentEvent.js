@@ -18,12 +18,24 @@ class CurrentEvent extends Component {
       rsvp: userStore.getUser().rsvp,
       message: ''
     }
+    this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
+    this.voteRegistered = this.voteRegistered.bind(this)
+    this.rsvpRegistered = this.rsvpRegistered.bind(this)
+    this.votesCounted = this.votesCounted.bind(This)
   }
 
   componentWillMount(){
-    eventStore.on('vote registered', this.voteRegistered.bind(this));
-    eventStore.on('rsvp', this.rsvpRegistered.bind(this));
-    eventStore.on('votes counted', this.votesCounted.bind(this));
+    eventStore.on('change', this.updateCurrentEvent)
+    eventStore.on('vote registered', this.voteRegistered);
+    eventStore.on('rsvp', this.rsvpRegistered);
+    eventStore.on('votes counted', this.votesCounted);
+  }
+
+  componentWillUnmount(){
+    eventStore.on('change', this.updateCurrentEvent)
+    eventStore.removeListener('vote registered', this.updateCurrentEvent)
+    eventStore.removeListener('rsvp',this.rsvpRegistered)
+    eventStore.removeListener('votes counted', this.votesCounted)
   }
 
   voteRegistered(){
@@ -58,11 +70,8 @@ class CurrentEvent extends Component {
             <SideBarMini />
           <p>{this.state.message}</p>
           <EventDetail
-            voted={this.state.user.voted}
-            rsvp={this.state.user.rsvp}
             user={this.state.user}
             eventData={this.state.event}
-            winner={this.state.event.winner}
           />
             </div>
           </div>

@@ -25,10 +25,15 @@ class EventStore extends EventEmitter{
     localStorage.setItem('currentEvent', stringify)
   }
 
-  setCurrentEventFromLocal(){
-    let parsed = JSON.parse( localStorage.getItem('currentEvent'))
-    console.log('parsed', parsed)
-    this.currentEvent = parsed
+  updateEvents(attributes){
+    this.events = attributes
+    // let stringify = JSON.stringify(this.events)
+    localStorage.setItem('events', JSON.stringify(this.events))
+  }
+
+  setEventLocalStorage(){
+    this.currentEvent = JSON.parse( localStorage.getItem('currentEvent'))
+    this.events = JSON.parse( localStorage.getItem('events'))
   }
 
   getAllEvents(){
@@ -38,7 +43,7 @@ class EventStore extends EventEmitter{
   handleActions(action){
     switch(action.type){
       case("FETCH-EVENTS"):{
-        this.events = action.events;
+        this.updateEvents(action.events);
         this.emit('events fetched');
         break;
       }
@@ -60,7 +65,7 @@ class EventStore extends EventEmitter{
       //   break;
       // }
       case("LOCAL_EVENT_STORAGE"):{
-        this.setCurrentEventFromLocal()
+        this.setEventLocalStorage()
         this.emit('change')
         break
       }

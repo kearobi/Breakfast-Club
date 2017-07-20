@@ -18,7 +18,7 @@ export function testCreate(){
   })
 }
 
-export function setCurrentEventFromLocal(){
+export function setEventsFromLocal(){
   dispatcher.dispatch({
     type: 'LOCAL_EVENT_STORAGE'
   })
