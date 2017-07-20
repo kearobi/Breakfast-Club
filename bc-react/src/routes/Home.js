@@ -43,7 +43,6 @@ class Home extends Component {
     eventStore.removeListener('event created',this.updateCurrentEvent)
     eventStore.removeListener('events fetched', this.updateEvents)
     eventStore.removeListener('change', this.updateEvents)
-
   }
 
   updateCurrentEvent(){

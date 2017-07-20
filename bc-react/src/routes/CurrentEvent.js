@@ -8,6 +8,7 @@ import EventDetail from '../components/EventDetail';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Header from '../components/Header';
+import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver, setEventsFromLocal} from '../actions/EventActions';
 
 class CurrentEvent extends Component {
   constructor(props){
@@ -21,10 +22,14 @@ class CurrentEvent extends Component {
     this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
     this.voteRegistered = this.voteRegistered.bind(this)
     this.rsvpRegistered = this.rsvpRegistered.bind(this)
-    this.votesCounted = this.votesCounted.bind(This)
+    this.votesCounted = this.votesCounted.bind(this)
+    this.updateUser = this.updateUser.bind(this)
+      fetchCurrentEvent()
+      setEventsFromLocal()
   }
 
   componentWillMount(){
+    userStore.on('change', this.updateUser)
     eventStore.on('change', this.updateCurrentEvent)
     eventStore.on('vote registered', this.voteRegistered);
     eventStore.on('rsvp', this.rsvpRegistered);
@@ -32,10 +37,17 @@ class CurrentEvent extends Component {
   }
 
   componentWillUnmount(){
-    eventStore.on('change', this.updateCurrentEvent)
+    userStore.removeListener('change', this.updateUser)
+    eventStore.removeListener('change', this.updateCurrentEvent)
     eventStore.removeListener('vote registered', this.updateCurrentEvent)
     eventStore.removeListener('rsvp',this.rsvpRegistered)
     eventStore.removeListener('votes counted', this.votesCounted)
+  }
+
+  updateUser(){
+    this.setState({
+      user: userStore.getUser()
+    })
   }
 
   voteRegistered(){
@@ -47,6 +59,12 @@ class CurrentEvent extends Component {
   }
 
   votesCounted(){
+    this.setState({
+      event: eventStore.getCurrentEvent()
+    })
+  }
+
+  updateCurrentEvent(){
     this.setState({
       event: eventStore.getCurrentEvent()
     })

@@ -9,14 +9,41 @@ import EventChoice from './EventChoice'
 import {rsvp} from '../actions/EventActions';
 import Moment from 'react-moment';
 import 'moment-timezone';
+import eventStore from '../stores/EventStore';
+import userStore from '../stores/UserStore';
 
 class EventDetail extends Component {
   constructor(props){
     super(props)
     this.state= {
-      user: this.props.user,
-      eventData: this.props.eventData
+      user: userStore.getUser(),
+      event: eventStore.getCurrentEvent(),
     }
+    this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
+    this.updateUser = this.updateUser.bind(this)
+  }
+
+  updateCurrentEvent(){
+    this.setState({
+      event: eventStore.getCurrentEvent()
+    })
+  }
+
+
+  updateUser(){
+    this.setState({
+      user: userStore.getUser()
+    })
+  }
+
+  componentWillMount(){
+    userStore.on('change', this.updateUser)
+    eventStore.on('change', this.updateCurrentEvent)
+  }
+
+  componentWillUnmount(){
+    userStore.removeListener('change', this.updateUser)
+    eventStore.removeListener('change', this.updateCurrentEvent)
   }
   // dateParser(){
   //   let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -31,12 +58,13 @@ class EventDetail extends Component {
   //   console.log(dayOfWeek, "," , month, "", day, " @ ", hourTime,":", minuteTime)
 
   render() {
+    console.log('eventdata', this.state.eventData)
     var mappedUsers;
-    if (this.state.eventData.users.length === 0){
+    if (this.state.event.users.length === 0){
       mappedUsers = <div className='flex-item'>No RSVPs yet</div>
     }
     else {
-      mappedUsers = this.state.eventData.users.map(function(user, i){
+      mappedUsers = this.state.event.users.map(function(user, i){
         return (
           <div className='RSVP-item' key={i}>
             {user.firstName} {user.lastName.slice(0, 1)}.,
@@ -49,21 +77,21 @@ class EventDetail extends Component {
       <div className='events-page'>
         <div className='event-date'>
           <Moment format='dddd, MMMM DD @ h:mm A'>
-            {this.state.eventData.event.date}
+            {this.state.event.event.date}
           </Moment>
         </div>
           <div>
-              {(this.state.eventData.event.winner === 1 || this.state.eventData.event.winner === null) && <EventChoice
-                place={this.state.eventData.places[0]}
+              {(this.state.event.event.winner === 1 || this.state.event.event.winner === null) && <EventChoice
+                place={this.state.event.places[0]}
                 choice={1}
                 />}
-              {(this.state.eventData.event.winner === 2 || this.state.eventData.event.winner === null) && <EventChoice
-                place={this.state.eventData.places[1]}
+              {(this.state.event.event.winner === 2 || this.state.event.event.winner === null) && <EventChoice
+                place={this.state.event.places[1]}
                 choice={2}
                 />}
               {/* //put vote page mockup here// */}
-              {!this.state.user.voted && <VoteButton user={this.state.user} event={this.state.eventData} choice="1"/>}
-              {!this.state.user.voted && <VoteButton user={this.state.user} event={this.state.eventData} choice="2"/>}
+              {!this.state.user.voted && <VoteButton user={this.state.user} event={this.state.event} choice="1"/>}
+              {!this.state.user.voted && <VoteButton user={this.state.user} event={this.state.event} choice="2"/>}
               {/* {!this.props.rsvp && this.props.voted && <RSVPButton user={this.props.user} event={this.props.eventData}/>} */}
           </div>
           {this.state.voted &&
@@ -75,9 +103,9 @@ class EventDetail extends Component {
             <div className='flex-item-header'>Who's In:</div>
           </div>
           <div className='flex-container-2'>{/* this is a flex container */}
-            <div className='flex-item'>{this.state.eventData.event.winner || `Still voting...`}</div>
-            <div className='flex-item'>{this.state.eventData.event.speaker || `Nobody lined up yet...`}</div>
-                <RSVPButton user={this.state.user} event={this.state.eventData}/>
+            <div className='flex-item'>{this.state.event.event.winner || `Still voting...`}</div>
+            <div className='flex-item'>{this.state.event.event.speaker || `Nobody lined up yet...`}</div>
+                <RSVPButton user={this.state.user} event={this.state.event}/>
             <div className='RSVP'>
             {mappedUsers}
             </div>
