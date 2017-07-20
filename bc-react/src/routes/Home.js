@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Reminder from '../components/Reminder';
-import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions/EventActions';
+import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver, setCurrentEventFromLocal} from '../actions/EventActions';
 import BigCalendar from 'react-big-calendar';
 import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
@@ -26,6 +26,7 @@ class Home extends Component {
     this.onevents = this.events.bind(this)
       fetchCurrentEvent()
       fetchEvents();
+      setCurrentEventFromLocal()
   }
 
   componentWillMount(){

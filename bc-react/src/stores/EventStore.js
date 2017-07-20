@@ -17,6 +17,15 @@ class EventStore extends EventEmitter{
     return this.currentEvent;
   }
 
+  updateCurrentEvent(attributes){
+    this.currentEvent = attributes
+    localStorage.setItem('currentEvent', attributes)
+  }
+
+  setCurrentEventFromLocal(){
+    this.currentEvent = localStorage.getItem('currentEvent')
+  }
+
   getAllEvents(){
     return this.events;
   }
@@ -24,32 +33,42 @@ class EventStore extends EventEmitter{
   handleActions(action){
     switch(action.type){
       case("FETCH-EVENTS"):{
-        this.events = action.events;
+        // this.events = action.events;
+        this.updateCurrentEvent(action.data)
         this.emit('events fetched');
         break;
       }
       case("VOTE-REGISTERED"):{
-        this.currentEvent = action.data;
+        // this.currentEvent = action.data;
+        this.updateCurrentEvent(action.data)
         this.emit('vote registered');
         break;
       }
       case("VOTES-COUNTED"):{
-        this.currentEvent = action.data;
+        // this.currentEvent = action.data;
+        this.updateCurrentEvent(action.data)
         this.emit('votes counted');
         break;
       }
-      case("EVENT-TEST"):{
-        this.testEvent = action.data;
-        this.emit('event fetched');
-        break;
+      // case("EVENT-TEST"):{
+      //   this.testEvent = action.data;
+      //   this.emit('event fetched');
+      //   break;
+      // }
+      case("LOCAL_EVENT_STORAGE"):{
+        this.setCurrentEventFromLocal()
+        this.emit('change')
+        break
       }
       case("CURRENT-EVENT"):{
-        this.currentEvent = action.data;
+        // this.currentEvent = action.data;
+        this.updateCurrentEvent(action.data)
         this.emit('current event fetched');
         break;
       }
       case("EVENT-CREATED"):{
-        this.currentEvent = action.data;
+        // this.currentEvent = action.data;
+        this.updateCurrentEvent(action.data)
         this.emit('new event created');
         // this.emit('current event fetched');
         break;

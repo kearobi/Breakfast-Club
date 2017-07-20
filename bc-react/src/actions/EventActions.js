@@ -18,6 +18,12 @@ export function testCreate(){
   })
 }
 
+export function setCurrentEventFromLocal(){
+  dispatcher.dispatch({
+    type: 'LOCAL_EVENT_STORAGE'
+  })
+}
+
 export function checkIfVotingOver(event){
   if (new Date(event.event.date) - Date.now() < 86400000) {
     countVotes()
