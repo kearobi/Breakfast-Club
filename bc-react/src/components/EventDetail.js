@@ -51,18 +51,18 @@ class EventDetail extends Component {
           </Moment>
         </div>
           <div>
-              {(this.props.event.event.winner === 1 || this.props.event.event.winner === null) && <EventChoice
-                place={this.props.event.places[0]}
-                choice={1}
-                />}
-              {(this.props.event.event.winner === 2 || this.props.event.event.winner === null) && <EventChoice
-                place={this.props.event.places[1]}
-                choice={2}
-                />}
-              {/* vote buttons */}
-              {this.props.event.event.vote_status && !this.props.user.voted && <VoteButton user={this.props.user} event={this.props.event} choice="1"/>}
-              {this.props.event.event.vote_status && !this.props.user.voted && <VoteButton user={this.props.user} event={this.props.event} choice="2"/>}
-              {/* vote buttons */}
+                {/* option 1 */}
+              {(this.props.event.event.winner === 1 || this.props.event.event.winner === null) &&
+                <EventChoice place={this.props.event.places[0]} choice={1} />}
+                {/* vote button */}
+              {(this.props.event.event.vote_status && !this.props.user.voted) &&
+                <VoteButton user={this.props.user} event={this.props.event} choice="1"/>}
+                {/* option 2 */}
+              {(this.props.event.event.winner === 2 || this.props.event.event.winner === null) &&
+                <EventChoice place={this.props.event.places[1]} choice={2} />}
+                {/* vote button */}
+              {(this.props.event.event.vote_status && !this.props.user.voted) &&
+                <VoteButton user={this.props.user} event={this.props.event} choice="2"/>}
           </div>
         <div className='event-details'> {/* this is a flex container */}
           <div className='flex-container-1'>{/* this is a flex container */}
