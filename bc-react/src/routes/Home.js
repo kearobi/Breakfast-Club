@@ -21,7 +21,7 @@ class Home extends Component {
       events: []
     }
     this.updateEvents = this.updateEvents.bind(this)
-      // fetchCurrentEvent()
+      fetchCurrentEvent()
       fetchEvents();
   }
 

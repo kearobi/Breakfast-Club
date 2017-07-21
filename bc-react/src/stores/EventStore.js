@@ -19,10 +19,9 @@ class EventStore extends EventEmitter{
 
   updateCurrentEvent(attributes){
     this.currentEvent = attributes
-    let stringify = JSON.stringify(this.currentEvent)
     console.log('current event', this.currentEvent)
-    console.log('stringify', stringify)
-    localStorage.setItem('currentEvent', stringify)
+    localStorage.setItem('currentEvent', JSON.stringify(this.currentEvent))
+    console.log('set local current event', this.currentEvent)
   }
 
   updateEvents(attributes){
@@ -33,6 +32,7 @@ class EventStore extends EventEmitter{
 
   setEventLocalStorage(){
     this.currentEvent = JSON.parse( localStorage.getItem('currentEvent'))
+    console.log('get local current event', this.currentEvent)
     this.events = JSON.parse( localStorage.getItem('events'))
   }
 
