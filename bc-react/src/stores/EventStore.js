@@ -20,17 +20,20 @@ class EventStore extends EventEmitter{
   updateCurrentEvent(attributes){
     this.currentEvent = attributes
     localStorage.setItem('currentEvent', JSON.stringify(this.currentEvent))
+    this.emit('change')
   }
 
   updateEvents(attributes){
     this.events = attributes
     localStorage.setItem('events', JSON.stringify(this.events))
+    this.emit('change')
   }
 
   setEventFromLocal(){
     this.currentEvent = JSON.parse( localStorage.getItem('currentEvent'))
     console.log('get local current event', this.currentEvent)
     this.events = JSON.parse( localStorage.getItem('events'))
+    this.emit('change')
   }
 
   getAllEvents(){
@@ -41,19 +44,14 @@ class EventStore extends EventEmitter{
     switch(action.type){
       case("FETCH-EVENTS"):{
         this.updateEvents(action.events);
-        this.emit('change');
         break;
       }
       case("VOTE-REGISTERED"):{
-        // this.currentEvent = action.data;
         this.updateCurrentEvent(action.data)
-        this.emit('change');
         break;
       }
       case("VOTES-COUNTED"):{
-        // this.currentEvent = action.data;
         this.updateCurrentEvent(action.data)
-        this.emit('change');
         break;
       }
       // case("EVENT-TEST"):{
@@ -63,20 +61,14 @@ class EventStore extends EventEmitter{
       // }
       case("LOCAL_EVENT_STORAGE"):{
         this.setEventFromLocal()
-        this.emit('change')
         break
       }
       case("CURRENT-EVENT"):{
-        // this.currentEvent = action.data;
         this.updateCurrentEvent(action.data)
-        this.emit('change');
         break;
       }
       case("EVENT-CREATED"):{
-        // this.currentEvent = action.data;
         this.updateCurrentEvent(action.data)
-        this.emit('change');
-        // this.emit('current event fetched');
         break;
       }
       default:{}
