@@ -16,24 +16,13 @@ import {fetchGuestlist} from '../actions/UserActions';
 
 class EventDetail extends Component {
 
-  // dateParser(){
-  //   let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-  //   let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  //   let temp = this.props.eventData.event.date.split('T')
-  //   let date = temp[0].split('-')
-  //   let dayOfWeek = weekday[new Date(date).getDay()]
-  //   let month = months[new Date(date).getMonth()]
-  //   let day = new Date(date).getDate()
-  //   let hourTime = new Date(temp).getHours()
-  //   let minuteTime = new Date(temp).getMinutes()
-  //   console.log(dayOfWeek, "," , month, "", day, " @ ", hourTime,":", minuteTime)
-
   render() {
     let guestlist;
+    //if no users have RSVPd yet, return "No RSVPs yet"
     if (this.props.guestlist.length === 0){
-      guestlist = <div className='flex-item'>No RSVPs yet</div>
-    }
-    else {
+      guestlist = <div className='RSVP-item'>No RSVPs yet</div>
+    } else {
+    //if one or more users have RSVPd, return the user's first name and first initial of the last name
       guestlist = this.props.guestlist.map(function(user, i){
         return (
           <div className='RSVP-item' key={i}>
@@ -46,11 +35,14 @@ class EventDetail extends Component {
     return (
       <div className='events-page'>
         <div className='event-date'>
+          {/* this is the formatted date of the event */}
           <Moment format='dddd, MMMM DD @ h:mm A'>
             {this.props.event.event.date}
           </Moment>
         </div>
           <div>
+            {/*this says: if the winner is null, show the place option along with the vote button. If the winner is not null, show the place option that won */}
+
                 {/* option 1 */}
               {(this.props.event.event.winner === 1 || this.props.event.event.winner === null) &&
                 <EventChoice place={this.props.event.places[0]} choice={1} />}
@@ -64,6 +56,9 @@ class EventDetail extends Component {
               {(this.props.event.event.vote_status && !this.props.user.voted) &&
                 <VoteButton user={this.props.user} event={this.props.event} choice="2"/>}
           </div>
+          {/*this says: if voting is closed or if the user has already voted, show the event details and the RSVP button */}
+          {(!this.props.event.event.vote_status || this.props.user.voted) &&
+          {/*these are the event details */}
         <div className='event-details'> {/* this is a flex container */}
           <div className='flex-container-1'>{/* this is a flex container */}
             <div className='flex-item-header'>Where:</div>
@@ -72,14 +67,19 @@ class EventDetail extends Component {
             <div className='flex-item-header'>Who's In:</div>
           </div>
           <div className='flex-container-2'>{/* this is a flex container */}
+            {/*this says: if there is a winner (aka the votes have been counted) show the winner, otherwise show "still voting" */}
             <div className='flex-item'>{this.props.event.event.winner || `Still voting...`}</div>
+            {/*this says: if there is a speaker show the speaker, otherwise show "Nobody lined up yet" */}
             <div className='flex-item'>{this.props.event.event.speaker || `Nobody lined up yet...`}</div>
-                <RSVPButton user={this.props.user}/>
+            {/*RSVP button. A user can rsvp to the current event at any time */}
+            <RSVPButton user={this.props.user}/>
           </div>
           <div className='RSVP'>
+            {/* list of users who RSVP'd yes */}
             {guestlist}
           </div>
         </div>
+        }
       </div>
     );
   }
