@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {editUser} from '../actions/UserActions';
+import {userRSVP} from '../actions/UserActions';
 import {rsvp} from '../actions/EventActions';
 
 class RSVPButton extends Component {
@@ -18,7 +18,7 @@ class RSVPButton extends Component {
     this.setState({
       user: user
     })
-    editUser(user)
+    userRSVP(user)
   }
 
   render() {

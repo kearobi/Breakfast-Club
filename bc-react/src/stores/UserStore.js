@@ -87,6 +87,17 @@ class UserStore extends EventEmitter{
     this.emit('change')
   }
 
+  addToGuestlist(attributes){
+    this.guestlist.push(attributes)
+    this.emit('change')
+  }
+
+  removeFromGuestlist(id){
+    this.guestlist = this.guestlist.filter((user) => {
+      return (user.id !== id)})
+    this.emit('change')
+  }
+
   handleActions(action){
     switch(action.type){
       case("EDIT_USER"):{
@@ -125,6 +136,14 @@ class UserStore extends EventEmitter{
       case("FETCH-GUESTLIST"):{
         this.guestlist = action.guestlist;
         this.emit('change')
+        break
+      }
+      case("USER-RSVP"):{
+        this.addToGuestlist(action.guest)
+        break
+      }
+      case("USER-UNRSVP"):{
+        this.removeFromGuestlist(action.id)
         break
       }
       default:{}

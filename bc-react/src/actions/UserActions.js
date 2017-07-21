@@ -141,3 +141,43 @@ export function fetchGuestlist(){
       }
     })
   }
+
+// export function addToGuestlist(attributes){
+//   dispatcher.dispatch({
+//     type: 'USER-RSVP',
+//     guest: attributes
+//   })
+// }
+//
+// export function removeFromGuestlist(attributes){
+//   dispatcher.dispatch({
+//     type: 'USER-UNRSVP',
+//     id: attributes
+//   })
+// }
+
+export function userRSVP(user){
+  const params = {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({user: user})
+  }
+  fetch(`${apiUrl}profile`, params).then(function(response){
+      if(response.ok){
+        if(user.rsvp){
+        dispatcher.dispatch({
+          type: 'USER-RSVP',
+          guest: user
+        })
+      }else{
+        dispatcher.dispatch({
+          type: 'USER-UNRSVP',
+          id: user.id
+        })
+      }
+      }
+    }).catch(function(error){
+      console.log("Actions - updateUser - Error: ", error);
+      // TODO
+    })
+}
