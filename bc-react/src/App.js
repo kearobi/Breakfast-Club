@@ -62,10 +62,9 @@ class App extends Component {
     this.setState({
       event: eventStore.getCurrentEvent()
     })
-    if(this.state.event !== null){
+    debugger
     checkIfVotingOver(this.state.event)
     checkEventOver(this.state.event, this.state.user.id)
-    }
   }
 
   render() {
