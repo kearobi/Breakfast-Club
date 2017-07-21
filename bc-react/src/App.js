@@ -115,7 +115,7 @@ class App extends Component {
             {/* //TODO: add admin check to profile page */}
             <Route  exact path='/admin'
                     render={()=>(
-                    isAdmin && loggedIn ? (<AdminPage />) : (<Redirect to='/' />)
+                    isAdmin && loggedIn ? (<AdminPage />) : (<Redirect to='/404' />)
                     )} />
             {/* <Route exact path='/admin' component={AdminPage} /> */}
             <Route exact path='/test-event' component={TestEvent} />
@@ -124,7 +124,6 @@ class App extends Component {
             <Route exact path='/404' component={PageNotFound} />
             <Redirect to='/404'/>
           </Switch>
-          <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
         </div>
       </Router>
     );
