@@ -64,7 +64,7 @@ class App extends Component {
     })
     //TODO in line with the flux pattern, where should this actually be?
     checkIfVotingOver(this.state.event)
-    checkEventOver(this.state.event, this.state.user.id)
+    checkEventOver(this.state.event)
   }
 
   render() {

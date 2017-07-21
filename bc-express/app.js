@@ -544,7 +544,7 @@ app.post('/create-event', function(request, response){
   let _places;
   let _place_id_1;
   let _place_id_2;
-  let u_id = request.body.id;
+  // let u_id = request.body.id;
   return Place.findAll().then(function(places){
     _places = places;
     let num = _places.length;
@@ -588,17 +588,17 @@ app.post('/create-event', function(request, response){
         rsvp: false
     }, {where: {}})
   })
+  // .then(function(){
+  //   return User.findById(u_id)
+  // })
   .then(function(){
-    return User.findById(u_id)
-  })
-  .then(function(user){
     response.status(200)
     response.json({
       event: _event,
       guestLists: [],
       places: _places,
-      users: [],
-      user: user
+      users: []
+      // user: user
     })
   })
   .catch(function(error){

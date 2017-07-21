@@ -99,7 +99,6 @@ export function fetchCurrentEvent(){
 // }
 //
 export function checkIfVotingOver(event){
-  debugger
   //this is working properly
   //28800000 is 8 hours
   //Date calculates the number of ms since Jan 1 1970
@@ -109,23 +108,23 @@ export function checkIfVotingOver(event){
   }
 }
 
-export function checkEventOver(event, id){
+export function checkEventOver(event){
   //'previous' is the current event's date
-  let previous = new Date(event.event.date)
-  let newEvent = new Date(Date.now())
-  if (previous < newEvent) {
-    createNewEvent(id)
+  //this says: if today's date/time is 2 hours (7200000 ms) greater than the date/time of the event date, create a new event
+  let eventDate = new Date(event.event.date).getTime()
+  let todaysDate = Date.now()
+  if ((todaysDate + 7200000) >= eventDate) {
+    createNewEvent()
   }
 }
 
-export function createNewEvent(id){
-  console.log("createNewEvent Called")
+export function createNewEvent(){
   const params = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      id: id
-    })
+    // body: JSON.stringify({
+    //   id: id
+    // })
   }
   fetch(`${apiUrl}create-event`, params).then(function(response){
     if(response.ok){
@@ -136,8 +135,7 @@ export function createNewEvent(id){
             event: body.event,
             users: body.users,
             places: body.places,
-            guestLists: body.guestLists,
-            user: body.user
+            guestLists: body.guestLists
           }
         })
       })
