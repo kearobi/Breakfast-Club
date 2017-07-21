@@ -99,6 +99,7 @@ export function fetchCurrentEvent(){
 // }
 //
 export function checkIfVotingOver(event){
+  debugger
   //this is working properly
   //28800000 is 8 hours
   //Date calculates the number of ms since Jan 1 1970

@@ -62,7 +62,7 @@ class App extends Component {
     this.setState({
       event: eventStore.getCurrentEvent()
     })
-    debugger
+    //TODO in line with the flux pattern, where should this actually be?
     checkIfVotingOver(this.state.event)
     checkEventOver(this.state.event, this.state.user.id)
   }
