@@ -52,8 +52,7 @@ class EventDetail extends Component {
           </div>
           {/*this says: if voting is closed or if the user has already voted, show the event details and the RSVP button */}
           {(!this.props.event.event.vote_status || this.props.user.voted) &&
-          {/*these are the event details */}
-        <div className='event-details'> {/* this is a flex container */}
+        <div className='event-details'> {/* this is a flex container */} {/*these are the event details */}
           <div className='flex-container-1'>{/* this is a flex container */}
             <div className='flex-item-header'>Where:</div>
             <div className='flex-item-header'>Guest Speaker:</div>
