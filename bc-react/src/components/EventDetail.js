@@ -1,18 +1,12 @@
-//EventDetail gets props from CurrentEvent, TestEvent
-//EventDetail passes props to VoteButton, EventChoice
-//EventDetail imports RSVPButton
+//EventDetail gets props from CurrentEvent
+//EventDetail passes props to VoteButton, EventChoice, RSVPButton
 
 import React, { Component } from 'react';
 import VoteButton from './VoteButton';
 import RSVPButton from './RSVPButton';
 import EventChoice from './EventChoice'
-import {rsvp} from '../actions/EventActions';
 import Moment from 'react-moment';
 import 'moment-timezone';
-import eventStore from '../stores/EventStore';
-import userStore from '../stores/UserStore';
-import {fetchCurrentEvent, setEventsFromLocal} from '../actions/EventActions';
-import {fetchGuestlist} from '../actions/UserActions';
 
 class EventDetail extends Component {
 
