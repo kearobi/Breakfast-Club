@@ -60,11 +60,10 @@ class EventDetail extends Component {
                 choice={2}
                 />}
               {/* //put vote page mockup here// */}
-              {!this.props.user.voted && <VoteButton user={this.props.user} event={this.props.event} choice="1"/>}
-              {!this.props.user.voted && <VoteButton user={this.props.user} event={this.props.event} choice="2"/>}
+              {this.props.event.event.vote_status && !this.props.user.voted && <VoteButton user={this.props.user} event={this.props.event} choice="1"/>}
+              {this.props.event.event.vote_status && !this.props.user.voted && <VoteButton user={this.props.user} event={this.props.event} choice="2"/>}
               {/* {!this.props.rsvp && this.props.voted && <RSVPButton user={this.props.user} event={this.props.eventData}/>} */}
           </div>
-          {this.props.voted &&
         <div className='event-details'> {/* this is a flex container */}
           <div className='flex-container-1'>{/* this is a flex container */}
             <div className='flex-item-header'>Where:</div>
@@ -77,12 +76,10 @@ class EventDetail extends Component {
             <div className='flex-item'>{this.props.event.event.speaker || `Nobody lined up yet...`}</div>
                 <RSVPButton user={this.props.user} event={this.props.event}/>
           </div>
+          <div className='RSVP'>
+            {guestlist}
+          </div>
         </div>
-        }
-        <div className='RSVP'>
-          {guestlist}
-        </div>
-        <RSVPButton user={this.props.user} event={this.props.event}/>
       </div>
     );
   }

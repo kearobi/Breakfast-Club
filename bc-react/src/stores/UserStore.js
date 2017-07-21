@@ -82,7 +82,7 @@ class UserStore extends EventEmitter{
     localStorage.removeItem('active')
     localStorage.removeItem('currentEvent')
     localStorage.removeItem('events')
-    
+
     this.user.authToken = null
     this.emit('change')
   }

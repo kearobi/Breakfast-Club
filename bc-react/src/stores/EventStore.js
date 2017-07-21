@@ -30,7 +30,7 @@ class EventStore extends EventEmitter{
     localStorage.setItem('events', JSON.stringify(this.events))
   }
 
-  setEventLocalStorage(){
+  setEventFromLocal(){
     this.currentEvent = JSON.parse( localStorage.getItem('currentEvent'))
     console.log('get local current event', this.currentEvent)
     this.events = JSON.parse( localStorage.getItem('events'))
@@ -65,7 +65,7 @@ class EventStore extends EventEmitter{
       //   break;
       // }
       case("LOCAL_EVENT_STORAGE"):{
-        this.setEventLocalStorage()
+        this.setEventFromLocal()
         this.emit('change')
         break
       }
