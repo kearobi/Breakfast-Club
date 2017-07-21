@@ -59,10 +59,10 @@ class EventDetail extends Component {
                 place={this.props.event.places[1]}
                 choice={2}
                 />}
-              {/* //put vote page mockup here// */}
+              {/* vote buttons */}
               {this.props.event.event.vote_status && !this.props.user.voted && <VoteButton user={this.props.user} event={this.props.event} choice="1"/>}
               {this.props.event.event.vote_status && !this.props.user.voted && <VoteButton user={this.props.user} event={this.props.event} choice="2"/>}
-              {/* {!this.props.rsvp && this.props.voted && <RSVPButton user={this.props.user} event={this.props.eventData}/>} */}
+              {/* vote buttons */}
           </div>
         <div className='event-details'> {/* this is a flex container */}
           <div className='flex-container-1'>{/* this is a flex container */}
@@ -74,7 +74,7 @@ class EventDetail extends Component {
           <div className='flex-container-2'>{/* this is a flex container */}
             <div className='flex-item'>{this.props.event.event.winner || `Still voting...`}</div>
             <div className='flex-item'>{this.props.event.event.speaker || `Nobody lined up yet...`}</div>
-                <RSVPButton user={this.props.user} event={this.props.event}/>
+                <RSVPButton user={this.props.user}/>
           </div>
           <div className='RSVP'>
             {guestlist}
