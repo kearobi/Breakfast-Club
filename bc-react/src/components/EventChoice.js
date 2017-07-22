@@ -29,10 +29,10 @@ class EventChoice extends Component {
           <img  className='yelp-rating'
                 src={`../Images/small_${this.props.place.yelp_rating}.png`}
                 alt='rating' />
-          {this.props.place.review_count} Reviews
-        </div>
-        <div className='place-details'>
-          {this.props.place.price} {this.props.place.categories}
+          {this.props.place.review_count} Reviews&nbsp;|&nbsp;
+          {this.props.place.price}
+          &nbsp;|&nbsp;
+          {this.props.place.categories}
         </div>
         <div className='place-details'>
           {this.props.place.address_street}, {this.props.place.address_city}
