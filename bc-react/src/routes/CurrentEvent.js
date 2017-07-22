@@ -36,6 +36,7 @@ class CurrentEvent extends Component {
           <EventDetail event={this.props.event} user={this.props.user} guestlist={this.props.guestlist}/>
             </div>
           </div>
+          <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
         </div>
         );
       }
