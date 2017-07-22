@@ -44,7 +44,7 @@ class RSVPButton extends Component {
           <button className={yes} type="button" name="rsvp" value={true} onClick={this.handleClick.bind(this)}>Yes </button>
           <button className={no} type="button" name="rsvp" value={false} onClick={this.handleClick.bind(this)}>No </button>
         </form>
-        <img src={image} alt='breakfast' />
+        {/* <img src={image} alt='breakfast' /> */}
       </div>
     );
   }
