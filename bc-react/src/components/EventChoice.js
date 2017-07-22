@@ -12,7 +12,13 @@ class EventChoice extends Component {
   render() {
     return (
       <div>
-        <div className='place-name'>{this.props.place.name}</div>
+        <div className='place-name'>
+          <a  href={this.props.place.url}
+              title='open in yelp'
+              target='_blank'>
+            {this.props.place.name}
+          </a>
+        </div>
         <div className='place' onClick={this.handleClick.bind(this)}>
           <img  className='place-img'
                 src={this.props.place.image_url}

@@ -141,8 +141,13 @@
     text-decoration: underline;
   }
 
+.place {
+  width: 450px;
+}
   .place-img {
     width: 450px;
+    max-height: 342px;
+    object-fit: fill;
   }
 
   .place-name {
@@ -152,6 +157,12 @@
     color: black;
     text-decoration: underline;
     font-weight: bold;
+      a {
+        color: black;
+      }
+      a:hover{
+        color: #d32323;
+      }
   }
 }
 
