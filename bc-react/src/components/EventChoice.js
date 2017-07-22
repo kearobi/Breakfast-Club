@@ -1,17 +1,23 @@
 //EventChoice gets props from EventDetail
 
 import React, { Component } from 'react';
+import {registerVote} from '../actions/EventActions';
 
 class EventChoice extends Component {
+
+  handleClick(){
+    registerVote(this.props.user, this.props.event, this.props.choice)
+  }
 
   render() {
     return (
       <div>
         <div className='place-name'>{this.props.place.name}</div>
-        <div>
+        <div className='place' onClick={this.handleClick.bind(this)}>
           <img  className='place-img'
                 src={this.props.place.image_url}
                 alt='restaurant' />
+          <div className='after'>VOTE</div>
         </div>
         <div className='place-details'>
           <img  className='yelp-rating'

@@ -1,21 +1,25 @@
 .voting {
-  background-color: yellow;
   display: flex;
   justify-content: space-between;
 }
 
 .option {
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: white 10px solid;
+}
+
+.place:hover{
+  // border: black 10px solid;
+  .after{
+    display: flex;
+  }
 }
 
 .events-page {
-  background-color: blue;
   display: flex;
   flex-direction: column;
-  flex: 1;
-}
-
-.event-date {
-  background-color: pink;
 }
 
 .place-details{
@@ -29,10 +33,42 @@
 
 .vs {
   font-family: 'Amatic SC', sans-serif;
-  font-size: 40px;
-    img{
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  align-items: center;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+    img {
       width: 85px;
     }
+  }
+
+.place{
+  position: relative;
+}
+
+.place:hover{
+  cursor: pointer;
+}
+
+.after{
+  text-align: center;
+  font-size: 120px;
+}
+
+.place .after {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;    // left: 0;
+    // width: 50%;
+    // height: 50%;
+    display: none;
+    color: #FFF;
 }
 
 .rsvp-button {

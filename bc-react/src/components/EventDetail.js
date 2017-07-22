@@ -32,23 +32,30 @@ class EventDetail extends Component {
                 {/* option 1 */}
               <div className='option'>
                 {(this.props.event.event.winner === 1 || this.props.event.event.winner === null) &&
-                <EventChoice place={this.props.event.places[0]} choice={1} />}
+                <EventChoice
+                  user={this.props.user}
+                  event={this.props.event}
+                  place={this.props.event.places[0]}
+                  choice='1' />}
                 {/* vote button */}
-              {(this.props.event.event.vote_status && !this.props.user.voted) &&
-                <VoteButton user={this.props.user} event={this.props.event} choice="1"/>}
+              {/* {(this.props.event.event.vote_status && !this.props.user.voted) && */}
+                {/* // <VoteButton user={this.props.user} event={this.props.event} choice="1"/>} */}
               </div>
               <div className='vs'>
                 VS
-                <br />
-                <img src='../Images/fight.png' alt='vs'/>
+                  {/* <img src='../Images/fight.png' alt='vs'/> */}
               </div>
                 {/* option 2 */}
               <div className='option'>
               {(this.props.event.event.winner === 2 || this.props.event.event.winner === null) &&
-                <EventChoice place={this.props.event.places[1]} choice={2} />}
+                <EventChoice
+                  user={this.props.user}
+                  event={this.props.event}
+                  place={this.props.event.places[1]}
+                  choice='2' />}
                 {/* vote button */}
-              {(this.props.event.event.vote_status && !this.props.user.voted) &&
-                <VoteButton user={this.props.user} event={this.props.event} choice="2"/>}
+              {/* {(this.props.event.event.vote_status && !this.props.user.voted) &&
+                <VoteButton user={this.props.user} event={this.props.event} choice="2"/>} */}
               </div>
           </div>
           {/*this says: if voting is closed or if the user has already voted, show the event details and the RSVP button */}
