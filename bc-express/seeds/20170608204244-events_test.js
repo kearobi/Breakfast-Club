@@ -7,25 +7,49 @@ module.exports = {
         id: 1,
         place_1_id: 1,
         place_2_id: 2,
-        date: '2017-06-02 07:52:29-07',
+        date: '2017-06-30 08:00:00-07',
         vote_status: false,
         winner: 1,
-        createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07',
-        active: "true",
+        createdAt: '2017-06-02 08:00:00-07',
+        updatedAt: '2017-06-02 08:00:00-07',
+        active: false,
         speaker: "Rob Kaufman"
       },
       {
         id: 2,
         place_1_id: 3,
         place_2_id: 4,
-        date: '2017-07-02 07:52:29-07',
-        vote_status: true,
-        winner: null,
-        createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07',
-        active: "true",
-        speaker: undefined
+        date: '2017-07-07 08:00:00-07',
+        vote_status: false,
+        winner: 2,
+        createdAt: '2017-06-02 08:00:00-07',
+        updatedAt: '2017-06-02 08:00:00-07',
+        active: false,
+        speaker: "Matt Clark"
+      },
+      {
+        id: 3,
+        place_1_id: 1,
+        place_2_id: 2,
+        date: '2017-07-14 08:00:00-07',
+        vote_status: false,
+        winner: 1,
+        createdAt: '2017-06-02 08:00:00-07',
+        updatedAt: '2017-06-02 08:00:00-07',
+        active: false,
+        speaker: "James Hall"
+      },
+      {
+        id: 4,
+        place_1_id: 1,
+        place_2_id: 2,
+        date: '2017-07-21 08:00:00-07',
+        vote_status: false,
+        winner: 2,
+        createdAt: '2017-06-02 08:00:00-07',
+        updatedAt: '2017-06-02 08:00:00-07',
+        active: false,
+        speaker: "Eric Norcross"
       }
     ])
     .then(function(){
@@ -39,25 +63,49 @@ module.exports = {
         id: 1,
         place_1_id: 1,
         place_2_id: 2,
-        date: '2017-06-02 07:52:29-07',
+        date: '2017-06-30 08:00:00-07',
         vote_status: false,
         winner: 1,
-        createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07',
-        active: "true",
+        createdAt: '2017-06-02 08:00:00-07',
+        updatedAt: '2017-06-02 08:00:00-07',
+        active: false,
         speaker: "Rob Kaufman"
       },
       {
         id: 2,
         place_1_id: 3,
         place_2_id: 4,
-        date: '2017-07-02 07:52:29-07',
+        date: '2017-07-07 08:00:00-07',
         vote_status: false,
-        winner: null,
-        createdAt: '2017-06-02 07:52:29-07',
-        updatedAt: '2017-06-02 07:52:29-07',
-        active: "true",
-        speaker: undefined
+        winner: 2,
+        createdAt: '2017-06-02 08:00:00-07',
+        updatedAt: '2017-06-02 08:00:00-07',
+        active: false,
+        speaker: "Matt Clark"
+      },
+      {
+        id: 3,
+        place_1_id: 1,
+        place_2_id: 2,
+        date: '2017-07-14 08:00:00-07',
+        vote_status: false,
+        winner: 1,
+        createdAt: '2017-06-02 08:00:00-07',
+        updatedAt: '2017-06-02 08:00:00-07',
+        active: false,
+        speaker: "James Hall"
+      },
+      {
+        id: 4,
+        place_1_id: 1,
+        place_2_id: 2,
+        date: '2017-07-21 08:00:00-07',
+        vote_status: false,
+        winner: 2,
+        createdAt: '2017-06-02 08:00:00-07',
+        updatedAt: '2017-06-02 08:00:00-07',
+        active: false,
+        speaker: "Eric Norcross"
       }
     ])
     .then(function(){
