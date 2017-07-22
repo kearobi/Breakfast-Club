@@ -2,13 +2,12 @@
 //CurrentEvent passes props to EventDetail
 
 import React, {Component} from 'react';
-import eventStore from '../stores/EventStore';
-import userStore from '../stores/UserStore';
 import EventDetail from '../components/EventDetail';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Header from '../components/Header';
-import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver, setEventsFromLocal} from '../actions/EventActions';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 class CurrentEvent extends Component {
   constructor(props){
@@ -16,7 +15,6 @@ class CurrentEvent extends Component {
     this.state= {
       event: this.props.event,
       user: this.props.user,
-      message: '',
       guestlist: this.props.guestlist
     }
   }
@@ -29,7 +27,12 @@ class CurrentEvent extends Component {
             <div className='nested'>{/* //this is a nested flex container */}
             <Header />
             <SideBarMini />
-          <p>{this.state.message}</p>
+            <div className='event-date'>
+              {/* this is the formatted date of the event */}
+              <Moment format='dddd, MMMM DD @ h:mm A'>
+                {this.props.event.event.date}
+              </Moment>
+            </div>
           <EventDetail event={this.props.event} user={this.props.user} guestlist={this.props.guestlist}/>
             </div>
           </div>

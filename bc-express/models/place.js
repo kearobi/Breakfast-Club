@@ -19,6 +19,7 @@ module.exports = function(sequelize, DataTypes) {
     categories: DataTypes.STRING,
     review_count: DataTypes.INTEGER,
     price: DataTypes.STRING,
+    url: DataTypes.STRING,
     active: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

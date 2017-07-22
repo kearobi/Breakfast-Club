@@ -1,3 +1,72 @@
+.voting {
+  display: flex;
+  justify-content: space-between;
+}
+
+.option {
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: white 10px solid;
+}
+
+.place:hover{
+  // border: black 10px solid;
+  .after{
+    display: flex;
+  }
+}
+
+.events-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.place-details{
+  font-family: 'Abel';
+  size: 40px;
+    img {
+      margin-right: 7px;
+      width: 85px;
+    }
+}
+
+.vs {
+  font-family: 'Amatic SC', sans-serif;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  align-items: center;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+    img {
+      width: 85px;
+    }
+  }
+
+.place{
+  position: relative;
+}
+
+.place:hover{
+  cursor: pointer;
+}
+
+.after{
+  font-size: 120px;
+}
+
+.after {
+    position: absolute;
+    top:0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
 .rsvp-button {
   form {
   border: 2px solid #4CAF50;
@@ -36,6 +105,8 @@
   overflow: auto;
 
   .event-date {
+    padding-left: 20px;
+    padding-right: 20px;
     border-top: fuchsia 2px solid;
     border-bottom: fuchsia 2px solid;
     font-family: 'Amatic SC', sans-serif;
@@ -50,6 +121,7 @@
 
   .event-details {
     display: flex;
+    align-items: center;
     font-family: 'Amatic SC', sans-serif;
     font-size: 2.5em;
   }
@@ -68,13 +140,13 @@
     text-decoration: underline;
   }
 
+.place {
+  width: 450px;
+}
   .place-img {
-    width: 300px;
-  }
-
-  tbody {
-    display: inline-block;
-    margin: 10px;
+    width: 450px;
+    max-height: 342px;
+    object-fit: fill;
   }
 
   .place-name {
@@ -82,7 +154,14 @@
     font-size: 40px;
     text-align: center;
     color: black;
-    margin-top: 30px;
+    text-decoration: underline;
+    font-weight: bold;
+      a {
+        color: black;
+      }
+      a:hover{
+        color: #d32323;
+      }
   }
 }
 
