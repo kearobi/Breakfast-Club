@@ -20,14 +20,14 @@ module.exports = {
         salt: '4d294420-4a3d-11e7-b752-a928b03d6170',
         createdAt: "2017-06-02 14:52:29",
         updatedAt: "2017-06-02 14:52:29",
-        admin: "false",
+        admin: "true",
         active: "true"
       },
       {
         id: 2,
         firstName: "Alex",
         lastName: "Tickle",
-        email: "Alex@testing.com",
+        email: "alex@testing.com",
         neighborhood: "OB",
         voted: "false",
         rsvp: "false",
@@ -37,7 +37,7 @@ module.exports = {
         salt: 'd05807a0-4a3d-11e7-ade9-89fb70fedb01',
         createdAt: "2017-06-02 14:52:29",
         updatedAt: "2017-06-02 14:52:29",
-        admin: "false",
+        admin: "true",
         active: "true"
       },
       {
@@ -54,7 +54,7 @@ module.exports = {
         salt: '4d294420-4a3d-11e7-b752-a928b03d6170',
         createdAt: "2017-06-02 14:52:29",
         updatedAt: "2017-06-02 14:52:29",
-        admin: "false",
+        admin: "true",
         active: "true"
       },
       {
@@ -88,6 +88,38 @@ module.exports = {
         createdAt: "2017-07-03 14:52:29",
         updatedAt: "2017-07-03 14:52:29",
         admin: "true",
+        active: "true"
+      },
+      {
+        id: 6,
+        firstName: "Keaton",
+        lastName: "Robinson",
+        email: "keaton@testing.com",
+        neighborhood: "Escondido",
+        voted: "false",
+        encryptedPassword: '2e95b7fc77f6c3b7ab9f233cf673acf2b056f974aaad5f160e885d881f7e7e3c1484a98b93141b71a2999e1688ef635b2eb3d18923ad11411b5e47e2a20f4f4c',
+        authToken: "4d2acac0-4a3d-11e7-b752-a928b03d6170",
+        authTokenExpiration: '2017-07-05 22:21:20.620',
+        salt: 'b4c554c0-6054-11e7-b54f-e525e42391ac',
+        createdAt: "2017-07-03 14:52:29",
+        updatedAt: "2017-07-03 14:52:29",
+        admin: "false",
+        active: "true"
+      },
+      {
+        id: 7,
+        firstName: "Colin",
+        lastName: "Keith",
+        email: "colin@testing.com",
+        neighborhood: "University Heights",
+        voted: "false",
+        encryptedPassword: '2e95b7fc77f6c3b7ab9f233cf673acf2b056f974aaad5f160e885d881f7e7e3c1484a98b93141b71a2999e1688ef635b2eb3d18923ad11411b5e47e2a20f4f4c',
+        authToken: "4d2acac0-4a3d-11e7-b752-a928b03d6170",
+        authTokenExpiration: '2017-07-05 22:21:20.620',
+        salt: 'b4c554c0-6054-11e7-b54f-e525e42391ac',
+        createdAt: "2017-07-03 14:52:29",
+        updatedAt: "2017-07-03 14:52:29",
+        admin: "false",
         active: "true"
       }
     ])
@@ -187,6 +219,38 @@ module.exports = {
         createdAt: "2017-07-03 14:52:29",
         updatedAt: "2017-07-03 14:52:29",
         admin: "true",
+        active: "true"
+      },
+      {
+        id: 6,
+        firstName: "Keaton",
+        lastName: "Robinson",
+        email: "keaton@testing.com",
+        neighborhood: "Escondido",
+        voted: "false",
+        encryptedPassword: '2e95b7fc77f6c3b7ab9f233cf673acf2b056f974aaad5f160e885d881f7e7e3c1484a98b93141b71a2999e1688ef635b2eb3d18923ad11411b5e47e2a20f4f4c',
+        authToken: "4d2acac0-4a3d-11e7-b752-a928b03d6170",
+        authTokenExpiration: '2017-07-05 22:21:20.620',
+        salt: 'b4c554c0-6054-11e7-b54f-e525e42391ac',
+        createdAt: "2017-07-03 14:52:29",
+        updatedAt: "2017-07-03 14:52:29",
+        admin: "false",
+        active: "true"
+      },
+      {
+        id: 7,
+        firstName: "Colin",
+        lastName: "Keith",
+        email: "colin@testing.com",
+        neighborhood: "University Heights",
+        voted: "false",
+        encryptedPassword: '2e95b7fc77f6c3b7ab9f233cf673acf2b056f974aaad5f160e885d881f7e7e3c1484a98b93141b71a2999e1688ef635b2eb3d18923ad11411b5e47e2a20f4f4c',
+        authToken: "4d2acac0-4a3d-11e7-b752-a928b03d6170",
+        authTokenExpiration: '2017-07-05 22:21:20.620',
+        salt: 'b4c554c0-6054-11e7-b54f-e525e42391ac',
+        createdAt: "2017-07-03 14:52:29",
+        updatedAt: "2017-07-03 14:52:29",
+        admin: "false",
         active: "true"
       }
     ])
