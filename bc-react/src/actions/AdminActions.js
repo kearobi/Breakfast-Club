@@ -119,7 +119,6 @@ export function adminDeleteEvent(attributes){
 }
 
   export function adminAddUser(attributes){
-    attributes.admin = false;
     const params = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -172,7 +171,6 @@ export function adminAddEvent(attributes){
   })}
 
   export function adminEditUser(attributes){
-    attributes.admin = false;
     const params = {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},

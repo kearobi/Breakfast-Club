@@ -18,47 +18,11 @@ export function testCreate(){
   })
 }
 
-export function checkIfVotingOver(event){
-  if (new Date(event.event.date) - Date.now() < 86400000) {
-    countVotes()
-  }
-}
-
-export function checkEventOver(event, id){
-  let previous = new Date(event.event.date)
-  let newEvent = new Date(Date.now())
-  if (previous < newEvent) {
-    createNewEvent(id)
-  }
-}
-
-export function createNewEvent(id){
-  console.log("createNewEvent Called")
-  const params = {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      id: id
-    })
-  }
-  fetch(`${apiUrl}create-event`, params).then(function(response){
-    if(response.ok){
-      response.json().then(function(body){
-        dispatcher.dispatch({
-          type: 'EVENT-CREATED',
-          data: {
-            event: body.event,
-            users: body.users,
-            places: body.places,
-            guestLists: body.guestLists,
-            user: body.user
-          }
-        })
-      })
-    }
+export function setEventsFromLocal(){
+  dispatcher.dispatch({
+    type: 'LOCAL_EVENT_STORAGE'
   })
 }
-
 export function countVotes(){
   const params = {
     method: 'GET'
@@ -80,13 +44,122 @@ export function countVotes(){
   })
 }
 
-export function rsvp(user, event){
+export function fetchCurrentEvent(){
+  const params = {
+    method: "POST",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify()
+  }
+  fetch(`${apiUrl}current-event`, params).then(function(response){
+    if(response.ok){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type:'CURRENT-EVENT',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
+        })
+      }).catch(function(error){
+        console.log("fetch current event failed");
+      })
+    }
+    else {
+      console.log("fail, response status not 200")
+    }
+  }).catch(function(){
+    console.log("fail, catch clause")
+  })
+}
+//
+// export function closeVoting(attributes){
+//   const params = {
+//     method: 'PUT',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify({event: attributes.event})
+//   }
+//   fetch(`${apiUrl}current-event`, params).then(function(response){
+//       if(response.ok){
+//         dispatcher.dispatch({
+//           type:'CLOSE-VOTING',
+//           data: {
+//             event: body.event,
+//             users: body.users,
+//             places: body.places,
+//             guestLists: body.guestLists
+//           }
+//         })
+//       }
+//     }).catch(function(error){
+//       console.log("Actions - updateUser - Error: ", error);
+//       // TODO
+//     })
+// }
+//
+export function checkIfVotingOver(event){
+  //this is working properly
+  //28800000 is 8 hours
+  //Date calculates the number of ms since Jan 1 1970
+  //this says: if there are less than 8 hours between the date of the event and today's date, count the votes
+  if ((new Date(event.event.date) - new Date()) < 28800000) {
+    countVotes()
+  }
+}
+
+export function checkEventOver(event){
+  //'previous' is the current event's date
+  //this says: if today's date/time is 2 hours (7200000 ms) greater than the date/time of the event date, create a new event
+  let eventDate = new Date(event.event.date).getTime()
+  let todaysDate = Date.now()
+  if ((todaysDate + 7200000) >= eventDate) {
+    createNewEvent()
+  }
+}
+
+export function createNewEvent(){
   const params = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
+    // body: JSON.stringify({
+    //   id: id
+    // })
+  }
+  fetch(`${apiUrl}create-event`, params).then(function(response){
+    if(response.ok){
+      response.json().then(function(body){
+        dispatcher.dispatch({
+          type: 'EVENT-CREATED',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
+        })
+      })
+    }
+  })
+}
+
+
+export function rsvp(user, event){
+  let id
+
+  if(user.rsvp){
+    id = user.id
+  } else {
+    id = null
+  }
+
+  const params = {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       event_id: event.event.id,
-      user_id: user.id
+      user_id: id,
+      rsvp: user.rsvp
     })
   }
   fetch(`${apiUrl}rsvp`, params).then(function(response){
@@ -107,6 +180,27 @@ export function rsvp(user, event){
     console.log("There was an error: " + error)
   })
 }
+
+// export function rsvp(user, event){
+//   const params = {
+//     method: 'PUT',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify({
+//       event: event.event,
+//       user: user
+//     })
+//   }
+//   fetch(`${apiUrl}rsvp`, params).then(function(response){
+//     if(response.ok){
+//         dispatcher.dispatch({
+//           type: 'RSVP',
+//           user: user
+//       })
+//     }
+//   }).catch(function(error){
+//     console.log("There was an error: " + error)
+//   })
+// }
 
 export function registerVote(user, event, choice){
   event.choice = choice;
@@ -165,36 +259,36 @@ export function fetchEvent(attributes){
     console.log("fail, catch clause")
   })
 }
-
-export function fetchCurrentEvent(){
-  const params = {
-    method: "POST",
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify()
-  }
-  fetch(`${apiUrl}current-event`, params).then(function(response){
-    if(response.ok){
-      response.json().then(function(body){
-        dispatcher.dispatch({
-          type:'CURRENT-EVENT',
-          data: {
-            event: body.event,
-            users: body.users,
-            places: body.places,
-            guestLists: body.guestLists
-          }
-        })
-      }).catch(function(error){
-        console.log("fetch current event failed");
-      })
-    }
-    else {
-      console.log("fail, response status not 200")
-    }
-  }).catch(function(){
-    console.log("fail, catch clause")
-  })
-}
+//
+// export function fetchCurrentEvent(){
+//   const params = {
+//     method: "POST",
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify()
+//   }
+//   fetch(`${apiUrl}current-event`, params).then(function(response){
+//     if(response.ok){
+//       response.json().then(function(body){
+//         dispatcher.dispatch({
+//           type:'CURRENT-EVENT',
+//           data: {
+//             event: body.event,
+//             users: body.users,
+//             places: body.places,
+//             guestLists: body.guestLists
+//           }
+//         })
+//       }).catch(function(error){
+//         console.log("fetch current event failed");
+//       })
+//     }
+//     else {
+//       console.log("fail, response status not 200")
+//     }
+//   }).catch(function(){
+//     console.log("fail, catch clause")
+//   })
+// }
 
 export function fetchEvents(){
   let success;

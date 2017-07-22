@@ -13,14 +13,19 @@ module.exports = function(sequelize, DataTypes) {
     // place_1_yelp_id: DataTypes.INTEGER,
     // place_2_yelp_id: DataTypes.INTEGER,
     // ----------------------------------------
-    vote_status: DataTypes.BOOLEAN,
+    vote_status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    },
     winner: DataTypes.INTEGER,
     place: DataTypes.VIRTUAL,
     active: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
-    }
+    },
+    speaker: DataTypes.STRING,
   }, {
     classMethods: {
       associate: function(models) {

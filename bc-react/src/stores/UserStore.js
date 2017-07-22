@@ -6,12 +6,17 @@ class UserStore extends EventEmitter{
     super()
     this.user = {}
     this.message = ""
+    this.guestlist = []
   }
 
 //we can tell a user is logged in if the authToken is set in the store
 
   getUser(){
     return this.user
+  }
+
+  getGuestlist(){
+    return this.guestlist
   }
 
   updateUser(attributes){
@@ -63,9 +68,10 @@ class UserStore extends EventEmitter{
       return true
   }
 
-  clearUserData(){
+  clearData(){
     localStorage.removeItem('authToken');
     localStorage.removeItem('authTokenExpiration');
+    localStorage.removeItem('id')
     localStorage.removeItem('firstName');
     localStorage.removeItem('lastName');
     localStorage.removeItem('email');
@@ -74,8 +80,21 @@ class UserStore extends EventEmitter{
     localStorage.removeItem('admin')
     localStorage.removeItem('rsvp')
     localStorage.removeItem('active')
+    localStorage.removeItem('currentEvent')
+    localStorage.removeItem('events')
 
     this.user.authToken = null
+    this.emit('change')
+  }
+
+  addToGuestlist(attributes){
+    this.guestlist.push(attributes)
+    this.emit('change')
+  }
+
+  removeFromGuestlist(id){
+    this.guestlist = this.guestlist.filter((user) => {
+      return (user.id !== id)})
     this.emit('change')
   }
 
@@ -102,7 +121,7 @@ class UserStore extends EventEmitter{
         break
       }
       case("LOGOUT"):{
-        this.clearUserData()
+        this.clearData()
         break
       }
       case("EVENT-CREATED"):{
@@ -110,7 +129,23 @@ class UserStore extends EventEmitter{
         this.emit('voted set to false')
         break
       }
-
+      case("RSVP"):{
+        this.updateUser(action.user)
+        break
+      }
+      case("FETCH-GUESTLIST"):{
+        this.guestlist = action.guestlist;
+        this.emit('change')
+        break
+      }
+      case("USER-RSVP"):{
+        this.addToGuestlist(action.guest)
+        break
+      }
+      case("USER-UNRSVP"):{
+        this.removeFromGuestlist(action.id)
+        break
+      }
       default:{}
     }
   }

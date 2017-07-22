@@ -1,52 +1,26 @@
-//EventDetail gets props from CurrentEvent, TestEvent
-//EventDetail passes props to VoteButton, EventChoice
-//EventDetail imports RSVPButton
+//EventDetail gets props from CurrentEvent
+//EventDetail passes props to VoteButton, EventChoice, RSVPButton
 
 import React, { Component } from 'react';
 import VoteButton from './VoteButton';
 import RSVPButton from './RSVPButton';
 import EventChoice from './EventChoice'
-import {rsvp} from '../actions/EventActions';
 import Moment from 'react-moment';
 import 'moment-timezone';
 
 class EventDetail extends Component {
-//it seems like it would make the most sense to add/remove the user from the guestlist onClick
-//this handleClick stuff here is a work in progress, feel free to take over!
-  handleClick(e){
-    if (e.target.value === 'yes'){
 
-    }
-    else if (e.target.value === 'no'){
-
-    }
-    else {return ""}
-  }
-  //
-  // dateParser(){
-  //   let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-  //   let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  //   let temp = this.props.eventData.event.date.split('T')
-  //   let date = temp[0].split('-')
-  //   let dayOfWeek = weekday[new Date(date).getDay()]
-  //   let month = months[new Date(date).getMonth()]
-  //   let day = new Date(date).getDate()
-  //   let hourTime = new Date(temp).getHours()
-  //   let minuteTime = new Date(temp).getMinutes()
-  //   console.log(dayOfWeek, "," , month, "", day, " @ ", hourTime,":", minuteTime)
-  // }
   render() {
-    // this.dateParser()
-    var mappedUsers;
-    if (this.props.eventData.users.length === 0){
-      mappedUsers = <div className='flex-item'>No RSVPs yet</div>
-    }
-    else {
-      mappedUsers = this.props.eventData.users.map(function(user, i){
+    let guestlist;
+    //if no users have RSVPd yet, return "No RSVPs yet"
+    if (this.props.guestlist.length === 0){
+      guestlist = <div className='RSVP-item'>No RSVPs yet</div>
+    } else {
+    //if one or more users have RSVPd, return the user's first name and first initial of the last name
+      guestlist = this.props.guestlist.map(function(user, i){
         return (
-          <div className='flex-item' key={i}>
-            <div>{user.firstName + " " + user.lastName}</div>
-            <div>{user.email}</div>
+          <div className='RSVP-item' key={i}>
+            {user.firstName} {user.lastName.slice(0, 1)}.,
           </div>
         )
       })
@@ -55,40 +29,50 @@ class EventDetail extends Component {
     return (
       <div className='events-page'>
         <div className='event-date'>
+          {/* this is the formatted date of the event */}
           <Moment format='dddd, MMMM DD @ h:mm A'>
-            {this.props.eventData.event.date}
+            {this.props.event.event.date}
           </Moment>
         </div>
           <div>
-              {(this.props.winner === 1 || this.props.winner === null) && <EventChoice
-                place={this.props.eventData.places[0]}
-                choice={1}
-                />}
-              {(this.props.winner === 2 || this.props.winner === null) && <EventChoice
-                place={this.props.eventData.places[1]}
-                choice={2}
-                />}
-              {!this.props.voted && <VoteButton user={this.props.user} event={this.props.eventData} choice="1"/>}
-              {!this.props.voted && <VoteButton user={this.props.user} event={this.props.eventData} choice="2"/>}
-              {!this.props.rsvp && this.props.voted && <RSVPButton user={this.props.user} event={this.props.eventData}/>}
+            {/*this says: if the winner is null, show the place option along with the vote button. If the winner is not null, show the place option that won */}
+
+                {/* option 1 */}
+              {(this.props.event.event.winner === 1 || this.props.event.event.winner === null) &&
+                <EventChoice place={this.props.event.places[0]} choice={1} />}
+                {/* vote button */}
+              {(this.props.event.event.vote_status && !this.props.user.voted) &&
+                <VoteButton user={this.props.user} event={this.props.event} choice="1"/>}
+                {/* option 2 */}
+              {(this.props.event.event.winner === 2 || this.props.event.event.winner === null) &&
+                <EventChoice place={this.props.event.places[1]} choice={2} />}
+                {/* vote button */}
+              {(this.props.event.event.vote_status && !this.props.user.voted) &&
+                <VoteButton user={this.props.user} event={this.props.event} choice="2"/>}
           </div>
-        <div className='event-details'> {/* this is a flex container */}
+          {/*this says: if voting is closed or if the user has already voted, show the event details and the RSVP button */}
+          {(!this.props.event.event.vote_status || this.props.user.voted) &&
+        <div className='event-details'> {/* this is a flex container */} {/*these are the event details */}
           <div className='flex-container-1'>{/* this is a flex container */}
             <div className='flex-item-header'>Where:</div>
             <div className='flex-item-header'>Guest Speaker:</div>
-            <div className='flex-item-header'>RSVP:</div>
+              <div className='flex-item-header'>RSVP:</div>
             <div className='flex-item-header'>Who's In:</div>
           </div>
           <div className='flex-container-2'>{/* this is a flex container */}
-            <div className='flex-item'>TODO</div>
-            <div className='flex-item'>TODO</div>
-            <form className='flex-item'> TODO
-              <input type="radio" name="rsvp" value="yes" onClick={this.handleClick.bind(this)} /> Yes
-              <input type="radio" name="rsvp" value="no" onClick={this.handleClick.bind(this)} /> No
-            </form>
-            {mappedUsers}
+            {/*this says: if there is a winner (aka the votes have been counted) show the winner, otherwise show "still voting" */}
+            <div className='flex-item'>{this.props.event.event.winner || `Still voting...`}</div>
+            {/*this says: if there is a speaker show the speaker, otherwise show "Nobody lined up yet" */}
+            <div className='flex-item'>{this.props.event.event.speaker || `Nobody lined up yet...`}</div>
+            {/*RSVP button. A user can rsvp to the current event at any time */}
+            <RSVPButton user={this.props.user}/>
+          </div>
+          <div className='RSVP'>
+            {/* list of users who RSVP'd yes */}
+            {guestlist}
           </div>
         </div>
+        }
       </div>
     );
   }

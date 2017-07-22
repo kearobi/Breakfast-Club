@@ -22,6 +22,7 @@ const radius    = '2000'; //Meters???
 //  return buildPlace(payload.something);
 // })
 
+//payload same as data or response, just a variable but standard practice to call it that
 
 rapid.call('YelpAPI', 'getBusinesses', {
 	'accessToken': 'evT8bFcIz5xSR9PR7EijsQdLZ5RYznENKULx3EZ3Impj0HQsee0aVTj6aJcIgIvkGIP6FYPye9qwB4TKh_yoFZ416bJcLAiRfhgWTDZHBfmDufLRt65Q5yAZqecxWXYx',

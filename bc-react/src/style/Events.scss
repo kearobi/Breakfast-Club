@@ -1,3 +1,36 @@
+.rsvp-button {
+  form {
+  border: 2px solid #4CAF50;
+  width: 200px;
+  display: inline-block;
+}
+  img {
+    width: 80px;
+    display: inline-block;
+    margin-left: 40px;
+  }
+}
+.rsvp {
+  button {
+    text-align: center;
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 45px;
+    border: none;
+    width: 100px;
+  }
+  button:hover {
+    cursor: pointer;
+  }
+  .no {
+    background-color: white;
+    color: black;
+  }
+  .yes {
+    background-color: #4CAF50;
+    color: white;
+  }
+}
+
 .event-page {
   flex: 1;
   overflow: auto;
@@ -19,7 +52,6 @@
     display: flex;
     font-family: 'Amatic SC', sans-serif;
     font-size: 2.5em;
-    width: 400px;
   }
 
   .flex-container-1, .flex-container-2 {
@@ -52,4 +84,14 @@
     color: black;
     margin-top: 30px;
   }
+}
+
+.RSVP {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.RSVP-item{
+  display: inline-block;
 }

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Reminder from '../components/Reminder';
-import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from '../actions/EventActions';
+import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver, setEventsFromLocal} from '../actions/EventActions';
 import BigCalendar from 'react-big-calendar';
 import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
@@ -18,37 +18,22 @@ class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      user: this.props.user,
-      event: eventStore.getCurrentEvent(),
       events: []
     }
-    this.oncurrent = this.updateCurrentEvent.bind(this)
-    this.onevents = this.events.bind(this)
+    this.updateEvents = this.updateEvents.bind(this)
       fetchCurrentEvent()
       fetchEvents();
   }
 
   componentWillMount(){
-    eventStore.on('current event fetched', this.oncurrent)
-    eventStore.on('event created',this.oncurrent)
-    eventStore.on('events fetched', this.onevents)
+    eventStore.on('change', this.updateEvents)
   }
 
   componentWillUnmount(){
-    eventStore.removeListener('current event fetched', this.oncurrent)
-    eventStore.removeListener('event created',this.oncurrent)
-    eventStore.removeListener('events fetched', this.onevents)
+    eventStore.removeListener('change', this.updateEvents)
   }
 
-  updateCurrentEvent(){
-    checkIfVotingOver(eventStore.getCurrentEvent())
-    checkEventOver(eventStore.getCurrentEvent(), this.state.user.id)
-    this.setState({
-      event: eventStore.getCurrentEvent()
-    })
-  }
-
-  events(){
+  updateEvents(){
     let bevents = eventStore.getAllEvents()
     let newEvents = bevents.map(function(bevent){
       let start = moment(bevent.date).toDate()
@@ -86,9 +71,7 @@ class Home extends Component {
               <SideBarMini/>
               <Header />
           <div className="welcome-message">
-            <div className='welcome-user'>Hey, {this.state.user.firstName}!</div>
-            <div className='reminder'><Reminder /></div>
-            <div className='upcoming-event'><Link to='/current-event'>Current Event</Link></div>
+            <div className='reminder'><Reminder user={this.props.user} event={this.props.event}/></div>
           </div>
           <div className="calendar-div">{this.checkCalendar()}</div>
         {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}

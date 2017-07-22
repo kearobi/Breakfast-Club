@@ -18,11 +18,6 @@ class AdminPlaces extends Component {
     this.state = {places: this.props.places,
                   className: "closeModal"}
   }
-  adminReturnPlaces(){
-    this.setState({places: this.props.places})}
-
-  componentWillMount(){
-    adminStore.on('change', this.adminReturnPlaces.bind(this)) }
 
   openModal(){
     this.setState({className: "openModal"})}

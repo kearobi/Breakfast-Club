@@ -117,3 +117,67 @@ export function setUserFromLocal(){
     type: 'LOCAL_STORAGE'
   })
 }
+
+export function fetchGuestlist(){
+  let success;
+  const params = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+      }
+  fetch(`${apiUrl}guestlist`, params)
+    .then((response)=>{
+      success = response.ok
+      return response.json()
+    })
+    .then((body)=>{
+      if (success){
+        let guestlist = body.guestlist
+        dispatcher.dispatch({
+          type: "FETCH-GUESTLIST",
+          guestlist: guestlist
+        })
+      } else {
+        console.log("failure!", body)
+      }
+    })
+  }
+
+// export function addToGuestlist(attributes){
+//   dispatcher.dispatch({
+//     type: 'USER-RSVP',
+//     guest: attributes
+//   })
+// }
+//
+// export function removeFromGuestlist(attributes){
+//   dispatcher.dispatch({
+//     type: 'USER-UNRSVP',
+//     id: attributes
+//   })
+// }
+
+export function userRSVP(user){
+  const params = {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({user: user})
+  }
+  fetch(`${apiUrl}profile`, params).then(function(response){
+      if(response.ok){
+        if(user.rsvp){
+        dispatcher.dispatch({
+          type: 'USER-RSVP',
+          guest: user
+        })
+      }else{
+        dispatcher.dispatch({
+          type: 'USER-UNRSVP',
+          id: user.id
+        })
+      }
+      }
+    }).catch(function(error){
+      console.log("Actions - updateUser - Error: ", error);
+      // TODO
+    })
+}

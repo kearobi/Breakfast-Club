@@ -8,46 +8,17 @@ import EventDetail from '../components/EventDetail';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Header from '../components/Header';
+import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver, setEventsFromLocal} from '../actions/EventActions';
 
 class CurrentEvent extends Component {
   constructor(props){
     super(props)
     this.state= {
-      event: eventStore.getCurrentEvent(),
-      user: userStore.getUser(),
-      rsvp: userStore.getUser().rsvp,
-      message: ''
+      event: this.props.event,
+      user: this.props.user,
+      message: '',
+      guestlist: this.props.guestlist
     }
-  }
-
-  componentWillMount(){
-    eventStore.on('vote registered', this.voteRegistered.bind(this));
-    eventStore.on('rsvp', this.rsvpRegistered.bind(this));
-    eventStore.on('votes counted', this.votesCounted.bind(this));
-  }
-
-  voteRegistered(){
-    this.setState({
-      event: eventStore.getCurrentEvent(),
-      user: userStore.getUser(),
-      message: "Vote Registered",
-      rsvp: false
-    })
-  }
-
-  votesCounted(){
-    this.setState({
-      event: eventStore.getCurrentEvent()
-    })
-  }
-
-  rsvpRegistered(){
-    this.setState({
-      event: eventStore.getCurrentEvent(),
-      user: userStore.getUser(),
-      message: "RSVP'd",
-      rsvp: true
-    })
   }
 
   render(){
@@ -59,7 +30,7 @@ class CurrentEvent extends Component {
             <Header />
             <SideBarMini />
           <p>{this.state.message}</p>
-          <EventDetail voted={this.state.user.voted} rsvp={this.state.rsvp} user={this.state.user} eventData={this.state.event} winner={this.state.event.winner} />
+          <EventDetail event={this.props.event} user={this.props.user} guestlist={this.props.guestlist}/>
             </div>
           </div>
         </div>

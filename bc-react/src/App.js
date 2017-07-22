@@ -3,12 +3,15 @@ import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
 import UserProfile from './routes/UserProfile';
+import moment from 'moment';
+import {setEventsFromLocal} from './actions/EventActions';
+import eventStore from './stores/EventStore';
 import TestEvent from './routes/TestEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import MessageBoardToggle from './components/MessageBoardToggle';
 import AdminTest from './components/Admin_Dry/AdminPage';
-import {setUserFromLocal} from './actions/UserActions'
+import {setUserFromLocal, fetchGuestlist} from './actions/UserActions'
 import Places from './routes/Places'
 import CurrentEvent from './routes/CurrentEvent'
 import Photos from './routes/Photos'
@@ -25,25 +28,43 @@ import {fetchMessages} from './actions/MessageActions';
 class App extends Component {
   constructor(props){
     super(props)
+    fetchCurrentEvent()
+    fetchGuestlist()
     setUserFromLocal()
+    setEventsFromLocal()
     this.state = {
-      user: userStore.getUser()
+      user: userStore.getUser(),
+      event: eventStore.getCurrentEvent(),
+      guestlist: userStore.getGuestlist()
     }
     this.updateUser = this.updateUser.bind(this)
+    this.updateCurrentEvent = this.updateCurrentEvent.bind(this)
   }
 
   componentWillMount(){
     userStore.on('change', this.updateUser)
+    eventStore.on('change', this.updateCurrentEvent)
   }
 
   componentWillUnmount(){
     userStore.removeListener('change', this.updateUser)
+    eventStore.removeListener('change', this.updateCurrentEvent)
   }
 
   updateUser(){
     this.setState({
-      user: userStore.getUser()
+      user: userStore.getUser(),
+      guestlist: userStore.getGuestlist()
     })
+  }
+
+  updateCurrentEvent(){
+    this.setState({
+      event: eventStore.getCurrentEvent()
+    })
+    //TODO in line with the flux pattern, where should this actually be?
+    checkIfVotingOver(this.state.event)
+    checkEventOver(this.state.event)
   }
 
   render() {
@@ -73,7 +94,10 @@ class App extends Component {
                     )} />
             <Route  exact path='/home'
                     render=
-                    {()=>(loggedIn ? (<Home user={this.state.user} />) : (<Redirect to='/' />)
+                    {()=>(loggedIn ? (<Home user={this.state.user}
+                    event={this.state.event}
+                    events={this.state.events}
+                  />) : (<Redirect to='/' />)
                     )} />
             <Route  exact path='/profile'
                     render={()=>(
@@ -81,7 +105,7 @@ class App extends Component {
                     )} />
             <Route  exact path='/current-event'
                     render={()=>(
-                    loggedIn ? (<CurrentEvent />) : (<Redirect to='/' />)
+                    loggedIn ? (<CurrentEvent user={this.state.user} event={this.state.event} guestlist={this.state.guestlist}/>) : (<Redirect to='/' />)
                     )} />
             <Route  exact path='/photos'
                     render={()=>(
@@ -90,7 +114,7 @@ class App extends Component {
             {/* //TODO: add admin check to profile page */}
             <Route  exact path='/admin'
                     render={()=>(
-                    isAdmin && loggedIn ? (<AdminPage />) : (<Redirect to='/' />)
+                    isAdmin && loggedIn ? (<AdminPage />) : (<Redirect to='/404' />)
                     )} />
             {/* <Route exact path='/admin' component={AdminPage} /> */}
             <Route exact path='/test-event' component={TestEvent} />

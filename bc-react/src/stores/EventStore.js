@@ -17,6 +17,25 @@ class EventStore extends EventEmitter{
     return this.currentEvent;
   }
 
+  updateCurrentEvent(attributes){
+    this.currentEvent = attributes
+    localStorage.setItem('currentEvent', JSON.stringify(this.currentEvent))
+    this.emit('change')
+  }
+
+  updateEvents(attributes){
+    this.events = attributes
+    localStorage.setItem('events', JSON.stringify(this.events))
+    this.emit('change')
+  }
+
+  setEventFromLocal(){
+    this.currentEvent = JSON.parse( localStorage.getItem('currentEvent'))
+    console.log('get local current event', this.currentEvent)
+    this.events = JSON.parse( localStorage.getItem('events'))
+    this.emit('change')
+  }
+
   getAllEvents(){
     return this.events;
   }
@@ -24,39 +43,32 @@ class EventStore extends EventEmitter{
   handleActions(action){
     switch(action.type){
       case("FETCH-EVENTS"):{
-        this.events = action.events;
-        this.emit('events fetched');
+        this.updateEvents(action.events);
         break;
       }
       case("VOTE-REGISTERED"):{
-        this.currentEvent = action.data;
-        this.emit('vote registered');
+        this.updateCurrentEvent(action.data)
         break;
       }
       case("VOTES-COUNTED"):{
-        this.currentEvent = action.data;
-        this.emit('votes counted');
+        this.updateCurrentEvent(action.data)
         break;
       }
-      case("RSVP"):{
-        this.currentEvent = action.data;
-        this.emit('rsvp');
-        break;
-      }
-      case("EVENT-TEST"):{
-        this.testEvent = action.data;
-        this.emit('event fetched');
-        break;
+      // case("EVENT-TEST"):{
+      //   this.testEvent = action.data;
+      //   this.emit('event fetched');
+      //   break;
+      // }
+      case("LOCAL_EVENT_STORAGE"):{
+        this.setEventFromLocal()
+        break
       }
       case("CURRENT-EVENT"):{
-        this.currentEvent = action.data;
-        this.emit('current event fetched');
+        this.updateCurrentEvent(action.data)
         break;
       }
       case("EVENT-CREATED"):{
-        this.currentEvent = action.data;
-        this.emit('new event created');
-        // this.emit('current event fetched');
+        this.updateCurrentEvent(action.data)
         break;
       }
       default:{}

@@ -6,11 +6,11 @@ class EventChoice extends Component {
 
   render() {
     return (
-      <tbody>
-        <tr className='place-name'>{this.props.place.name}</tr>
-        <tr><img className='place-img' src={this.props.place.image_url} alt='restaurant' /></tr>
-        <tr><img className='yelp-rating' src={`../Images/small_${this.props.place.yelp_rating}.png`} alt='rating' /></tr>
-      </tbody>
+      <div>
+        <div className='place-name'>{this.props.place.name}</div>
+        <div><img className='place-img' src={this.props.place.image_url} alt='restaurant' /></div>
+        <div><img className='yelp-rating' src={`../Images/small_${this.props.place.yelp_rating}.png`} alt='rating' /></div>
+      </div>
     );
   }
 }

@@ -12,7 +12,8 @@ module.exports = {
         winner: 1,
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        speaker: "Rob Kaufman"
       },
       {
         id: 2,
@@ -23,7 +24,8 @@ module.exports = {
         winner: null,
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        speaker: undefined
       }
     ])
     .then(function(){
@@ -42,7 +44,8 @@ module.exports = {
         winner: 1,
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        speaker: "Rob Kaufman"
       },
       {
         id: 2,
@@ -53,7 +56,8 @@ module.exports = {
         winner: null,
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        speaker: undefined
       }
     ])
     .then(function(){
