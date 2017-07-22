@@ -57,7 +57,7 @@ class SideBar extends Component {
           </Link>
           <div className="item wobble"
           onClick={this.handleLogOut}
-          ><img src='../Images/logout.png' alt='log out'/>
+          ><img src='../Images/logout-img.png' alt='log out'/>
             <div className='caption'>log out</div>
           </div>
           </div>
