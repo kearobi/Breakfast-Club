@@ -5,8 +5,6 @@ import React, { Component } from 'react';
 import VoteButton from './VoteButton';
 import RSVPButton from './RSVPButton';
 import EventChoice from './EventChoice'
-import Moment from 'react-moment';
-import 'moment-timezone';
 
 class EventDetail extends Component {
 
@@ -28,12 +26,6 @@ class EventDetail extends Component {
 
     return (
       <div className='events-page'>
-        <div className='event-date'>
-          {/* this is the formatted date of the event */}
-          <Moment format='dddd, MMMM DD @ h:mm A'>
-            {this.props.event.event.date}
-          </Moment>
-        </div>
           <div className='voting'>
             {/*this says: if the winner is null, show the place option along with the vote button. If the winner is not null, show the place option that won */}
 
