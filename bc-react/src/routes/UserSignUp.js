@@ -18,14 +18,9 @@ class UserSignUp extends Component {
   }
 
   componentWillMount(){
-    // userStore.on('User Created', this.redirectToHome.bind(this))
-    // userStore.on('user create fail', this.loginFailed.bind(this))
     signUpStore.on('change', this.updateRegistration)
   }
 
-  // redirectToHome(){
-  //   this.props.history.push("/Home");
-  // }
   componentWillUnmount(){
     signUpStore.removeListener('change', this.updateRegistration)
   }
@@ -37,27 +32,10 @@ class UserSignUp extends Component {
     })
   }
 
-  // loginFailed(){
-  //   this.setState({
-  //     message: 'registration failed, credentials invalid'
-  //   })
-  // }
-
   handleChange(e){
     let target = e.target
-    // let user = this.state.user
-    // user[target.name] = target.value
-    // this.setState({
-    //   user: user
-    // })
     updateRegistration(target.name, target.value)
   }
-
-  // validate(){
-  //   signUpStore.validate()
-  //   this.setState({errors: signUpStore.getErrors()})
-  // }
-
 
   handleSubmit(e){
     e.preventDefault();
@@ -68,10 +46,8 @@ render(){
   return (
     <div className='signup-page'>
         <div className="wrapper">
-        <div className="header-wrapper"> <Header /></div>
-      <div className="entry-header">
-        Sign Up
-      </div>
+        <div className="header-wrapper"><Header /></div>
+      <div className="entry-header">Sign Up</div>
         {this.state.message}
         <form className='form'
               onSubmit={this.handleSubmit.bind(this)}>
@@ -90,18 +66,18 @@ render(){
             errors={this.state.errors.lastName}
             />
           <Input
-            placeholder='email address'
-            name='email'
-            value={this.state.registration.email}
-            onChange={this.handleChange.bind(this)}
-            errors={this.state.errors.email}
-            />
-          <Input
             placeholder='neighborhood'
             name='neighborhood'
             value={this.state.registration.neighborhood}
             onChange={this.handleChange.bind(this)}
             errors={this.state.errors.neighborhood}
+            />
+          <Input
+            placeholder='email address'
+            name='email'
+            value={this.state.registration.email}
+            onChange={this.handleChange.bind(this)}
+            errors={this.state.errors.email}
             />
           <Input
             placeholder='password'
