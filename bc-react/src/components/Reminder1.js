@@ -20,7 +20,11 @@ render() {
     let user = this.props.user;
 
     let dayBefore = function(){
-      return(<Moment format='dddd'>{new Date(date).getTime() - 86400000}</Moment>)
+      return(<Moment format='dddd'>{new Date(date).getTime() - 72000000}</Moment>)
+    }
+
+    let revealWinner = function(){
+      return(<Moment format='h a'>{new Date(date).getTime() - 72000000}</Moment>)
     }
 
     let weekday = function(){
@@ -47,10 +51,10 @@ render() {
         if (user.rsvp){
             greeting = ()=>{
               return(<span>Hey {user.firstName}, you're on the guest list!</span>)}
-            message1 = ()=>{return(<span>the </span>)}
+            message1 = ()=>{return(<span>The </span>)}
             link = ()=>{return(<span>details</span>)}
             //TODO = fix hardcorded "Thursday at 12 pm"
-            message2 = ()=>{return(<span>will be revealed {dayBefore()} at </span>)}
+            message2 = ()=>{return(<span>will be revealed {dayBefore()} at {revealWinner()}</span>)}
             // message3 = weekday()
             // message4 = 'at 12 pm'
           }

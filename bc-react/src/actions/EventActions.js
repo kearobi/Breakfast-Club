@@ -78,8 +78,8 @@ export function checkIfVotingOver(event){
   //this is working properly
   //28800000 is 8 hours
   //Date calculates the number of ms since Jan 1 1970
-  //this says: if there are less than 8 hours between the date of the event and today's date, count the votes
-  if ((new Date(event.event.date).getTime() - Date.now()) < 28800000) {
+  //this says: if there are less than 20 hours between the date of the event and today's date, count the votes
+  if ((new Date(event.event.date).getTime() - Date.now()) < 72000000) {
     countVotes()
   }
 }
