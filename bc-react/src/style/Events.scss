@@ -15,6 +15,14 @@
     }
 }
 
+.vs {
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 40px;
+    img{
+      width: 40px;
+    }
+}
+
 .rsvp-button {
   form {
   border: 2px solid #4CAF50;
@@ -86,12 +94,7 @@
   }
 
   .place-img {
-    width: 300px;
-  }
-
-  tbody {
-    display: inline-block;
-    margin: 10px;
+    width: 450px;
   }
 
   .place-name {

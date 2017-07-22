@@ -45,6 +45,11 @@ class EventDetail extends Component {
               {(this.props.event.event.vote_status && !this.props.user.voted) &&
                 <VoteButton user={this.props.user} event={this.props.event} choice="1"/>}
               </div>
+              <div className='vs'>
+                VS
+                <br />
+                <img src='../Images/fight.png' alt='vs'/>
+              </div>
                 {/* option 2 */}
               <div className='option'>
               {(this.props.event.event.winner === 2 || this.props.event.event.winner === null) &&
