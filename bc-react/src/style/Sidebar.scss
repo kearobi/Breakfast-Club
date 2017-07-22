@@ -92,3 +92,11 @@
     cursor: pointer;
   }
 }
+
+@media all and (max-width: 1160px) {
+
+  .voting{
+    flex-direction: column;
+  }
+
+}
