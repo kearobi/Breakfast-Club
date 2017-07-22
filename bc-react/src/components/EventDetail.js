@@ -11,12 +11,12 @@ class EventDetail extends Component {
     let guestlist;
     //if no users have RSVPd yet, return "No RSVPs yet"
     if (this.props.guestlist.length === 0){
-      guestlist = <div className='RSVP-item'>No RSVPs yet</div>
+      guestlist = <div className='flex-item'>No RSVPs yet</div>
     } else {
     //if one or more users have RSVPd, return the user's first name and first initial of the last name
       guestlist = this.props.guestlist.map(function(user, i){
         return (
-          <div className='RSVP-item' key={i}>
+          <div className='flex-item' key={i}>
             {user.firstName} {user.lastName.slice(0, 1)}.,
           </div>
         )
@@ -51,25 +51,33 @@ class EventDetail extends Component {
           {/*this says: if voting is closed or if the user has already voted, show the event details and the RSVP button */}
           {(!this.props.event.event.vote_status || this.props.user.voted) &&
         <div className='event-details'> {/* this is a flex container */} {/*these are the event details */}
-          <div className='flex-container-1'>{/* this is a flex container */}
-            <div className='flex-item-header'>Where:</div>
-            <div className='flex-item-header'>Guest Speaker:</div>
-              <div className='flex-item-header'>RSVP:</div>
-            <div className='flex-item-header'>Who's In:</div>
-          </div>
-          <div className='flex-container-2'>{/* this is a flex container */}
+            <div className='flex-item-header'>
+              <div className='detail'>Where:</div>
+              <div className='flex-item'>
+                {this.props.event.event.winner || `Still voting...`}
+              </div>
+            </div>
+            <div className='flex-item-header'>
+              <div className='detail'>Guest Speaker:</div>
+              <div className='flex-item'>
+                {this.props.event.event.speaker || `Nobody lined up yet...`}
+              </div>
+            </div>
+            <div className='flex-item-header'>
+              <div className='detail'>RSVP:</div>
+              <RSVPButton user={this.props.user}/>
+            </div>
+            <div className='flex-item-header'>
+              <div className='detail'>Who's In:</div>
+              <div className='RSVP'>
+                {/* list of users who RSVP'd yes */}
+                {guestlist}
+              </div>
+            </div>
             {/*this says: if there is a winner (aka the votes have been counted) show the winner, otherwise show "still voting" */}
-            <div className='flex-item'>{this.props.event.event.winner || `Still voting...`}</div>
             {/*this says: if there is a speaker show the speaker, otherwise show "Nobody lined up yet" */}
-            <div className='flex-item'>{this.props.event.event.speaker || `Nobody lined up yet...`}</div>
             {/*RSVP button. A user can rsvp to the current event at any time */}
-            <RSVPButton user={this.props.user}/>
           </div>
-          <div className='RSVP'>
-            {/* list of users who RSVP'd yes */}
-            {guestlist}
-          </div>
-        </div>
         }
       </div>
     );

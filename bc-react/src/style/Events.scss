@@ -11,10 +11,7 @@
 }
 
 .place:hover{
-  // border: black 10px solid;
-  .after{
-    display: flex;
-  }
+  .after{display: flex;}
 }
 
 .events-page {
@@ -41,10 +38,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-    img {
-      width: 85px;
-    }
-  }
+}
 
 .place{
   position: relative;
@@ -72,11 +66,6 @@
   border: 2px solid #4CAF50;
   width: 200px;
   display: inline-block;
-}
-  img {
-    width: 80px;
-    display: inline-block;
-    margin-left: 40px;
   }
 }
 .rsvp {
@@ -103,66 +92,58 @@
 .event-page {
   flex: 1;
   overflow: auto;
-
-  .event-date {
-    padding-left: 20px;
-    padding-right: 20px;
-    border-top: fuchsia 2px solid;
-    border-bottom: fuchsia 2px solid;
-    font-family: 'Amatic SC', sans-serif;
-    text-align: center;
-    font-size: 2.7em;
-  }
-
+  h4 {text-decoration: underline;}
   form {
     font-family: 'Amatic SC', sans-serif;
     font-size: 1.1em;
   }
-
-  .event-details {
-    display: flex;
-    align-items: center;
-    font-family: 'Amatic SC', sans-serif;
-    font-size: 2.5em;
-  }
-
-  .flex-container-1, .flex-container-2 {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .flex-item-header {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-
-  h4 {
-    text-decoration: underline;
-  }
-
-.place {
-  width: 450px;
 }
-  .place-img {
-    width: 450px;
-    max-height: 342px;
-    object-fit: fill;
-  }
+.event-date {
+  padding-left: 20px;
+  padding-right: 20px;
+  border-top: fuchsia 2px solid;
+  border-bottom: fuchsia 2px solid;
+  font-family: 'Amatic SC', sans-serif;
+  text-align: center;
+  font-size: 2.7em;
+}
 
-  .place-name {
-    font-family: 'Amatic SC', sans-serif;
-    font-size: 40px;
-    text-align: center;
-    color: black;
-    text-decoration: underline;
-    font-weight: bold;
-      a {
-        color: black;
-      }
-      a:hover{
-        color: #d32323;
-      }
-  }
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 2.5em;
+}
+
+.flex-item-header {
+  font-weight: bold;
+  display: flex;
+}
+
+.flex-item{font-weight: normal;}
+
+.detail{width: 200px;}
+
+
+.place {width: 450px;}
+
+.place-img {
+  width: 450px;
+  max-height: 342px;
+  object-fit: fill;
+}
+
+.place-name {
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 40px;
+  text-align: center;
+  color: black;
+  text-decoration: underline;
+  font-weight: bold;
+    a {color: black;}
+    a:hover{color: #d32323;}
 }
 
 .RSVP {
