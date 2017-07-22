@@ -11,6 +11,9 @@ class RSVPButton extends Component {
   }
 
   handleClick(e){
+    if(e.target.value === "true" && this.state.user.rsvp){
+      console.log('already rsvpd yes')
+    }else{
     let target = e.target
     let user = this.state.user
     let event = this.state.event
@@ -20,7 +23,7 @@ class RSVPButton extends Component {
     })
     userRSVP(user)
   }
-
+}
   render() {
     let yes
     let no
