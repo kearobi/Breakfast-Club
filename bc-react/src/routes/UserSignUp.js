@@ -68,7 +68,7 @@ render(){
   return (
     <div className='signup-page'>
         <div className="wrapper">
-          <Header />
+        <div className="header-wrapper"> <Header /></div>
       <div className="entry-header">
         Sign Up
       </div>
