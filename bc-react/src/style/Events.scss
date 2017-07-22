@@ -1,3 +1,20 @@
+.voting {
+  background-color: yellow;
+  display: flex;
+}
+
+.option {
+}
+
+.place-details{
+  font-family: 'Abel';
+  size: 40px;
+    img {
+      margin-right: 7px;
+      width: 85px;
+    }
+}
+
 .rsvp-button {
   form {
   border: 2px solid #4CAF50;
@@ -82,7 +99,8 @@
     font-size: 40px;
     text-align: center;
     color: black;
-    margin-top: 30px;
+    text-decoration: underline;
+    font-weight: bold;
   }
 }
 

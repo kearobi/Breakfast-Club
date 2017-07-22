@@ -3,7 +3,6 @@ import {registerVote} from '../actions/EventActions';
 
 class VoteButton extends Component {
   handleClick(){
-    document.getElementById("vote-button").onclick = '#';
     registerVote(this.props.user, this.props.event, this.props.choice)
   }
 

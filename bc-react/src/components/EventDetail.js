@@ -34,21 +34,25 @@ class EventDetail extends Component {
             {this.props.event.event.date}
           </Moment>
         </div>
-          <div>
+          <div className='voting'>
             {/*this says: if the winner is null, show the place option along with the vote button. If the winner is not null, show the place option that won */}
 
                 {/* option 1 */}
-              {(this.props.event.event.winner === 1 || this.props.event.event.winner === null) &&
+              <div className='option'>
+                {(this.props.event.event.winner === 1 || this.props.event.event.winner === null) &&
                 <EventChoice place={this.props.event.places[0]} choice={1} />}
                 {/* vote button */}
               {(this.props.event.event.vote_status && !this.props.user.voted) &&
                 <VoteButton user={this.props.user} event={this.props.event} choice="1"/>}
+              </div>
                 {/* option 2 */}
+              <div className='option'>
               {(this.props.event.event.winner === 2 || this.props.event.event.winner === null) &&
                 <EventChoice place={this.props.event.places[1]} choice={2} />}
                 {/* vote button */}
               {(this.props.event.event.vote_status && !this.props.user.voted) &&
                 <VoteButton user={this.props.user} event={this.props.event} choice="2"/>}
+              </div>
           </div>
           {/*this says: if voting is closed or if the user has already voted, show the event details and the RSVP button */}
           {(!this.props.event.event.vote_status || this.props.user.voted) &&
