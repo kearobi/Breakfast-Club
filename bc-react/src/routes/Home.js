@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Reminder from '../components/Reminder';
+import Reminder1 from '../components/Reminder1';
+
 import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver, setEventsFromLocal} from '../actions/EventActions';
 import BigCalendar from 'react-big-calendar';
 import userStore from '../stores/UserStore';
@@ -71,7 +73,7 @@ class Home extends Component {
               <SideBarMini/>
               <Header />
           <div className="welcome-message">
-            <div className='reminder'><Reminder user={this.props.user} event={this.props.event}/></div>
+            <div className='reminder'><Reminder1 user={this.props.user} event={this.props.event}/></div>
           </div>
           <div className="calendar-div">{this.checkCalendar()}</div>
         {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}
