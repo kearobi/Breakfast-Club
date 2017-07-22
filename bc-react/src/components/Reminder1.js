@@ -42,12 +42,19 @@ render() {
     }
     else {
       if (user.voted){
+        let momentDate = this.props.event.event.date
         if (user.rsvp){
             greeting = `Hey ${user.firstName}, you're on the guest list!`
             message1 = 'The '
             link = 'details'
             //TODO = fix hardcorded "Thursday at 12 pm"
-            message2 = " will be revealed this Thursday at 12 pm"
+            message2 = function(){
+
+              return(
+              <Moment format='dddd'>
+                {momentDate}
+              </Moment>
+            )}
         }
         else {
             message1 = "Are you in or are you in? "
@@ -57,21 +64,23 @@ render() {
       }
       else {
           //TODO = fix hardcorded "0 AM"
-          greeting = `Hey, ${user.firstName}! This ${dayOfWeek} at ${hourTime} =${minuteTime}0 AM`
+          greeting = `Hey, ${user.firstName}! This ${dayOfWeek} at ${hourTime}:${minuteTime}0 AM`
           message1 = `${currentEvent.places[0].name} or ${currentEvent.places[1].name}? `
           link = "Cast your vote!"
           message2 = ""
       }
     }
-    console.log('greeting', greeting)
-    console.log('this.greeting', this.greeting)
+
     return (
       <div>
         {greeting}
         <br />
         {message1}
         <Link to='/current-event'>{link}</Link>
-        {message2}
+        {message2()}
+        {/* <Moment format='dddd'>
+          {this.props.event.event.date}
+        </Moment> */}
       </div>
     );
   }
