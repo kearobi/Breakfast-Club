@@ -2,7 +2,6 @@
 //EventDetail passes props to VoteButton, EventChoice, RSVPButton
 
 import React, { Component } from 'react';
-import VoteButton from './VoteButton';
 import RSVPButton from './RSVPButton';
 import EventChoice from './EventChoice'
 
@@ -26,6 +25,7 @@ class EventDetail extends Component {
 
     return (
       <div className='events-page'>
+        {(this.props.event.event.vote_status && !this.props.user.voted) &&
           <div className='voting'>
             {/*this says: if the winner is null, show the place option along with the vote button. If the winner is not null, show the place option that won */}
                 {/* option 1 */}
@@ -47,7 +47,7 @@ class EventDetail extends Component {
                   place={this.props.event.places[1]}
                   choice='2' />}
               </div>
-          </div>
+          </div>}
           {/*this says: if voting is closed or if the user has already voted, show the event details and the RSVP button */}
           {(!this.props.event.event.vote_status || this.props.user.voted) &&
         <div className='event-details'> {/* this is a flex container */} {/*these are the event details */}
