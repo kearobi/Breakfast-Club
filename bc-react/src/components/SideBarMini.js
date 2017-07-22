@@ -53,7 +53,7 @@ class SideBarMini extends Component {
             <img src='../Images/camera.png' alt='photos' title='photos'/>
           </Link>
           <div className="item wobble" onClick={this.handleLogOut}>
-            <img src='../Images/logout.png' alt='log out' title='log out'/>
+            <img src='../Images/logout-img.png' alt='log out' title='log out'/>
           </div>
       </div>
     );
