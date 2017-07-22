@@ -28,9 +28,13 @@ class AdminStore extends EventEmitter{
   adminLoadUsers(attributes){
     this.users = attributes
     this.emit('change')}
+    
   adminLoadPlaces(attributes){
     this.places = attributes
     this.emit('change')}
+
+  adminSeedPlaces(){}
+
   adminLoadEvents(attributes){
     this.events = attributes
     this.emit('change')}

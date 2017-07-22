@@ -39,6 +39,29 @@ export function adminLoadPlaces(){
     // adminStore.updateMessage("There was an error: " + error)
   })}
 
+export function adminSeedPlaces(){
+  const params = {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' }
+  }
+  
+  fetch("http://localhost:4000/admin/places/seed", params)
+    .then(function(response) {
+      if(response.status === 200) {
+        response.json()
+          .then(function(body) {
+            dispatcher.dispatch({
+              type: 'ADMIN_SEED_PLACES'
+            })
+          });
+      }
+    })
+    .catch(function(error){
+      // adminStore.updateMessage("There was an error: " + error)
+      console.log("There was an error: " + error);
+    })
+}
+
 export function adminLoadEvents(){
   const params = {
     method: 'GET',

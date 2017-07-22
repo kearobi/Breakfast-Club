@@ -5,6 +5,7 @@ import SearchBar from './AdminSearchBar';
 import AdminModal from './AdminModal';
 import AdminTable from './AdminTable';
 import adminStore from '../../stores/AdminStore';
+import {adminSeedPlaces} from '../../actions/AdminActions';
 
 //once you make the component generic, you move the parts that are different out to the parent and pass them in as props
 //const api
@@ -45,6 +46,11 @@ class AdminPlaces extends Component {
       }})
   }
 
+  seedPlaces() {
+    console.log("AdminPlaces - Seeding Places...");
+    adminSeedPlaces();
+  }
+
   render(){
     return(
       <div className='admin-page'>
@@ -53,6 +59,9 @@ class AdminPlaces extends Component {
           <button className="add_button" type="button"
             onClick={this.openModal.bind(this)}>
             + place </button>
+          <button className="seed_button" type="button"
+            onClick={this.seedPlaces.bind(this)}>
+            Seed Places </button>
           {/* now SearchBar has access to places */}
           <SearchBar places={this.props.places} placeSearchBar={true}/>
         </div>

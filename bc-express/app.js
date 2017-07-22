@@ -1,16 +1,23 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
-var cors = require('cors')
-var Place = require('./models').Place
-var Bevent = require('./models').Bevent
-var GuestList = require('./models').GuestList
-// var payload = require('./api').payload
-var User = require('./models').User
-var Message = require('./models').Message
-var moment = require('moment');
-var path = require('path')
-const PORT = process.env.PORT || 4000;
+var express      = require('express');
+var bodyParser   = require('body-parser');
+var app          = express();
+
+// Models
+var cors         = require('cors')
+var Place        = require('./models').Place
+var Bevent       = require('./models').Bevent
+var GuestList    = require('./models').GuestList
+var User         = require('./models').User
+var Message      = require('./models').Message
+
+// Services
+var API          = require('./services/api');
+
+var moment       = require('moment');
+var path         = require('path');
+
+
+const PORT       = process.env.PORT || 4000;
 
 const corsOptions = {
   origin: 'http://localhost:3000'
@@ -690,6 +697,21 @@ app.put('/login', function(request, response){
 })
 
 //start Admin endpoints
+app.put('/admin/places/seed', function(request, response){
+  // console.log("API: ", API);
+  API.seed();
+
+  // API.seed()
+  //   .then(function() {
+  //     response.status(200);
+  //     response.json({message: 'success'})
+  //   })
+  //   .catch(function(error){
+  //     response.status(400);
+  //     response.json({message: 'error', errors: error.errors})
+  //   })
+})
+
 app.get('/admin/get/places', function(request, response){
   Place.findAll().then(function(places){
     response.status(200)
@@ -724,6 +746,8 @@ app.post('/admin/add/place', function(request, response){
     response.status(400)
     response.json({message: 'error', errors: error.errors})
   })})
+
+
 app.post('/admin/add/event', function(request, response){
   let eventParams = request.body.event
   Bevent.create(eventParams).then(function(event){
