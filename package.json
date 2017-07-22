@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node bc-express/app.js",
-    "heroku-postbuild": "cd bc-express/ && cp config/config.json.prod config/config.json && sequelize db:migrate && cd .. && cd bc-react/ && yarn install && yarn build"
+    "heroku-postbuild": "cd bc-express/ && cp config/config.json.prod config/config.json && sequelize db:migrate && sequelize db:seed:all && cd .. && cd bc-react/ && yarn install && yarn build"
   },
   "author": "",
   "license": "ISC",
