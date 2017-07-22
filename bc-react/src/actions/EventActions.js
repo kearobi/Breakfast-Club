@@ -73,37 +73,13 @@ export function fetchCurrentEvent(){
     console.log("fail, catch clause")
   })
 }
-//
-// export function closeVoting(attributes){
-//   const params = {
-//     method: 'PUT',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify({event: attributes.event})
-//   }
-//   fetch(`${apiUrl}current-event`, params).then(function(response){
-//       if(response.ok){
-//         dispatcher.dispatch({
-//           type:'CLOSE-VOTING',
-//           data: {
-//             event: body.event,
-//             users: body.users,
-//             places: body.places,
-//             guestLists: body.guestLists
-//           }
-//         })
-//       }
-//     }).catch(function(error){
-//       console.log("Actions - updateUser - Error: ", error);
-//       // TODO
-//     })
-// }
-//
+
 export function checkIfVotingOver(event){
   //this is working properly
   //28800000 is 8 hours
   //Date calculates the number of ms since Jan 1 1970
   //this says: if there are less than 8 hours between the date of the event and today's date, count the votes
-  if ((new Date(event.event.date) - new Date()) < 28800000) {
+  if ((new Date(event.event.date).getTime() - Date.now()) < 28800000) {
     countVotes()
   }
 }
