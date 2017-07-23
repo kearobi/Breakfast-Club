@@ -720,6 +720,69 @@ app.post('/current-event', function(request, response){
   })
 })
 
+app.post('/past-event', function(request, response){
+  let id = request.body.id;
+  console.log("ID")
+  console.log(request.body)
+  let _event;
+  let _users = [];
+  let _places = [];
+  let _guestLists;
+  // find the past event
+  Bevent.findById(id)
+  // save associated GuestLists in _guestLists
+  .then(function(event){
+    console.log("PAST EVENT")
+    console.log(event)
+    _event = event;
+    return event.getGuestLists();
+  })
+  // for each GuestList save the corresponding User in _users
+  .then(function(lists){
+    _guestLists = lists;
+    listPromises = [];
+    for (var i = 0; i < lists.length; i++){
+      listPromises.push(User.findOne({
+        where:{id: lists[i].user_id}
+      }))
+    }
+    return Promise.all(listPromises);
+  })
+  // find the first restaurant option
+  .then(function(users){
+    for (var i = 0; i < users.length; i++){
+      if (users[i] != null){
+        _users.push(users[i]);
+      }
+    }
+    return Place.findOne({
+      where:{id: _event.place_1_id}
+    })
+  })
+  // find the second restaurant option
+  .then (function(place){
+    _places.push(place);
+    return Place.findOne({
+      where:{id: _event.place_2_id}
+    })
+  })
+  .then(function(place){
+    _places.push(place);
+    if(_event){
+      response.status(200)
+      response.json({
+        event: _event,
+        guestLists: _guestLists,
+        places: _places,
+        users: _users
+      })
+    }else{
+      response.status(400)
+      console.log('no data found')
+    }
+  })
+})
+
 app.put('/login', function(request, response){
   User.findOne({
     where:{email: request.body.email}
@@ -736,6 +799,8 @@ app.put('/login', function(request, response){
     }
   })
 })
+
+
 
 //start Admin endpoints
 app.get('/admin/get/places', function(request, response){
