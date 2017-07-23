@@ -23,7 +23,7 @@ class EventChoice extends Component {
           <img  className='place-img'
                 src={this.props.place.image_url}
                 alt='restaurant' />
-          <div className='after'>VOTE</div>
+          <div className='after'><div className='vote'>VOTE</div></div>
         </div>
         <div className='place-details'>
           <img  className='yelp-rating'
