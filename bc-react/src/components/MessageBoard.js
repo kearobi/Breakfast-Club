@@ -78,6 +78,7 @@ class MessageBoard extends Component {
                 placeholder='type a message'
                 name='message'
                 autoComplete='off'
+                maxlength="18"
                 value={this.state.currentMessage}
                 onChange={this.handleChange.bind(this)}>
               </input>
