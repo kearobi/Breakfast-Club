@@ -74,7 +74,12 @@ class Home extends Component {
 
   render(){
     if (this.state.selectedEventId){
-      return <Redirect to={`/past-event/${this.state.selectedEventId}`}/>
+      if (this.state.selectedEventId === eventStore.getCurrentEvent().event.id){
+        return <Redirect to='/current-event'/>
+      }
+      else {
+        return <Redirect to={`/past-event/${this.state.selectedEventId}`}/>
+      }
     }
     else {
       return (

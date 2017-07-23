@@ -12,7 +12,7 @@ class PastEvent extends Component {
   constructor(props){
     super(props)
     this.state = {
-      pastEvent: null
+      pastEvent: null,
     }
     this.updatePastEvent = this.updatePastEvent.bind(this)
     fetchPastEvent(this.props.match.params.eventId);
@@ -20,6 +20,10 @@ class PastEvent extends Component {
 
   componentWillMount(){
     eventStore.on('change', this.updatePastEvent)
+  }
+
+  componentWillUnmount(){
+    eventStore.removeListener('change', this.updatePastEvent)
   }
 
   updatePastEvent(){
