@@ -6,7 +6,6 @@ import Reminder from '../components/Reminder';
 import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver, setEventsFromLocal} from '../actions/EventActions';
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 import BigCalendar from 'react-big-calendar';
-import userStore from '../stores/UserStore';
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
 import Header from '../components/Header';

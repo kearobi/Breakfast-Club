@@ -16,7 +16,6 @@ import Places from './routes/Places'
 import CurrentEvent from './routes/CurrentEvent'
 import PastEvent from './routes/PastEvent'
 import Photos from './routes/Photos'
-import VotePage from './routes/VotePageMockUp'
 import PageNotFound from './routes/PageNotFound'
 import './style/App.css';
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
@@ -120,7 +119,6 @@ class App extends Component {
                     )} />
             {/* <Route exact path='/admin' component={AdminPage} /> */}
             <Route exact path='/test-event' component={TestEvent} />
-            <Route exact path='/vote' component={VotePage} />
             <Route exact path='/adminTest' component={AdminTest} />
             <Route exact path='/404' component={PageNotFound} />
             <Redirect to='/404'/>
