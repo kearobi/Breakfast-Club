@@ -15,6 +15,19 @@ BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 );
 
+const customStyle = {
+  content : {
+    top                   : '50%',
+    // left                  : '50%',
+    // right                 : 'auto',
+    bottom                : 'auto',
+    // marginRight           : '-50%',
+    // transform             : 'translate(-50%, -50%)'
+    width: '600px',
+    height: '400px'
+  }
+};
+
 class Home extends Component {
   constructor(props){
     super(props)
@@ -24,6 +37,8 @@ class Home extends Component {
       modal: false
     }
     this.updateEvents = this.updateEvents.bind(this)
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
       fetchCurrentEvent()
       fetchEvents();
   }
@@ -55,10 +70,17 @@ class Home extends Component {
     })
   }
 
-  goToEvent(event, e){
+  openModal(event, e){
     this.setState({
       selectedEventId: event.id,
       modal: true
+    })
+  }
+
+  closeModal(){
+    this.setState({
+      selectedEventId: null,
+      modal: false
     })
   }
 
@@ -67,7 +89,7 @@ class Home extends Component {
       return(
       <BigCalendar
         events={this.state.events}
-        onSelectEvent={this.goToEvent.bind(this)}
+        onSelectEvent={this.openModal}
       />
     )
   }else{
@@ -93,13 +115,10 @@ class Home extends Component {
               {(this.state.selectedEventId && this.state.selectedEventId !== this.props.event.event.id) &&
               <Modal
                 isOpen={this.state.modal}
-                // onAfterOpen={afterOpenFn}
-                // onRequestClose={requestCloseFn}
-                // closeTimeoutMS={n}
-                // style={customStyle}
+                onRequestClose={this.closeModal}
+                style={customStyle}
                 contentLabel="Modal"
               >
-
               <PastEvent eventId={this.state.selectedEventId}/>
             </Modal>
               }

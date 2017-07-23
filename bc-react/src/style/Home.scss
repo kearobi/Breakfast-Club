@@ -12,13 +12,7 @@
         padding: 5px;
         font-weight: bold;
     }
-    .polaroid {
-      .frame{width: 370px;}
-      position: absolute;
-      z-index: 50;
-      left: 0;
-      margin-left: 100px;
-    }
+
     //calendar
     .calendar-div{
       border: 2px solid lightgray;
@@ -44,21 +38,13 @@ transform: rotate(-16.5deg);
 
 .polaroid-details{
   align-items: center;
-  position: absolute;
-  z-index: 50;
-  left: 0;
-  margin-top: 40px;
   .place-img {width: 220px;}
-  margin-left: 50px;
   a{text-align: center;}
 
 }
 
 .polaroid-date{
-  margin-top: 35px;
-  margin-left: 25px;
   font-size: 50px;
-  position: absolute;
   font-family: 'Amatic SC', sans-serif;
   font-weight: bold;
 }
