@@ -7,6 +7,8 @@ import BigCalendar from 'react-big-calendar';
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
 import Header from '../components/Header';
+import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+import PastEvent from './PastEvent';
 
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
@@ -71,16 +73,7 @@ class Home extends Component {
   }
 
   render(){
-    if (this.state.selectedEventId){
-      if (this.state.selectedEventId === eventStore.getCurrentEvent().event.id){
-        return <Redirect to='/current-event'/>
-      }
-      else {
-        return <Redirect to={`/past-event/${this.state.selectedEventId}`}/>
-      }
-    }
-    else {
-      return (
+    return (
           <div className="wrapper">{/* //this is the flex container */}
               <SideBar/>{/* //this is a flex item  with a nested flex container */}
             <div className='home-page'>{/* //this is a flex item */}
@@ -90,14 +83,20 @@ class Home extends Component {
             <div className="welcome-message">
               <div className='reminder'><Reminder user={this.props.user} event={this.props.event}/></div>
             </div>
+            <div className='polaroid'>
+              {(this.state.selectedEventId && this.state.selectedEventId === this.props.event.event.id) &&
+                <Redirect to='/current-event'/>
+              }
+              {(this.state.selectedEventId && this.state.selectedEventId !== this.props.event.event.id) && <PastEvent eventId={this.state.selectedEventId}/>
+            }
+              <img className='frame' src='../Images/polaroid.png' />
+            </div>
             <div className="calendar-div">{this.checkCalendar()}</div>
-          {/* <iframe src="https://giphy.com/embed/3oaPtHC37Vx0Q" frameBorder="0" allowFullScreen></iframe> */}
         </div>
         </div>
         <img className='fruit-border' src='../Images/fruit-border.jpg' alt='fruit'></img>
       </div>
-      );
-    }
+    );
   }
 }
 

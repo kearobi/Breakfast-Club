@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 class PastEventDetail extends Component {
 
@@ -13,42 +15,36 @@ class PastEventDetail extends Component {
     else {
       let guestlist = this.props.event.users.map(function(user, i){
         return (
-          <div className='flex-item' key={i}>
+          <span key={i}>
             {user.firstName} {user.lastName.slice(0, 1)}.,
-          </div>
+          </span>
         )
       })
     }
     return (
-      <div>
+      <div className='polaroid-details'>
+        <a    href={place.url}
+              title='open in yelp'
+              target='_blank'>
+              {place.name}
+        </a>
         <div>
-          Date: {event.date}
+        <img  className='place-img'
+              src={place.image_url}
+              alt='restaurant' />
+        </div>
+        <div>
+        <img  className='yelp-rating'
+              src={`../Images/small_${place.yelp_rating}.png`}
+              alt='rating' />
         </div>
         <div>
           Speaker: {event.speaker}
         </div>
-        <a  href={place.url}
-            title='open in yelp'
-            target='_blank'>
-          {place.name}
-        </a>
-        <img  className='place-img'
-              src={place.image_url}
-              alt='restaurant' />
-        <img  className='yelp-rating'
-              src={`../Images/small_${place.yelp_rating}.png`}
-              alt='rating' />
-        <div className='place-details'>
-          {place.review_count} Reviews&nbsp;|&nbsp;
-          {place.price}
-          &nbsp;|&nbsp;
-          {place.categories}
+        RSVP: {guestList}
+        <div className='polaroid-date'>
+          <Moment format='ddd, MMMM DD'>{event.date}</Moment>
         </div>
-        <div className='place-details'>
-          {place.address_street}, {place.address_city}
-          &nbsp;{place.address_zip}
-        </div>
-        {guestList}
       </div>
 
     );
