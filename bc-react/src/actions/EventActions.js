@@ -29,6 +29,7 @@ export function fetchPastEvent(id){
   fetch(`${apiUrl}past-event`, params).then(function(response){
     if(response.ok){
       response.json().then(function(body){
+        console.log(body)
         dispatcher.dispatch({
           type:'PAST-EVENT',
           data: {
@@ -39,7 +40,7 @@ export function fetchPastEvent(id){
           }
         })
       }).catch(function(error){
-        console.log("fetch current event failed");
+        console.log("fetch past event failed");
       })
     }
     else {
