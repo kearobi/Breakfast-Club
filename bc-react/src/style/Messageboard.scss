@@ -5,6 +5,7 @@
   right: 0;
   margin-right: 50px;
   font-size: 30px;
+  text-align: center;
   background-color: #f5f5f5;
   border-top: 1px solid lightgray;
   border-left: 1px solid lightgray;
@@ -61,7 +62,7 @@
 
 .message-box{
   background-color: transparent;
-  height: 260px;
+  height: 300px;
   overflow: auto;
   display: flex;
   flex-direction: column-reverse;

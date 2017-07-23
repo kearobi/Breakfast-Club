@@ -28,7 +28,7 @@ class MessageBoard extends Component {
 
   updateMessages(){
     this.setState({
-      messages: messageStore.getLastFiveMessages()
+      messages: messageStore.getMessages()
     })
   }
 

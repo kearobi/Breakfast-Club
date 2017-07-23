@@ -8,17 +8,8 @@ class MessageStore extends EventEmitter{
     this.newMessage= {}
   }
 
-  getLastFiveMessages(){
-    var messageArray = [];
-    if (this.messages.length > 10){
-      for (var i = this.messages.length - 1; i > this.messages.length - 16; i--){
-        messageArray.push(this.messages[i]);
-      }
-      return messageArray;
-    }
-    else {
+  getMessages(){
       return this.messages;
-    }
   }
 
   handleActions(action){
