@@ -40,7 +40,7 @@ class PastEvent extends Component {
         <PastEventDetail event={this.state.pastEvent}/>}
 
       {!this.state.pastEvent &&
-        <div>Loading...</div>}
+        <div></div>}
 
       </div>
     );

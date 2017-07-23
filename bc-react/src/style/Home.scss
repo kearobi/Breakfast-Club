@@ -36,11 +36,30 @@
 transform: rotate(-16.5deg);
 }
 
-.polaroid-details{
-  align-items: center;
-  .place-img {width: 220px;}
-  a{text-align: center;}
 
+.polaroid{
+  z-index: 100;
+}
+.polaroid-details{
+  font-family: 'Abel', sans-serif;
+  font-size: 23px;
+  text-align: center;
+  z-index: 100;
+  background-color: white;
+  .place-img {width: 280px;}
+    a {
+      text-align: center;
+      font-family: 'Amatic SC', sans-serif;
+      font-size: 35px;
+    }
+}
+
+.yelp-rating{
+  width: 100px;
+}
+
+.guests{
+  text-align: left;
 }
 
 .polaroid-date{

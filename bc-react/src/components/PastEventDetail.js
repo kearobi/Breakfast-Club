@@ -23,28 +23,29 @@ class PastEventDetail extends Component {
     }
     return (
       <div className='polaroid-details'>
+        <div className='polaroid-date'>
+          <Moment format='ddd, MMMM DD'>{event.date}</Moment>
+        </div>
         <a    href={place.url}
-              title='open in yelp'
-              target='_blank'>
-              {place.name}
+          title='open in yelp'
+          target='_blank'>
+          {place.name}
         </a>
         <div>
         <img  className='place-img'
               src={place.image_url}
               alt='restaurant' />
         </div>
-        <div>
+        <span>
         <img  className='yelp-rating'
               src={`../Images/small_${place.yelp_rating}.png`}
               alt='rating' />
-        </div>
-        <div>
-          Speaker: {event.speaker}
-        </div>
-        RSVP: {guestList}
-        <div className='polaroid-date'>
-          <Moment format='ddd, MMMM DD'>{event.date}</Moment>
-        </div>
+        </span>
+        <div className='guests'>
+          Guest Speaker: {event.speaker}
+          <br />
+          RSVP: {guestList}
+      </div>
       </div>
 
     );
