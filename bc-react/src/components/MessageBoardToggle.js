@@ -13,7 +13,8 @@ class MessageBoardToggle extends Component {
   render(){
     return (
         <div>
-          <button className="sticky" type='button' onClick={ () => this.handleToggle() }><img src='../Images/chat.png' title='chat' alt='chat'/></button>
+          <button className="sticky" type='button' onClick={ () => this.handleToggle() }>message board
+          </button>
           <ToggleDisplay show={this.state.show}>
             <MessageBoard />
           </ToggleDisplay>

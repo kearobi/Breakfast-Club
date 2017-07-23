@@ -3,13 +3,17 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  margin-right: 30px;
-  border: none;
-  background-color: transparent;
-}
-
-.sticky img {
-  width: 70px;
+  margin-right: 50px;
+  font-size: 30px;
+  background-color: #f5f5f5;
+  border-top: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-radius: 5px;
+  padding-left: 5px;
+  box-shadow: 0.5px 0.5px 0.5px 0.5px gray;
+  width: 200px;
+  font-family: 'Amatic SC', sans-serif;
 }
 
 .sticky:hover {
@@ -17,7 +21,7 @@
 }
 
 .message-board {
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   z-index: 50;
   right: 0;
   margin-right: 30px;
@@ -43,7 +47,7 @@
 
 .submit-chat-button:active {
   box-shadow: 1px 1px 1px 1px #505050;
-transform: translateY(0.5px);
+  transform: translateY(0.5px);
 }
 
 .individual-message {
@@ -75,7 +79,7 @@ transform: translateY(0.5px);
 }
 
 .time-stamp{
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   margin: 2px;
   color: gray;
@@ -86,7 +90,7 @@ transform: translateY(0.5px);
 }
 
 .message-content {
-  font-size: 15px;
+  font-size: 18px;
   font-family: 'Abel', sans-serif;
   margin: 2px;
 }
@@ -97,7 +101,7 @@ transform: translateY(0.5px);
 .submit-chat-button, .message-board form input {
   border: 1px solid lightgray;
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 18px;
   font-family: 'Abel', sans-serif;
   background-color: #f5f5f5;
   }

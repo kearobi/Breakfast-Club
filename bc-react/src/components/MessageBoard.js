@@ -73,7 +73,7 @@ class MessageBoard extends Component {
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div>
               <input className='submit-field'
-                size='28'
+                size='20'
                 type='text'
                 placeholder='type a message'
                 name='message'
