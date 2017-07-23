@@ -1,105 +1,79 @@
 //Reminder fetches data from EventStore and UserStore
 
 import React, { Component } from 'react';
-import eventStore from '../stores/EventStore';
-import userStore from '../stores/UserStore';
 import {Link} from 'react-router-dom'
 import Moment from 'react-moment'
 
 class Reminder extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      greeting: '',
-      message1: '',
-      link: '',
-      message2: '',
-    }
-    this.updateMessage = this.updateMessage.bind(this)
-  }
-  componentWillMount(){
-    eventStore.on('change', this.updateMessage);
-    userStore.on('change', this.updateMessage);
-  }
 
-  componentWillUnmount(){
-    eventStore.removeListener('change', this.updateMessage);
-    userStore.removeListener('change', this.updateMessage);
-  }
-
-  updateMessage(){
+render() {
+    let greeting;
+    let message1;
+    let message2;
+    let link;
     let currentEvent = this.props.event;
+    let date = currentEvent.event.date
     let user = this.props.user;
-    this.setState({
-      greeting: `Hey ${user.firstName}! `
-    })
 
-    let weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    let temp = currentEvent.event.date.split('T')
-    let date = temp[0].split('-')
-    let dayOfWeek = weekday[new Date(date).getDay()]
-    let month = months[new Date(date).getMonth()]
-    let day = new Date(date).getDate()
-    let hourTime = new Date(temp).getHours()
-    let minuteTime = new Date(temp).getMinutes()
+    let dayBefore = function(){
+      return(<Moment format='dddd'>{new Date(date).getTime() - 72000000}</Moment>)
+    }
+
+    let revealWinner = function(){
+      return(<Moment format='h:mm a'>{new Date(date).getTime() - 72000000}</Moment>)
+    }
+
+    let weekday = function(){
+      return(<Moment format='dddd'>{date}</Moment>)
+    }
+    let time = function(){
+      return(<Moment format='h:mm a'>{date}</Moment>)}
 
     if (!currentEvent.event.vote_status){
       if (user.rsvp){
-        this.setState({
-          message1: `See you on `,
-          link: `${dayOfWeek}`,
-          //TODO: add time of event
-          message2: ` at ${currentEvent.event.winner === 1 ? currentEvent.places[0].name : currentEvent.places[1].name}!`
-        })
+          greeting = ()=>{return(<span>Hey {user.firstName}, a winner has been chosen!</span>)}
+          message1 = ()=>{return(<span>See you at </span>)}
+          link = ()=>{return(<span>{currentEvent.event.winner === 1 ? currentEvent.places[0].name : currentEvent.places[1].name}</span>)}
+          message2 = ()=>{return(<span> on {weekday()} at {time()}</span>)}
       }
       else {
-        this.setState({
-          message1: "No ",
-          link: 'breakfast',
-          message2: ' for you this week!'
-        })
+        greeting = ()=>{return(<span>Hey {user.firstName}, last chance to RSVP!</span>)}
+        message1 = ()=>{return(<span>We'll be at </span>)}
+        link = ()=>{return(<span>{currentEvent.event.winner === 1 ? currentEvent.places[0].name : currentEvent.places[1].name}</span>)}
+        message2 = ()=>{return(<span> on {weekday()} at {time()}</span>)}
       }
     }
     else {
       if (user.voted){
         if (user.rsvp){
-          this.setState({
-            greeting: `Hey ${user.firstName}, you're on the guest list!`,
-            message1: 'The ',
-            link: 'details',
-            //TODO: fix hardcorded "Thursday at 12 pm"
-            message2: " will be revealed this Thursday at 12 pm"
-          })
-        }
+            greeting = ()=>{return(<span>Hey {user.firstName}, you're on the guest list!</span>)}
+            message1 = ()=>{return(<span>The </span>)}
+            link = ()=>{return(<span>details</span>)}
+            message2 = ()=>{return(<span> will be revealed {dayBefore()} at {revealWinner()}</span>)}
+          }
+
         else {
-          this.setState({
-            message1: "Are you in or are you in? ",
-            link: 'RSVP',
-            message2: ''
-          })
+            greeting = ()=>{return(<span>Hey {user.firstName}, this {weekday()} at {time()}</span>)}
+            message1 = ()=>{return(<span>Are you in or are you in? </span>)}
+            link = ()=>{return(<span>RSVP</span>)}
+            message2 = ()=>{return(<span></span>)}
         }
       }
       else {
-        this.setState({
-          //TODO: fix hardcorded "0 AM"
-          greeting: `Hey, ${user.firstName}! This ${dayOfWeek} at ${hourTime}:${minuteTime}0 AM`,
-          message1: `${currentEvent.places[0].name} or ${currentEvent.places[1].name}? `,
-          link: "Cast your vote!",
-          message2: ""
-        })
+          greeting = ()=>{return(<span>Hey, {user.firstName}! This {weekday()} at {time()}</span>)}
+          message1 = ()=>{return(<span>{currentEvent.places[0].name} or {currentEvent.places[1].name}? </span>)}
+          link = ()=>{return(<span>Cast your vote!</span>)}
+          message2 = ()=>{return(<span></span>)}
       }
     }
-  }
 
-  render() {
     return (
       <div>
-        {this.state.greeting}
+        {greeting()}
         <br />
-        {this.state.message1}
-        <Link to='/current-event'>{this.state.link}</Link>
-        {this.state.message2}
+        {message1()}
+        <Link to='/current-event'>{link()}</Link>
+        {message2()}
       </div>
     );
   }
