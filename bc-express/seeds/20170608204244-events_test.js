@@ -30,7 +30,7 @@ module.exports = {
       {
         id: 3,
         place_1_id: 1,
-        place_2_id: 2,
+        place_2_id: 3,
         date: '2017-07-14 08:00:00-07',
         vote_status: false,
         winner: 1,
@@ -41,8 +41,8 @@ module.exports = {
       },
       {
         id: 4,
-        place_1_id: 1,
-        place_2_id: 2,
+        place_1_id: 2,
+        place_2_id: 4,
         date: '2017-07-21 08:00:00-07',
         vote_status: false,
         winner: 2,
@@ -53,7 +53,7 @@ module.exports = {
       }
     ])
     .then(function(){
-      return queryInterface.sequelize.query('ALTER SEQUENCE "Bevents_id_seq" RESTART 10')
+      return queryInterface.sequelize.query('ALTER SEQUENCE "Bevents_id_seq" RESTART 5')
     })
   },
 
@@ -86,7 +86,7 @@ module.exports = {
       {
         id: 3,
         place_1_id: 1,
-        place_2_id: 2,
+        place_2_id: 3,
         date: '2017-07-14 08:00:00-07',
         vote_status: false,
         winner: 1,
@@ -97,8 +97,8 @@ module.exports = {
       },
       {
         id: 4,
-        place_1_id: 1,
-        place_2_id: 2,
+        place_1_id: 2,
+        place_2_id: 4,
         date: '2017-07-21 08:00:00-07',
         vote_status: false,
         winner: 2,
