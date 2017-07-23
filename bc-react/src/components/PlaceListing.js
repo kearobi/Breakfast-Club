@@ -21,12 +21,10 @@ class PlaceListing extends Component {
               WHAT KIND: {this.props.place.categories}
             </li>
 
-            <li className="fields">
-              DELICIOUSNESS: {this.props.place.yelp_rating}
-            </li>
-
-            <li className="fields">
-              REVIEWED: {this.props.place.review_count}
+            <li className="fields place-rating">
+              DELICIOUSNESS:  <img
+                                    src={`../Images/small_${this.props.place.yelp_rating}.png`}
+                                    alt='rating' />
             </li>
 
             <li className="fields">
@@ -38,8 +36,8 @@ class PlaceListing extends Component {
             </li>
 
             <li className="fields">
-              {this.props.place.address_city} ,
-              {this.props.place.address_state}
+              {this.props.place.address_city},
+              {this.props.place.address_state}&nbsp;
               {this.props.place.address_zip}
             </li>
 

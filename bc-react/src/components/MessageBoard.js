@@ -28,7 +28,7 @@ class MessageBoard extends Component {
 
   updateMessages(){
     this.setState({
-      messages: messageStore.getLastFiveMessages()
+      messages: messageStore.getMessages()
     })
   }
 
@@ -73,11 +73,12 @@ class MessageBoard extends Component {
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div>
               <input className='submit-field'
-                size='28'
+                size='20'
                 type='text'
                 placeholder='type a message'
                 name='message'
                 autoComplete='off'
+                maxlength="18"
                 value={this.state.currentMessage}
                 onChange={this.handleChange.bind(this)}>
               </input>
