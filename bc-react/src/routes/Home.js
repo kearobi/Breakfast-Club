@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import Reminder from '../components/Reminder';
-import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver, setEventsFromLocal} from '../actions/EventActions';
-import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+import {fetchEvents, fetchCurrentEvent} from '../actions/EventActions';
 import BigCalendar from 'react-big-calendar';
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
