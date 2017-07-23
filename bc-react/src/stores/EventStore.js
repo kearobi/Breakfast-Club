@@ -17,9 +17,19 @@ class EventStore extends EventEmitter{
     return this.currentEvent;
   }
 
+  getPastEvent(){
+    return this.pastEvent;
+  }
+
   updateCurrentEvent(attributes){
     this.currentEvent = attributes
     localStorage.setItem('currentEvent', JSON.stringify(this.currentEvent))
+    this.emit('change')
+  }
+
+  updatePastEvent(attributes){
+    this.pastEvent = attributes
+    localStorage.setItem('pastEvent', JSON.stringify(this.pastEvent))
     this.emit('change')
   }
 
@@ -65,6 +75,10 @@ class EventStore extends EventEmitter{
       }
       case("CURRENT-EVENT"):{
         this.updateCurrentEvent(action.data)
+        break;
+      }
+      case("PAST-EVENT"):{
+        this.updatePastEvent(action.data)
         break;
       }
       case("EVENT-CREATED"):{

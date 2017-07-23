@@ -18,6 +18,39 @@ export function testCreate(){
   })
 }
 
+export function fetchPastEvent(id){
+  const params = {
+    method: "POST",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      id: id
+    })
+  }
+  fetch(`${apiUrl}past-event`, params).then(function(response){
+    if(response.ok){
+      response.json().then(function(body){
+        console.log(body)
+        dispatcher.dispatch({
+          type:'PAST-EVENT',
+          data: {
+            event: body.event,
+            users: body.users,
+            places: body.places,
+            guestLists: body.guestLists
+          }
+        })
+      }).catch(function(error){
+        console.log("fetch past event failed");
+      })
+    }
+    else {
+      console.log("fail, response status not 200")
+    }
+  }).catch(function(){
+    console.log("fail, catch clause")
+  })
+}
+
 export function setEventsFromLocal(){
   dispatcher.dispatch({
     type: 'LOCAL_EVENT_STORAGE'
