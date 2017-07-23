@@ -9,6 +9,7 @@ import moment from 'moment';
 import Header from '../components/Header';
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 import PastEvent from './PastEvent';
+import Modal from 'react-modal';
 
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
@@ -19,7 +20,8 @@ class Home extends Component {
     super(props)
     this.state = {
       events: [],
-      selectedEventId: null
+      selectedEventId: null,
+      modal: false
     }
     this.updateEvents = this.updateEvents.bind(this)
       fetchCurrentEvent()
@@ -55,7 +57,8 @@ class Home extends Component {
 
   goToEvent(event, e){
     this.setState({
-      selectedEventId: event.id
+      selectedEventId: event.id,
+      modal: true
     })
   }
 
@@ -87,9 +90,20 @@ class Home extends Component {
               {(this.state.selectedEventId && this.state.selectedEventId === this.props.event.event.id) &&
                 <Redirect to='/current-event'/>
               }
-              {(this.state.selectedEventId && this.state.selectedEventId !== this.props.event.event.id) && <PastEvent eventId={this.state.selectedEventId}/>
-            }
-              <img className='frame' src='../Images/polaroid.png' />
+              {(this.state.selectedEventId && this.state.selectedEventId !== this.props.event.event.id) &&
+              <Modal
+                isOpen={this.state.modal}
+                // onAfterOpen={afterOpenFn}
+                // onRequestClose={requestCloseFn}
+                // closeTimeoutMS={n}
+                // style={customStyle}
+                contentLabel="Modal"
+              >
+
+              <PastEvent eventId={this.state.selectedEventId}/>
+            </Modal>
+              }
+              {/* <img className='frame' src='../Images/polaroid.png' /> */}
             </div>
             <div className="calendar-div">{this.checkCalendar()}</div>
         </div>

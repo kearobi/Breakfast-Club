@@ -13,7 +13,7 @@
         font-weight: bold;
     }
     .polaroid {
-      .frame{width: 320px;}
+      .frame{width: 370px;}
       position: absolute;
       z-index: 50;
       left: 0;
@@ -36,6 +36,11 @@
     }
 }
 
+.frame{
+  -ms-transform: rotate(-16.5deg); /* IE 9 */
+-webkit-transform: rotate(-16.5deg); /* Chrome, Safari, Opera */
+transform: rotate(-16.5deg);
+}
 
 .polaroid-details{
   align-items: center;
@@ -46,6 +51,7 @@
   .place-img {width: 220px;}
   margin-left: 50px;
   a{text-align: center;}
+
 }
 
 .polaroid-date{
