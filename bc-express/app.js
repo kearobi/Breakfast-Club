@@ -427,7 +427,7 @@ app.get('/events', function(request, response){
         promises.push(Place.findById(event.place_1_id));
       }
       else if (event.winner == 2){
-        promises.push(Place.findById(event.place_1_id));
+        promises.push(Place.findById(event.place_2_id));
       }
       else {
         promises.push(new Promise(function(resolve, reject){

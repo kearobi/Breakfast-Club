@@ -1,12 +1,17 @@
+//PastEventDetail gets props from PastEvent
+
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 
 class PastEventDetail extends Component {
-
   render() {
+    console.log('past event', this.props.event.event)
+    console.log('places', this.props.event.places)
+    console.log('winner', this.props.event.event.winner)
+    console.log('whole event', this.props.event)
     let event = this.props.event.event;
-    let place = this.props.event.winner === 1 ? this.props.event.places[1] : this.props.event.places[0];
+    let place = this.props.event.event.winner === 1 ? this.props.event.places[0] : this.props.event.places[1];
     let users = this.props.event.users;
     let guestList;
     if (users.length === 0){
