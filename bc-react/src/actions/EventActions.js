@@ -116,22 +116,21 @@ export function checkIfVotingOver(event){
   }
 }
 
-export function checkEventOver(event){
-  //'previous' is the current event's date
+export function checkEventOver(event, userID){
   //this says: if today's date/time is 2 hours (7200000 ms) greater than the date/time of the event date, create a new event
   let eventDate = new Date(event.event.date).getTime()
   let todaysDate = Date.now()
   if ((todaysDate + 7200000) >= eventDate) {
-    createNewEvent()
+    createNewEvent(userID)
   }
 }
 
-export function createNewEvent(id){
+export function createNewEvent(userID){
   const params = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      id: id
+      id: userID
     })
   }
   fetch(`${apiUrl}create-event`, params).then(function(response){
