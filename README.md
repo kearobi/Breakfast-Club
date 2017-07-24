@@ -1,5 +1,5 @@
 # Breakfast-Club
-Full-stack project featuring React with FLUX and Express on the back-end, with special appearances by Flux and Postgres, cameos by ES6 and SCSS. @kearobi @rachelruderman @alextickle @Salvara4 @brazilgabe @cekeith. Check it out and come be a guest speaker at Breakfast Club!
+Full-stack project featuring React with FLUX and Express on the back-end, with special appearances by Flux and Postgres, cameos by ES6 and SCSS. @kearobi @rachelruderman @alextickle @Salvara4 @brazilgabe @cekeith. Check it out and come be a guest speaker at Breakfast Club! Deployed to Heroku: https://breakfast-club.herokuapp.com/
 
 // LOCAL INSTALLATION
 ----
