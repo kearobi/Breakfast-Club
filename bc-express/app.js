@@ -556,11 +556,10 @@ app.post('/create-event', function(request, response){
     _place_id_1 = _places[index1].id;
     _place_id_2 = _places[index2].id;
   }).then( function(){
-    let date = moment().hour(8).day(12).minute(0).second(0)
+    let date = moment().hour(8).day(5).minute(0).second(0)
     return Bevent.create({
         place_1_id: _place_id_1,
         place_2_id: _place_id_2,
-        vote_status: true,
         date: date,
         winner: null,
         "createdAt": Date.now(),
