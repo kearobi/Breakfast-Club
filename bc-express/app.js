@@ -588,17 +588,17 @@ app.post('/create-event', function(request, response){
         rsvp: false
     }, {where: {}})
   })
-  // .then(function(){
-  //   return User.findById(u_id)
-  // })
   .then(function(){
+    return User.findById(u_id)
+  })
+  .then(function(user){
     response.status(200)
     response.json({
       event: _event,
       guestLists: [],
       places: _places,
-      users: []
-      // user: user
+      users: [],
+      user: user
     })
   })
   .catch(function(error){

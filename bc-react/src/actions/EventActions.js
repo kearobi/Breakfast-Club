@@ -126,13 +126,13 @@ export function checkEventOver(event){
   }
 }
 
-export function createNewEvent(){
+export function createNewEvent(id){
   const params = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    // body: JSON.stringify({
-    //   id: id
-    // })
+    body: JSON.stringify({
+      id: id
+    })
   }
   fetch(`${apiUrl}create-event`, params).then(function(response){
     if(response.ok){
@@ -143,7 +143,8 @@ export function createNewEvent(){
             event: body.event,
             users: body.users,
             places: body.places,
-            guestLists: body.guestLists
+            guestLists: body.guestLists,
+            user: body.user
           }
         })
       })
