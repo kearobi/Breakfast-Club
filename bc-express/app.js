@@ -913,7 +913,7 @@ app.put('/admin/edit/event', function(request, response){
   let eventParams = request.body.event
   Bevent.update(eventParams, {where: {id: eventParams.id}}).then(function(event){
     response.status(200)
-    response.json({message: 'success', event: user})
+    response.json({message: 'success', event: event})
   }).catch(function(error){
     response.status(400)
     response.json({message: 'error', errors: error.errors})
