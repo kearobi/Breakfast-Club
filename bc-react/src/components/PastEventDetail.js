@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 class PastEventDetail extends Component {
 
@@ -13,42 +15,37 @@ class PastEventDetail extends Component {
     else {
       let guestlist = this.props.event.users.map(function(user, i){
         return (
-          <div className='flex-item' key={i}>
+          <span key={i}>
             {user.firstName} {user.lastName.slice(0, 1)}.,
-          </div>
+          </span>
         )
       })
     }
     return (
-      <div>
-        <div>
-          Date: {event.date}
+      <div className='polaroid-details'>
+        <div className='polaroid-date'>
+          <Moment format='ddd, MMMM DD'>{event.date}</Moment>
         </div>
-        <div>
-          Speaker: {event.speaker}
-        </div>
-        <a  href={place.url}
-            title='open in yelp'
-            target='_blank'>
+        <a    href={place.url}
+          title='open in yelp'
+          target='_blank'>
           {place.name}
         </a>
+        <div>
         <img  className='place-img'
               src={place.image_url}
               alt='restaurant' />
+        </div>
+        <span>
         <img  className='yelp-rating'
               src={`../Images/small_${place.yelp_rating}.png`}
               alt='rating' />
-        <div className='place-details'>
-          {place.review_count} Reviews&nbsp;|&nbsp;
-          {place.price}
-          &nbsp;|&nbsp;
-          {place.categories}
-        </div>
-        <div className='place-details'>
-          {place.address_street}, {place.address_city}
-          &nbsp;{place.address_zip}
-        </div>
-        {guestList}
+        </span>
+        <div className='guests'>
+          Guest Speaker: {event.speaker}
+          <br />
+          RSVP: {guestList}
+      </div>
       </div>
 
     );

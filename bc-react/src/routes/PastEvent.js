@@ -15,7 +15,7 @@ class PastEvent extends Component {
       pastEvent: null,
     }
     this.updatePastEvent = this.updatePastEvent.bind(this)
-    fetchPastEvent(this.props.match.params.eventId);
+    fetchPastEvent(this.props.eventId);
   }
 
   componentWillMount(){
@@ -27,34 +27,21 @@ class PastEvent extends Component {
   }
 
   updatePastEvent(){
-    let pastEvent = eventStore.getPastEvent();
     this.setState({
-      pastEvent: pastEvent
+      pastEvent: eventStore.getPastEvent()
     })
   }
 
-  checkPastEvent(){
-    if(this.state.pastEvent){
-      return (
-        <PastEventDetail event={this.state.pastEvent}/>
-      )
-    }else{
-      return(<div>Loading...</div>)
-      }
-    }
-
   render() {
     return (
+      <div>
 
-      <div className="wrapper">{/* //this is the flex container */}
-        <SideBar />{/* //this is a flex item  with a nested flex container */}
-        <div className='event-page'>{/* //this is a flex item */}
-          <div className='nested'>{/* //this is a nested flex container */}
-            <Header />
-            <SideBarMini />
-            {this.checkPastEvent()}
-          </div>
-        </div>
+      {this.state.pastEvent &&
+        <PastEventDetail event={this.state.pastEvent}/>}
+
+      {!this.state.pastEvent &&
+        <div></div>}
+
       </div>
     );
   }

@@ -29,3 +29,36 @@
       background-color: rgb(255,255,255);
     }
 }
+
+.frame{
+  -ms-transform: rotate(-16.5deg); /* IE 9 */
+-webkit-transform: rotate(-16.5deg); /* Chrome, Safari, Opera */
+transform: rotate(-16.5deg);
+}
+
+.polaroid-details{
+  font-family: 'Abel', sans-serif;
+  font-size: 23px;
+  text-align: center;
+  background-color: white;
+  .place-img {width: 280px;}
+    a {
+      text-align: center;
+      font-family: 'Amatic SC', sans-serif;
+      font-size: 35px;
+    }
+}
+
+.yelp-rating{
+  width: 100px;
+}
+
+.guests{
+  text-align: left;
+}
+
+.polaroid-date{
+  font-size: 50px;
+  font-family: 'Amatic SC', sans-serif;
+  font-weight: bold;
+}
