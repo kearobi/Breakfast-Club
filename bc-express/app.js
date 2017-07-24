@@ -719,7 +719,7 @@ app.post('/current-event', function(request, response){
   })
 })
 
-app.get('/past-event', function(request, response){
+app.post('/past-event', function(request, response){
   let id = request.body.id;
   console.log("ID")
   console.log(request.body)
