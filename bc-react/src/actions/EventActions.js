@@ -20,7 +20,7 @@ export function testCreate(){
 
 export function fetchPastEvent(id){
   const params = {
-    method: "POST",
+    method: "GET",
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       id: id
