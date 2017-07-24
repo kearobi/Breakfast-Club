@@ -22,17 +22,18 @@ const customStyle = {
     left              : 0,
     right             : 0,
     bottom            : 0,
-    backgroundColor   : 'rgba(255, 255, 255, 0.5)'
+    backgroundColor   : 'rgba(255, 255, 255, 0.5)',
+    zIndex            : 5
   },
   content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)',
-    width: '300px',
-    height: '500px'
+    top               : '50%',
+    left              : '50%',
+    right             : 'auto',
+    bottom            : 'auto',
+    marginRight       : '-50%',
+    transform         : 'translate(-50%, -50%)',
+    width             : '300px',
+    height            : '500px'
   }
 };
 
