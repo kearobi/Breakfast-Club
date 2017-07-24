@@ -7,6 +7,7 @@ class EventStore extends EventEmitter{
     this.testEvent = {};
     this.events = [];
     this.currentEvent = {};
+    this.pastEvent = {}
   }
 
   getTestEvent(){

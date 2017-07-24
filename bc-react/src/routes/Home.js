@@ -66,7 +66,9 @@ class Home extends Component {
     let newEvents = bevents.map(function(bevent){
       let start = moment(bevent.date).toDate()
       let end = moment(bevent.date).add(1, 'hours').toDate()
+      //where is place coming from?
       let placeName = bevent.place.name
+      console.log('bevent', bevent)
       let id = bevent.id
       return {
         'title': placeName,
