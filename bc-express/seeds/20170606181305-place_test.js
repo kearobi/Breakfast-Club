@@ -18,7 +18,8 @@ module.exports = {
         price: '$$',
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        url: 'https://www.yelp.com/biz/breakfast-republic-san-diego'
       },
       {
         id: 2,
@@ -35,7 +36,8 @@ module.exports = {
         price: '$$',
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        url: 'https://www.yelp.com/biz/the-mission-san-diego-4'
       },
       {
         id: 3,
@@ -52,7 +54,8 @@ module.exports = {
         price: '$$',
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        url: 'https://www.yelp.com/biz/lazy-hippo-san-diego-2'
       },
       {
         id: 4,
@@ -69,7 +72,8 @@ module.exports = {
         price: '$',
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        url: 'https://www.yelp.com/biz/luckys-lunch-counter-san-diego'
       }
     ])
     .then(function(){
@@ -103,7 +107,8 @@ module.exports = {
         price: '$$',
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        url: 'https://www.yelp.com/biz/breakfast-republic-san-diego'
       },
       {
         id: 2,
@@ -120,7 +125,8 @@ module.exports = {
         price: '$$',
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        url: 'https://www.yelp.com/biz/the-mission-san-diego-4'
       },
       {
         id: 3,
@@ -137,7 +143,8 @@ module.exports = {
         price: '$$',
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        url: 'https://www.yelp.com/biz/lazy-hippo-san-diego-2'
       },
       {
         id: 4,
@@ -154,7 +161,8 @@ module.exports = {
         price: '$',
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07',
-        active: "true"
+        active: "true",
+        url: 'https://www.yelp.com/biz/luckys-lunch-counter-san-diego'
       }
     ])
     .then(function(){
