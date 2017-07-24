@@ -28,6 +28,7 @@ class SignUpStore extends EventEmitter {
     this.validatePresence('firstName')
     this.validatePresence('lastName')
     this.validatePresence('neighborhood')
+    this.validatePasswordLength('password')
     this.validatePresence('password')
     this.validatePresence('verifyPassword')
     this.validatePassword('verifyPassword')
@@ -44,6 +45,13 @@ class SignUpStore extends EventEmitter {
   validatePresence(fieldName){
     if(this.fields[fieldName] === ''){
       this.addError(fieldName, 'required field')
+    }
+  }
+
+  validatePasswordLength(fieldName){
+    const minimum = /^(?=.{6,})/
+    if(!minimum.test(this.fields[fieldName])){
+      this.addError(fieldName, 'min 6 characters')
     }
   }
 

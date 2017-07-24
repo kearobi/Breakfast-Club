@@ -127,7 +127,6 @@ class UserStore extends EventEmitter{
       }
       case("EVENT-CREATED"):{
         this.updateUser(action.data.user)
-        this.emit('change')
         break
       }
       case("RSVP"):{
