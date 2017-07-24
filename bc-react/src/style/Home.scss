@@ -41,7 +41,8 @@ transform: rotate(-16.5deg);
   font-size: 23px;
   text-align: center;
   background-color: white;
-  .place-img {width: 280px;}
+  .place-img {width: 280px;
+    max-height: 200px;}
     a {
       text-align: center;
       font-family: 'Amatic SC', sans-serif;
