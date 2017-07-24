@@ -6,7 +6,7 @@ class PastEventDetail extends Component {
 
   render() {
     let event = this.props.event.event;
-    let place = this.props.event.winner === 1 ? this.props.event.places[0] : this.props.event.places[1];
+    let place = this.props.event.winner === 1 ? this.props.event.places[1] : this.props.event.places[0];
     let users = this.props.event.users;
     let guestList;
     if (users.length === 0){
