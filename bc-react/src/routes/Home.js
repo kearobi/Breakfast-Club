@@ -62,6 +62,7 @@ class Home extends Component {
 
   updateEvents(){
     let bevents = eventStore.getAllEvents()
+    console.log('all events: ', bevents)
     let newEvents = bevents.map(function(bevent){
       let start = moment(bevent.date).toDate()
       let end = moment(bevent.date).add(1, 'hours').toDate()
