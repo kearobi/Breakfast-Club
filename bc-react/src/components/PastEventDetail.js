@@ -5,11 +5,21 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 
 class PastEventDetail extends Component {
+
+  getFullName(item, index) {
+      let fullname = [item.firstName,item.lastName.slice(0, 1)].join(" ")
+      return (
+        <span>{fullname}., </span>
+      )
+  }
+
   render() {
     console.log('past event', this.props.event.event)
     console.log('places', this.props.event.places)
     console.log('winner', this.props.event.event.winner)
     console.log('whole event', this.props.event)
+    console.log('rsvp people', this.props.event.users)
+
     let event = this.props.event.event;
     let place = this.props.event.event.winner === 1 ? this.props.event.places[0] : this.props.event.places[1];
     let users = this.props.event.users;
@@ -18,13 +28,7 @@ class PastEventDetail extends Component {
       guestList = <div>Canceled</div>
     }
     else {
-      let guestlist = this.props.event.users.map(function(user, i){
-        return (
-          <span key={i}>
-            {user.firstName} {user.lastName.slice(0, 1)}.,
-          </span>
-        )
-      })
+      guestList = this.props.event.users.map(this.getFullName.bind(this))
     }
     return (
       <div className='polaroid-details'>
