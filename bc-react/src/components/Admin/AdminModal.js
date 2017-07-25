@@ -15,15 +15,26 @@ class AdminModal extends Component {
   handleChange(e){
     let target = e.target
     let item
-      if (this.props.userForm){item = this.state.user}
-      else if(this.props.placeForm){item = this.state.place}
-      else if(this.props.eventForm){item = this.state.event}
+      if(this.props.userForm){
+        item = this.state.user
         item[target.name] = target.value
-        this.setState({ item: item })}
+        this.setState({ user: item })
+      }
+      else if(this.props.placeForm){
+        item = this.state.place
+        item[target.name] = target.value
+        this.setState({ place: item })
+      }
+      else if(this.props.eventForm){
+        item = this.state.event
+        item[target.name] = target.value
+        this.setState({ event: item })}
+  }
 
 // addUser and updateUsers are asynchronous because they're in the store
   handleSubmit(e){
     e.preventDefault();
+
     if(this.props.userForm){adminAddUser(this.state)}
     else if (this.props.placeForm){adminAddPlace(this.state)}
     else if (this.props.eventForm){adminAddEvent(this.state)}
@@ -179,10 +190,10 @@ class AdminModal extends Component {
       <div>
         <input
           placeholder='Restaurant'
-          type='text'
-          name='place'
-          id='place'
-          value={this.state.event.place}
+          type='number'
+          name='place_1_id'
+          id='place_1_id'
+          value={this.state.event.place_1_id}
           onChange={this.handleChange.bind(this)}>
         </input>
       </div>
@@ -190,9 +201,9 @@ class AdminModal extends Component {
       <input
         placeholder='Guest of Honor'
         type='text'
-        name='guest'
-        id='guest'
-        value={this.state.event.guest}
+        name='speaker'
+        id='speaker'
+        value={this.state.event.speaker}
         onChange={this.handleChange.bind(this)}>
       </input>
       </div></div>)}

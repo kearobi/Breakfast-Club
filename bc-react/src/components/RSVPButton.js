@@ -6,13 +6,16 @@ class RSVPButton extends Component {
   constructor(props){
     super(props)
     this.state = {
-      user: this.props.user
+      user: this.props.user,
+      event: this.props.event
     }
   }
 
   handleClick(e){
     if(e.target.value === "true" && this.state.user.rsvp){
       console.log('already rsvpd yes')
+    }else if(e.target.value === "false" && !this.state.user.rsvp){
+      console.log('already rsvpd no')
     }else{
     let target = e.target
     let user = this.state.user
@@ -21,7 +24,9 @@ class RSVPButton extends Component {
     this.setState({
       user: user
     })
-    userRSVP(user)
+    console.log('user being sent in the request: ', user)
+    // userRSVP(user)
+    rsvp(this.state.user, this.state.event)
   }
 }
   render() {

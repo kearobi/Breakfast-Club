@@ -153,20 +153,12 @@ export function createNewEvent(userID){
 
 
 export function rsvp(user, event){
-  let id
-
-  if(user.rsvp){
-    id = user.id
-  } else {
-    id = null
-  }
-
   const params = {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      event_id: event.event.id,
-      user_id: id,
+      event_id: event.id,
+      user_id: user.id,
       rsvp: user.rsvp
     })
   }
@@ -179,9 +171,21 @@ export function rsvp(user, event){
             event: body.event,
             users: body.users,
             places: body.places,
-            guestLists: body.guestLists
+            guestLists: body.guestLists,
+            user: body.user
           }
         })
+        if(body.user.rsvp){
+          dispatcher.dispatch({
+            type: 'USER-RSVP',
+            guest: body.user
+          })
+        }else{
+          dispatcher.dispatch({
+            type: 'USER-UNRSVP',
+            id: body.user.id
+          })
+        }
       })
     }
   }).catch(function(error){

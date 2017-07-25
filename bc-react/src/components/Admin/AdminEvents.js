@@ -40,6 +40,10 @@ class AdminEvents extends Component {
     return(
       { event: {
               date: "",
+              speaker: "",
+              place_1_id: null,
+              place_2_id: 1,
+              winner: 1
       }})}
 
   render(){

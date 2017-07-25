@@ -283,6 +283,32 @@ app.post('/register-vote', function(request, response){
     }
   })
 })
+//
+//
+// app.put('/userRSVP', function(request, response){
+//   let eventParams = request.body.event
+//   let userParams = request.body.user
+//   let id = request.body.user.id
+//   if(userParams.rsvp){
+//   GuestList.findOne(
+//     {where: {user_id: null}}
+//   ).then(function(){
+//     GuestList.update({
+//       guestlist:
+//     }
+//
+//     )
+//   })
+//   User.update(userParams,
+//     {where: {id: id}}
+//   ).then(function(user){
+//     response.status(200)
+//     response.json({message: 'success', user: user})
+//   }).catch(function(error){
+//     response.status(400)
+//     response.json({message: 'error', errors: error.errors})
+//   })
+// })
 
 // finds an empty GuestList row and sets the user_id to the current User's id
 // app.put('/rsvp', function(request, response){
@@ -313,6 +339,7 @@ app.post('/register-vote', function(request, response){
 //     response.json({message: 'error', errors: error.errors})
 //   })
 // })
+
 // creates GuestList object with vote info and updates User vote status
 app.put('/rsvp', function(request, response){
   let _event;
@@ -320,17 +347,39 @@ app.put('/rsvp', function(request, response){
   let _users = [];
   let _places = [];
   let _guestLists;
+  let id = request.body.user_id
   let event_id = request.body.event_id;
-  let user_id = request.body.user_id
   let rsvp = request.body.rsvp;
+  let user_id
+  let spot
+  //this says: if the user has just set their rsvp status to true, then set user_id to the user's ID
+  //if they have just unrsvp'd, set user_id to null
+  if(rsvp){
+    user_id = request.body.user_id
+    spot = null
+  }else{
+    user_id = null
+    spot = request.body.user_id
+  }
   let params = {
     event_id: event_id,
     user_id: user_id
   }
+  console.log('this is the request', request.body)
+  console.log('this is the spot: ', spot)
+//ask eric for help
   // update GuestList depending on rsvp
-  return GuestList.update(params)
+  //if the user has rsvp'd, go into the guestlist, find an empty spot, and update it with the user's ID
+  //if has unrsvp'd, go into the guestlist, find the spot with their ID, and update it with null
+  return GuestList.findOne({
+    where: {user_id: spot, event_id: event_id}}
+  ).then(function(guestlist){
+    console.log('guestlist', guestlist)
+    return GuestList.update(params, {
+    where: {id: guestlist.id}}
+  )
   .then(function(){
-    // set User rsvp column to true or false
+    // update the user's rsvp status in the rsvp table to true or false
     return User.update({
         rsvp: rsvp
       }, {where: {
@@ -352,14 +401,11 @@ app.put('/rsvp', function(request, response){
   .then(function(lists){
     _guestLists = lists;
     listPromises = [];
-    if(rsvp){
     for (var i = 0; i < lists.length; i++){
       listPromises.push(User.findOne({
         where:{id: lists[i].user_id}
       }))
     }
-  }
-  //TODO: IF RSVP FALSE LATER
     return Promise.all(listPromises);
   })
   // find the first restaurant option
@@ -382,7 +428,7 @@ app.put('/rsvp', function(request, response){
   })
   .then(function(place){
     _places.push(place);
-    return User.findById(user_id)
+    return User.findById(id)
   })
   .then(function(user){
     _user = user;
@@ -400,6 +446,7 @@ app.put('/rsvp', function(request, response){
       console.log('no data found')
     }
   })
+})
 })
 
 //to fetch historic events, could do "where event active status = false"
@@ -853,9 +900,12 @@ app.post('/admin/add/event', function(request, response){
 //so now it will destroy all the guest lists and then it will destroy the user
 app.delete('/admin/delete/user', function(request, response){
   let userParams = request.body.id
-  console.log("userParams:" + userParams)
-  GuestList.destroy({where: {user_id:userParams}}).then(function(){
-    User.destroy({where: {id: userParams}}).then(function(user){
+  GuestList.destroy(
+    {where: {user_id:userParams}}
+    ).then(function(){
+    User.destroy(
+      {where: {id: userParams}}
+    ).then(function(user){
       response.status(200)
       //this user:user comes from the then function
       response.json({message: 'success', user: user})
@@ -869,13 +919,30 @@ app.delete('/admin/delete/user', function(request, response){
 //swagger lets you see all the endpoints of an API in URL form
 app.delete('/admin/delete/place', function(request, response){
   let placeParams = request.body.id
-  Place.destroy({where: {id: placeParams}}).then(function(place){
+    Place.destroy(
+      {where: {id: placeParams}}
+    ).then(function(){
+    Bevent.destroy(
+      {where: {$or: [
+        {place_1_id: placeParams},
+        {place_2_id: placeParams}]}}
+    ).then(function(event){
+    GuestList.destroy(
+      {where: {event_id: event.id}}
+    )
+    //this is where it gets lost; event.id is null
+    .then(function(){
     repsonse.status(200)
-    response.json({message: 'success', place: place})
+    response.json({message: 'success'})
   }).catch(function(error){
     response.status(400)
     response.json({message: 'error', errors: error.errors})
-  })})
+          // })
+        // })
+      })
+    })
+  })
+})
 app.delete('/admin/delete/event', function(request, response){
   let eventParams = request.body.id
   Bevent.destroy({where: {id: eventParams}}).then(function(event){

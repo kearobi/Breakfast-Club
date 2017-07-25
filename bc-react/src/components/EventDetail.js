@@ -65,7 +65,8 @@ class EventDetail extends Component {
             </div>
             <div className='flex-item-header'>
               <div className='detail'>RSVP:</div>
-              <RSVPButton user={this.props.user}/>
+              <RSVPButton user={this.props.user}
+                          event={this.props.event.event}/>
             </div>
             <div className='flex-item-header'>
               <div className='detail'>Who's In:</div>

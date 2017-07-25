@@ -56,6 +56,7 @@ export function adminLoadEvents(){
   })}
 
 export function adminDeletePlace(attributes){
+  console.log('attributes', attributes)
   const params = {
     method: 'DELETE',
     headers: {'Content-Type': 'application/json'},
@@ -119,6 +120,7 @@ export function adminDeleteEvent(attributes){
 }
 
   export function adminAddUser(attributes){
+    console.log('attributes', attributes)
     const params = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -154,6 +156,7 @@ export function adminDeleteEvent(attributes){
     })}
 
 export function adminAddEvent(attributes){
+  console.log('attributes', attributes)
   const params = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
