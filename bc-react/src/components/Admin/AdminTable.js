@@ -234,7 +234,8 @@ class AdminTable extends Component {
             disabled={this.state.readOnly} /></div>
         <div className='table-row-item name'>
           <input
-            name='place[name]'
+    //this is broken because of name, so it can't be edited on the admin page; not sure how to fix it yet
+            name='place.name'
             value={this.state.event.place.name}
             onChange={this.handleEdit.bind(this)}
             disabled={this.state.readOnly}

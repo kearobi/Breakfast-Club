@@ -11,9 +11,9 @@ class EventDetail extends Component {
     let winner;
     if(this.props.event.event.winner){
       if (this.props.event.event.winner === 1) {
-        winner = this.props.event.places[0]
+        winner = this.props.event.places[0].name
       }else{
-        winner = this.props.event.places[1]
+        winner = this.props.event.places[1].name
       }
     }
     let guestlist;
@@ -62,7 +62,7 @@ class EventDetail extends Component {
             <div className='flex-item-header'>
               <div className='detail'>Where:</div>
               <div className='flex-item'>
-                {winner.name || `Still voting...`}
+                {winner || `Still voting...`}
               </div>
             </div>
             <div className='flex-item-header'>
