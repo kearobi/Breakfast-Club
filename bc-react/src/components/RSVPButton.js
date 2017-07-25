@@ -22,8 +22,9 @@ class RSVPButton extends Component {
     this.setState({
       user: user
     })
+    console.log('user being sent in the request: ', user)
     // userRSVP(user)
-    rsvp(user, event)
+    rsvp(this.state.user, this.state.event)
   }
 }
   render() {

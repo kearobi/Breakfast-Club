@@ -351,28 +351,35 @@ app.put('/rsvp', function(request, response){
   let event_id = request.body.event_id;
   let rsvp = request.body.rsvp;
   let user_id
+  let spot
+  //this says: if the user has just set their rsvp status to true, then set user_id to the user's ID
+  //if they have just unrsvp'd, set user_id to null
   if(rsvp){
     user_id = request.body.user_id
+    spot = null
   }else{
     user_id = null
+    spot = request.body.user_id
   }
   let params = {
     event_id: event_id,
     user_id: user_id
   }
+  console.log('this is the request', request.body)
+  console.log('this is the spot: ', spot)
 //ask eric for help
   // update GuestList depending on rsvp
-  console.log('user_id', user_id)
-  console.log('event_id', event_id)
+  //if the user has rsvp'd, go into the guestlist, find an empty spot, and update it with the user's ID
+  //if has unrsvp'd, go into the guestlist, find the spot with their ID, and update it with null
   return GuestList.findOne({
-    where: {user_id: user_id, event_id: event_id}}
+    where: {user_id: spot, event_id: event_id}}
   ).then(function(guestlist){
     console.log('guestlist', guestlist)
     return GuestList.update(params, {
     where: {id: guestlist.id}}
   )
   .then(function(){
-    // set User rsvp column to true or false
+    // update the user's rsvp status in the rsvp table to true or false
     return User.update({
         rsvp: rsvp
       }, {where: {

@@ -153,20 +153,12 @@ export function createNewEvent(userID){
 
 
 export function rsvp(user, event){
-  let id
-
-  if(user.rsvp){
-    id = user.id
-  } else {
-    id = null
-  }
-
   const params = {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       event_id: event.id,
-      user_id: id,
+      user_id: user.id,
       rsvp: user.rsvp
     })
   }
