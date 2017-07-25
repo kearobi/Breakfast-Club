@@ -14,6 +14,8 @@ class RSVPButton extends Component {
   handleClick(e){
     if(e.target.value === "true" && this.state.user.rsvp){
       console.log('already rsvpd yes')
+    }else if(e.target.value === "false" && !this.state.user.rsvp){
+      console.log('already rsvpd no')
     }else{
     let target = e.target
     let user = this.state.user
