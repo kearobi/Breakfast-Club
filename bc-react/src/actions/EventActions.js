@@ -165,7 +165,7 @@ export function rsvp(user, event){
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      event_id: event.event.id,
+      event_id: event.id,
       user_id: id,
       rsvp: user.rsvp
     })
@@ -173,13 +173,15 @@ export function rsvp(user, event){
   fetch(`${apiUrl}rsvp`, params).then(function(response){
     if(response.ok){
       response.json().then(function(body){
+        console.log('rsvp response', body)
         dispatcher.dispatch({
           type: 'RSVP',
           data: {
             event: body.event,
             users: body.users,
             places: body.places,
-            guestLists: body.guestLists
+            guestLists: body.guestLists,
+            user: user
           }
         })
       })

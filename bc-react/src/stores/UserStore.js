@@ -130,7 +130,7 @@ class UserStore extends EventEmitter{
         break
       }
       case("RSVP"):{
-        this.updateUser(action.user)
+        this.updateUser(action.data.user)
         break
       }
       case("FETCH-GUESTLIST"):{

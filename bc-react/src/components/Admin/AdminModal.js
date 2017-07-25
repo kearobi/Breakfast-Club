@@ -190,10 +190,10 @@ class AdminModal extends Component {
       <div>
         <input
           placeholder='Restaurant'
-          type='text'
-          name='place'
-          id='place'
-          value={this.state.event.place}
+          type='number'
+          name='place_1_id'
+          id='place_1_id'
+          value={this.state.event.place_1_id}
           onChange={this.handleChange.bind(this)}>
         </input>
       </div>
@@ -201,9 +201,9 @@ class AdminModal extends Component {
       <input
         placeholder='Guest of Honor'
         type='text'
-        name='guest'
-        id='guest'
-        value={this.state.event.guest}
+        name='speaker'
+        id='speaker'
+        value={this.state.event.speaker}
         onChange={this.handleChange.bind(this)}>
       </input>
       </div></div>)}

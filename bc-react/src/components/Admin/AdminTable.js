@@ -234,7 +234,7 @@ class AdminTable extends Component {
                   value={this.state.event.speaker}
                   onChange={this.handleEdit.bind(this)}
                   disabled={this.state.readOnly}
-                  size='7'/>
+                  size='16'/>
         </div>
         <div className='table-row-item rsvp'>rsvp</div>
         <div className='table-row-item active'>

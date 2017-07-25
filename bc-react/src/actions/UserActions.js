@@ -162,7 +162,7 @@ export function userRSVP(user){
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({user: user})
   }
-  fetch(`${apiUrl}profile`, params).then(function(response){
+  fetch(`${apiUrl}userRSVP`, params).then(function(response){
       if(response.ok){
         if(user.rsvp){
         dispatcher.dispatch({

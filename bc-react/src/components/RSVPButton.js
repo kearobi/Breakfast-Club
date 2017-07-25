@@ -6,7 +6,8 @@ class RSVPButton extends Component {
   constructor(props){
     super(props)
     this.state = {
-      user: this.props.user
+      user: this.props.user,
+      event: this.props.event
     }
   }
 
@@ -21,7 +22,8 @@ class RSVPButton extends Component {
     this.setState({
       user: user
     })
-    userRSVP(user)
+    // userRSVP(user)
+    rsvp(user, event)
   }
 }
   render() {
