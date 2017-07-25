@@ -148,7 +148,7 @@ module.exports = {
       },
       {
         id: 4,
-        name: 'Luckys Lunch Counter',
+        name: "Lucky's Lunch Counter",
         address_street: '338 7th Ave',
         address_city: 'San Diego',
         address_state: 'CA',
