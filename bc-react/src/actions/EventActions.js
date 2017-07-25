@@ -165,7 +165,6 @@ export function rsvp(user, event){
   fetch(`${apiUrl}rsvp`, params).then(function(response){
     if(response.ok){
       response.json().then(function(body){
-        console.log('rsvp response', body)
         dispatcher.dispatch({
           type: 'RSVP',
           data: {
@@ -173,9 +172,20 @@ export function rsvp(user, event){
             users: body.users,
             places: body.places,
             guestLists: body.guestLists,
-            user: user
+            user: body.user
           }
         })
+        if(body.user.rsvp){
+          dispatcher.dispatch({
+            type: 'USER-RSVP',
+            guest: body.user
+          })
+        }else{
+          dispatcher.dispatch({
+            type: 'USER-UNRSVP',
+            id: body.user.id
+          })
+        }
       })
     }
   }).catch(function(error){
