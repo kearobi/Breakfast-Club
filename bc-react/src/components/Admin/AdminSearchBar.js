@@ -100,7 +100,7 @@ eventHeader(){
         (event) => {
           return (
             (event.date.indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-            (event.place.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+            (event.place.name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (event.active.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (event.speaker.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
             ||
