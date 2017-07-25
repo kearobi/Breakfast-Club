@@ -104,7 +104,7 @@ eventHeader(){
             (event.active.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (event.speaker.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
             ||
-            (event.winner.toString().indexOf(this.state.searchTerm) !== -1) 
+            (event.winner.toString().indexOf(this.state.searchTerm) !== -1)
             // ||
             // (event.rsvp.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
           )

@@ -213,6 +213,16 @@ class AdminTable extends Component {
           <div className="icon table-row-item">{this.editIcon()}</div>
         </div>
     )}else if(this.props.eventTable){
+      //
+      // let winner;
+      // console.log(this.state.event)
+      // if(this.state.event.event.winner){
+      //   if (this.props.event.event.winner === 1) {
+      //     winner = this.state.event.places[0]
+      //   }else{
+      //     winner = this.state.event.places[1]
+      //   }
+      // }
 
       return(
       <div className={this.state.className}>
@@ -224,8 +234,8 @@ class AdminTable extends Component {
             disabled={this.state.readOnly} /></div>
         <div className='table-row-item name'>
           <input
-            name='winner'
-            value={this.state.event.winner}
+            name='place[name]'
+            value={this.state.event.place.name}
             onChange={this.handleEdit.bind(this)}
             disabled={this.state.readOnly}
           /></div>

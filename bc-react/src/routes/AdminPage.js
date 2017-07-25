@@ -7,10 +7,12 @@ import AdminEvents from '../components/Admin/AdminEvents';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
 import adminStore from '../stores/AdminStore';
+import eventStore from '../stores/EventStore';
 import Header from '../components/Header';
 import {adminEditUser, adminLoadUsers} from '../actions/AdminActions';
 import {adminEditPlace, adminLoadPlaces} from '../actions/AdminActions';
 import {adminEditEvent, adminLoadEvents} from '../actions/AdminActions';
+import {fetchEvents} from '../actions/EventActions'
 
 class AdminPage extends Component {
   constructor(props){
@@ -25,7 +27,7 @@ class AdminPage extends Component {
     }
     adminLoadUsers()
     adminLoadPlaces()
-    adminLoadEvents()
+    fetchEvents()
     this.adminUpdate = this.adminUpdate.bind(this)
   }
   //the admin store deletes a user, it yells 'ive changed!' to everyone who's listening, and when it does that it calls updateUsers. (we told componentwillmount to issue this whenever there's a change)
@@ -34,16 +36,18 @@ class AdminPage extends Component {
     this.setState({
       users: adminStore.adminReturnUsers(),
       places: adminStore.adminReturnPlaces(),
-      events: adminStore.adminReturnEvents()
+      events: eventStore.getAllEvents()
     })
   }
 
   componentWillMount(){
     adminStore.on('change', this.adminUpdate)
+    eventStore.on('change', this.adminUpdate)
   }
 
   componentWillUnmount(){
     adminStore.removeListener('change', this.adminUpdate)
+    eventStore.removeListener('change', this.adminUpdate)
   }
 
   handleUserHover(){
