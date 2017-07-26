@@ -34,7 +34,24 @@ function buildPlace(responseData) {
   place.categories      = responseData.categories[0].title;
   
   // Before save, check to see if the place already exists
-  // place.save()
+  // ** SUDO CODE **
+  // if (!Place.find(yelpId: palce.yelpId) {
+  //   place.save()
+  // }
+
+  // - OR - 
+  // Add a `uniqueness` constraint to the `yelpId` column 
+  // of the `Places` table and handle the returned error if one exists
+
+  // -- OR --
+  // Update the existing record with the new information
+  // ** SUDO CODE **
+  // let existingPlace = Place.find(yelpId: palce.yelpId)
+  // if (existingPlace) {
+  //   Place.update(yelpId: palce.yelpId) with place
+  // } else {
+  //   place.save()
+  // }  
 
   return place;
 }
