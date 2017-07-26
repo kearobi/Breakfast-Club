@@ -3,14 +3,12 @@ import UserSignUp from './routes/UserSignUp';
 import Home from './routes/Home';
 import UserLogin from './routes/UserLogin';
 import UserProfile from './routes/UserProfile';
-import moment from 'moment';
 import {setEventsFromLocal} from './actions/EventActions';
 import eventStore from './stores/EventStore';
 import TestEvent from './routes/TestEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import MessageBoardToggle from './components/MessageBoardToggle';
-import AdminTest from './components/Admin_Dry/AdminPage';
 import {setUserFromLocal, fetchGuestlist} from './actions/UserActions'
 import Places from './routes/Places'
 import CurrentEvent from './routes/CurrentEvent'
@@ -20,8 +18,7 @@ import PageNotFound from './routes/PageNotFound'
 import './style/App.css';
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 import userStore from './stores/UserStore'
-import {fetchEvents, checkIfVotingOver, fetchCurrentEvent, checkEventOver} from './actions/EventActions';
-import {fetchMessages} from './actions/MessageActions';
+import {checkIfVotingOver, fetchCurrentEvent, checkEventOver} from './actions/EventActions';
 
 //only the most parent component should be responsible for fetching data, aka here?
 
@@ -115,11 +112,11 @@ class App extends Component {
             {/* //TODO: add admin check to profile page */}
             <Route  exact path='/admin'
                     render={()=>(
-                    isAdmin && loggedIn ? (<AdminPage />) : (<Redirect to='/404' />)
+                    isAdmin && loggedIn ? (<AdminPage
+                    event={this.state.event} />) : (<Redirect to='/404' />)
                     )} />
             {/* <Route exact path='/admin' component={AdminPage} /> */}
             <Route exact path='/test-event' component={TestEvent} />
-            <Route exact path='/adminTest' component={AdminTest} />
             <Route exact path='/404' component={PageNotFound} />
             <Redirect to='/404'/>
           </Switch>

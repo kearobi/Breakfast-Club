@@ -14,11 +14,6 @@ class PastEventDetail extends Component {
   }
 
   render() {
-    console.log('past event', this.props.event.event)
-    console.log('places', this.props.event.places)
-    console.log('winner', this.props.event.event.winner)
-    console.log('whole event', this.props.event)
-    console.log('rsvp people', this.props.event.users)
 
     let event = this.props.event.event;
     let place = this.props.event.event.winner === 1 ? this.props.event.places[0] : this.props.event.places[1];
@@ -33,13 +28,15 @@ class PastEventDetail extends Component {
     return (
       <div className='polaroid-details'>
         <div className='polaroid-date'>
-          <Moment format='ddd, MMMM DD'>{event.date}</Moment>
+          <Moment format='dddd, MMMM DD'>{event.date}</Moment>
         </div>
-        <a    href={place.url}
-          title='open in yelp'
-          target='_blank'>
-          {place.name}
-        </a>
+        <div className='past-place-name'>
+          <a  href={place.url}
+              title='open in yelp'
+              target='_blank'>
+              {place.name}
+          </a>
+        </div>
         <div>
         <img  className='place-img'
               src={place.image_url}
@@ -49,11 +46,12 @@ class PastEventDetail extends Component {
         <img  className='yelp-rating'
               src={`../Images/small_${place.yelp_rating}.png`}
               alt='rating' />
-        </span>
-        <div className='guests'>
-          Guest Speaker: {event.speaker}
+        </span>&nbsp;|&nbsp;
+        <span>{place.address_street}</span>
+        <div className='past-guests'>
+          <span className='bold'>Guest Speaker:</span> {event.speaker}
           <br />
-          RSVP: {guestList}
+          <span className='bold'>Guestlist:</span> {guestList}
       </div>
       </div>
 

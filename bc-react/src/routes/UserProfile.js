@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import SideBar from '../components/SideBar';
 import SideBarMini from '../components/SideBarMini';
-import userStore from '../stores/UserStore';
 import {editUser, logout} from '../actions/UserActions';
 // import MyUploader from '../components/PhotoUpload'
 import Header from '../components/Header';

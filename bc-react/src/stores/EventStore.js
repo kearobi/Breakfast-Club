@@ -18,6 +18,10 @@ class EventStore extends EventEmitter{
     return this.currentEvent;
   }
 
+  getAllEvents(){
+    return this.events;
+  }
+
   getPastEvent(){
     return this.pastEvent;
   }
@@ -47,9 +51,6 @@ class EventStore extends EventEmitter{
     this.emit('change')
   }
 
-  getAllEvents(){
-    return this.events;
-  }
 
   handleActions(action){
     switch(action.type){

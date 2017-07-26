@@ -7,7 +7,7 @@ import BigCalendar from 'react-big-calendar';
 import eventStore from '../stores/EventStore';
 import moment from 'moment';
 import Header from '../components/Header';
-import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+import {BrowserRouter as Redirect} from 'react-router-dom';
 import PastEvent from './PastEvent';
 import Modal from 'react-modal';
 
@@ -32,8 +32,8 @@ const customStyle = {
     bottom            : 'auto',
     marginRight       : '-50%',
     transform         : 'translate(-50%, -50%)',
-    width             : '300px',
-    height            : '500px'
+    width             : '310px',
+    height            : '475px'
   }
 };
 

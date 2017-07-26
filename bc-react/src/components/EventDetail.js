@@ -8,6 +8,14 @@ import EventChoice from './EventChoice'
 class EventDetail extends Component {
 
   render() {
+    let winner;
+    if(this.props.event.event.winner){
+      if (this.props.event.event.winner === 1) {
+        winner = this.props.event.places[0].name
+      }else{
+        winner = this.props.event.places[1].name
+      }
+    }
     let guestlist;
     //if no users have RSVPd yet, return "No RSVPs yet"
     if (this.props.guestlist.length === 0){
@@ -54,7 +62,7 @@ class EventDetail extends Component {
             <div className='flex-item-header'>
               <div className='detail'>Where:</div>
               <div className='flex-item'>
-                {this.props.event.event.winner || `Still voting...`}
+                {winner || `Still voting...`}
               </div>
             </div>
             <div className='flex-item-header'>

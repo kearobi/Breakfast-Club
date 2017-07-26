@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import {adminDeleteUser, adminDeletePlace, adminDeleteEvent,
 adminEditUser, adminEditPlace, adminEditEvent} from '../../actions/AdminActions';
+import moment from 'moment'
 
 //need to get starting state and update the state accordingly
 
@@ -64,8 +65,7 @@ class AdminTable extends Component {
     let event = this.state.event
       if(this.props.userTable){
         user[target.name] = target.value
-        this.setState({user: user})
-        console.log('after edit', this.state.user)}
+        this.setState({user: user})    }
       else if(this.props.placeTable){
         place[target.name] = target.value
         this.setState({place: place})  }
@@ -76,8 +76,7 @@ class AdminTable extends Component {
 
   handleSave(){
     if(this.props.userTable){
-      adminEditUser(this.state.user)
-      console.log('after save', this.state.user)}
+      adminEditUser(this.state.user)}
     else if(this.props.placeTable){
       adminEditPlace(this.state.place)}
     else if(this.props.eventTable){
@@ -104,6 +103,11 @@ class AdminTable extends Component {
           onMouseLeave={this.handleMouseLeave.bind(this)}
           onClick={this.handleClick.bind(this)} />    )}
 
+  dateParser(date){
+    let newDate = moment(date).format('MMMM D, YYYY - h:mm a')
+    return newDate
+  }
+
   render(){
     if(this.props.userTable){
       return (
@@ -127,14 +131,14 @@ class AdminTable extends Component {
                       value={this.state.user.email}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
-                      size='23'/>
+                      size='30'/>
             </div>
             <div className='table-row-item neighborhood'>
               <input  name='neighborhood'
                       value={this.state.user.neighborhood}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
-                      size='15' />
+                      size='17' />
             </div>
             <div className='table-row-item admin'>
               <input  name='admin'
@@ -160,7 +164,7 @@ class AdminTable extends Component {
             <input
               name='name'
               value={this.state.place.name}
-              size='20'
+              size='30'
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly}/>
           </div>
@@ -169,13 +173,6 @@ class AdminTable extends Component {
               name='yelp_rating'
               value={this.state.place.yelp_rating}
               size='3'
-              onChange={this.handleEdit.bind(this)}
-              disabled={this.state.readOnly} />
-          </div>
-          <div className='table-row-item categories'>
-            <input
-              name='categories'
-              value={this.state.place.categories}
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly} />
           </div>
@@ -213,31 +210,32 @@ class AdminTable extends Component {
           <div className="icon table-row-item">{this.editIcon()}</div>
         </div>
     )}else if(this.props.eventTable){
-
       return(
       <div className={this.state.className}>
         <div className='table-row-item date'>
           <input
+            size='40'
             name='date'
-            value={this.state.event.date}
+            value={this.dateParser(this.state.event.date)}
             onChange={this.handleEdit.bind(this)}
             disabled={this.state.readOnly} /></div>
         <div className='table-row-item name'>
           <input
-            name='winner'
-            value={this.state.event.winner}
+    //this is broken because of name, so it can't be edited on the admin page; not sure how to fix it yet
+            name='place.name'
+            value={this.state.event.place.name}
             onChange={this.handleEdit.bind(this)}
             disabled={this.state.readOnly}
+            size='30'
           /></div>
         <div className='table-row-item speaker'>
           <input  name='speaker'
                   value={this.state.event.speaker}
                   onChange={this.handleEdit.bind(this)}
                   disabled={this.state.readOnly}
-                  size='16'/>
+                  size='20'/>
         </div>
-        <div className='table-row-item rsvp'>rsvp</div>
-        <div className='table-row-item active'>
+        <div className='table-row-item upcoming'>
           <input  name='active'
                   value={this.state.event.active}
                   onChange={this.handleEdit.bind(this)}

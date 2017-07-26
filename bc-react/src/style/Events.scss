@@ -137,8 +137,7 @@
 
 .place-img {
   width: 450px;
-  max-height: 342px;
-  object-fit: fill;
+  height: 342px;
 }
 
 .place-name {
@@ -149,7 +148,21 @@
   text-decoration: none;
   font-weight: bold;
     a {color: black; text-decoration: none;}
-    a:hover{color: #d32323; cursor: pointer; text-decoration: underline;}
+    a:hover{color: #f15b4e; cursor: pointer; text-decoration: underline;}
+}
+
+.past-place-name{
+  margin-bottom: 5px;
+  a {color: #f15b4e; font-weight: bold;}
+  a:hover{cursor: pointer; color: #d32323;}
+}
+
+.past-guests{
+  margin-top: 10px;
+  text-align: left;
+  .bold {
+    font-weight: bold;
+  }
 }
 
 .RSVP {
