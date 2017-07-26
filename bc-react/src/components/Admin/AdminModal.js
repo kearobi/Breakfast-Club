@@ -39,7 +39,7 @@ class AdminModal extends Component {
     else if (this.props.placeForm){adminAddPlace(this.state)}
     else if (this.props.eventForm){adminAddEvent(this.state)}
     else {<div></div>}
-    this.props.closeModal({className: "closeModal"});
+    this.props.closeModal({modal: false});
 }
 
   userFields(){
@@ -189,7 +189,7 @@ class AdminModal extends Component {
       </div>
       <div>
         <input
-          placeholder='Restaurant'
+          placeholder='Location'
           type='number'
           name='place_1_id'
           id='place_1_id'
@@ -199,7 +199,7 @@ class AdminModal extends Component {
       </div>
       <div>
       <input
-        placeholder='Guest of Honor'
+        placeholder='Guest Speaker'
         type='text'
         name='speaker'
         id='speaker'
@@ -224,7 +224,7 @@ class AdminModal extends Component {
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
         {fields}
           <div>
-            <input className='submit-button' type='submit' value='submission'></input>
+            <input className='submitbutton' type='submit' value='submission'></input>
           </div>
         </form>
       </div>
