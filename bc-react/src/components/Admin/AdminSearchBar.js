@@ -47,7 +47,6 @@ eventHeader(){
         <div className="table-row-item date">Date</div>
         <div className="table-row-item name">Place</div>
         <div className="table-row-item speaker">Guest Speaker</div>
-        <div className="table-row-item rsvp">RSVP</div>
         <div className="table-row-item upcoming">Upcoming</div>
         <div className="table-row-item hidden"></div>
         <div className="table-row-item hidden"></div>

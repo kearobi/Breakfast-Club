@@ -230,7 +230,6 @@ class AdminTable extends Component {
                   disabled={this.state.readOnly}
                   size='16'/>
         </div>
-        <div className='table-row-item rsvp'>rsvp</div>
         <div className='table-row-item upcoming'>
           <input  name='active'
                   value={this.state.event.active}
