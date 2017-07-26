@@ -5,12 +5,6 @@ import SearchBar from './AdminSearchBar';
 import AdminModal from './AdminModal';
 import AdminTable from './AdminTable';
 
-//once you make the component generic, you move the parts that are different out to the parent and pass them in as props
-//const api
-//only the most parent component should be responsible for fetching data
-
-//now in our Admin page we have users, and we want to put that into our Search Bar so it can use those props
-
 class AdminPlaces extends Component {
   constructor(props){
     super(props)
@@ -47,7 +41,6 @@ class AdminPlaces extends Component {
           <button className="add_button" type="button"
             onClick={this.openModal.bind(this)}>
             + place </button>
-          {/* now SearchBar has access to places */}
           <SearchBar places={this.props.places} placeSearchBar={true}/>
         </div>
           <br></br><br></br>

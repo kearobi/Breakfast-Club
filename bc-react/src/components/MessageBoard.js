@@ -53,8 +53,6 @@ class MessageBoard extends Component {
     })
   }
 
-
-
   render() {
     let mapped = this.state.messages.map(function(message, i){
       let timeStamp = (message.createdAt)
