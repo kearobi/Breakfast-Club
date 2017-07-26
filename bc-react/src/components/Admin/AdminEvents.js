@@ -3,13 +3,9 @@
 import React, {Component} from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-import eventStore from '../../stores/EventStore'
 import SearchBar from './AdminSearchBar';
 import AdminModal from './AdminModal';
 import AdminTable from './AdminTable';
-import {Redirect} from 'react-router-dom';
-import PastEvent from '../../routes/PastEvent';
-import Modal from 'react-modal';
 import Calendar from '../Calendar'
 
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
@@ -19,32 +15,7 @@ class AdminEvents extends Component {
     super(props)
     this.state = {events: [],
                   className: "closeModal"}
-    // this.updateEvents = this.updateEvents.bind(this)
-    // this.openCalModal = this.openCalModal.bind(this)
-    // this.closeCalModal = this.closeCalModal.bind(this)
     }
-    //
-    // componentWillMount(){
-    //   eventStore.on('change', this.updateEvents)
-    // }
-    //
-    // componentWillUnmount(){
-    //   eventStore.removeListener('change', this.updateEvents)
-    // }
-
-  // openCalModal(event, e){
-  //   this.setState({
-  //     selectedEventId: event.id,
-  //     modal: true
-  //   })
-  // }
-  //
-  // closeCalModal(){
-  //   this.setState({
-  //     selectedEventId: null,
-  //     modal: false
-  //   })
-  // }
 
   openModal(){
     this.setState({className: "openModal"})}

@@ -83,9 +83,6 @@ class EventDetail extends Component {
                 {guestlist}
               </div>
             </div>
-            {/*this says: if there is a winner (aka the votes have been counted) show the winner, otherwise show "still voting" */}
-            {/*this says: if there is a speaker show the speaker, otherwise show "Nobody lined up yet" */}
-            {/*RSVP button. A user can rsvp to the current event at any time */}
           </div>
         }
       </div>
