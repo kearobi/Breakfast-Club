@@ -14,11 +14,6 @@ class PastEventDetail extends Component {
   }
 
   render() {
-    console.log('past event', this.props.event.event)
-    console.log('places', this.props.event.places)
-    console.log('winner', this.props.event.event.winner)
-    console.log('whole event', this.props.event)
-    console.log('rsvp people', this.props.event.users)
 
     let event = this.props.event.event;
     let place = this.props.event.event.winner === 1 ? this.props.event.places[0] : this.props.event.places[1];
@@ -51,7 +46,8 @@ class PastEventDetail extends Component {
         <img  className='yelp-rating'
               src={`../Images/small_${place.yelp_rating}.png`}
               alt='rating' />
-        </span>
+        </span>&nbsp;|&nbsp;
+        <span>{place.address_street}</span>
         <div className='past-guests'>
           <span className='bold'>Guest Speaker:</span> {event.speaker}
           <br />
