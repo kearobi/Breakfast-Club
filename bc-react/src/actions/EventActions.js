@@ -118,10 +118,10 @@ export function checkIfVotingOver(event){
 }
 
 export function checkEventOver(event, userID){
-  //this says: if today's date/time is 17 hours (61200000 ms) greater than the date/time of the event date, create a new event
+  //this says: if today's date/time is 2 hours (7200000 ms) greater than the date/time of the event date, create a new event
   let eventDate = new Date(event.event.date).getTime()
   let todaysDate = Date.now()
-  if ((todaysDate + 61200000) >= eventDate) {
+  if ((todaysDate + 7200000) >= eventDate) {
     createNewEvent(userID)
   }
 }
