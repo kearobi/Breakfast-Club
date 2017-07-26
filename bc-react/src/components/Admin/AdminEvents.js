@@ -3,17 +3,14 @@
 import React, {Component} from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-import {fetchEvents} from '../../actions/EventActions'
 import eventStore from '../../stores/EventStore'
 import SearchBar from './AdminSearchBar';
 import AdminModal from './AdminModal';
 import AdminTable from './AdminTable';
 import {Redirect} from 'react-router-dom';
-import PastEvent from '../../routes/PastEvent';
 import Modal from 'react-modal';
+import Calendar from '../Calendar'
 
-
-BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
 const customStyle = {
   overlay : {
@@ -32,8 +29,13 @@ const customStyle = {
     bottom            : 'auto',
     marginRight       : '-50%',
     transform         : 'translate(-50%, -50%)',
-    width             : '310px',
-    height            : '475px'
+    width             : '170px',
+    height            : '120px',
+    fontFamily        : 'Abel',
+    display           : 'flex',
+    flexDirection     : 'column',
+    alignSelf         : 'center',
+    justifyContent    : 'center'
   }
 };
 
@@ -41,80 +43,23 @@ class AdminEvents extends Component {
   constructor(props){
     super(props)
     this.state = {events: [],
-                  className: "closeModal",
-                  selectedEventId: null,
                   modal: false}
-    this.updateEvents = this.updateEvents.bind(this)
-    this.openCalModal = this.openCalModal.bind(this)
-    this.closeCalModal = this.closeCalModal.bind(this)
-      fetchEvents();
-    }
 
-    componentWillMount(){
-      eventStore.on('change', this.updateEvents)
-    }
-
-    componentWillUnmount(){
-      eventStore.removeListener('change', this.updateEvents)
-    }
-
-  updateEvents(){
-    let bevents = eventStore.getAllEvents()
-    console.log('all events: ', bevents)
-    let newEvents = bevents.map(function(bevent){
-      let start = moment(bevent.date).toDate()
-      let end = moment(bevent.date).add(1, 'hours').toDate()
-      //where is place coming from?
-      let placeName = bevent.place.name
-      console.log('bevent', bevent)
-      let id = bevent.id
-      return {
-        'title': placeName,
-        'start': start,
-        'end': end,
-        'id': id,
-      }
-    })
-    this.setState({
-      events: newEvents
-    })
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+    this.closeModalOnSubmit = this.closeModalOnSubmit.bind(this)
   }
 
-  openCalModal(event, e){
-    this.setState({
-      selectedEventId: event.id,
-      modal: true
-    })
-  }
+openModal(){
+  this.setState({modal: true})
+}
 
-  closeCalModal(){
-    this.setState({
-      selectedEventId: null,
-      modal: false
-    })
-  }
+closeModal(){
+  this.setState({modal: false})
+}
 
-  openModal(){
-    this.setState({className: "openModal"})}
-
-  closeModal(){
-    this.setState({className: "closeModal"})}
-
-  closeModalOnSubmit(modal){
-    this.setState(modal)}
-
-  checkCalendar(){
-    if(this.state.events.length > 0){
-      return(
-      <BigCalendar
-        events={this.state.events}
-        onSelectEvent={this.openCalModal}
-      />
-    )
-  }else{
-    return(<div>Loading...</div>)
-    }
-  }
+closeModalOnSubmit(modal){
+  this.setState(modal)}
 
   eventParams(){
     return(
@@ -132,36 +77,28 @@ class AdminEvents extends Component {
         <p>Events</p>
           <div className="search_bar_wrapper">
             <button className="add_button" type="button"
-            onClick={this.openModal.bind(this)}>
+            onClick={this.openModal}>
             + event </button>
             <SearchBar events={this.props.events} eventSearchBar={true}/>
           </div>
           <br></br><br></br>
           <AdminTable eventList={true} />
-          <div className={this.state.className}>
-            <span id='x' onClick={this.closeCalModal.bind(this)}>&times;</span>
-              <AdminModal eventForm={true} startingState={this.eventParams()}  closeModal={this.closeModalOnSubmit.bind(this)}/>
-          </div>
-          <div className='polaroid'>
-            {(this.state.selectedEventId && this.state.selectedEventId === this.props.event.event.id) &&
-              <Redirect to='/current-event'/>
-            }
-            {(this.state.selectedEventId && this.state.selectedEventId !== this.props.event.event.id) &&
+          <div className='admin-modal'>
             <Modal
               isOpen={this.state.modal}
-              onRequestClose={this.closeCalModal}
+              onRequestClose={this.closeModal}
               style={customStyle}
               contentLabel="Modal"
             >
-            <PastEvent eventId={this.state.selectedEventId}/>
+              <AdminModal
+                eventForm={true}
+                startingState={this.eventParams()}
+                closeModal={this.closeModalOnSubmit}
+              />
           </Modal>
-            }
-            {/* <img className='frame' src='../Images/polaroid.png' /> */}
           </div>
-        <div className="calendar-div admin-calendar">
-        {this.checkCalendar()}
+          <Calendar event={this.props.event}/>
       </div>
-    </div>
       );
     }
   }

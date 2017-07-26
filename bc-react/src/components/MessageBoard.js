@@ -4,7 +4,7 @@ import userStore from '../stores/UserStore';
 import {addMessage} from '../actions/MessageActions';
 import {fetchMessages} from '../actions/MessageActions';
 import Moment from 'react-moment'
-import {helpers} from '../helpers/momentHelper.js'
+import {helpers} from '../helpers/moment.js'
 
 class MessageBoard extends Component {
   constructor(props){
@@ -59,7 +59,11 @@ class MessageBoard extends Component {
       return (
         <div className='individual-message' key={i}>
           <div className='sender'>{message.author}</div>
-          <div className='time-stamp'>{helpers.prettyDate(timeStamp)}</div>
+          <div className='time-stamp'>
+            <Moment fromNow>
+              {helpers.syncToServerTime(timeStamp)}
+            </Moment>
+          </div>
           <div className='message-content'>{message.content}</div>
         </div>
       )

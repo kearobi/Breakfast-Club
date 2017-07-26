@@ -109,7 +109,7 @@ module.exports = {
       {
         id: 7,
         firstName: "admin",
-        lastName: "admin",
+        lastName: "",
         email: "breakfastclub.sd@gmail.com",
         neighborhood: "----------",
         voted: "false",

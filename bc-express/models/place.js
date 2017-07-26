@@ -8,20 +8,23 @@ module.exports = function(sequelize, DataTypes) {
     // id: DataTypes.INTEGER,
     // yelp_id: DataTypes.INTEGER,
     // ----------------------------------------
-    name: DataTypes.STRING,
-    address_street: DataTypes.STRING,
-    address_city: DataTypes.STRING,
-    address_state: DataTypes.STRING,
-    address_zip: DataTypes.STRING,
-    phone: DataTypes.STRING,
-    yelp_rating: DataTypes.INTEGER,
-    image_url: DataTypes.STRING,
-    categories: DataTypes.STRING,
-    review_count: DataTypes.INTEGER,
-    price: DataTypes.STRING,
-    url: DataTypes.STRING,
+    name: {
+      type:           DataTypes.STRING,
+      unique: true
+    },
+    address_street:   DataTypes.STRING,
+    address_city:     DataTypes.STRING,
+    address_state:    DataTypes.STRING,
+    address_zip:      DataTypes.STRING,
+    phone:            DataTypes.STRING,
+    yelp_rating:      DataTypes.INTEGER,
+    image_url:        DataTypes.STRING,
+    categories:       DataTypes.STRING,
+    review_count:     DataTypes.INTEGER,
+    price:            DataTypes.STRING,
+    url:              DataTypes.STRING,
     active: {
-      type: DataTypes.BOOLEAN,
+      type:           DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
     }
