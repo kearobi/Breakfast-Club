@@ -10,7 +10,6 @@ import TestEvent from './routes/TestEvent';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import MessageBoardToggle from './components/MessageBoardToggle';
-import AdminTest from './components/Admin_Dry/AdminPage';
 import {setUserFromLocal, fetchGuestlist} from './actions/UserActions'
 import Places from './routes/Places'
 import CurrentEvent from './routes/CurrentEvent'
@@ -120,7 +119,6 @@ class App extends Component {
                     )} />
             {/* <Route exact path='/admin' component={AdminPage} /> */}
             <Route exact path='/test-event' component={TestEvent} />
-            <Route exact path='/adminTest' component={AdminTest} />
             <Route exact path='/404' component={PageNotFound} />
             <Redirect to='/404'/>
           </Switch>
