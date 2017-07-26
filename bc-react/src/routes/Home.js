@@ -32,8 +32,8 @@ const customStyle = {
     bottom            : 'auto',
     marginRight       : '-50%',
     transform         : 'translate(-50%, -50%)',
-    width             : '300px',
-    height            : '500px'
+    width             : '310px',
+    height            : '475px'
   }
 };
 

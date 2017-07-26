@@ -35,11 +35,13 @@ class PastEventDetail extends Component {
         <div className='polaroid-date'>
           <Moment format='dddd, MMMM DD'>{event.date}</Moment>
         </div>
-        <a    href={place.url}
-          title='open in yelp'
-          target='_blank'>
-          {place.name}
-        </a>
+        <div className='past-place-name'>
+          <a  href={place.url}
+              title='open in yelp'
+              target='_blank'>
+              {place.name}
+          </a>
+        </div>
         <div>
         <img  className='place-img'
               src={place.image_url}
@@ -50,10 +52,10 @@ class PastEventDetail extends Component {
               src={`../Images/small_${place.yelp_rating}.png`}
               alt='rating' />
         </span>
-        <div className='guests'>
-          Guest Speaker: {event.speaker}
+        <div className='past-guests'>
+          <span className='bold'>Guest Speaker:</span> {event.speaker}
           <br />
-          RSVP: {guestList}
+          <span className='bold'>Guestlist:</span> {guestList}
       </div>
       </div>
 
