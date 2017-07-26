@@ -1,9 +1,7 @@
 //AdminModal gets props from AdminUsers, AdminPlaces, AdminEvents
 //AdminModal does not pass props
 import React, { Component } from 'react';
-import {adminAddUser} from '../../actions/AdminActions';
-import {adminAddEvent} from '../../actions/AdminActions';
-import {adminAddPlace} from '../../actions/AdminActions';
+import {adminAddUser, adminAddPlace, adminAddEvent} from '../../actions/AdminActions';
 
 // goal: make this component generic. Make a single modal that covers both cases and gets anything that's the same from props. for exmaple, there would be prop.startingState and you would put your place in the starting state
 
