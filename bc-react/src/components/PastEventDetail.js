@@ -33,7 +33,7 @@ class PastEventDetail extends Component {
     return (
       <div className='polaroid-details'>
         <div className='polaroid-date'>
-          <Moment format='ddd, MMMM DD'>{event.date}</Moment>
+          <Moment format='dddd, MMMM DD'>{event.date}</Moment>
         </div>
         <a    href={place.url}
           title='open in yelp'
