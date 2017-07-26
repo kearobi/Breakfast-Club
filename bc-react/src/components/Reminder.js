@@ -20,8 +20,10 @@ render() {
     }
 
     let revealWinner = function(){
-      return(<Moment format='h:mm a'>{new Date(date).getTime() - 72000000}</Moment>)
+      return(<Moment format='h:mm a'>{new Date(date).getTime() - 39600000}</Moment>)
     }
+
+    //TODO! AFTER DEMO, CHANGE 39600000 (11 HOURS) BACK TO 72000000 (20 HOURS)
 
     let weekday = function(){
       return(<Moment format='dddd'>{date}</Moment>)

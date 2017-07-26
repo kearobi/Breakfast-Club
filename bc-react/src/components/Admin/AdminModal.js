@@ -39,12 +39,12 @@ class AdminModal extends Component {
     else if (this.props.placeForm){adminAddPlace(this.state)}
     else if (this.props.eventForm){adminAddEvent(this.state)}
     else {<div></div>}
-    this.props.closeModal({modal: false});
+    this.props.closeModal({className: "closeModal"});
 }
 
   userFields(){
       return(
-        <div>
+        <div className='add-fields'>
           <div>
             <input
               placeholder='first name'
@@ -111,7 +111,7 @@ class AdminModal extends Component {
 
   placeFields(){
     return(
-    <div>
+    <div className='add-fields'>
     <div>
       <input
         placeholder='Restaurant'
@@ -176,7 +176,7 @@ class AdminModal extends Component {
 
     eventFields(){
       return(
-      <div>
+      <div className='add-fields'>
       <div>
         <input
           placeholder='Date'
@@ -189,20 +189,22 @@ class AdminModal extends Component {
       </div>
       <div>
         <input
-          placeholder='Location'
-          type='number'
+          placeholder='Place ID #'
+          type='text'
           name='place_1_id'
           id='place_1_id'
+          size='22'
           value={this.state.event.place_1_id}
           onChange={this.handleChange.bind(this)}>
         </input>
       </div>
       <div>
       <input
-        placeholder='Guest Speaker'
+        placeholder='Guest of Honor'
         type='text'
         name='speaker'
         id='speaker'
+        size='22'
         value={this.state.event.speaker}
         onChange={this.handleChange.bind(this)}>
       </input>
@@ -224,7 +226,7 @@ class AdminModal extends Component {
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
         {fields}
           <div>
-            <input className='submitbutton' type='submit' value='submit'></input>
+            <input className='submit-button' type='submit' value='submission'></input>
           </div>
         </form>
       </div>

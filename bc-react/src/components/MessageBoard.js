@@ -44,7 +44,7 @@ class MessageBoard extends Component {
     e.preventDefault();
     addMessage({
       content: this.state.currentMessage,
-      author: `${userStore.getUser().firstName} ${userStore.getUser().lastName}.`
+      author: `${userStore.getUser().firstName} ${userStore.getUser().lastName}.slice(0, 1).`
     });
     this.setState({
       currentMessage: ''
