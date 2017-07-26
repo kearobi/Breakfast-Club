@@ -53,7 +53,7 @@ module.exports = {
     },
     {
       id: 7,
-      user_id: 1,
+      user_id: 2,
       event_id: 2,
       vote: '2',
       createdAt: '2017-06-02 07:52:29-07',
@@ -61,7 +61,7 @@ module.exports = {
     },
     {
       id: 8,
-      user_id: 2,
+      user_id: 3,
       event_id: 2,
       vote: '2',
       createdAt: '2017-06-02 07:52:29-07',
@@ -213,7 +213,7 @@ module.exports = {
       },
       {
         id: 7,
-        user_id: 1,
+        user_id: 2,
         event_id: 2,
         vote: '2',
         createdAt: '2017-06-02 07:52:29-07',
@@ -221,7 +221,7 @@ module.exports = {
       },
       {
         id: 8,
-        user_id: 2,
+        user_id: 3,
         event_id: 2,
         vote: '2',
         createdAt: '2017-06-02 07:52:29-07',
