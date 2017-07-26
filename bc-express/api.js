@@ -8,7 +8,7 @@ var Place = require('./models').Place
 
 const RapidAPI  = require('rapidapi-connect');
 const rapid     = new RapidAPI("default-application_5931dd81e4b0eaefb644d037", "a8ccee1a-27f1-496e-a16b-176dbfbeba8f");
-const location  = '92101';
+const location  = '92104';
 const radius    = '2000'; //Meters???
 
 // TODO
