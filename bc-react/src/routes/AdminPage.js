@@ -9,9 +9,7 @@ import SideBarMini from '../components/SideBarMini';
 import adminStore from '../stores/AdminStore';
 import eventStore from '../stores/EventStore';
 import Header from '../components/Header';
-import {adminEditUser, adminLoadUsers} from '../actions/AdminActions';
-import {adminEditPlace, adminLoadPlaces} from '../actions/AdminActions';
-import {adminEditEvent, adminLoadEvents} from '../actions/AdminActions';
+import {adminLoadUsers, adminLoadPlaces} from '../actions/AdminActions';
 import {fetchEvents} from '../actions/EventActions'
 
 class AdminPage extends Component {

@@ -4,7 +4,6 @@ import React, {Component} from 'react';
 import SearchBar from './AdminSearchBar';
 import AdminModal from './AdminModal';
 import AdminTable from './AdminTable';
-import adminStore from '../../stores/AdminStore';
 
 //only the most parent component should be responsible for fetching data. Does that mean I should be fetching the data in AdminPage?
 

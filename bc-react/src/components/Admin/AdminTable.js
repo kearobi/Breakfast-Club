@@ -74,10 +74,7 @@ class AdminTable extends Component {
         this.setState({event: event})  }
     }
 
-  handleSave(e){
-    let target = e.nativeEvent.target
-    let eventDate = this.state.event.date
-    let formatDate
+  handleSave(){
     if(this.props.userTable){
       adminEditUser(this.state.user)}
     else if(this.props.placeTable){

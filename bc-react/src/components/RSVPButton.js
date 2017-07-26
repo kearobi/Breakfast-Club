@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import {userRSVP} from '../actions/UserActions';
 import {rsvp} from '../actions/EventActions';
 
 class RSVPButton extends Component {
   constructor(props){
     super(props)
     this.state = {
-      user: this.props.user,
-      event: this.props.event
+      user: this.props.user
     }
   }
 
@@ -19,28 +17,22 @@ class RSVPButton extends Component {
     }else{
     let target = e.target
     let user = this.state.user
-    let event = this.state.event
     user[target.name] = JSON.parse(target.value)
     this.setState({
       user: user
     })
-    console.log('user being sent in the request: ', user)
-    // userRSVP(user)
-    rsvp(this.state.user, this.state.event)
+    rsvp(this.state.user, this.props.event)
   }
 }
   render() {
     let yes
     let no
-    let image;
     if(this.state.user.rsvp){
       yes='rsvp yes'
       no='rsvp no'
-      image= './Images/rsvp-yes.png'
     } else{
       no='rsvp yes'
       yes='rsvp no'
-      image= './Images/rsvp-no.png'
     }
 
     return (
@@ -49,7 +41,6 @@ class RSVPButton extends Component {
           <button className={yes} type="button" name="rsvp" value={true} onClick={this.handleClick.bind(this)}>Yes </button>
           <button className={no} type="button" name="rsvp" value={false} onClick={this.handleClick.bind(this)}>No </button>
         </form>
-        {/* <img src={image} alt='breakfast' /> */}
       </div>
     );
   }
