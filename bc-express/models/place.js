@@ -10,8 +10,8 @@ module.exports = function(sequelize, DataTypes) {
     // ----------------------------------------
     name: {
       type:           DataTypes.STRING,
-      unique:         true
-          },
+      unique: true
+    },
     address_street:   DataTypes.STRING,
     address_city:     DataTypes.STRING,
     address_state:    DataTypes.STRING,

@@ -30,7 +30,7 @@ const customStyle = {
     marginRight       : '-50%',
     transform         : 'translate(-50%, -50%)',
     width             : '170px',
-    height            : '200px',
+    height            : '120px',
     fontFamily        : 'Abel',
     display           : 'flex',
     flexDirection     : 'column',

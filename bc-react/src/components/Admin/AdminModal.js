@@ -224,7 +224,7 @@ class AdminModal extends Component {
         <form className='form' onSubmit={this.handleSubmit.bind(this)}>
         {fields}
           <div>
-            <input className='submitbutton' type='submit' value='submission'></input>
+            <input className='submitbutton' type='submit' value='submit'></input>
           </div>
         </form>
       </div>
