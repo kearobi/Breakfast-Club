@@ -42,6 +42,7 @@ input:focus, button:focus {
 }
 //fruit border at bottom of splash, login, signup pages
 .fruit-border {
+  user-select: none;
   position: fixed;
   bottom:0;
   right:0;
