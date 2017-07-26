@@ -8,7 +8,7 @@ import eventStore from '../../stores/EventStore'
 import SearchBar from './AdminSearchBar';
 import AdminModal from './AdminModal';
 import AdminTable from './AdminTable';
-import {BrowserRouter as Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import PastEvent from '../../routes/PastEvent';
 import Modal from 'react-modal';
 
