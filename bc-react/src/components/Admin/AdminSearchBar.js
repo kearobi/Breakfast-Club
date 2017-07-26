@@ -32,7 +32,6 @@ placeHeader(){
       <div className="table-row table-header">
         <div className="table-row-item name">Name</div>
         <div className="table-row-item yelp">Stars</div>
-        <div className="table-row-item categories">Category</div>
         <div className="table-row-item price">Price</div>
         <div className="table-row-item street">Steet Address</div>
         <div className="table-row-item phone">Phone</div>
@@ -49,7 +48,7 @@ eventHeader(){
         <div className="table-row-item name">Place</div>
         <div className="table-row-item speaker">Guest Speaker</div>
         <div className="table-row-item rsvp">RSVP</div>
-        <div className="table-row-item active">Upcoming</div>
+        <div className="table-row-item upcoming">Upcoming</div>
         <div className="table-row-item hidden"></div>
         <div className="table-row-item hidden"></div>
       </div>
@@ -84,7 +83,6 @@ eventHeader(){
           return (
             (place.name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (place.yelp_rating.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-            (place.categories.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (place.price.indexOf(this.state.searchTerm) !== -1) ||
             (place.address_street.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
             (place.phone.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
@@ -100,11 +98,13 @@ eventHeader(){
         (event) => {
           return (
             (event.date.indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-            (event.place.name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-            (event.active.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
-            (event.speaker.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
-            ||
-            (event.winner.toString().indexOf(this.state.searchTerm) !== -1)
+            (event.place.name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+            //not sure why these are buggy, but they are and don't have enough time before demo to fix. if you enter a search term longer than 1 character, it gives an error saying cannot read toString() of null
+            // ||
+            // (event.active.toString().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
+            // (event.speaker.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1)
+            // ||
+            // (event.winner.toString().indexOf(this.state.searchTerm) !== -1)
             // ||
             // (event.rsvp.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1) ||
           )

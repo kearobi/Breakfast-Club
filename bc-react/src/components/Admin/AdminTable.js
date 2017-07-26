@@ -127,14 +127,14 @@ class AdminTable extends Component {
                       value={this.state.user.email}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
-                      size='23'/>
+                      size='30'/>
             </div>
             <div className='table-row-item neighborhood'>
               <input  name='neighborhood'
                       value={this.state.user.neighborhood}
                       onChange={this.handleEdit.bind(this)}
                       disabled={this.state.readOnly}
-                      size='15' />
+                      size='17' />
             </div>
             <div className='table-row-item admin'>
               <input  name='admin'
@@ -160,7 +160,7 @@ class AdminTable extends Component {
             <input
               name='name'
               value={this.state.place.name}
-              size='20'
+              size='30'
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly}/>
           </div>
@@ -169,13 +169,6 @@ class AdminTable extends Component {
               name='yelp_rating'
               value={this.state.place.yelp_rating}
               size='3'
-              onChange={this.handleEdit.bind(this)}
-              disabled={this.state.readOnly} />
-          </div>
-          <div className='table-row-item categories'>
-            <input
-              name='categories'
-              value={this.state.place.categories}
               onChange={this.handleEdit.bind(this)}
               disabled={this.state.readOnly} />
           </div>
@@ -213,17 +206,6 @@ class AdminTable extends Component {
           <div className="icon table-row-item">{this.editIcon()}</div>
         </div>
     )}else if(this.props.eventTable){
-      //
-      // let winner;
-      // console.log(this.state.event)
-      // if(this.state.event.event.winner){
-      //   if (this.props.event.event.winner === 1) {
-      //     winner = this.state.event.places[0]
-      //   }else{
-      //     winner = this.state.event.places[1]
-      //   }
-      // }
-
       return(
       <div className={this.state.className}>
         <div className='table-row-item date'>
@@ -239,6 +221,7 @@ class AdminTable extends Component {
             value={this.state.event.place.name}
             onChange={this.handleEdit.bind(this)}
             disabled={this.state.readOnly}
+            size='30'
           /></div>
         <div className='table-row-item speaker'>
           <input  name='speaker'
@@ -248,7 +231,7 @@ class AdminTable extends Component {
                   size='16'/>
         </div>
         <div className='table-row-item rsvp'>rsvp</div>
-        <div className='table-row-item active'>
+        <div className='table-row-item upcoming'>
           <input  name='active'
                   value={this.state.event.active}
                   onChange={this.handleEdit.bind(this)}

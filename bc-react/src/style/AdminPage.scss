@@ -236,16 +236,15 @@ form {
   }
 
   .id           {width: 40px;}
-  .firstName    {width: 90px;}
-  .lastName     {width: 100px;}
-  .email        {width: 200px;}
-  .neighborhood {width: 130px;}
-  .active       {width: 70px;}
-  .admin        {width: 70px;}
+  .firstName    {width: 100px;}
+  .lastName     {width: 110px;}
+  .email        {width: 220px;}
+  .neighborhood {width: 140px;}
+  .active       {width: 60px;}
+  .admin        {width: 60px;}
 
-  .name         {width: 160px;}
+  .name         {width: 230px;}
   .yelp         {width: 40px;}
-  .categories   {width: 170px;}
   .price        {width: 40px;}
   .street       {width: 170px;}
   .phone        {width: 120px;}
@@ -253,4 +252,5 @@ form {
   .date         {width: 170px;}
   .speaker      {width: 120px;}
   .rsvp         {width: 140px;}
+  .upcoming     {width: 70px;}
 }

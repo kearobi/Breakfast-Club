@@ -75,7 +75,8 @@ class AdminPage extends Component {
     }else if (this.state.placeButton === "admin_button_clicked"){
       return (<AdminPlaces places={this.state.places} />)
     }else if (this.state.eventButton === "admin_button_clicked"){
-      return (<AdminEvents events={this.state.events}/>)}
+      return (<AdminEvents
+        event={this.props.event} events={this.state.events}/>)}
     else {return ""}}
 
   render(){
