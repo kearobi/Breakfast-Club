@@ -42,10 +42,12 @@ class MessageBoard extends Component {
 
   handleSubmit(e){
     e.preventDefault();
+    if(this.state.currentMessage != ''){
     addMessage({
       content: this.state.currentMessage,
-      author: `${userStore.getUser().firstName} ${userStore.getUser().lastName}.`
+      author: `${userStore.getUser().firstName} ${userStore.getUser().lastName.slice(0, 1)}.`
     });
+    }
     this.setState({
       currentMessage: ''
     })
