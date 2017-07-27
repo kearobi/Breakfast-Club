@@ -102,8 +102,27 @@ sequelize db:seed:all
 
 // CLEAR YOUR LOCAL STORAGE
 ----
-- If you already had a local bc_development database and just dropped/repopulated your tables, make sure to also clear your browser's local storage as folows:
+- If you already had a local bc_development database and just dropped/repopulated your tables, make sure to also clear your browser's local storage as follows:
 
-From your browser console, go to Application -> Local Storage -> http://localhost:3000 and delete all
+This can be done in two ways:
+a) if you are logged into the app, simply log out
+b) From your browser console, go to Application -> Local Storage -> http://localhost:3000 and delete all
 
 - Now you may launch the application
+
+
+// USING GOURCE TO VISUALIZE THE COMMIT HISTORY
+
+download: http://gource.io/
+
+documentation: https://github.com/acaudwell/Gource
+
+To visualize the commit history in this project:
+1. Download gource
+2. Open  Git CMD terminal
+3. In the terminal, enter:
+
+gource --user-image-dir ./bc-react/public/Team --start-date "2017-06-02"
+
+Enjoy :)
+
