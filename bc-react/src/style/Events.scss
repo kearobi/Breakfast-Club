@@ -18,7 +18,7 @@
 
 .vote{
   padding-left: 50px;
-  padding-top: 14%;
+  padding-top: 19%;
 }
 
 .events-page {
@@ -27,6 +27,7 @@
 }
 
 .place-details{
+  margin-left: 10px;
   font-family: 'Abel';
   size: 40px;
     img {
@@ -133,7 +134,8 @@
 .flex-item{font-weight: normal;}
 
 .detail{width: 200px;}
-.place {width: 450px;}
+.place {width: 420px;
+text-align: center;}
 
 .place-img {
   width: 420px;
