@@ -50,7 +50,19 @@ module.exports = {
         updatedAt: '2017-06-02 08:00:00-07',
         active: false,
         speaker: "Eric Norcross"
-      }
+      },
+      {
+        id: 5,
+        place_1_id: 4,
+        place_2_id: 1,
+        date: '2017-07-28 08:00:00-07',
+        vote_status: false,
+        winner: 2,
+        createdAt: '2017-06-02 08:00:00-07',
+        updatedAt: '2017-06-02 08:00:00-07',
+        active: false,
+        speaker: "Matt Clark"
+      },
     ])
     .then(function(){
       return queryInterface.sequelize.query('ALTER SEQUENCE "Bevents_id_seq" RESTART 5')
@@ -106,6 +118,18 @@ module.exports = {
         updatedAt: '2017-06-02 08:00:00-07',
         active: false,
         speaker: "Eric Norcross"
+      },
+      {
+        id: 5,
+        place_1_id: 4,
+        place_2_id: 1,
+        date: '2017-07-28 08:00:00-07',
+        vote_status: false,
+        winner: 2,
+        createdAt: '2017-06-02 08:00:00-07',
+        updatedAt: '2017-06-02 08:00:00-07',
+        active: false,
+        speaker: "Matt Clark"
       }
     ])
     .then(function(){
