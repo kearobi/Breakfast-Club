@@ -131,7 +131,9 @@
   display: flex;
 }
 
-.flex-item{font-weight: normal;}
+.flex-item{
+  font-weight: normal;
+  max-width: 400px;}
 
 .detail{width: 200px;}
 .place {width: 420px;
