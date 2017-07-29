@@ -91,9 +91,9 @@ class App extends Component {
             <Route  exact path='/home'
                     render=
                     {()=>(loggedIn ? (<Home user={this.state.user}
-                    event={this.state.event}
-                    events={this.state.events}
-                  />) : (<Redirect to='/' />)
+                                            event={this.state.event}
+                                            events={this.state.events}
+                                          />) : (<Redirect to='/' />)
                     )} />
             <Route  exact path='/profile'
                     render={()=>(
@@ -108,7 +108,6 @@ class App extends Component {
                     render={()=>(
                     loggedIn ? (<Photos />) : (<Redirect to='/' />)
                     )} />
-            {/* //TODO: add admin check to profile page */}
             <Route  exact path='/admin'
                     render={()=>(
                     isAdmin && loggedIn ? (<AdminPage
