@@ -24,9 +24,9 @@ class EventDetail extends Component {
     //if one or more users have RSVPd, return the user's first name and first initial of the last name
       guestlist = this.props.guestlist.map(function(user, i){
         return (
-          <div className='flex-item' key={i}>
-            {user.firstName} {user.lastName.slice(0, 1)}.,
-          </div>
+          <span className='flex-item' key={i}>
+            {user.firstName}&nbsp;{user.lastName.slice(0, 1)}.,
+          </span>
         )
       })
     }
