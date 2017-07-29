@@ -142,7 +142,7 @@ module.exports = {
     {
       id: 18,
       user_id: 5,
-      event_id: 4,
+      event_id: 5,
       vote: '1',
       createdAt: '2017-06-02 07:52:29-07',
       updatedAt: '2017-06-02 07:52:29-07'
@@ -150,7 +150,7 @@ module.exports = {
     {
       id: 19,
       user_id: 6,
-      event_id: 4,
+      event_id: 5,
       vote: '2',
       createdAt: '2017-06-02 07:52:29-07',
       updatedAt: '2017-06-02 07:52:29-07'
@@ -302,7 +302,7 @@ module.exports = {
       {
         id: 18,
         user_id: 5,
-        event_id: 4,
+        event_id: 5,
         vote: '1',
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07'
@@ -310,7 +310,7 @@ module.exports = {
       {
         id: 19,
         user_id: 6,
-        event_id: 4,
+        event_id: 5,
         vote: '2',
         createdAt: '2017-06-02 07:52:29-07',
         updatedAt: '2017-06-02 07:52:29-07'
