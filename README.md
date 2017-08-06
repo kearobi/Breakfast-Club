@@ -102,4 +102,8 @@ To visualize the commit history in this project:
 gource --user-image-dir ./bc-react/public/Team --start-date "2017-06-02"
 ```
 
+## Postman
+API is fully documented in Postman and ready for testing. Use breakfastclub.sd@gmail.com login to update.
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e68eba690b78729afee8)
+
 Enjoy :)
