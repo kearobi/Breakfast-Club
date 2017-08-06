@@ -6,14 +6,15 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
+    "test-components": "jest bc-react/src/tests/components.test.js",
     "test:coverage": "jest --coverage",
-    "test-api-dev": "newman run tests/postman/breakfast-club.postman_collection.json -e tests/postman/Dev.postman_environment.json",
-    "test-api-prod": "newman run tests/postman/breakfast-club.postman_collection.json -e tests/postman/Prod.postman_environment.json",
+    "test-api-dev": "newman run bc-express/postman/breakfast-club.postman_collection.json -e tests/postman/Dev.postman_environment.json",
+    "test-api-prod": "newman run bc-express/postman/breakfast-club.postman_collection.json -e tests/postman/Prod.postman_environment.json",
     "start": "node bc-express/app.js",
     "heroku-postbuild": "cd bc-express/ && cp config/config.json.prod config/config.json && sequelize db:migrate && sequelize db:seed:all && cd .. && cd bc-react/ && yarn install && yarn build"
   },
   "jest": {
-    "setupFiles": ["./tests/jestsetup.js"],
+    "setupFiles": ["bc-react/src/tests/jestsetup.js"],
     "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
     "moduleNameMapper": {
       "^.+\\.(css|scss)$": "identity-obj-proxy"
