@@ -102,9 +102,25 @@ To visualize the commit history in this project:
 gource --user-image-dir ./bc-react/public/Team --start-date "2017-06-02"
 ```
 
-## Postman
-API is fully documented in Postman and ready for testing. Use breakfastclub.sd@gmail.com login to update.
+### Postman
+API is fully documented in Postman and ready for testing in both dev and prod environments. Use breakfastclub.sd@gmail.com login to update.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e68eba690b78729afee8)
+
+### Automated Testing
+##### API
+To test all API requests on dev or prod run one of the following scripts from the root directory. Most tests are fairly basic and just check for 200 responses. If you update the tests in Postman then please export the collection runner as a json and save it into postman folder so that the scripts run updated tests.
+
+```
+npm run test-api-dev
+npm run test-api-prod
+```
+
+##### React Client
+Components can be tested via jest with the following script:
+```
+npm run test-components
+```
+Alternatively you can globally install the jest cli (```npm install -g jest-cli```) and the ```jest``` command will run all ```.test.js``` files from any directory
 
 Enjoy :)

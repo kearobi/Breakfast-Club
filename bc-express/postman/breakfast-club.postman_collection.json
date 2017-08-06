@@ -1,0 +1,686 @@
+{
+	"variables": [],
+	"info": {
+		"name": "breakfast-club",
+		"_postman_id": "b01ca3a8-f4b4-d0a6-ab38-814993151a41",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"description": "",
+			"item": [
+				{
+					"name": "/profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/profile",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"user\" : {\r\n\t\t\"admin\" : \"true\",\r\n\t\t\"active\" : \"true\",\r\n\t\t\"authToken\" : \"f5a92fc0-7a44-11e7-a138-9703a7064294\",\r\n\t\t\"authTokenExpiration\" : \"2017-09-06 01:17:05.596 +00:00\",\r\n\t\t\"email\" : \"bob@testing.com\",\r\n\t\t\"firstName\" : \"bob\",\r\n\t\t\"id\" : \"8\",\r\n\t\t\"lastName\" : \"Jones\",\r\n\t\t\"neighborhood\" : \"OB\",\r\n\t\t\"rsvp\" : \"false\",\r\n\t\t\"voted\" : \"false\"\r\n\t}\r\n}"
+						},
+						"description": "edit a user's profile"
+					},
+					"response": []
+				},
+				{
+					"name": "/signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/signup",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\" : \"bob\",\n  \"lastName\" : \"jones\",\n  \"email\" : \"bob{{$randomInt}}@jones.com\",\n  \"neighborhood\" : \"point loma\",\n  \"password\" : \"test123\"\n}"
+						},
+						"description": "register a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/login",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\" : \"bob@jones.com\",\n\t\"password\" : \"test123\"\n}"
+						},
+						"description": "login an existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "/guestlist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/guestlist",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "get guestlist of current event"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"description": "",
+			"item": [
+				{
+					"name": "post /messages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\" : \"hello\",\n  \"author\" : \"alex\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get /messages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/messages",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Places",
+			"description": "",
+			"item": [
+				{
+					"name": "/places",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/places",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "get all places"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"description": "",
+			"item": [
+				{
+					"name": "/admin/get/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/admin/get/users",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/get/places",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/admin/get/places",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/get/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/admin/get/events",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/delete/user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/admin/delete/user",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 2\n}"
+						},
+						"description": "delete a user by id"
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/add/user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/admin/add/user",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\" : {\n\t  \"firstName\" : \"job\",\n\t  \"lastName\" : \"jones\",\n\t  \"email\" : \"bob{{$randomInt}}@jones.com\",\n\t  \"neighborhood\" : \"point loma\",\n\t  \"password\" : \"test123\"\n\t}\n  \n}"
+						},
+						"description": "admin adds user manually"
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/add/place",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/admin/add/place",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Boody’s Breakfast and Burgers\",\n    \"address_street\": \"4111 Ocean Blvd\",\n    \"address_city\": \"San Diego\",\n    \"address_state\": \"CA\",\n    \"address_zip\": \"92109\",\n    \"phone\": \"(858) 273-9663\",\n    \"yelp_rating\": 4,\n    \"image_url\": \"https://s3-media3.fl.yelpcdn.com/bphoto/KVwOs6oxBTV2MqW09iUqdA/o.jpg\",\n    \"categories\": \"American (Traditional)\",\n    \"review_count\": 306,\n    \"price\": \"$\",\n    \"url\": \"https://www.yelp.com/biz/woodys-breakfast-and-burgers-san-diego\",\n    \"active\": true\n}"
+						},
+						"description": "admin adds place manually"
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/add/event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/admin/add/event",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"event\" : {\n\t\t\"date\": \"2017-08-11T15:00:00.497Z\",\n\t    \"vote_status\": \"false\",\n\t    \"winner\": 1,\n\t    \"active\": \"true\",\n\t    \"speaker\": \"Joe\",\n\t    \"place_1_id\": 2,\n\t    \"place_2_id\": 3\n\t}\n\t\n}"
+						},
+						"description": "admin adds event manually"
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/edit/user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/admin/edit/user",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"user\" : {\r\n\t\t\"admin\" : \"true\",\r\n\t\t\"active\" : \"true\",\r\n\t\t\"authToken\" : \"f5a92fc0-7a44-11e7-a138-9703a7064294\",\r\n\t\t\"authTokenExpiration\" : \"2017-09-06 01:17:05.596 +00:00\",\r\n\t\t\"email\" : \"bob@testing.com\",\r\n\t\t\"firstName\" : \"bob\",\r\n\t\t\"id\" : \"8\",\r\n\t\t\"lastName\" : \"Jones\",\r\n\t\t\"neighborhood\" : \"OB\",\r\n\t\t\"rsvp\" : \"false\",\r\n\t\t\"voted\" : \"false\"\r\n\t}\r\n}"
+						},
+						"description": "admin updates user manually"
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/edit/place",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/admin/edit/place",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"place\" : {\n\t\t\t\"id\": 1,\n\t\t\t\"name\": \"Woody’s Breakfast and Burgers\",\n\t\t\t\"address_street\": \"4111 Ocean Blvd\",\n\t\t\t\"address_city\": \"San Diego\",\n\t\t\t\"address_state\": \"CA\",\n\t\t\t\"address_zip\": \"92109\",\n\t\t\t\"phone\": \"(858) 273-9663\",\n\t\t\t\"yelp_rating\": 4,\n\t\t\t\"image_url\": \"https://s3-media3.fl.yelpcdn.com/bphoto/KVwOs6oxBTV2MqW09iUqdA/o.jpg\",\n\t\t\t\"categories\": \"American (Traditional)\",\n\t\t\t\"review_count\": 306,\n\t\t\t\"price\": \"$\",\n\t\t\t\"url\": \"https://www.yelp.com/biz/woodys-breakfast-and-burgers-san-diego\",\n\t\t\t\"active\": true,\n\t\t\t\"createdAt\": \"2017-06-02T14:52:29.000Z\",\n\t\t\t\"updatedAt\": \"2017-06-02T14:52:29.000Z\"\n\t}\n\n}\n\t\t\t"
+						},
+						"description": "admin updates place manually"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:4000/admin/edit/event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/admin/edit/event",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event\": {\n        \"id\": 8,\n        \"date\": \"2017-08-11T15:00:00.497Z\",\n        \"vote_status\": false,\n        \"winner\": 2,\n        \"active\": true,\n        \"speaker\": null,\n        \"createdAt\": \"2017-08-06T03:18:55.508Z\",\n        \"updatedAt\": \"2017-08-06T03:24:37.496Z\",\n        \"place_1_id\": 11,\n        \"place_2_id\": 21\n    },\n    \"guestLists\": [],\n    \"places\": [\n        {\n            \"id\": 11,\n            \"name\": \"Wow Wow Waffle\",\n            \"address_street\": \"3519 30th St\",\n            \"address_city\": \"San Diego\",\n            \"address_state\": \"CA\",\n            \"address_zip\": \"92104\",\n            \"phone\": \"(619) 806-0345\",\n            \"yelp_rating\": 5,\n            \"image_url\": \"https://s3-media3.fl.yelpcdn.com/bphoto/RREf7BWD19rfOwMJJBQYkg/o.jpg\",\n            \"categories\": \"Food Stands\",\n            \"review_count\": 638,\n            \"price\": \"$\",\n            \"url\": \"https://www.yelp.com/biz/wow-wow-waffle-san-diego-2?adjust_creative=MqRWtgF_vdawn60G75jScw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=MqRWtgF_vdawn60G75jScw\",\n            \"active\": true,\n            \"createdAt\": \"2017-08-06T00:22:01.266Z\",\n            \"updatedAt\": \"2017-08-06T00:22:01.266Z\"\n        },\n        {\n            \"id\": 21,\n            \"name\": \"Pardon My French Bar & Kitchen\",\n            \"address_street\": \"3797 Park Blvd\",\n            \"address_city\": \"San Diego\",\n            \"address_state\": \"CA\",\n            \"address_zip\": \"92103\",\n            \"phone\": \"(619) 546-4328\",\n            \"yelp_rating\": 5,\n            \"image_url\": \"https://s3-media3.fl.yelpcdn.com/bphoto/01aW2ez49ELgWCYWK1e5qA/o.jpg\",\n            \"categories\": \"French\",\n            \"review_count\": 548,\n            \"price\": \"$$\",\n            \"url\": \"https://www.yelp.com/biz/pardon-my-french-bar-and-kitchen-san-diego?adjust_creative=MqRWtgF_vdawn60G75jScw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=MqRWtgF_vdawn60G75jScw\",\n            \"active\": true,\n            \"createdAt\": \"2017-08-06T00:22:01.412Z\",\n            \"updatedAt\": \"2017-08-06T00:22:01.412Z\"\n        }\n    ],\n    \"users\": []\n}"
+						},
+						"description": "admin manually edits event"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"description": "",
+			"item": [
+				{
+					"name": "/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/events",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "get all events"
+					},
+					"response": []
+				},
+				{
+					"name": "/test-event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/test-event",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"formId\" : \"1\"\n}"
+						},
+						"description": "get an event by id"
+					},
+					"response": []
+				},
+				{
+					"name": "/register-vote",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/register-vote",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"event\": {\r\n    \"id\": 6,\r\n    \"date\": \"2017-08-11T15:00:00.456Z\",\r\n    \"vote_status\": true,\r\n    \"winner\": null,\r\n    \"active\": true,\r\n    \"speaker\": null,\r\n    \"createdAt\": \"2017-08-06T00:24:12.456Z\",\r\n    \"updatedAt\": \"2017-08-06T00:24:12.456Z\",\r\n    \"place_1_id\": 22,\r\n    \"place_2_id\": 25\r\n  },\r\n  \"users\": [],\r\n  \"places\": [\r\n    {\r\n      \"id\": 22,\r\n      \"name\": \"Parkhouse Eatery\",\r\n      \"address_street\": \"4574 Park Blvd\",\r\n      \"address_city\": \"San Diego\",\r\n      \"address_state\": \"CA\",\r\n      \"address_zip\": \"92116\",\r\n      \"phone\": \"(619) 295-7275\",\r\n      \"yelp_rating\": 4,\r\n      \"image_url\": \"https://s3-media3.fl.yelpcdn.com/bphoto/vcGdVz5yN6FGcvuy0s7_WQ/o.jpg\",\r\n      \"categories\": \"Breakfast & Brunch\",\r\n      \"review_count\": 1415,\r\n      \"price\": \"$$\",\r\n      \"url\": \"https://www.yelp.com/biz/parkhouse-eatery-san-diego?adjust_creative=MqRWtgF…api_v3&utm_medium=api_v3_business_search&utm_source=MqRWtgF_vdawn60G75jScw\",\r\n      \"active\": true,\r\n      \"createdAt\": \"2017-08-06T00:22:01.412Z\",\r\n      \"updatedAt\": \"2017-08-06T00:22:01.412Z\"\r\n    },\r\n    {\r\n      \"id\": 25,\r\n      \"name\": \"Caffè Calabria\",\r\n      \"address_street\": \"3933 30th St\",\r\n      \"address_city\": \"San Diego\",\r\n      \"address_state\": \"CA\",\r\n      \"address_zip\": \"92104\",\r\n      \"phone\": \"(619) 291-1759\",\r\n      \"yelp_rating\": 5,\r\n      \"image_url\": \"https://s3-media3.fl.yelpcdn.com/bphoto/KTyPsqMc987t7qHMQ4MrKw/o.jpg\",\r\n      \"categories\": \"Cafes\",\r\n      \"review_count\": 1229,\r\n      \"price\": \"$\",\r\n      \"url\": \"https://www.yelp.com/biz/caff%C3%A8-calabria-san-diego-5?adjust_creative=Mq…api_v3&utm_medium=api_v3_business_search&utm_source=MqRWtgF_vdawn60G75jScw\",\r\n      \"active\": true,\r\n      \"createdAt\": \"2017-08-06T00:22:01.415Z\",\r\n      \"updatedAt\": \"2017-08-06T00:22:01.415Z\"\r\n    }\r\n  ],\r\n  \"guestLists\": [\r\n    {\r\n      \"id\": 20,\r\n      \"user_id\": null,\r\n      \"event_id\": 6,\r\n      \"vote\": \"1\",\r\n      \"createdAt\": \"2017-08-06T02:37:12.772Z\",\r\n      \"updatedAt\": \"2017-08-06T02:37:12.772Z\"\r\n    }\r\n  ],\r\n  \"user\": {\r\n    \"id\": 1,\r\n    \"firstName\": \"Gabe\",\r\n    \"lastName\": \"Giestas\",\r\n    \"email\": \"gabe@testing.com\",\r\n    \"neighborhood\": \"Normal Heights\",\r\n    \"voted\": false,\r\n    \"rsvp\": false,\r\n    \"admin\": true,\r\n    \"active\": true,\r\n    \"authToken\": \"4d2acac0-4a3d-11e7-b752-a928b03d6170\",\r\n    \"authTokenExpiration\": \"2017-07-05 22:21:20.620\"\r\n  },\r\n  \"choice\": \"1\"\r\n}\r\n"
+						},
+						"description": "register a user's vote"
+					},
+					"response": []
+				},
+				{
+					"name": "/create-event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/create-event",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"7\"\n}"
+						},
+						"description": "creates a new event"
+					},
+					"response": []
+				},
+				{
+					"name": "/current-event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Both restaurant options are in San Diego\"] = jsonData.places[0].address_city === \"San Diego\" && jsonData.places[1].address_city === \"San Diego\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/current-event",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "get current event"
+					},
+					"response": []
+				},
+				{
+					"name": "/count-votes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/count-votes",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "end voting phase, count all votes for current event"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

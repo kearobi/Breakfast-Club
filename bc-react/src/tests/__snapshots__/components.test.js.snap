@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a document title 1`] = `
+<div>
+  <span>
+    Hey 
+    bob
+    , last chance to RSVP!
+  </span>
+  <br />
+  <span>
+    We'll be at 
+  </span>
+  <Link
+    replace={false}
+    to="/current-event"
+  >
+    <span>
+      The Broken Yolk Cafe
+    </span>
+  </Link>
+  <span>
+     on 
+    <t
+      ago={false}
+      calendar={false}
+      format="dddd"
+      fromNow={false}
+      toNow={false}
+      unix={false}
+      utc={false}
+    >
+      2017-08-11T15:00:00.497Z
+    </t>
+     at 
+    <t
+      ago={false}
+      calendar={false}
+      format="h:mm a"
+      fromNow={false}
+      toNow={false}
+      unix={false}
+      utc={false}
+    >
+      2017-08-11T15:00:00.497Z
+    </t>
+  </span>
+</div>
+`;
+
+exports[`should render a hardcoded header 1`] = `
+<div
+  className="header"
+>
+  Breakfast Club
+</div>
+`;
