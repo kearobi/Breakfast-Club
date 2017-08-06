@@ -14,8 +14,12 @@
     "heroku-postbuild": "cd bc-express/ && cp config/config.json.prod config/config.json && sequelize db:migrate && sequelize db:seed:all && cd .. && cd bc-react/ && yarn install && yarn build"
   },
   "jest": {
-    "setupFiles": ["bc-react/src/tests/jestsetup.js"],
-    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
+    "setupFiles": [
+      "bc-react/src/tests/jestsetup.js"
+    ],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ],
     "moduleNameMapper": {
       "^.+\\.(css|scss)$": "identity-obj-proxy"
     }
@@ -42,6 +46,7 @@
     "enzyme": "^2.9.1",
     "enzyme-to-json": "^1.5.1",
     "jest": "^20.0.4",
+    "newman": "^3.8.0",
     "react": "^15.6.1",
     "react-addons-test-utils": "^15.6.0",
     "react-dom": "^15.6.1",
