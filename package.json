@@ -7,16 +7,14 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
+    "test-api-dev": "newman run tests/postman/breakfast-club.postman_collection.json -e tests/postman/Dev.postman_environment.json",
+    "test-api-prod": "newman run tests/postman/breakfast-club.postman_collection.json -e tests/postman/Prod.postman_environment.json",
     "start": "node bc-express/app.js",
     "heroku-postbuild": "cd bc-express/ && cp config/config.json.prod config/config.json && sequelize db:migrate && sequelize db:seed:all && cd .. && cd bc-react/ && yarn install && yarn build"
   },
   "jest": {
-    "setupFiles": [
-      "./tests/jestsetup.js"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/enzyme-to-json/serializer"
-    ],
+    "setupFiles": ["./tests/jestsetup.js"],
+    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
     "moduleNameMapper": {
       "^.+\\.(css|scss)$": "identity-obj-proxy"
     }
