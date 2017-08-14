@@ -551,11 +551,12 @@ app.post('/signup', function(request, response){
         html: `
         <div
           style=" text-align:center;
-                  font-family:'Arial';
-                  font-size:18px;">
+                  font-family:Arial, Helvetica, sans-serif;
+                  font-size:18px;
+                  color:black;">
           <hr/>
-        <div style="font-size:60px;font-family:'Garamond'">breakfast club</div>
-        <div style="font-size:20px;font-family:'Garamond'">SAN DIEGO</div>
+        <div style="font-size:60px;font-family:'Garamond', serif">breakfast club</div>
+        <div style="font-size:20px;font-family:'Garamond', serif">SAN DIEGO</div>
           <hr/>
         <p>Welcome to
           <a href='https://breakfast-club.herokuapp.com/'>
