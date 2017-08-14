@@ -548,7 +548,13 @@ app.post('/signup', function(request, response){
         to: `${request.body.email}`,
         subject: 'Welcome to Breakfast Club!',
         text: 'Mmm, breakfast',
-        html: '<h1>Welcome!</h1><p>Thanks for joining our site <a href="https://breakfast-club.herokuapp.com/">Breakfast Club</a>.</p>'
+        html: `
+        <h1        style="text-align:center;
+                          color:fuchsia;
+                          font-family:'Dancing Script'">
+            Welcome!
+        </h1>
+        <p>Thanks for joining our site <a href='https://breakfast-club.herokuapp.com/'>Breakfast Club</a>.</p>`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

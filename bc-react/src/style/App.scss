@@ -18,6 +18,27 @@
 @import url('./PageNotFound.css');
 @import url('./Responsive.css');
 
+//email
+
+.email {
+  text-align:center;
+  font-family:'Garamond';
+  h1 {
+    margin-bottom: -20px;
+  }
+  img{
+    position: fixed;
+    bottom:0;
+    right:0;
+    height: 100%;
+    z-index: -1;
+    user-select: none;
+  }
+}
+
+
+
+
 .wrapper {
   display: flex;
   flex-direction: row;
