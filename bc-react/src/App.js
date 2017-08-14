@@ -6,7 +6,6 @@ import UserProfile from './routes/UserProfile';
 import {setEventsFromLocal} from './actions/EventActions';
 import eventStore from './stores/EventStore';
 import TestEvent from './routes/TestEvent';
-import Email from './routes/email';
 import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import MessageBoardToggle from './components/MessageBoardToggle';
@@ -116,7 +115,6 @@ class App extends Component {
                     )} />
             {/* <Route exact path='/admin' component={AdminPage} /> */}
             <Route exact path='/test-event' component={TestEvent} />
-            <Route exact path='/email' component={Email} />
             <Route exact path='/404' component={PageNotFound} />
             <Redirect to='/404'/>
           </Switch>
