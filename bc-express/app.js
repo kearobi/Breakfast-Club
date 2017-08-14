@@ -10,11 +10,20 @@ var User = require('./models').User
 var Message = require('./models').Message
 var moment = require('moment');
 var path = require('path')
+const nodemailer = require('nodemailer');  //https://nodemailer.com/about/
 const PORT = process.env.PORT || 4000;
 
 const corsOptions = {
   origin: 'http://localhost:3000'
 }
+
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'breakfastclub.sd@gmail.com',
+        pass: 'emptystring0'
+    }
+});
 
 function getNextBreakfast(dayOfWeek) {
     var now = new Date();
@@ -532,6 +541,41 @@ app.post('/signup', function(request, response){
       password: request.body.password
     }
   ).then((user)=>{
+
+    // send email
+    let mailOptions = {
+        from: '"Breakfast Club" <breakfastclub.sd@gmail.com>',
+        to: `${request.body.email}`,
+        subject: 'Welcome to Breakfast Club!',
+        text: 'Mmm, breakfast',
+        html: `
+        <div
+          style=" text-align:center;
+                  font-family:'Arial';
+                  font-size:18px;">
+          <hr/>
+        <div style="font-size:60px;font-family:'Garamond'">breakfast club</div>
+        <div style="font-size:20px;font-family:'Garamond'">SAN DIEGO</div>
+          <hr/>
+        <p>Welcome to
+          <a href='https://breakfast-club.herokuapp.com/'>
+            Breakfast Club</a>!<br/>
+          A weekly get-together for tech professionals in Sunny Sandy Eggo
+        </p>
+        <p>Questions? Thoughts? Concerns?</p>
+        <p>Send them on over to <a href="mailto:breakfastclub.sd@gmail.com?Subject=Questions,%20Thoughts,%20Concerns" target="_top">breakfastclub.sd@gmail.com</a>
+        </p>
+        </div>
+        `
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+    });
+
     response.status(200)
     response.json({message: 'success', user: user})
   }).catch((error)=>{
