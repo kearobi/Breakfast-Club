@@ -4,11 +4,15 @@ class Email extends Component {
   render(){
     return (
       <div className='email'>
-      <h1>breakfast club</h1>
-      <h4>SAN DIEGO</h4>
-      <p>Thanks for joining our site <a href='https://breakfast-club.herokuapp.com/'>Breakfast Club</a>.
+        <hr/>
+      <div className='h1'>breakfast club</div>
+      <div className='h2'>SAN DIEGO</div>
+        <hr/>
+      <p>Welcome to <a href='https://breakfast-club.herokuapp.com/'>Breakfast Club</a>!<br/>A weekly get-together for tech professionals in Sunny Sandy Eggo
     </p>
-    <img src='../../Images/email.jpeg'></img>
+    <p>Questions? Thoughts? Concerns?</p>
+    <p>Send them on over to <a href="mailto:breakfastclub.sd@gmail.com?Subject=Questions,%20Thoughts,%20Concerns" target="_top">breakfastclub.sd@gmail.com</a>
+  </p>
     </div>
     );
   }
