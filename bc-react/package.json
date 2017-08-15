@@ -22,11 +22,14 @@
     "react-infinite-calendar": "^2.3.1",
     "react-modal": "^2.2.2",
     "react-moment": "^0.3.0",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.1.1",
     "react-scripts": "^1.0.7",
     "react-toggle-display": "^2.2.0",
     "react-transition-group": "^1.1.1",
-    "reactjs-coverflow": "^1.1.1"
+    "reactjs-coverflow": "^1.1.1",
+    "redux": "^3.7.2",
+    "redux-promise": "^0.5.3"
   },
   "scripts": {
     "start-js": "node ./node_modules/react-scripts/bin/react-scripts.js start",

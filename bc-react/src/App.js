@@ -10,7 +10,7 @@ import SplashPage from './routes/SplashPage';
 import AdminPage from './routes/AdminPage';
 import MessageBoardToggle from './components/MessageBoardToggle';
 import {setUserFromLocal, fetchGuestlist} from './actions/UserActions'
-import Places from './routes/Places'
+import Places from './containers/Places'
 import CurrentEvent from './routes/CurrentEvent'
 import PastEvent from './routes/PastEvent'
 import Photos from './routes/Photos'
