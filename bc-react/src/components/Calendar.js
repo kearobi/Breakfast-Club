@@ -6,7 +6,9 @@ import moment from 'moment';
 import {Redirect} from 'react-router-dom';
 import PastEvent from '../routes/PastEvent';
 import Modal from 'react-modal';
-
+import {connect} from 'react-redux'
+import {selectEvent} from '../actions/EventActions'
+import {bindActionCreators} from 'redux'
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 );
@@ -45,28 +47,30 @@ class Calendar extends Component {
       selectedEventId: null,
       modal: false
     }
-    this.updateEvents = this.updateEvents.bind(this)
+    // this.updateEvents = this.updateEvents.bind(this)
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
-      fetchEvents();
+      // fetchEvents();
   }
-
+  //
   componentWillMount(){
-    eventStore.on('change', this.updateEvents)
+    // eventStore.on('change', this.updateEvents)
+    this.updateEvents()
   }
-
-  componentWillUnmount(){
-    eventStore.removeListener('change', this.updateEvents)
-  }
+  //
+  // componentWillUnmount(){
+  //   eventStore.removeListener('change', this.updateEvents)
+  // }
 
   updateEvents(){
-    let bevents = eventStore.getAllEvents()
+    // let bevents = eventStore.getAllEvents()
+    let bevents = this.props.events
     console.log('all events: ', bevents)
-    let newEvents = bevents.map(function(bevent){
+    let newEvents = this.props.events.map(function(bevent){
       let start = moment(bevent.date).toDate()
       let end = moment(bevent.date).add(1, 'hours').toDate()
-      let placeName = bevent.place.name
-      console.log('bevent', bevent)
+      // let placeName = bevent.place.name
+      let placeName = bevent.createdAt
       let id = bevent.id
       return {
         'title': placeName,
@@ -131,4 +135,14 @@ class Calendar extends Component {
   }
 }
 
-export default Calendar;
+function mapStateToProps(state){
+  return {
+    events: state.events
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ selectEvent: selectEvent }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar)

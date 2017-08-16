@@ -7,6 +7,11 @@ if(process.env.NODE_ENV === 'production'){
   apiUrl = "http://localhost:4000/"
 }
 
+//redux stuff, lecture 45
+export function selectEvent(event){
+  console.log('An event has been selected: ', event)
+}
+
 export function testCreate(){
   const params = {
     method: 'GET'
