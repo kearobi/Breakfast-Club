@@ -42,7 +42,7 @@ sequelize db:seed:all
 ### Launch Application
 ---
 
-1. To start the application you will need two terminal sessions. Navigate each to the root directory of the project. Use the first to start the express app:
+To start the application you will need two terminal sessions. Navigate each to the root directory of the project. Use the first to start the express app:
 
 ```
 cd bc-express
@@ -50,7 +50,7 @@ nodemon app.js
 ```
 
 
-2. Use the second terminal session to start the React app:
+Use the second terminal session to start the React app:
 
 ```
 cd bc-react
@@ -65,7 +65,8 @@ yarn start
 
 ```
 \c bc_development
-DROP TABLE "Messages" CASCADE; DROP TABLE "Users" CASCADE; DROP TABLE "Bevents" CASCADE; DROP TABLE "Places" CASCADE; DROP TABLE "GuestLists" CASCADE; DELETE FROM "SequelizeMeta";
+DROP TABLE "Messages" CASCADE; DROP TABLE "Users" CASCADE; DROP TABLE "Bevents" CASCADE; 
+DROP TABLE "Places" CASCADE; DROP TABLE "GuestLists" CASCADE; DELETE FROM "SequelizeMeta";
 ```
 
 Then quit postgres (\q) and run the two sequelize commands in the bc-express directory:
